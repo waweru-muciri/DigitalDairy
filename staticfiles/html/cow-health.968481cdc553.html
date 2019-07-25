@@ -1,0 +1,167 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Cow Treatment Records {% endblock %}
+{% block content %}
+		<section class="section-a">
+			<div class="container text-center">
+				<div class="row sf-html-block">
+					<div class="col-lg-6 col-md-6 order-lg-3 order-md-3 sf-html-block">
+						<button type="button" data-toggle="modal" data-target="#treatmentInputModal" class="btn btn-primary">
+							<span>
+								&plus; Add Treatment Record
+							</span>
+						</button>
+					</div>
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<h4>Treatment Records</h4>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="treatmentInputModal" tabindex="-1" aria-labelledby="treatmentInputModalLabel"
+			role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h4 class="modal-title text-center" id="treatmentInputModalLabel">
+									Add Treatment Record
+								</h4>
+								<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+							<form id="treatmentInputForm" method="post" action="/digitaldairy/save_treatment_record">
+								{% csrf_token %}
+								<input id="treatment_id" class="form-control" type="hidden" name="treatment_id">
+								<div class="form-group">
+									<label for="treatment_date" class="col-form-label">
+										Date
+									</label>
+									<input id="treatment_date" class="form-control" type="date" name="treatment_date" required>
+								</div>
+								<div class="form-group">
+									<label for="cow_id" class="col-form-label">
+										Select Cow
+									</label>
+									<select required id="cow_id" class="form-control" name="cow_id">
+										<option value="cow_id" disabled selected="selected">Select cow</option>
+											{% if all_cows %}
+											{% for cow in all_cows %}
+											<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+											{% endfor %}
+											{% endif %}
+									</select>
+                                </div>
+								<div class="form-group">
+									<label for="disease" class="col-form-label">
+										Disease
+									</label>
+									<input id="disease" class="form-control"  type="text" name="disease" required>
+								</div>
+								<div class="form-group">
+									<label for="diagnosis" class="col-form-label">
+										Diagnosis
+									</label>
+									<input id="diagnosis" class="form-control" type="text" name="diagnosis">
+								</div>
+								<div class="form-group">
+									<label for="treatment" class="col-form-label">
+										Treatment
+									</label>
+									<input id="treatment" class="form-control" type="text" name="treatment" required>
+								</div>
+								<div class="form-group">
+									<label for="treatment_cost" class="col-form-label">
+										Cost
+									</label>
+									<input id="treatment_cost" class="form-control" type="number" name="treatment_cost" min="0">
+								</div>
+								<div class="form-group">
+									<label for="vet_name" class="col-form-label">
+										Vet Name
+									</label>
+									<input id="vet_name" class="form-control" type="text" name="vet_name">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button form="treatmentInputForm" type="submit" class="btn btn-primary">Save Record</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="">
+				<div style="width:100%;" class="row">
+					<div class="col-lg-12">
+						<div class="table-responsive" style="overflow:auto;">
+							<table id="cowTreatmentsTable" class="table table-hover">
+								<thead class="text-center">
+									<tr>
+										<th> Cow Id </th>
+										<th> Cow Name </th>
+										<th> Date Treated </th>
+										<th> Diagnosis </th>
+										<th> Treatment </th>
+										<th> Cost (Ksh) </th>
+										<th> Vet </th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+										{% if treatment_records_list %}
+										{% for treatment_record in treatment_records_list %}
+										<tr data-src="{{treatment_record.id}}">
+											<script>
+											myStorage = window.sessionStorage;
+											var object = {
+											treatment_id: {{treatment_record.id}},
+											cow_id: '{{treatment_record.cow.id}}',
+											diagnosis: '{{treatment_record.diagnosis}}',
+											disease: '{{treatment_record.disease}}',
+											treatment_date: '{{treatment_record.date|date:"Y-m-d"}}',
+											treatment: '{{treatment_record.treatment}}',
+											treatment_cost: {{treatment_record.treatment_cost}},
+											vet_name: '{{treatment_record.vet_name}}',
+											}
+											myStorage.setItem('treatment_'+{{treatment_record.id}},JSON.stringify
+											 (object))
+											</script>
+											<td> {{ treatment_record.cow }} </td>
+											<td>
+												<a href="{{ treatment_record.get_treatment_history_url }}">
+													{{ treatment_record.cow.name }}
+												</a>
+											</td>
+											<td> {{ treatment_record.date }} </td>
+											<td> {{ treatment_record.diagnosis }} </td>
+											<td> {{ treatment_record.treatment }} </td>
+											<td> {{ treatment_record.treatment_cost }} </td>
+											<td> {{ treatment_record.vet_name }} </td>
+											<td>
+												<button id="treatmentEditBtn" type="button" data-toggle="modal"
+													data-target="#treatmentInputModal" class='btn btn-sm btn-primary'
+														aria-label="Edit">
+													<span class="fa fa-edit"></span>
+												</button>
+												<form id="deleteTreatmentForm" method="post"
+												action="/digitaldairy/delete_treatment">
+												{% csrf_token %}
+												<input name="treatment_id" type="hidden"
+												value="{{treatment_record.id}}">
+												<button form="deleteTreatmentForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+													<span class="fa fa-times"></span>
+												</button>
+												</form>
+											</td>
+										</tr>
+										{% endfor %}
+										{% endif %}
+									</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

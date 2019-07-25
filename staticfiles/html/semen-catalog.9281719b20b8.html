@@ -1,0 +1,151 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Semen Catalog {% endblock %}
+{% block content %}
+		<section class="section-a">
+			<div class="container text-center">
+				<div class="row sf-html-block">
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<h4>Semen Catalog List</h4>
+					</div>
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#semenInputModal">
+                            <span>
+                                &plus; New Semen Record
+                            </span>
+                        </button>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="semenInputModal" tabindex="-1" aria-labelledby="semenInputModalLabel"
+			role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h4 class="modal-title text-center" id="semenInputModalLabel">
+									Add Semen Record
+								</h4>
+								<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+							<form id="semenCatalogInputForm" method="post" action="/digitaldairy/save_semen_catalog">
+								{% csrf_token %}
+								<input id='semen_catalog_id' type='hidden' class='form-control' name='semen_catalog_id'>
+								<div class="form-group">
+									<label for="bull_name" class="col-form-label">
+										Bull Name
+									</label>
+									<input id="bull_name" class="form-control" type="text" name="bull_name" required>
+								</div>
+								<div class="form-group">
+									<label for="bull_code" class="col-form-label">
+										Bull Code
+									</label>
+									<input id="bull_code" class="form-control" type="text" name="bull_code" required>
+								</div>
+								<div class="form-group">
+									<label for="bull_breed" class="col-form-label">
+										Breed
+									</label>
+									<input id="bull_breed" class="form-control" type="text" name="bull_breed" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="num_of_straws" class="col-form-label">
+                                        Number of Straws
+                                    </label>
+                                    <input id="num_of_straws" class="form-control" type="number" name="num_of_straws" min="0">
+                                </div>
+								<div class="form-group">
+									<label for="cost_per_straw" class="col-form-label">
+										Cost per Straw
+									</label>
+									<input id="cost_per_straw" class="form-control" type="number" name="cost_per_straw" min="0">
+								</div>
+								<div class="form-group">
+									<label for="company_name" class="col-form-label">
+										Company Name
+									</label>
+									<input id="company_name" class="form-control" type="text" name="company_name">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button form="semenCatalogInputForm" type="submit" class="btn btn-primary">Save Record</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+                <div class="row">
+					<div class="col-lg-12">
+						<div class="table-responsive">
+							<table id="cowSemenCatalogTable" class="table table-hover">
+								<thead class="text-center">
+									<tr>
+										<th> # </th>
+										<th>Bull Id/Code</th>
+										<th>Bull Name</th>
+										<th>Breed</th>
+										<th>Straws</th>
+										<th>Cost per straw</th>
+										<th>Company Name</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+											{% if semen_catalog_list %}
+											{% for semen_catalog in semen_catalog_list %}
+											<tr data-src="{{semen_catalog.id}}">
+												<script>
+												myStorage = window.sessionStorage;
+												var object = {
+												id: {{semen_catalog.id}},
+												bull_name: '{{semen_catalog.bull_name}}',
+												bull_code: '{{semen_catalog.bull_code}}',
+												bull_breed: '{{semen_catalog.bull_breed}}',
+												num_of_straws: {{semen_catalog.num_of_straws}},
+												cost_per_straw: {{semen_catalog.cost_per_straw}},
+												company_name: '{{semen_catalog.company_name}}',
+												}
+												myStorage.setItem('semen_catalog_'+object.id,JSON.stringify
+												 (object))
+												</script>
+												<td> {{ forloop.counter }} </td>
+												<td> {{ semen_catalog.bull_code }} </td>
+												<td> {{ semen_catalog.bull_name }} </td>
+												<td> {{ semen_catalog.bull_breed }} </td>
+												<td> {{ semen_catalog.num_of_straws }} </td>
+												<td> {{ semen_catalog.cost_per_straw }} </td>
+												<td> {{ semen_catalog.company_name }} </td>
+												<td>
+													<button id="semenCatalogEditBtn" type="button" data-toggle="modal"
+														data-target="#semenInputModal" class='btn btn-sm btn-primary'
+															aria-label="Edit">
+														<span class="fa fa-edit"></span>
+													</button>
+													<form id="deleteSemenCatalogRecordForm" method="post"
+                                                      action="/digitaldairy/delete_semen_catalog">
+														<input name="semen_catalog_id" type="hidden"
+															   value="{{semen_catalog.id}}">
+														{% csrf_token %}
+														<button form="deleteSemenCatalogRecordForm" type="submit"
+																class='btn btn-sm btn-danger' aria-label="Delete">
+															<span class="fa fa-times"></span>
+														</button>
+													</form>
+												</td>
+											</tr>
+											{% endfor %}
+											{% endif %}
+										</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

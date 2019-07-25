@@ -1,0 +1,188 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Cow Insurance Records {% endblock %}
+{% block content %}
+{% load subtract_dates %}
+<section>
+	<div class="row text-center">
+		<div class="col-lg-6 col-md-6 sf-html-block">
+			<h4>Cow Insurance Records</h4>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insuranceInputModal">
+				<span> &plus; New Record </span>
+			</button>
+		</div>
+	</div>
+	<div class="container">
+		<form id="insuranceRecordsSearchForm" method="get" action="/digitaldairy/cow_insurance/">
+			<div class="row text-center">
+				<div class="col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-12 sf-html-block">
+					<select required class="form-control" name="cow_id">
+						<option value="cow_id" disabled selected="selected">Select cow</option>
+						{% if all_cows %}
+						{% for cow in all_cows %}
+						<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+						{% endfor %}
+						{% endif %}
+					</select>
+				</div>
+				{% csrf_token %}
+				<div class="col-lg-4 col-md-4 col-sm-12 sf-html-block">
+					<button form="insuranceRecordsSearchForm" type="submit" class="btn btn-primary">Retrieve</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal" id="insuranceInputModal" tabindex="-1" aria-labelledby="insuranceInputModalLabel" role="dialog"
+	     aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title text-center" id="insuranceInputModalLabel">
+						Add Insurance Record
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="insuranceInputForm" method="post" action="/digitaldairy/cow_insurance/">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="from_date" class="col-form-label">
+								Period From
+							</label>
+							<input id="from_date" class="form-control" type="date" name="from_date" required>
+						</div>
+						<div class="form-group">
+							<label for="to_date" class="col-form-label">
+								Period To
+							</label>
+							<input id="to_date" class="form-control" type="date" name="to_date" required>
+						</div>
+						<div class="form-group">
+							<label for="cow_id" class="col-form-label">
+								Select Cow
+							</label>
+							<select id="cow_id" class="form-control" name="cow_id" required>
+								<option value="cow_id" disabled selected="selected">Select cow</option>
+								{% if all_cows %}
+								{% for cow in all_cows %}
+								<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+								{% endfor %}
+								{% endif %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="premium_amount" class="col-form-label">
+								Premium Amount
+							</label>
+							<input id="premium_amount" class="form-control" type="number"
+							       name="premium_amount" min="0" required>
+						</div>
+						<div class="form-group">
+							<label for="insured_value" class="col-form-label">
+								Insured Value
+							</label>
+							<input id="insured_value" class="form-control" type="number" name="insured_value" min="0">
+						</div>
+						<div class="form-group">
+							<label for="insurance_policy" class="col-form-label">
+								Insurance Policy
+							</label>
+							<input id="insurance_policy" class="form-control" type="text"
+							       name="insurance_policy" minlength="2">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="saveMilkInputFormBtn" form="insuranceInputForm" type="submit" class="btn btn-primary">Save Record</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="row">
+			<div class="col-lg-8 text-center">
+				<div class="table-responsive">
+					<table id="cowInsuranceTable" class="table table-hover">
+						<thead class="text-center">
+						<tr>
+							<th>#</th>
+							<th>Cow Name</th>
+							<th>Policy</th>
+							<th>Period From</th>
+							<th>Period To</th>
+							<th>Insured Value (Ksh)</th>
+							<th>Premium Amount</th>
+							<th>Actions</th>
+						</tr>
+						</thead>
+						<tbody class="text-center">
+						{% if insurance_list %}
+						{% for insurance in insurance_list %}
+						<tr data-src="{{insurance.id}}">
+							<script>
+                                myStorage = window.sessionStorage;
+                                var object = { id: {{ insurance.id }},
+                                cow_id:'{{ insurance.cow.id }}',
+                                from_date:'{{ insurance.from_date|date:"Y-m-d" }}',
+                                to_date:'{{ insurance.to_date|date:"Y-m-d" }}',
+                                insured_value: {{ insurance.insured_value }},
+                                premium_amount: {{  insurance.premium_amount }},
+                                policy: '{{  insurance.policy }}',
+                                }
+                                myStorage.setItem('insurance_'+ object.id,JSON.stringify(object))
+                            </script>
+							<td> {{ forloop.counter }} </td>
+							<td> {{ insurance.cow.name }} </td>
+							<td> {{ insurance.policy }} </td>
+							<td> {{ insurance.from_date }} </td>
+							<td> {{ insurance.to_date }} </td>
+							<td> {{ insurance.insured_value }} </td>
+							<td> {{ insurance.premium_amount }} </td>
+							<td>
+								<button id="insuranceEditBtn" type="button" data-toggle="modal" data-target="#insuranceInputModal" class="btn btn-sm btn-primary" aria-label="Edit">
+									<span class="fa fa-edit"></span>
+								</button>
+								<form id="deleteInsuranceForm" method="post" action="/digitaldairy/delete_insurance">
+									<input name="insurance_id" type="hidden" value="{{insurance.id}}">
+									{% csrf_token %}
+									<button form="deleteInsuranceForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+										<span class="fa fa-times"></span>
+									</button>
+								</form>
+							</td>
+						</tr>
+						{% endfor %}
+						{% endif %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-lg-4 text-center">
+				<div>
+					<h4 class="text-center">Cow Insurance Summary</h4>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Total Insurance Value:
+						</p>
+						<p class="col-lg-6 text-center">
+							<span class="badge badge-info">{{total_insurance_value}} </span>
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Insured Cows:
+						</p>
+						<p class="col-lg-6 text-center">
+							<span class="badge badge-info">{{ insurance_list|length }} </span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

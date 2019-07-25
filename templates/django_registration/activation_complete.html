@@ -1,0 +1,10 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Account Activation {% endblock %}
+{% block content %}
+<div class="alert alert-success">
+	<p>Account Activation: </p>
+	<p>
+		Congratulations! Your account for {{ request.user.user_name }} has been successfully activated. Click <a href="{% url 'login' %}">Here</a> to proceed
+	</p>
+</div>
+{% endblock %}

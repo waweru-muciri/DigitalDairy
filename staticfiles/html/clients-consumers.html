@@ -1,0 +1,251 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Clients &amp; Consumers {% endblock %}
+{% block content %}
+        <section class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-link text-center" style="flex:1;">
+                    <a data-toggle="tab" href="#section-a">Clients</a>
+                </li>
+                <li class="nav-link text-center" style="flex:1;">
+                    <a data-toggle="tab" href="#section-b">Consumers</a>
+                </li>
+            </ul>
+        </section>
+		<div class="tab-content">
+            <section id="section-a" class="tab-pane fade active show">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-lg-8  col-md-6 sf-html-block">
+                            <h4>Clients List </h4>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 sf-html-block">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#clientInputModal">
+                                <span>
+                                    &plus; New Client
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table id="clientsTable" class="table table-hover">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th> Client Name </th>
+                                            <th> Client Location </th>
+                                            <th> Client Contacts </th>
+                                            <th> Unit Price </th>
+                                            <th> Actions </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        {% if clients_list %}
+                                        {% for client in clients_list %}
+                                        <tr data-src="{{client.name}}">
+                                            <script>
+                                            myStorage = window.sessionStorage;
+                                            var object = { client_name: '{{client.name}}',
+                                            client_location: '{{client.location}}',
+                                            client_contacts: '{{client.contacts}}',
+                                            client_unit_price: {{client.unit_price}},
+                                            }
+                                             myStorage.setItem('client_'+ object.client_name,JSON.stringify(object))
+									        </script>
+                                            <td> {{ client.name }} </td>
+                                            <td> {{ client.location }} </td>
+                                            <td> {{ client.contacts }} </td>
+                                            <td> {{ client.unit_price }} </td>
+                                            <td>
+                                                <button id="editClientBtn" type="button" class='btn btn-sm btn-primary'
+                                                        aria-label="Edit"
+                                                data-toggle="modal" data-target="#clientInputModal">
+                                                    <span class="fa fa-edit"></span>
+                                                </button>
+                                                <form id="deleteClientForm" method="post" action="/digitaldairy/delete_client">
+													<input name="client_name" type="hidden" value="{{client.name}}">
+                                                    {% csrf_token %}
+													<button form="deleteClientForm" type="submit"
+                                                            class='btn btn-sm btn-danger' aria-label="Delete">
+														<span class="fa fa-times"></span>
+													</button>
+												</form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="clientInputModal" tabindex="-1" aria-labelledby="clientInputModalLabel"
+                role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-center" id="clientInputModalLabel">
+                                    Add Client Record
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="clientInputForm" method="post" action="/digitaldairy/save_client">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="client_name" class="col-form-label">
+                                            Client Name
+                                        </label>
+                                        <input id="client_name" class="form-control" type="text" name="client_name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="client_contacts" class="col-form-label">
+                                            Client Contacts
+                                        </label>
+                                        <input id="client_contacts" class="form-control" type="text" name="client_contacts">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="client_location" class="col-form-label">
+                                            Client Location
+                                        </label>
+                                        <input id="client_location" class="form-control" type="text" name="client_location">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="client_unit_price" class="col-form-label">
+                                            Unit Price
+                                        </label>
+                                        <input id="client_unit_price" class="form-control" type="number" name="client_unit_price" min="0" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="clientInputFormSubmitBtn" form="clientInputForm" type="submit" class="btn btn-primary">Save Record</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="section-b" class="tab-pane fade">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-lg-6 col-md-6 sf-html-block">
+                            <h4> Consumers List </h4>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#consumerInputModal">
+                                <span>
+                                    &plus; New Consumer
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div  class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table id="consumersTable" class="table table-hover">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th> Consumer Name </th>
+                                            <th> Consumer Location </th>
+                                            <th> Consumer Contacts </th>
+                                            <th> Unit Price </th>
+                                            <th> Actions </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        {% if consumers_list %}
+                                        {% for consumer in consumers_list %}
+                                        <script>
+                                            myStorage = window.sessionStorage;
+                                            var object = {consumer_name: '{{consumer.name}}',
+                                            consumer_location: '{{consumer.location}}',
+                                            consumer_contacts: '{{consumer.contacts}}',
+                                            consumer_unit_price: {{consumer.unit_price}},
+                                            }
+                                             myStorage.setItem('consumer_'+ object.consumer_name,JSON.stringify(object))
+									    </script>
+                                        <tr data-src="{{consumer.name}}">
+                                            <td> {{ consumer.name }} </td>
+                                            <td> {{ consumer.location }} </td>
+                                            <td> {{ consumer.contacts }} </td>
+                                            <td> {{ consumer.unit_price }} </td>
+                                            <td>
+                                                <button id="editConsumerBtn" type="button" class='btn btn-sm btn-primary' aria-label="Edit" data-toggle="modal" data-target="#consumerInputModal">
+                                                    <span class="fa fa-edit"></span>
+                                                </button>
+                                                <form id="deleteConsumerForm" method="post"
+                                                      action="/digitaldairy/delete_consumer">
+													<input name="consumer_name" type="hidden" value="{{consumer.name}}">
+                                                    {% csrf_token %}
+													<button form="deleteConsumerForm" type="submit"
+                                                            class='btn btn-sm btn-danger' aria-label="Delete">
+														<span class="fa fa-times"></span>
+													</button>
+												</form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="consumerInputModal" tabindex="-1" aria-labelledby="consumersInputModalLabel"
+                role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-center" id="consumersInputModalLabel">
+                                    Add Consumer Record
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="consumersInputForm" method="post" action="/digitaldairy/save_consumer">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="consumer_name" class="col-form-label">
+                                            Consumer Name
+                                        </label>
+                                        <input id="consumer_name" class="form-control" type="text" name="consumer_name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="consumer_contacts" class="col-form-label">
+                                            Consumer Contacts
+                                        </label>
+                                        <input id="consumer_contacts" class="form-control" type="text" name="consumer_contacts">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="consumer_location" class="col-form-label">
+                                            Consumer Location
+                                        </label>
+                                        <input id="consumer_location" class="form-control" type="text" name="consumer_location">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button form="consumersInputForm" type="submit" class="btn btn-primary">Save Record</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+{% endblock %}

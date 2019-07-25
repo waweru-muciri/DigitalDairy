@@ -1,0 +1,181 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Calf Feeding Records {% endblock %}
+{% block content %}
+<section class="container">
+   <ul class="nav nav-tabs">
+	   <li class="nav-link text-center" style="flex:1;">
+		   <a data-toggle="tab" href="#section-a">Calf Feeding Records</a>
+	   </li>
+	   <li class="nav-link text-center" style="flex:1;">
+		   <a data-toggle="tab" href="#section-b">Calf Growth Summary</a>
+	   </li>
+   </ul>
+</section>
+<section class="tab-content">
+	<section id="section-a" class="tab-pane fade active show">
+		<div>
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 order-lg-2 order-md-2 sf-html-block">
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#calfFeedingInputModal">
+							<span>
+								&plus; New Record
+							</span>
+						</button>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+						<h4>Calf Feeding List</h4>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="calfFeedingInputModal" tabindex="-1" aria-labelledby="calfFeedingInputModalLabel"
+			role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h4 class="modal-title text-center" id="calfFeedingInputModalLabel">
+									Add Feeding Record
+								</h4>
+								<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+							<form id="calfFeedingInputForm" method="post">
+								{% csrf_token %}
+								<div class="form-group">
+									<label for="feeding_date" class="col-form-label">
+										Date
+									</label>
+									<input id="feeding_date" class="form-control" type="date" name="feeding_date" required>
+								</div>
+								<div class="form-group">
+									<label for="calf_id" class="col-form-label">
+										Select Calf
+									</label>
+									<select id="calf_id" class="form-control" name="calf_id" required>
+										<option disabled selected>Select Calf</option>
+										{% if all_calves %}
+										{% for calf in all_calves %}
+										<option value="{{ calf.id }}" name="calf_id"> {{ calf.name }} </option>
+										{% endfor %}
+										{% endif %}
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="milk_quantity" class="col-form-label">
+										Feed Quantity
+									</label>
+									<input id="milk_quantity" class="form-control"  type="number"
+									name="milk_quantity" min="1" required>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button form="calfFeedingInputForm" type="submit" class="btn btn-primary">Save Record</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="calfFeedingTable" class="table table-hover">
+							<thead class="text-center">
+								<tr>
+									<th> # </th>
+									<th> Date </th>
+									<th> Calf Name </th>
+									<th> Quantity (kgs) </th>
+									<th> Actions </th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+							{% if calf_feeding_list %}
+							{% for calf_feeding in calf_feeding_list %}
+							<script>
+								var myStorage = window.sessionStorage;
+								var object = {
+								id: {{calf_feeding.id}},
+								feeding_date: '{{calf_feeding.feeding_date|date:"Y-m-d"}}',
+								cow_id: '{{calf_feeding.cow.id}}',
+								milk_quantity: {{calf_feeding.milk_quantity}},
+								}
+								myStorage.setItem('calf_feeding_'+object.id,JSON.stringify
+								 (object))
+							</script>
+							<tr data-src="{{calf_feeding.id}}">
+								<td> {{ forloop.counter }} </td>
+								<td> {{ calf_feeding.feeding_date }} </td>
+								<td> {{ calf_feeding.cow.id }} </td>
+								<td> {{ calf_feeding.milk_quantity }} </td>
+								<td>
+									<button id="calfManagementEditBtn" type="button" data-toggle="modal"
+									data-target="#calfFeedingInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deleteCalfFeedingRecordForm" method="post"
+									  action="/digitaldairy/delete_calf_feeding">
+										<input name="calf_feeding_id" type="hidden" value="{{calf_feeding.id}}">
+										{% csrf_token %}
+										<button form="deleteCalfFeedingRecordForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+											<span class="fa fa-times"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="section-b" class="tab-pane fade">
+		<div>
+			<div class="row text-center">
+				<div class="col-lg-12 col-md-12 sf-html-block">
+					<h4>Calves Growth Summary</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="calvesGrowthTable" class="table table-hover">
+							<thead class="text-center">
+							<tr>
+								<th>Cow Id</th>
+								<th>Cow Name</th>
+								<th>Age (months)</th>
+								<th>Last Weight</th>
+								<th>Last Height</th>
+								<th>Status</th> <!-- Gain(21.0)-->
+							</tr>
+							</thead>
+							<tbody class="text-center">
+								{% if weight_list %}
+								{% for weight in weight_list %}
+								<tr data-src="{{weight.id}}">
+									<td> {{ weight.cow.id }} </td>
+									<td> {{ weight.cow.name }} </td>
+									<td> {{ weight.cow.dob|timesince:weight.weight_date }} </td>
+									<td> {{ weight.weight }} </td>
+									<td> {{ weight.height  }} </td>
+									<td> {{ weight.status  }} </td>
+								</tr>
+								{% endfor %}
+								{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+{% endblock %}

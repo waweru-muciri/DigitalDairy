@@ -1,0 +1,57 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} User Registration {% endblock %}
+{% block content %}
+{% load static %}
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto fadeIn">
+	{% if form.errors %}
+	<div class="alert alert-danger">
+		<p> {{ form.errors }}</p>
+	</div>
+	{% endif %}
+	<form class="signup-form" method="post" action="">
+		{% csrf_token %}
+		<div class="card rounded-sm">
+			<div class="card-body">
+				<h2 class="card-title text-center">Register</h2>
+				<p class="text-muted">Create your account. It's free and only takes a minute.</p>
+				<form>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-xs-6 col-md-6 col-lg-6 ">
+								<input class="form-control" name="first_name" placeholder="First Name" required="required" type="text">
+							</div>
+							<div class="col-xs-6 col-md-6 col-lg-6">
+								<input class="form-control" name="last_name" placeholder="Last Name" required="required" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<input class="form-control" name="username" placeholder="Username" required="required" type="text" minlength="4">
+					</div>
+					<div class="form-group">
+						<input class="form-control" name="email" placeholder="Email" required="required" type="email">
+					</div>
+					<div class="form-group">
+						<input class="form-control" name="password1" placeholder="Password" required="required" type="password" minlength="6">
+					</div>
+					<div class="form-group">
+						<input class="form-control" name="password2" placeholder="Confirm Password" required="required" type="password" minlength="6">
+					</div>
+					<div class="form-group">
+						<label class="checkbox-inline">
+						<input required="required" type="checkbox"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
+						</label>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+					</div>
+				</form>
+				<div class="text-center">
+					Already have an account?
+					<a href="{% url 'login' %}?next={% url 'digitaldairy:daily_milk_production' %}Log in</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

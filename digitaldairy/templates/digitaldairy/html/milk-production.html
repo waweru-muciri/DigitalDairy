@@ -1,0 +1,430 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Daily Milk Production {% endblock %}
+{% block content %}
+<section class="container">
+	<ul class="nav nav-tabs">
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-a">Daily Milk Production</a>
+		</li>
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-b"> Daily Targets </a>
+		</li>
+	</ul>
+</section>
+<section class="tab-content">
+	<section id="section-a" class="tab-pane fade active show">
+		<div class="row text-center">
+			<div class="col-lg-6 col-md-6 order-md-6 order-sm-3 sf-html-block">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#milkInputModal">
+					<span>
+						&plus; New Record
+					</span>
+				</button>
+			</div>
+			<div class="col-lg-6 col-md-6 sf-html-block">
+				<h3>Milk Production List &amp; Summary</h3>
+			</div>
+		</div>
+		<div class="container text-center non-printable">
+			<div class="row">
+				<div class="col-lg-6 mx-auto col-md-6 order-md-3 order-sm-3 sf-html-block">
+					<form id="milkProductionRecordsSearchForm" method="get">
+						<div class="row">
+							<div class="col-lg-6 form-group">
+								<input id="milk_production_date" class="form-control" type="date"
+									name="milk_production_date" value="{{ milk_date|date:'Y-m-d' }}" required>
+							</div>
+							<div class="col-lg-6 form-group">
+								<button form="milkProductionRecordsSearchForm" type="submit"
+									class="btn btn-primary">Retrieve</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="milkInputModal" tabindex="-1" aria-labelledby="milkInputModalLabel" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="milkInputModalLabel">
+							Add Milk Production Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="milkInputForm" method="post">
+							{% csrf_token %}
+							<div class="form-group">
+								<label for="milk_date" class="col-form-label">
+									Date
+								</label>
+								<input id="milk_date" class="form-control" type="date" name="milk_date" required>
+							</div>
+							<div class="form-group">
+								<label for="cow_id" class="col-form-label">
+									Select Cow
+								</label>
+								<select id="cow_id" class="form-control" name="cow_id" required>
+									<option value="cow_id" disabled selected="selected">Select cow</option>
+									{% if all_cows %}
+									{% for cow in all_cows %}
+									<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+									{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="am_quantity" class="col-form-label">
+									Am Milk Quantity
+								</label>
+								<input id="am_quantity" class="form-control" type="number" name="am_quantity" min="0">
+							</div>
+							<div class="form-group">
+								<label for="noon_quantity" class="col-form-label">
+									Noon Milk Quantity
+								</label>
+								<input id="noon_quantity" class="form-control" type="number" name="noon_quantity"
+									min="0">
+							</div>
+							<div class="form-group">
+								<label for="pm_quantity" class="col-form-label">
+									PM Milk Quantity
+								</label>
+								<input id="pm_quantity" class="form-control" type="number" name="pm_quantity" min="0">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button id="saveMilkInputFormBtn" form="milkInputForm" type="submit"
+							class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="table-responsive">
+					<h4 class="text-center">
+						Milk Production List
+					</h4>
+					<div id="milkProductionTablePagination">
+						<table id="milkProductionTable" class="table table-hover table-bordered">
+							<thead class="text-center thead-light">
+								<tr>
+									<th>Cow Id</th>
+									<th>Cow Name</th>
+									<th>Am</th>
+									<th>Noon</th>
+									<th>Pm</th>
+									<th>Total</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								{% if milk_production_list %}
+								{% for milk_production in milk_production_list %}
+								<tr data-src="{{milk_production.id}}">
+									<script>
+										var object = {
+											id: {{ milk_production.id }},
+											cow_id: '{{milk_production.cow_id}}',
+											milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
+											am_quantity: {{ milk_production.am_quantity }},noon_quantity: {{ milk_production.noon_quantity }}, pm_quantity: {{ milk_production.pm_quantity }}
+										}
+										window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object))
+									</script>
+									<td> {{ milk_production.cow_id.id }} </td>
+									<td>
+										<a href="{{ milk_production.cow_id.milk_production_history_url }}">
+											{{ milk_production.cow_id.name }}
+										</a>
+									</td>
+									<td> {{ milk_production.am_quantity }} </td>
+									<td> {{ milk_production.noon_quantity }} </td>
+									<td> {{ milk_production.pm_quantity }} </td>
+									<td> {{ milk_production.am_quantity|add:milk_production.noon_quantity|add:milk_production.pm_quantity  }}
+									</td>
+									<td>
+										<button id="editMilkProductionBtn" type="button" data-toggle="modal"
+											data-target="#milkInputModal" class="btn btn-sm btn-primary"
+											aria-label="Edit">
+											<span class="fa fa-edit"></span>
+										</button>
+										<form id="deleteMilkProductionForm{{milk_production.id}}" method="post"
+											action="{% url 'digitaldairy:delete_milk_production' %}">
+											<input name="milk_production_date" type="hidden"
+												value="{{ milk_date|date:'Y-m-d' }}">
+											<input name="milk_production_id" type="hidden"
+												value="{{milk_production.id}}">
+											{% csrf_token %}
+											<button form="deleteMilkProductionForm{{milk_production.id}}" type="submit"
+												class="btn btn-sm btn-danger" aria-label="Delete">
+												<span class="fa fa-times"></span>
+											</button>
+										</form>
+									</td>
+								</tr>
+								{% endfor %}
+								{% else %}
+								<tr data-src="" hidden>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>
+										<button id="editMilkProductionBtn0" type="button" data-toggle="modal"
+											data-target="#milkInputModal" class="btn btn-sm btn-primary"
+											aria-label="Edit">
+											<span class="fa fa-edit"></span>
+										</button>
+										<form id="deleteMilkProductionForm0" method="post"
+											action="{% url 'digitaldairy:delete_milk_production' %}">
+											<input name="milk_production_date" type="hidden"
+												value="{{ milk_date|date:'Y-m-d' }}">
+											<input name="milk_production_id" type="hidden" value="">
+											{% csrf_token %}
+											<button form="deleteMilkProductionForm0" type="submit"
+												class="btn btn-sm btn-danger" aria-label="Delete">
+												<span class="fa fa-times"></span>
+											</button>
+										</form>
+									</td>
+								</tr>
+								{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="printable col-lg-4">
+				<div>
+					<h4 class="text-center sf-html-block">
+						{% if milk_date %} {{ milk_date }} Summary {% endif %}
+					</h4>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Total Yield:
+						</p>
+						<p class="col-lg-6 text-center">
+							{{ total_day_milk_production }}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							No of Cows:
+						</p>
+						<p class="col-lg-6 text-center">
+							{{ all_cows|length }}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Highest Yield:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% with  milk_production_list|first as highest_yielder %}
+							{{ highest_yielder.cow_id.name }}
+							{% endwith %}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Lowest Yield:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% with  milk_production_list|last as lowest_yielder %}
+							{{ lowest_yielder.cow_id.name }}
+							{% endwith %}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Average Yield:
+						</p>
+						<p class="col-lg-6 text-center">
+							{{ average_milk_quantity|floatformat:2 }}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Unmilked Cows:
+						</p>
+						<p class="col-lg-6 text-center">
+							{{ unmilked_cows }}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							High Yielders:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% with milk_production_list|slice:":5" as highyielders %}
+							{% for highyielder in highyielders %}
+							{{ highyielder.cow_id_id }},
+							{% endfor %}
+							{% endwith %}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Low Yielders:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% with milk_production_list|slice:"-5:" as lowyielders %}
+							{% for lowyielder in lowyielders %}
+							{{ lowyielder.cow_id_id }},
+							{% endfor %}
+							{% endwith %}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Gainers:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% for gainer in day_and_previous_day_totals_sorted %}
+							{% if gainer.gain > 0 %}
+							{{ gainer.cow.name }} ({{ gainer.gain }}),
+							{% endif %}
+							{% endfor %}
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-lg-6 text-center">
+							Losers:
+						</p>
+						<p class="col-lg-6 text-center">
+							{% for loser in day_and_previous_day_totals_sorted %}
+							{% if loser.gain < 0 %}
+							{{ gainer.cow_id }} {{ gainer.gain }}
+							{% endif %}
+							{% endfor %}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="section-b" class="tab-pane fade">
+		<div class="row text-center">
+			<div class="col-lg-6 order-md-6 order-sm-3 sf-html-block">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#targetInputModal">
+					<span>
+						&plus; Add Target
+					</span>
+				</button>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+				<h4 class="text-center">
+					Milk Production Targets List
+				</h4>
+			</div>
+		</div>
+		<div class="modal" id="targetInputModal" tabindex="-1" aria-labelledby="targetInputModalLabel" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="targetInputModalLabel">
+							Add Milk Target
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="targetInputForm" action="/digitaldairy/save_daily_milk_target" method="post">
+							{% csrf_token %}
+							<div class="form-group">
+								<label for="cow_id" class="col-form-label">
+									Select Cow
+								</label>
+								<select id="cow_id" class="form-control" name="cow_id" required>
+									<option value="cow_id" disabled selected="selected">Select cow</option>
+									{% if all_cows %}
+									{% for cow in all_cows %}
+									<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+									{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="milk_production_target" class="col-form-label">
+									Daily Target
+								</label>
+								<input id="milk_production_target" class="form-control" type="number"
+									name="milk_production_target" min="0">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="targetInputForm" type="submit" class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive" id="milkProductionTargetsTablePagination">
+						<table id="milkProductionTargetsTable" class="table table-hover">
+							<thead class="text-center">
+								<tr>
+									<th> Cow Id </th>
+									<th> Cow Name </th>
+									<th> Daily Target </th>
+									<th> Actions </th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								{% if milk_production_targets_list %}
+								{% for milk_production_target in milk_production_targets_list %}
+								<tr data-src="{{milk_production_target.cow_id.id}}">
+									<script>
+										myStorage = window.sessionStorage;
+										var object = {
+											cow_id: '{{milk_production_target.cow_id.id}}', target_quantity: {{ milk_production_target.target_quantity }}}
+										myStorage.setItem('milk_p_target_' + object.cow_id, JSON.stringify(object))
+									</script>
+									<td> {{ milk_production_target.cow_id.id }} </td>
+									<td> {{ milk_production_target.cow_id.name }} </td>
+									<td> {{ milk_production_target.target_quantity }} </td>
+									<td>
+										<button id="editMilkProductionTargetBtn" type="button" data-toggle="modal"
+											data-target="#targetInputModal" class='btn btn-sm btn-primary'
+											aria-label="Edit">
+											<span class="fa fa-edit"></span>
+										</button>
+										<form id="deleteMilkProductionTargetForm{{ milk_production_target.cow_id.id }}"
+											method="post"
+											action="{% url 'digitaldairy:delete_milk_production_target' %}">
+											<input name="cow_id" type="hidden"
+												value="{{ milk_production_target.cow_id.id }}">
+											{% csrf_token %}
+											<button
+												form="deleteMilkProductionTargetForm{{ milk_production_target.cow_id.id }}"
+												type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+												<span class="fa fa-times"></span>
+											</button>
+										</form>
+									</td>
+								</tr>
+								{% endfor %}
+								{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+{% endblock %}

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<title>Cattle Management Software</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=2; user-scalable=true;">
+	<!-- FontAwesome -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		type="text/css">
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" href="{% static 'bootstrap-4.0.0-dist/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/landing-page.css' %}" media="screen">
+
+</head>
+
+<body id="top">
+	<header class="header header-shadow header-shrink sticky-top bg-gray-v2">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<a class="navbar-brand" href="{% url 'digitaldairy:digital_dairy' %}">
+					DigitalDairy
+				</a>
+				<button class="navbar-toggler p-0" data-toggle="collapse" data-target="#navbarNav">
+					<div class="hamburger hamburger--spin js-hamburger">
+						<div class="hamburger-box">
+							<div class="hamburger-inner"></div>
+						</div>
+					</div>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#about" data-scrollto="about">ABOUT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#section-features" data-scrollto="section-features">FEATURES</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#section-reviews" data-scrollto="section-reviews">REVIEWS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#pricing" data-scrollto="pricing">PRICING</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact" data-scrollto="contact">CONTACT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'login' %}">Log In</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/accounts/register">REGISTER</a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div> <!-- END container-->
+	</header>
+	<section id="about" class="pb-0">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-lg-8 mx-auto">
+					<h2 class="h1">
+						We Develop Digital Strategies, <br> Products and Services.
+					</h2>
+					<hr class="u-h-4 u-w-50 bg-primary rounded mt-4 u-mb-70 mx-auto">
+					<p>
+						DigitalDairy gives you the best in farm management I.T solutions tailored to solve and address
+						challenges and needs of a dairy farm.
+					</p>
+				</div>
+				<div class="col-lg-12 col-md-12 u-mt-70 text-center">
+					<img src="{% static 'images/digital-dairy1.png' %}" alt="Image" width="100%">
+				</div>
+			</div> <!-- END row-->
+		</div> <!-- END container-->
+	</section>
+	<section id="section-features" class="pb_section bg-light pb_slant-white pb_pb-250">
+		<div class="container">
+			<div class="row justify-content-center mb-5">
+				<div class="col-md-6 text-center mb-5">
+					<h2>App Features</h2>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon">
+							<i class="ion-ios-bookmarks-outline pb_icon-gradient"></i></div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Digital Farm Data Storage</h5>
+							<p class="text-sans-serif">With our easy to use and customise software solutions, secure
+								storage of generated farm data such as milk production and distribution, animal
+								breeding, animal health, animal feeding, employee management and farm finance is made
+								easy. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon"><i class="ion-ios-color-filter-outline pb_icon-gradient"></i></div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Data Retrieval</h5>
+							<p class="text-sans-serif">We make it easy for farms to securely retrieve and export stored
+								data to other formats. Through guaranteed integrity of the data, insight from the data
+								is used in making important decisions and strategies.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon">
+							<i class="ion-ios-speedometer-outline pb_icon-gradient"></i></div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Analytics</h5>
+							<p class="text-sans-serif">Our software products provide analytics and statistics generated
+								from stored data such as milk production and distribution, breeding and farm finance.
+								Farm statistics are important in getting a general view of farm activities.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon"><i class="ion-ios-wineglass-outline pb_icon-gradient"></i></div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Farm Activities Tracking</h5>
+							<p class="text-sans-serif">Through tracking of various farm activities such as animal
+								breeding and health, milk production and distribution, farm income and expenses we
+								assist farms diagnose and observe trends in these activities and take appropriate
+								action. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon">
+							<i class="ion-ios-paperplane-outline pb_icon-gradient"></i>
+						</div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Important Farm Alerts</h5>
+							<p class="text-sans-serif">Our software products have breeding, health, feeding alert
+								modules that give you the dairy farmer, important alerts on the important activities of
+								your farm such as breeding, health and feeding.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="media d-block pb_feature-v1">
+						<div class="pb_icon"><i class="ion-ios-infinite-outline pb_icon-gradient"></i></div>
+						<div class="media-body">
+							<h5 class="mt-0 mb-3 heading">Unlimited Possibilities</h5>
+							<p class="text-sans-serif">With secure storage of data and management taken care of, you get
+								more time to focus on the running of your dairy farm.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="pb_section pb_slant-light pb_pb-220 pb-0" id="section-reviews">
+		<div class="container">
+			<div class="row justify-content-center mb-1">
+				<div class="col-md-6 text-center mb-5">
+					<h5 class="text-uppercase pb_font-15 mb-2 pb_color-dark-opacity-3 pb_letter-spacing-2">
+						<strong>Reviews</strong></h5>
+					<h2>Good Reviews From Good People</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div style="min-height: 300px" class="carousel-item active">
+								<img style="min-height: 300px" class="img-responsive"
+									src="{% static 'images/cows-2.jpg' %}" alt="Kefa Farm Image">
+								<div class="carousel-caption d-md-block">
+									<p>DigitalDairy has enabled us to conviniently manage our farm. We can now track all
+										our cows, expenses, income, employees, feeds etc. all in one platform - Kefa
+										Farm</p>
+								</div>
+							</div>
+							<div class="carousel-item" style="min-height: 300px">
+								<img style="min-height: 300px" class="d-block w-100"
+									src="{% static 'images/cows-3.jpg' %}" alt="Kefa Farm Image">
+								<div class="carousel-caption d-md-block">
+									<p>We use DigitalDairy to store and retrieve vital animal information such as
+										breeding records, animal health events etc. Kimani, Farm Manager</p>
+								</div>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+							data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+							data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="pb-0">
+		<div class="container pb-0">
+			<div class="row text-center">
+				<div class="col-md-6 mt-5 mt-md-0">
+					<i class="fa fa-headset"></i>
+					<h3 class="my-4">
+						Excellent Support
+					</h3>
+					<p>
+						We take pride in offering excellent support to our customers. Our response times are fast and we
+						look forward to solving any issues that our clients may face while using our products.
+					</p>
+				</div> <!-- END col-md-4 -->
+
+				<div class="col-md-6 mt-5 mt-md-0">
+					<i class="fa fa-users fa-3x text-primary"></i>
+					<h3 class="my-4">
+						Awesome Team
+					</h3>
+					<p>
+						We are a young dedicated team of software engineers, IT technicians, designers, marketers and
+						agricultural officers with a passion for solving problems facing the dairy farming industry.
+					</p>
+				</div> <!-- END col-md-4 -->
+
+				<div class="col-md-6 mt-5 mt-md-0">
+					<i class="fa fa-users fa-3x text-primary"></i>
+					<h3 class="my-4">
+						Easy to Use
+					</h3>
+					<p>
+						Our products are designed with the end user in mind therefore making them easy to use and
+						customise according to the needs of each user.
+					</p>
+				</div> <!-- END col-md-4 -->
+
+				<div class="col-md-6 mt-5 mt-md-0">
+					<i class="fa fa-money fa-3x text-primary"></i>
+					<h3 class="my-4">
+						Affordable Price
+					</h3>
+					<p>
+						In line with the value we offer to our esteemed clients through our various technological
+						products, we offer the best in market prices through our services and products.
+					</p>
+				</div> <!-- END col-md-4 -->
+
+			</div> <!-- END row-->
+		</div> <!-- END container-->
+	</section>
+	<section id="pricing">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="h1">
+						Choose the Plan that You <br> Really Need!
+					</h2>
+					<div class="u-h-4 u-w-50 bg-primary rounded mt-4 u-mb-40 mx-auto"></div>
+				</div>
+			</div> <!-- END row-->
+			<div class="row">
+
+				<div class="col-md-4 mt-4">
+					<div class="bg-white box-shadow-v2 rounded py-5">
+						<img src="assets/img/svg/plane-up.svg" class="u-h-90" alt="">
+						<h4 class="u-mb-35 u-mt-15">
+							10+ Cows
+						</h4>
+						<hr class="m-0">
+						<ul class="list-unstyled u-py-30 u-lh-2">
+							<li><strong>Unlimited</strong> searchable message</li>
+							<li><strong>Unlimited</strong> apps and service</li>
+							<li><strong>8GB</strong> file storage per team</li>
+							<li><strong>100GB</strong> Monthly Bandwidth</li>
+						</ul>
+						<hr class="m-0">
+						<h2 class="u-fs-60 u-fw-600 u-my-20">
+							<sup class="u-fs-20">$</sup>10
+						</h2>
+						<a href="" class="btn btn-white btn-rounded">
+							Get Started
+						</a>
+					</div>
+				</div> <!-- END col-md-4-->
+
+				<div class="col-md-4 mt-4">
+					<div class="bg-white box-shadow-v2 rounded py-5">
+						<img src="assets/img/svg/phone-book.svg" class="u-h-90" alt="">
+						<h4 class="u-mb-35 u-mt-15">
+							30+ Cows
+						</h4>
+						<hr class="m-0">
+						<ul class="list-unstyled u-py-30 u-lh-2">
+							<li><strong>Unlimited</strong> searchable message</li>
+							<li><strong>Unlimited</strong> apps and service</li>
+							<li><strong>8GB</strong> file storage per team</li>
+							<li><strong>100GB</strong> Monthly Bandwidth</li>
+						</ul>
+						<hr class="m-0">
+						<h2 class="u-fs-60 u-fw-600 u-my-20">
+							<sup class="u-fs-20">$</sup>10
+						</h2>
+						<a href="" class="btn btn-white btn-rounded">
+							Get Started
+						</a>
+					</div>
+				</div> <!-- END col-md-4-->
+
+				<div class="col-md-4 mt-4">
+					<div class="bg-white box-shadow-v2 rounded py-5">
+						<img src="assets/img/svg/dollar-bag.svg" class="u-h-90" alt="">
+						<h4 class="u-mb-35 u-mt-15">
+							50+ Cows
+						</h4>
+						<hr class="m-0">
+						<ul class="list-unstyled u-py-30 u-lh-2">
+							<li><strong>Unlimited</strong> searchable message</li>
+							<li><strong>Unlimited</strong> apps and service</li>
+							<li><strong>8GB</strong> file storage per team</li>
+							<li><strong>100GB</strong> Monthly Bandwidth</li>
+						</ul>
+						<hr class="m-0">
+						<h2 class="u-fs-60 u-fw-600 u-my-20">
+							<sup class="u-fs-20">$</sup>99
+						</h2>
+						<a href="" class="btn btn-white btn-rounded">
+							Get Started
+						</a>
+					</div>
+				</div> <!-- END col-md-4-->
+
+			</div> <!-- END row-->
+		</div> <!-- END container-->
+	</section>
+	<section id="features">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h2 class="h1 text-capitalize">
+						Solutions in <span class="text-primary u-fw-700">2</span> easy steps
+					</h2>
+					<div class="u-h-4 u-w-50 bg-primary rounded mt-4 u-mb-70 mx-auto"></div>
+				</div>
+				<div class="col-12">
+					<ul class="nav nav-tabs justify-content-center tabs-v3 text-center u-ff-dosis u-fw-600 u-fs-20"
+						role="tablist">
+						<li class="nav-item mx-2">
+							<a class="nav-link p-4 active" data-toggle="tab" href="#tab1_1" role="tab"
+								aria-expanded="true">
+								<span class="u-fs-md-30 d-block mb-1">01</span>
+								Join
+							</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a class="nav-link p-4" data-toggle="tab" href="#tab1_2" role="tab" aria-expanded="false">
+								<span class="u-fs-md-30 d-block mb-1">02</span>
+								Login
+							</a>
+						</li>
+					</ul>
+				</div> <!-- END col-12 -->
+				<div class="col-12">
+					<div class="tab-content">
+						<div class="tab-pane fade active show" id="tab1_1" aria-expanded="true">
+							<div class="row u-my-70 align-items-center">
+								<div class="col-md-6 mb-5">
+									<img src="assets/img/startup/s-2.png" alt="">
+								</div> <!-- END col-md-6 -->
+								<div class="col-md-6">
+									<h2 class="mb-4">
+										Manage your Dairy Farm With Ease And Convinience
+									</h2>
+									<p>
+										DigitalDairy is here to make farm management easy with our software products.
+										Farm data management is made easy through easy to use and understand
+										application.
+									</p>
+									<ul class="list-unstyled u-fw-600 u-lh-2 u-mt-30">
+										<li><i class="fa fa-check text-primary mr-2"></i>Professional and easy-to-use
+											software</li>
+										<li><i class="fa fa-check text-primary mr-2"></i>Setup and installations takes
+											ten
+											minutes</li>
+										<li><i class="fa fa-check text-primary mr-2"></i>Perfect for any device with
+											pixel-perfect design</li>
+									</ul>
+								</div> <!-- END col-md-6 -->
+							</div> <!-- END row-->
+						</div> <!-- END tab-pane-->
+						<div class="tab-pane fade" id="tab1_2" aria-expanded="false">
+							<div class="row u-my-70 align-items-center">
+								<div class="col-md-6 mb-5">
+									<img src="assets/img/seo/s-3.png" alt="">
+								</div> <!-- END col-md-6 -->
+								<div class="col-md-6">
+									<h2 class="mb-4">
+										Unlimited Access to Our Dairy Farm Management Solutions
+									</h2>
+									<p>
+										Get access to our cache of dairy farm management tools such as milk production
+										and distribution tracking modules, animal tracking module, animal breeding and
+										health modules etc and use them in the management of farm activities.
+									</p>
+									<ul class="list-unstyled u-fw-600 u-lh-2 u-mt-30">
+										<li><i class="fa fa-check text-primary mr-2"></i>Unlimited access to the
+											platform</li>
+										<li><i class="fa fa-check text-primary mr-2"></i>Easily accessible from anywhere
+											in the world</li>
+										<li><i class="fa fa-check text-primary mr-2"></i>Support when you need it</li>
+									</ul>
+								</div> <!-- END col-md-6 -->
+							</div> <!-- END row-->
+						</div> <!-- END tab-pane-->
+					</div> <!-- END tab-content-->
+				</div> <!-- END col-12-->
+
+			</div>
+			<!--END row-->
+		</div> <!-- END container-->
+	</section>
+	<section id="contact"
+		style="background:#0081ff url(assets/img/startup/bg-4.png) no-repeat; background-position: center center;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2 class="h1 text-center text-white u-mb-30">
+						Do You Want to Start a <br> Dairy Farm?
+					</h2>
+					<div class="u-h-4 u-w-50 bg-white rounded u-mb-70 mx-auto"></div>
+					<form action="" method="POST">
+						<div class="row">
+							<div class="col-md-6 u-mb-30">
+								<input placeholder="First name" type="text" required>
+							</div>
+							<div class="col-md-6 u-mb-30">
+								<input placeholder="Last Name" type="tel">
+							</div>
+							<div class="col-md-6 u-mb-30">
+								<input placeholder="Your email" type="email" required>
+							</div>
+							<div class="col-md-6 u-mb-30">
+								<input placeholder="Phone number" type="tel" required>
+							</div>
+							<div class="col-12 u-mb-30">
+								<textarea rows="5" placeholder="Message"></textarea>
+							</div>
+						</div> <!-- END row-->
+						<div class="text-center">
+							<button class="btn btn-white"> Send Request</button>
+						</div>
+					</form>
+				</div> <!-- END col-lg-8-->
+			</div> <!-- END row-->
+		</div> <!-- END container-->
+	</section>
+	<div id="scroll-top" class="scroll-top box-shadow-v1 bg-white active">
+		<i class="fa fa-angle-up" aria-hidden="true"></i>
+	</div>
+	<footer>
+		<section class="bg-gray-v2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 mb-5 mb-lg-0">
+						<img src="assets/img/logo-inverse.png" alt="">
+						<p class="u-my-40">
+							DigitalDairy's farm technological solutions are unmatched in the market. We pride ourselves
+							in providing the best products and services for the best prices.
+						</p>
+						<form class="form-inline">
+							<div class="input-group box-shadow-v1 u-rounded-50 bg-white u-of-hidden">
+								<div class="input-group-addon bg-white border-0 pl-4 pr-0">
+									<span class="icon icon-Mail text-primary"></span>
+								</div>
+								<input class="form-control border-0 p-3" placeholder="Enter your email" type="text">
+								<button type="submit" class="input-group-btn btn bg-white">
+									<span class="icon icon-Arrow text-primary"></span>
+								</button>
+							</div>
+						</form>
+
+					</div>
+					<div class="col-lg-2 col-md-6 ml-auto mb-5 mb-lg-0">
+						<h4>Useful Links</h4>
+						<div class="u-h-4 u-w-50 bg-primary rounded mt-3 u-mb-40"></div>
+						<ul class="list-unstyled u-lh-2">
+							<li><a href="#about">About Us </a> </li>
+							<li><a href="#reviews">Testimonials </a> </li>
+							<li><a href="#pricing">Pricing </a> </li>
+							<li><a href="#contact">Contact Us</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-6 ml-auto mb-5 mb-lg-0">
+						<h4>Contact Info</h4>
+						<div class="u-h-4 u-w-50 bg-primary rounded mt-3 u-mb-40"></div>
+						<ul class="list-unstyled">
+							<li class="mb-2">
+								<span class="icon icon-Phone2 text-primary mr-2"></span> 254. 742. 654. 637
+							</li>
+							<li class="mb-2">
+								<span class="icon icon-Mail text-primary mr-2"></span> <a
+									href="mailto:bwwaweru18@gmail.com">Brian Muciri</a>
+							</li>
+							<li class="mb-2">
+								<span class="icon icon-Pointer text-primary mr-2"></span> Nairobi, Kenya
+							</li>
+						</ul>
+						<ul class="list-inline social social-rounded social-white mt-4">
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-facebook"></i></a>
+							</li>
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-twitter"></i></a>
+							</li>
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-google-plus"></i></a>
+							</li>
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-linkedin"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div> <!-- END row-->
+			</div> <!-- END container-->
+		</section> <!-- END section-->
+
+		<section class="u-py-40">
+			<div class="container">
+				<p class="mb-0 text-center">
+					&copy; Copyright 2019 <a class="text-primary" href="https://brianmuciri.world" target="_blank">Brian
+						Muciri</a>
+				</p>
+			</div>
+		</section>
+	</footer>
+	<!-- JavaScript files -->
+	<!-- JQuery -->
+	<script src="{% static 'jQuery/jquery.js' %}"></script>
+	<!-- Bootstrap js -->
+	<script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}"></script>
+	<script src="{% static 'js/index1.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+django
+django-heroku
+gunicorn
+django-mathfilters
+django_registration
+

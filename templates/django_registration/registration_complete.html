@@ -1,0 +1,10 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} User Registration {% endblock %}
+{% block content %}
+<div class="alert alert-success">
+	<p>Registration complete! An email containing account-activation information has been sent to your inbox.</p>
+</div>
+<div class="text-center">
+	<a href="{% url 'login' %}?next={% url 'digitaldairy:daily_milk_production' %}">Log in</a>
+</div>
+{% endblock %}

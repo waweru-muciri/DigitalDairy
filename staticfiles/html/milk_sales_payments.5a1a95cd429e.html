@@ -1,0 +1,202 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Milk Sales Payments {% endblock %}
+{% block content %}
+{% load subtract_dates %}
+<section id="section-a" class="tab-pane fade active show">
+	<div class="row text-center">
+		<div class="col-lg-6 col-md-6 sf-html-block">
+			<h4>Milk Sales Payments</h4>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#milkPaymentsInputModal">
+				<span> &plus; New Payment </span>
+			</button>
+		</div>
+	</div>
+	<div class="container text-center">
+		<form method="get" action="{% url 'digitaldairy:milk_sales_payments' %}">
+			<div class="row sf-html-block">
+				<div class="col-lg-5 form-group">
+					<select id="client_id" class="form-control" name="client_id">
+						<option value="client_id" disabled selected>Select Client</option>
+						{% if clients_list %}
+						{% for client in clients_list %}
+						<option value="{{ client.name }}" name="client_id"> {{ client.name }} </option>
+						{% endfor %}
+						{% endif %}
+					</select>
+				</div>
+				<div class="col-lg-3 col-md-4 form-group">
+					<select id="month" class="form-control" name="month" required>
+						<script>
+							var month = {{ selected_month_date| date:'m' }};
+							var year = {{ selected_month_date| date:'Y' }};
+							var client = "{{ client }}";
+						</script>
+						<option value="1">January</option>
+						<option value="2">February</option>
+						<option value="3">March</option>
+						<option value="4">April</option>
+						<option value="5">May</option>
+						<option value="6">June</option>
+						<option value="7">July</option>
+						<option value="8">August</option>
+						<option value="9">September</option>
+						<option value="10">October</option>
+						<option value="11">November</option>
+						<option value="12">December</option>
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-4 form-group">
+					<input id="year" value="{{ selected_month_date|date:'Y' }}" class="form-control" type="text" name="year" required>
+				</div>
+				<div class="col-lg-2 col-md-4 form-group">
+					<button type="submit" class="btn btn-primary">Retrieve</button>
+				</div>
+			</div>
+			{% csrf_token %}
+		</form>
+	</div>
+	<div class="modal" id="milkPaymentsInputModal" tabindex="-1" aria-labelledby="milkPaymentsInputModalLabel" role="dialog"
+	     aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title text-center" id="milkPaymentsInputModalLabel">
+						Add Payment Record
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="milkPaymentsInputForm" method="post" action="{% url 'digitaldairy:milk_sales_payments' %}">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="payment_date" class="col-form-label">
+								Date of Payment
+							</label>
+							<input id="payment_date" class="form-control" type="date" name="payment_date" required>
+						</div>
+						<div class="form-group">
+							<label for="from_date" class="col-form-label">
+								From Date
+							</label>
+							<input id="from_date" class="form-control" type="date" name="from_date" required>
+						</div>
+						<div class="form-group">
+							<label for="to_date" class="col-form-label">
+								To Date
+							</label>
+							<input id="to_date" class="form-control" type="date" name="to_date" required>
+						</div>
+						<div class="form-group">
+							<label for="client_id" class="col-form-label">
+								Select Client
+							</label>
+							<select id="client_id" class="form-control" name="client_id">
+								<option value="client_id" disabled selected>Select Client</option>
+								{% if clients_list %}
+								{% for client in clients_list %}
+								<option value="{{ client.name }}" name="client_id"> {{ client.name }} </option>
+								{% endfor %}
+								{% endif %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="amount_paid" class="col-form-label">
+								Amount
+							</label>
+							<input id="amount_paid" class="form-control" type="number" name="amount_paid" min="0" required>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="saveMilkPaymentFormBtn" form="milkPaymentsInputForm" type="submit" class="btn btn-primary">Save Record</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			  <div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<h5> Payment Summary for [{{ selected_month_date|date:'F Y' }}] </h5>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-6 col-sm-12 col-md-6 text-center">
+								 <p> Client:
+									 <span class="badge badge-info">{{client}} </span>
+								 </p>
+								 <p>Total Quantity Sold:
+									 <span class="badge badge-info">{{total_quantity_sold}} </span>
+								 </p>
+							</div>
+							<div class="col-lg-6 col-sm-12 col-md-6 text-center">
+								 <p>Total Sales (Ksh):
+									 <span class="badge badge-info">{{total_milk_sales}} </span>
+								 </p>
+								 <p>Total Paid (Ksh):
+									 <span class="badge badge-info">{{total_amount_paid}} </span>
+								 </p>
+								 <p>Balance (Ksh):
+									 <span class="badge badge-info">{{balance}} </span>
+								 </p>
+							</div>
+						</div>
+					</div>
+			  </div>
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-lg-12">
+				<div class="table-responsive">
+					<table id="milkPaymentsTable" class="table table-hover">
+						<thead class="text-center">
+							<tr>
+								<th> # </th>
+								<th> Client Name</th>
+								<th> Date of Payment </th>
+								<th> From Date </th>
+								<th> To Date </th>
+								<th> Amount Paid (Ksh) </th>
+								<th> Balance (Ksh) </th>
+								<th> Actions </th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+							{% if milk_payments_list %}
+							{% for milk_payment in milk_payments_list %}
+							<tr>
+								<td> {{ forloop.counter }} </td>
+								<td> {{ milk_payment.client.name }} </td>
+								<td> {{ milk_payment.date_of_payment }} </td>
+								<td> {{ milk_payment.from_date }} </td>
+								<td> {{ milk_payment.to_date }} </td>
+								<td> {{ milk_payment.amount_paid }}</td>
+								<td> {{	milk_payment.balance }}</td>
+								<td>
+									<button id="milkSalePaymentEditBtn" type="button" data-toggle="modal" data-target="#milkPaymentsInputModal"
+										class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deleteMilkSalePaymentForm{{milk_payment.id}}" method="post" action="{% url 'digitaldairy:delete_milk_sale_payment'%}">
+										<input name="milk_sale_payment_id" type="hidden" value="{{milk_payment.id}}">
+										{% csrf_token %}
+										<button form="deleteMilkSalePaymentForm{{milk_payment.id}}" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+											<span class="fa fa-times"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+</section>
+{% endblock %}

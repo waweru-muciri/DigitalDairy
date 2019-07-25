@@ -1,0 +1,89 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Consumers Statements {% endblock %}
+{% block content %}
+{% load mathfilters %}
+<section>
+	<div class="text-center container">
+		<form method="get">
+			<div class="row sf-html-block">
+				<div class="col-lg-4 col-sm-12 form-group">
+					<select id="consumer_id" class="form-control" name="consumer_id">
+						<option value="consumer_id" disabled selected="selected">Select Consumer</option>
+						{% if consumers_list %}
+						{% for consumer in consumers_list %}
+						<option value="{{ consumer.name }}" name="consumer_id"> {{ consumer.name }} </option>
+						{% endfor %}
+						{% endif %}
+					</select>
+				</div>
+				<div class="col-lg-3 form-group">
+					<input id="consumption_from_date" class="form-control" type="date" name="consumption_from_date" value="{{consumption_from_date|date:'Y-m-d'}}">
+				</div>
+				<div class="col-lg-3 form-group">
+					<input id="consumption_to_date" class="form-control" type="date" name="consumption_to_date" value="{{consumption_to_date|date:'Y-m-d'}}">
+				</div>
+				<div class="col-lg-2 form-group">
+					<button type="submit" class="btn btn-primary">Retrieve</button>
+				</div>
+			</div>
+			{% csrf_token %}
+		</form>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			  <div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<h5> Showing data from {{consumption_from_date|date:'d/m/y'}} to {{consumption_to_date|date:'d/m/y'}} </h5>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12 col-sm-12 col-md-12 text-center">
+								<p> Consumer:
+									<span class="badge badge-info">{{consumer}} </span>
+								</p>
+								 <p>
+								 	Total Quantity Consumed (Kgs):
+									 <span class="badge badge-info">{{total_quantity_consumed}} </span>
+								 </p>
+								 <p>
+								 	Total Consumption (Ksh):
+									 <span class="badge badge-info">{{total_consumption_value}} </span>
+								 </p>
+							</div>
+						</div>
+					</div>
+			  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="table-responsive">
+				<table id="consumptionSummaryTable" class="table table-hover">
+					<thead class="text-center">
+						<tr>
+							<th> # </th>
+							<th> Consumer Name</th>
+							<th> Milk Quantity(Kgs) </th>
+							<th> Unit Price (Ksh) </th>
+							<th> Consumed Amount (Ksh) </th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						{% if milk_consumption_list %}
+						{% for consumption in milk_consumption_list %}
+						<tr>
+							<td> {{ forloop.counter }} </td>
+							<td> {{ consumption.consumer.name }} </td>
+							<td> {{ consumption.quantity }} </td>
+							<td> {{ consumption.consumer.unit_price }} </td>
+							<td> {{ consumption.quantity|mul:consumption.consumer.unit_price }} </td>
+						</tr>
+						{% endfor %}
+						{% endif %}
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Expenses Records {% endblock %}
+{% block content %}
+<section id="section-b">
+    <div class="row text-center">
+        <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+            <h4>Expenses List</h4>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#expenseInputModal">
+                <span>
+                    &plus; New Record
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="container text-center">
+        <form id="expensesRecordsSearchForm" method="get" action="{% url 'digitaldairy:expenses' %}">
+            <div class="row">
+                <div class="col-lg-3 offset-lg-3 col-md-4 sf-html-block">
+                    <select required class="form-control" name="month">
+                        <script>
+                            var month = {{ expenses_chosen_date|date:'m' }};
+                            var year = {{ expenses_chosen_date|date:'Y' }};
+                        </script>
+                        <option value="month" disabled selected="selected">Select Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-4 sf-html-block">
+                    <input class="form-control" type="number" name="year" required>
+                </div>
+                {% csrf_token %}
+                <div class="col-lg-3 col-md-4 sf-html-block">
+                    <button form="expensesRecordsSearchForm" type="submit" class="btn btn-primary">Retrieve</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal" id="expenseInputModal" tabindex="-1" aria-labelledby="expenseInputModalLabel" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="expenseInputModalLabel">
+                        Add Expense Record
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="expenseInputForm" method="post" action="{% url 'digitaldairy:save_expense' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="expense_date" class="col-form-label">
+                               Date
+                            </label>
+                            <input id="expense_date" class="form-control" type="date" name="expense_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expense_amount" class="col-form-label">
+                                Expense Amount
+                            </label>
+                            <input id="expense_amount" class="form-control" type="number"
+                                   name="expense_amount" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expense_source" class="col-form-label">
+                                Expense Source
+                            </label>
+                            <input id="expense_source" class="form-control" type="text"
+                                name="expense_source" minlength="2">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="expenseInputForm" type="submit" class="btn btn-primary">Save Record</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="table-responsive">
+                    <table id="expensesTable" class="table table-hover">
+                        <thead class="text-center">
+                            <tr>
+                                <th>#</th>
+                                <th>Date Incurred</th>
+                                <th>Expense Amount</th>
+                                <th>Expense Source</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            {% if expenses_list %}
+                            {% for expense in expenses_list %}
+                            <tr data-src="{{expense.id}}">
+                               <script>
+                                    myStorage = window.sessionStorage;
+                                    var object = {
+                                    id: {{ expense.id }},
+                                    date:'{{ expense.date|date:"Y-m-d" }}',
+                                    amount: {{ expense.amount }},
+                                    source: '{{ expense.source }}',
+                                    }
+                                    myStorage.setItem('expense_'+ object.id,JSON.stringify(object))
+                                </script>
+                                <td> {{ forloop.counter }} </td>
+                                <td> {{ expense.date }} </td>
+                                <td> {{ expense.amount }} </td>
+                                <td> {{ expense.source }} </td>
+                                <td>
+                                    <button id="expenseEditBtn" type="button" data-toggle="modal"
+                                            data-target="#expenseInputModal" class="btn btn-sm btn-primary"
+                                            aria-label="Edit">
+                                        <span class="fa fa-edit"></span>
+                                    </button>
+                                    <form id="deleteExpenseForm" method="post"
+                                    action="{% url 'digitaldairy:delete_expense' %}">
+                                        <input name="expense_id" type="hidden" value="{{expense.id}}">
+                                        {% csrf_token %}
+                                        <button form="deleteExpenseForm" type="submit"
+                                                class="btn btn-sm btn-danger"
+                                                aria-label="Delete">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div>
+                    <h4 class="text-center">Expenses Summary for {{ expenses_chosen_date|date:'F Y'}}</h4>
+                        <div class="row">
+                            <p class="col-lg-6 text-center">
+                                Total Expenses Amount:
+                            </p>
+                            <p class="col-lg-6 text-center">
+                                <span class="badge badge-info">{{total_month_expenses}} </span>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="col-lg-6 text-center">
+                               Total Expenses for Year {{ expenses_chosen_date|date:'Y'}}
+                            </p>
+                            <p class="col-lg-6 text-center">
+                                <span class="badge badge-info">{{total_year_expenses}} </span>
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
