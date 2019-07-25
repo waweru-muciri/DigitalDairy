@@ -1,6 +1,6 @@
 django
 django-heroku
-dateutil
+python-dateutil
 gunicorn
 django-mathfilters
 django_registration
