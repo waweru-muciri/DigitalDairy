@@ -1,6 +1,7 @@
 //$('.navbar-nav > .nav-item > .dropdown-menu > li > .dropdown-item').on('click', function (){
 //    window.location = 'https://google.com'
 //})
+var postUrl = document.location.protocol + document.location.host
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
     modal.find('input[type=text]').val('');
@@ -750,7 +751,7 @@ $('#milkInputForm').on('submit', function (event) {
     event.preventDefault();
     var submitForm = $(this);
     var formData = $('#milkInputForm').serialize();
-    $.post('http://127.0.0.1:8000/digitaldairy/save_milk_production', formData, function (data) {
+    $.post(postUrl + '/digitaldairy/save_milk_production', formData, function (data) {
         myStorage.setItem('milk_p_' + data.id, JSON.stringify(data))
         var tableRow = $('tr[data-src=' + data.id + ']')
         if (tableRow.length == 0) {
@@ -787,7 +788,7 @@ $('form[id^=deleteMilkProductionForm]').on('submit', function (event) {
     event.preventDefault();
     var deleteForm = $(this);
     var formData = deleteForm.serialize();
-    $.post('http://127.0.0.1:8000/digitaldairy/delete_milk_production', formData, function (data) {
+    $.post(postUrl + '/digitaldairy/delete_milk_production', formData, function (data) {
         deleteForm.parents('table').DataTable().row(deleteForm.parents('tr')).remove().draw();
     })
     return false;
@@ -796,7 +797,7 @@ $('form[id^=deleteMilkProductionTargetForm]').on('submit', function (event) {
     event.preventDefault();
     var deleteForm = $(this);
     var formData = deleteForm.serialize();
-    $.post('http://127.0.0.1:8000/digitaldairy/delete_milk_production_target', formData, function (data) {
+    $.post(postUrl + '/digitaldairy/delete_milk_production_target', formData, function (data) {
         deleteForm.parents('table').DataTable().row(deleteForm.parents('tr')).remove().draw();
     })
     return false;
@@ -805,7 +806,7 @@ $('#targetInputForm').on('submit', function (event) {
     event.preventDefault();
     var modal = $(this).parents('div.modal');
     var formData = $('#targetInputForm').serialize();
-    $.post('http://127.0.0.1:8000/digitaldairy/save_daily_milk_target', formData, function (data) {
+    $.post(postUrl + '/digitaldairy/save_daily_milk_target', formData, function (data) {
         myStorage.setItem('milk_p_target_' + data.cow_id, JSON.stringify(data))
         var tableRow = $('tr[data-src=' + data.cow_id + ']')
         if (tableRow.length == 0) {
