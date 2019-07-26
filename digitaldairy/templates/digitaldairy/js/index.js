@@ -1,7 +1,7 @@
 //$('.navbar-nav > .nav-item > .dropdown-menu > li > .dropdown-item').on('click', function (){
 //    window.location = 'https://google.com'
 //})
-var postUrl = document.location.protocol + document.location.host
+var postUrl = 'https://digitaldairy.herokuapp.com'
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
     modal.find('input[type=text]').val('');

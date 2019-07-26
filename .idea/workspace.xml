@@ -15,37 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
+            <state relative-caret-position="358">
               <caret line="136" column="45" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2856">
-              <caret line="226" selection-start-line="226" selection-end-line="226" />
-              <folding>
-                <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#ul#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#ul#0;n#li#3;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#ul#0;n#li#4;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#ul#0;n#li#5;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#ul#0;n#li#6;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            <state relative-caret-position="220">
+              <caret line="770" column="74" lean-forward="true" selection-start-line="770" selection-start-column="74" selection-end-line="770" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -171,7 +154,6 @@
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/monthly-milk-production.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-payments.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
         <option value="$PROJECT_DIR$/digitaldairy/urls.py" />
         <option value="$PROJECT_DIR$/digitaldairy/models.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html" />
@@ -183,6 +165,7 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/LearningDjango/settings.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
       </list>
     </option>
   </component>
@@ -197,7 +180,46 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -306,7 +328,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32933104" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3298969" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.9347079" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
@@ -317,7 +339,7 @@
     <layout-to-restore>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.3071749" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.3071749" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.60720414" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.89193827" />
@@ -325,8 +347,8 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32933104" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9348199" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9347079" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -570,13 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="738" column="34" selection-start-line="738" selection-start-column="34" selection-end-line="738" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -677,16 +692,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/Popper/popper.js" />
-    <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="136" column="45" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
+        <state relative-caret-position="471">
           <caret line="226" selection-start-line="226" selection-end-line="226" />
           <folding>
             <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" />
@@ -699,10 +714,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
+    <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        <state relative-caret-position="358">
+          <caret line="136" column="45" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="770" column="74" lean-forward="true" selection-start-line="770" selection-start-column="74" selection-end-line="770" selection-end-column="74" />
         </state>
       </provider>
     </entry>
