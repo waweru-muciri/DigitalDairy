@@ -18,6 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     # Add Django site authentication urls (for login, logout, password management)
+    path('', include('digitaldairy.urls')),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('digitaldairy/', include('digitaldairy.urls'), name="digitaldairy"),

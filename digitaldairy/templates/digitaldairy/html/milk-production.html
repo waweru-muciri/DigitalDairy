@@ -132,8 +132,7 @@
 									<script>
 										var object = {
 											id: {{ milk_production.id }},
-											cow_id: '{{milk_production.cow_id}}',
-											milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
+											cow_id: '{{milk_production.cow_id}}',  											milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
 											am_quantity: {{ milk_production.am_quantity }},noon_quantity: {{ milk_production.noon_quantity }}, pm_quantity: {{ milk_production.pm_quantity }}
 										}
 										window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object))
@@ -340,7 +339,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form id="targetInputForm" action="/digitaldairy/save_daily_milk_target" method="post">
+						<form id="targetInputForm" action="{% url 'digitaldairy:save_daily_milk_target' %}" method="post">
 							{% csrf_token %}
 							<div class="form-group">
 								<label for="cow_id" class="col-form-label">
@@ -418,6 +417,30 @@
 									</td>
 								</tr>
 								{% endfor %}
+								{% else %}
+								<tr data-src="">
+									<td> </td>
+									<td> </td>
+									<td> </td>
+									<td>
+										<button id="editMilkProductionTargetBtn0" type="button" data-toggle="modal"
+											data-target="#targetInputModal" class='btn btn-sm btn-primary'
+											aria-label="Edit">
+											<span class="fa fa-edit"></span>
+										</button>
+										<form id="deleteMilkProductionTargetForm0"
+											method="post" action="{% url 'digitaldairy:delete_milk_production_target' %}">
+											<input name="cow_id" type="hidden"
+												value="">
+											{% csrf_token %}
+											<button
+												form="deleteMilkProductionTargetForm0"
+												type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+												<span class="fa fa-times"></span>
+											</button>
+										</form>
+									</td>
+								</tr>
 								{% endif %}
 							</tbody>
 						</table>
