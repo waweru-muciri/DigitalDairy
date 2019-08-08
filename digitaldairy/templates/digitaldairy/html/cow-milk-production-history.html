@@ -5,7 +5,7 @@
 			<section>
 				<div class="container">
 					<div class="text-center non-printable">
-						<form id="cowMilkProductionHistorySearchForm" method="get" action="/digitaldairy/milk_production_history">
+						<form id="cowMilkProductionHistorySearchForm" method="get" action="{% url 'digitaldairy:milk_production_history' %}">
 							<div class="row">
 								<div class="col-lg-3 col-md-3  sf-html-block">
 									<select required class="form-control" name="cow_id">

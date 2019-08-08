@@ -31,7 +31,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="abortionsInputForm" method="post" action="/digitaldairy/save_abortion_miscarriage_record">
+							<form id="abortionsInputForm" method="post" action="{% url 'digitaldairy:save_abortion_miscarriage_record' %}">
                                 <div class="form-group">
                                     <label for="event_date" class="col-form-label">
                                         Date
@@ -139,7 +139,7 @@
 												<span class="fa fa-edit"></span>
 											</button>
 											<form id="deleteAbortionForm" method="post"
-											action="/digitaldairy/delete_abortion_record">
+											action="{% url 'digitaldairy:delete_abortion_record' %}">
 												{% csrf_token %}
 												<input name="cow_id" type="hidden"
 												value=" {{abortion_miscarriage.ai_record.id}} ">

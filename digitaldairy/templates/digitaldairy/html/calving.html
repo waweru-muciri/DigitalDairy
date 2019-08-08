@@ -31,7 +31,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="calvingInputForm" method="post" action="/digitaldairy/save_calving_record">
+							<form id="calvingInputForm" method="post" action="{% url 'digitaldairy:save_calving_record' %}">
 								<div class="form-group">
                                         <label for="ai_record_id" class="col-form-label">
                                             Select Cow
@@ -172,7 +172,7 @@
 												<span class="fa fa-edit"></span>
 											</button>
 											<form id="deleteCalvingForm" method="post"
-											action="/digitaldairy/delete_calving_record">
+											action="{% url 'digitaldairy:delete_calving_record' %}">
 												{% csrf_token %}
 												<input name="cow_id" type="hidden"
 												value=" {{calving_record.ai_record.id}} ">

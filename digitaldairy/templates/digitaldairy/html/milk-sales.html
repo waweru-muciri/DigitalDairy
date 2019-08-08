@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div class="container text-center">
-		<form id="milkSaleRecordsSearchForm" method="get" action="/digitaldairy/milk_sales/">
+		<form id="milkSaleRecordsSearchForm" method="get" action="{% url 'digitaldairy:milk_sales' %}">
 			<div class="row text-center sf-html-block">
 				<div class="col-lg-3 offset-lg-3 offset-md-2 col-md-4 form-group">
 					<input id="milk_sale_date" class="form-control" type="date" name="milk_sale_date" value="{{milk_sale_date | date:'Y-m-d' }}" required>
@@ -104,7 +104,7 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					<form id="consumptionInputForm" method="post" action="/digitaldairy/save_milk_consumption">
+					<form id="consumptionInputForm" method="post" action="{% url 'digitaldairy:save_milk_consumption' %}">
 						<div class="form-group">
 							<label for="consumption_date" class="col-form-label">
 								Date
@@ -226,11 +226,7 @@
 												 console.log(myStorage.getItem('milk_sale_'+object.client_name))
 											</script>
 											<td> {{ sale.date }} </td>
-											<td>
-												<a href="{{ sale.client.purchase_history_url }}">
-													{{ sale.client.name }}
-												</a>
-											</td>
+											<td> {{ sale.client.name }} </td>
 											<td> {{ sale.quantity }} </td>
 											<td> {{ sale.quantity|mul:sale.client.unit_price }} </td>
 											<td>

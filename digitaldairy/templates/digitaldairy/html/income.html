@@ -62,7 +62,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="incomeInputForm" method="post" action="/digitaldairy/save_income">
+                    <form id="incomeInputForm" method="post" action="{% url 'digitaldairy:save_income' %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="income_date" class="col-form-label">
@@ -131,7 +131,7 @@
                                         aria-label="Edit">
                                         <span class="fa fa-edit"></span>
                                     </button>
-                                    <form id="deleteIncomeForm" method="post" action="/digitaldairy/delete_income">
+                                    <form id="deleteIncomeForm" method="post" action="{% url 'digitaldairy:delete_income' %}">
                                         <input name="income_id" type="hidden" value="{{income.id}}">
                                         {% csrf_token %}
                                         <button form="deleteIncomeForm" type="submit" class="btn btn-sm btn-danger"

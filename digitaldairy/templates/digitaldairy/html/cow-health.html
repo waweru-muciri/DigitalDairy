@@ -30,7 +30,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="treatmentInputForm" method="post" action="/digitaldairy/save_treatment_record">
+							<form id="treatmentInputForm" method="post" action="{% url 'digitaldairy:save_treatment_record' %}">
 								{% csrf_token %}
 								<input id="treatment_id" class="form-control" type="hidden" name="treatment_id">
 								<div class="form-group">
@@ -145,7 +145,7 @@
 													<span class="fa fa-edit"></span>
 												</button>
 												<form id="deleteTreatmentForm" method="post"
-												action="/digitaldairy/delete_treatment">
+												action="{% url 'digitaldairy:delete_treatment' %}">
 												{% csrf_token %}
 												<input name="treatment_id" type="hidden"
 												value="{{treatment_record.id}}">

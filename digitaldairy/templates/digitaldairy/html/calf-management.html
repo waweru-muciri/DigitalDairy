@@ -118,7 +118,7 @@
 										<span class="fa fa-edit"></span>
 									</button>
 									<form id="deleteCalfFeedingRecordForm" method="post"
-									  action="/digitaldairy/delete_calf_feeding">
+									  action="{% url 'digitaldairy:delete_calf_feeding' %}">
 										<input name="calf_feeding_id" type="hidden" value="{{calf_feeding.id}}">
 										{% csrf_token %}
 										<button form="deleteCalfFeedingRecordForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">

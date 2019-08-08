@@ -65,7 +65,7 @@
                                                 data-toggle="modal" data-target="#clientInputModal">
                                                     <span class="fa fa-edit"></span>
                                                 </button>
-                                                <form id="deleteClientForm" method="post" action="/digitaldairy/delete_client">
+                                                <form id="deleteClientForm" method="post" action="{% url 'digitaldairy:delete_client' %}">
 													<input name="client_name" type="hidden" value="{{client.name}}">
                                                     {% csrf_token %}
 													<button form="deleteClientForm" type="submit"
@@ -97,7 +97,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="clientInputForm" method="post" action="/digitaldairy/save_client">
+                                <form id="clientInputForm" method="post" action="{% url 'digitaldairy:save_client' %}">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="client_name" class="col-form-label">
@@ -185,7 +185,7 @@
                                                     <span class="fa fa-edit"></span>
                                                 </button>
                                                 <form id="deleteConsumerForm" method="post"
-                                                      action="/digitaldairy/delete_consumer">
+                                                      action="{% url 'digitaldairy:delete_consumer' %}">
 													<input name="consumer_name" type="hidden" value="{{consumer.name}}">
                                                     {% csrf_token %}
 													<button form="deleteConsumerForm" type="submit"
@@ -217,7 +217,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="consumersInputForm" method="post" action="/digitaldairy/save_consumer">
+                                <form id="consumersInputForm" method="post" action="{% url 'digitaldairy:save_consumer' %}">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="consumer_name" class="col-form-label">

@@ -31,11 +31,11 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="cowSaleInputForm" method="post" action="/digitaldairy/save-cow-sale">
+							<form id="cowSaleInputForm" method="post" action="{% url 'digitaldairy:save_cow_sale' %}">
 								{% csrf_token %}
 								<div class="form-group">
 									<label for="sale_date" class="col-form-label">
-										Date
+										Date Sold
 									</label>
 									<input id="sale_date" class="form-control" type="date" name="sale_date" required>
 								</div>
@@ -86,7 +86,7 @@
 							<table id="cowSalesTable" class="table table-hover">
 								<thead class="text-center">
 									<tr>
-										<th>Sale Date</th>
+										<th>Date Sold</th>
 										<th>Cow Id</th>
 										<th>Cow Name</th>
 										<th>Client</th>
@@ -125,7 +125,7 @@
 												<span class="fa fa-edit"></span>
 											</button>
 											<form id="deleteCowSaleForm" method="post"
-												  action="/digitaldairy/delete_cow_sale">
+												  action="{% url 'digitaldairy:delete_cow_sale' %}">
 												<input name="cow_id" type="hidden" value="{{cow_sale.cow.id}}">
 												{% csrf_token %}
 												<button form="deleteCowSaleForm" type="submit"

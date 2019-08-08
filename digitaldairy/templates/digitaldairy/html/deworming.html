@@ -31,7 +31,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="dewormingInputForm" method="post" action="/digitaldairy/save_deworming_record">
+							<form id="dewormingInputForm" method="post" action="{% url 'digitaldairy:save_deworming_record' %}">
 								{% csrf_token %}
 								<input id='deworming_id' type='hidden' class='form-control' name='deworming_id'>
 								<div class="form-group">
@@ -132,9 +132,13 @@
 														aria-label="Edit">
 													<span class="fa fa-edit"></span>
 												</button>
-												<button type="button" class='btn btn-sm btn-danger' aria-label="Delete">
+												<form id="deleteDewormingForm" method="post" action= "{% url 'digitaldairy:delete_de_worming' %}">
+												{% csrf_token %}
+												<input name="deworming_id" type="hidden" value="{{deworming_record.id}}">
+												<button form="deleteDewormingForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
 													<span class="fa fa-times"></span>
 												</button>
+											</form>
 											</td>
 										</tr>
 										{% endfor %}

@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (element.hasAttribute('data-scrollto')) {
             element.addEventListener('click', function (event) {
                 var to_element = document.getElementById(element.getAttribute('data-scrollto'));
+                if(to_element == undefined){
+                    return;
+                }
                 to_element.scrollIntoView({ behavior: 'smooth' });
+
             })
         }
     });

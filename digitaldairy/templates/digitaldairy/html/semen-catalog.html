@@ -31,7 +31,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="semenCatalogInputForm" method="post" action="/digitaldairy/save_semen_catalog">
+							<form id="semenCatalogInputForm" method="post" action="{% url 'digitaldairy:save_semen_catalog' %}">
 								{% csrf_token %}
 								<input id='semen_catalog_id' type='hidden' class='form-control' name='semen_catalog_id'>
 								<div class="form-group">
@@ -128,12 +128,11 @@
 														<span class="fa fa-edit"></span>
 													</button>
 													<form id="deleteSemenCatalogRecordForm" method="post"
-                                                      action="/digitaldairy/delete_semen_catalog">
+                                                      action="{% url 'digitaldairy:delete_semen_catalog' %}">
 														<input name="semen_catalog_id" type="hidden"
 															   value="{{semen_catalog.id}}">
 														{% csrf_token %}
-														<button form="deleteSemenCatalogRecordForm" type="submit"
-																class='btn btn-sm btn-danger' aria-label="Delete">
+														<button form="deleteSemenCatalogRecordForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
 															<span class="fa fa-times"></span>
 														</button>
 													</form>

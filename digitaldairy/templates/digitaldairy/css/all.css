@@ -72,6 +72,12 @@ body {
 *:focus {
   outline: none; }
 
+.carousel{
+    background-color: #000;
+}
+.carousel .carousel-inner .carousel-item img{
+    opacity: 0.8;
+}
 img {
   max-width: 100%; 
 }
@@ -119,7 +125,7 @@ a {
   text-decoration: none; }
 
 a:hover, a:active, a:focus {
-  color: inherit;
+  color: grey;
   text-decoration: none; }
 
 button, input, optgroup, select, textarea {
@@ -144,6 +150,20 @@ section {
     section {
       padding-top: 80px;
       padding-bottom: 80px; } }
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 input, textarea {
   border: 1px solid #e9eff5;
@@ -293,7 +313,7 @@ input, textarea {
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
   width: 30px;
   height: 1px;
-  background-color: #fff;
+  background-color: #232323;
   border-radius: 4px;
   position: absolute;
   -webkit-transition-property: -webkit-transform;
@@ -570,7 +590,6 @@ input, textarea {
 
 @media (max-width: 991px) {
   #navbarNav {
-    background: #fff;
     max-height: 100vh;
     padding: 20px;
     overflow: auto; }
@@ -594,8 +613,9 @@ input, textarea {
   border-radius: 4px;
   font-size: 18px;
   line-height: 45px; }
-  .social a:hover {
-    background: #339aff; }
+ .social a:hover {
+    background: #339aff;
+ }
 
 .social.social-white a {
   background: #fff;
@@ -659,7 +679,7 @@ input, textarea {
   -webkit-box-shadow: 0 5px 40px 0 rgba(0, 129, 255, 0.3);
   box-shadow: 0 5px 40px 0 rgba(0, 129, 255, 0.3);
   color: #fff; }
-  .btn-primary:hover {
+.btn-primary:hover {
     background: #0074e6;
     -webkit-box-shadow: none;
     box-shadow: none; }

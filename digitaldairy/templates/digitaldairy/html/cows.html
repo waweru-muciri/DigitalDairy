@@ -1,5 +1,5 @@
 {% extends "digitaldairy/html/common-header.html" %}
-{% block title %} Herd Records {% endblock %}
+{% block title %} Cow Records {% endblock %}
 {% block content %}
 		<section class="section-a">
 			<div class="container text-center">
@@ -30,7 +30,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="cowInputForm" method="post" action="/digitaldairy/save_cow">
+							<form id="cowInputForm" method="post" action="{% url 'digitaldairy:save_cow' %}">
 								<div class="form-group">
 									<label for="date_of_birth" class="col-form-label">
 										Date of Birth
@@ -183,7 +183,7 @@
 											cow_lactations: {{cow.lactations}},
 											cow_dob: '{{cow.dob|date:"Y-m-d"}}',
 											cow_sire: '{{cow.sire.bull_code}}',
-											sire_id: {{cow.sire.id}},
+											sire_id: '{{cow.sire.id}}',
 											cow_dam: '{{cow.dam}}',
 											cow_category: '{{cow.category}}',
 											cow_status: '{{cow.status}}',
@@ -213,7 +213,7 @@
 												class='btn btn-sm btn-primary' aria-label="Edit">
 												<span class="fa fa-edit"></span>
 											</button>
-											<form id="deleteCowForm" method="post" action="/digitaldairy/delete_cow">
+											<form id="deleteCowForm" method="post" action= "{% url 'digitaldairy:delete_cow' %}">
 												{% csrf_token %}
 												<input name="cow_id" type="hidden" value="{{cow.id}}">
 												<button form="deleteCowForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">

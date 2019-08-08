@@ -1,7 +1,6 @@
-//$('.navbar-nav > .nav-item > .dropdown-menu > li > .dropdown-item').on('click', function (){
-//    window.location = 'https://google.com'
-//})
-var postUrl = 'https://digitaldairy.herokuapp.com'
+var postUrl = 'https://digitaldairy.herokuapp.com';
+postUrl = 'http://127.0.0.1:8000';
+var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
     modal.find('input[type=text]').val('');
@@ -26,7 +25,7 @@ $('input[type=date]').toArray().forEach(function (dateInputField) {
 });
 $('input[type=number]').toArray().forEach(function (numberInputField) {
     if (numberInputField.value === '') {
-        numberInputField.value = 0;
+        numberInputField.value = '';
     }
 });
 $('input[name=year]').toArray().forEach(function (yearInputField) {
@@ -170,7 +169,6 @@ $('#cowInputModal').on('show.bs.modal', function (event) {
     else {
         clearTextAndNumberInputFields(modal);
         modal.find('.modal-title').text("Add Cow Record")
-        modal.find('#cow_id').val('cow_id')
     }
 })
 $('#weightInputModal').on('show.bs.modal', function (event) {
@@ -356,9 +354,13 @@ $('#animalAutopsyInputModal').on('show.bs.modal', function (event) {
     var death_cow_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'autopsyEditBtn') {
         modal.find('.modal-title').text("Edit Autopsy Record")
-
         var death_record = JSON.parse(myStorage.getItem('death_' + death_cow_id))
-        modal.find('#cow_id').val(death_record.cow_id)
+        option.setAttribute('value', death_record.cow_id);
+        option.innerText = death_record.cow_id
+        if(modal.find('select#death_record_id').val(death_record.cow_id)[0].selectedIndex == -1) {
+            modal.find('select#death_record_id')[0].add(option)
+            modal.find('select#death_record_id').val(death_record.cow_id)
+        }
         modal.find('#autopsy_date').val(death_record.autopsy_date)
         modal.find('#autopsy_cost').val(death_record.autopsy_cost)
         modal.find('#autopsy_results').val(death_record.autopsy_results)
@@ -807,6 +809,7 @@ $('#targetInputForm').on('submit', function (event) {
     var modal = $(this).parents('div.modal');
     var formData = $('#targetInputForm').serialize();
     $.post(postUrl + '/digitaldairy/save_daily_milk_target', formData, function (data) {
+        myStorage.removeItem('milk_p_target_' + data.cow_id);
         myStorage.setItem('milk_p_target_' + data.cow_id, JSON.stringify(data))
         var tableRow = $('tr[data-src=' + data.cow_id + ']')
         if (tableRow.length == 0) {
@@ -817,6 +820,7 @@ $('#targetInputForm').on('submit', function (event) {
         }
         tableRow = tableRow.clone();
         tableRow.attr('data-src', data.cow_id);
+        tableRow.attr('hidden', false);
         tableRow.children('script').remove();
         tableRow.children('td')[0].innerText = data.cow_id;
         tableRow.children('td')[1].innerText = data.cow_name;
@@ -831,6 +835,41 @@ $('#targetInputForm').on('submit', function (event) {
     return false;
 });
 $(function () {
+    var canvases;
+    function init() {
+        canvases = document.getElementsByTagName('canvas');
+        for(var i=0; i < canvases.length; i++){
+            var canvas = canvases[i];
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                window.addEventListener('resize', resizeCanvas, false);
+                window.addEventListener('orientationchange', resizeCanvas, false)
+                resizeCanvas();
+            }
+        }
+    }
+    function resizeCanvas() {
+        for(var i=0; i < canvases.length; i++){
+            var canvas = canvases[i];
+            // set up temporary canvas
+            var tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            var tempCtx = tempCanvas.getContext('2d');
+            // copy to temporary canvas
+            tempCtx.drawImage(canvas, 0, 0);
+            // resize the original canvas
+            if (window.innerWidth <= 400) {
+                canvas.width = window.innerWidth;
+                canvas.height = (window.innerWidth * 2);
+            }
+            // copy canvas as image data 
+            var ctx = canvas.getContext('2d');
+            // copy back to resized canvas 
+            ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.width, canvas.height);
+        }
+    }
+    init();
     // configure the yearly milk_production chart
     var yearlyMilkProductionChart = document.getElementById('yearlyMilkProductionChart');
     if (yearlyMilkProductionChart == undefined) {

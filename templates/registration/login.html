@@ -1,54 +1,43 @@
-<!DOCTYPE html>
-<html>
+{% extends "digitaldairy/html/index.html" %}
+{% block title %} Digital Dairy Cattle Management Software {% endblock %}
+{% block content %}
 {% load static %}
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport"
-		content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=2; user-scalable=true;">
-	<!-- FontAwesome -->
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-		type="text/css">
-	<!-- Bootstrap css -->
-	<link rel="stylesheet" href="{% static 'bootstrap-4.0.0-dist/css/bootstrap.css' %}">
-	<!-- Custom styles for this template -->
-	<title>DigitalDairy Cattle Management Software </title>
-</head>
-	<body>
-	    <main>
-			<div class="container">
-				<div class="row align-items-center justify-items-center">
-					<div class="col-lg-6 col-md-6 col-sm-0">
-						<img style="width: 100%" class="img-responsive" alt="Background Image" src="{% static 'images/cows-1.jpg' %}"/>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<div class="text-center">
-						<h5>Login to continue</h5>
-							{% if form.errors %}
-							<div class="alert alert-danger">
-								<p>Your username and password didn't match. Please try again.</p>
-							</div>
-							{% endif %}
-							<form id="userDetailsInputForm" method="post" action="{% url 'login' %}">
-								{% csrf_token %}
-								<div class="form-group">
-									<input id="username" class="form-control" type="text" name="username" placeholder="Username" required>
-								</div>
-								<div class="form-group">
-									<input id="password" class="form-control" type="password" name="password" minlength="4" placeholder="Password" required>
-								</div>
-								<div class="form-group text-center">
-									<button id="loginBtn" form="userDetailsInputForm" type="submit"
-											class="btn btn-primary btn-sm text-uppercase">Login
-									</button>
-								</div>
-							</form>
-						</div>
-						<div class="text-center">
-							<a href="{% url 'password_reset' %}">Forgot Password?</a>
-						</div>
-					</div>
+<div class="container">
+	<div class="row align-items-center justify-items-center u-pt-40 u-pb-60">
+		<div class="col-lg-6 col-md-6 col-sm-12 u-py-20">
+			<div>
+				<h3 class="u-mt-20 u-mb-10 text-center">Account Login</h3>
+				{% if form.errors %}
+				<div class="alert alert-danger text-center">
+					<p>Your username and password didn't match. Please try again.</p>
 				</div>
+				{% endif %}
+				<form id="userDetailsInputForm" method="post" action="{% url 'login' %}">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="username" class="col-form-label">Username</label>
+						<input id="username" class="form-control" type="text" name="username" placeholder="Username" required>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-form-label">Password</label>
+						<input id="password" class="form-control" type="password" name="password" minlength="4" placeholder="Password" required>
+					</div>
+					<div class="form-group text-center">
+						<button id="loginBtn" form="userDetailsInputForm" type="submit"
+								class="btn btn-primary btn-sm text-uppercase">Login
+						</button>
+					</div>
+				</form>
 			</div>
-		</main>
-	</body>
-</html>
+			<div class="text-center">
+				<a href="{% url 'password_reset' %}">Forgot your password?</a>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12 u-py-20">
+			<h5 class="text-center"> Login Support</h5>
+			<p>If you have any issues logging in to your account, please do not hesitate to contact us at <a href="tel:+254742654637">254-742-654-637</a> during business hours or email us at <a href="mailto:smartfarmsoftwares@gmail.com">smartfarmsoftwares@gmail.com</a></p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

@@ -4,7 +4,7 @@
 		<section class="section-a">
             <div class="container text-center">
                 <form id="milkSalesStatsSearchForm" method="get"
-                action="/digitaldairy/milk_sales_statistics/">
+                action="{% url 'digitaldairy:milk_sales_statistics' %}">
                     {% csrf_token %}
                     <div class="row sf-html-block">
                         <div class="col-lg-5 col-md-12 form-group">

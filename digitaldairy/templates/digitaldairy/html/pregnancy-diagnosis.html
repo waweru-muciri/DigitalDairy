@@ -1,57 +1,57 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Pregnancy Diagnosis {% endblock %}
 {% block content %}
-        <section class="container">
-            <ul class="nav nav-tabs">
-                <li class="nav-link text-center" style="flex:1;">
-                    <a  data-toggle="tab" href="#section-a">Pregnancy Diagnosis</a>
-                </li>
-                <li class="nav-link text-center" style="flex:1;">
-                    <a data-toggle="tab" href="#section-b">Pregnancy Calendar</a>
-                </li>
-            </ul>
-        </section>
-		<div class="tab-content">
-            <section id="section-a" class="tab-pane fade active show">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-lg-6 col-md-6 sf-html-block">
-                            <h4>Pregnancy Diagnosis</h4>
-                        </div>
-                        <div class="col-lg-6 col-md-6 sf-html-block">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#pregnancyDiagnosisInputModal">
+<section class="container">
+	<ul class="nav nav-tabs">
+		<li class="nav-link text-center" style="flex:1;">
+			<a  data-toggle="tab" href="#section-a">Pregnancy Diagnosis</a>
+		</li>
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-b">Pregnancy Calendar</a>
+		</li>
+	</ul>
+</section>
+<div class="tab-content">
+	<section id="section-a" class="tab-pane fade active show">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-lg-6 col-md-6 sf-html-block">
+					<h4>Pregnancy Diagnosis</h4>
+				</div>
+				<div class="col-lg-6 col-md-6 sf-html-block">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#pregnancyDiagnosisInputModal">
                                 <span>
                                     &plus; New Diagnosis
                                 </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-md-12">
-                            <div class="table-responsive">
-                                <table id="pregnancyDiagnosisTable"
-                                class="table table-hover">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Diagnosis Date</th>
-                                            <th>Cow Id</th>
-                                            <th>Cow Name</th>
-                                            <th>P.D Result</th>
-                                            <th>Cost</th>
-                                            <th>Vet Name</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                    {% if ai_records_list %}
-                                    {% for ai_record in ai_records_list %}
-                                    {% if ai_record.pregnancy_diagnosis_date is not None %}
-                                    <tr data-src="{{ai_record.id}}">
-                                        <script>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-md-12">
+					<div class="table-responsive">
+						<table id="pregnancyDiagnosisTable"
+							   class="table table-hover">
+							<thead class="text-center">
+							<tr>
+								<th>#</th>
+								<th>Diagnosis Date</th>
+								<th>Cow Id</th>
+								<th>Cow Name</th>
+								<th>P.D Result</th>
+								<th>Cost</th>
+								<th>Vet Name</th>
+								<th>Actions</th>
+							</tr>
+							</thead>
+							<tbody class="text-center">
+							{% if ai_records_list %}
+							{% for ai_record in ai_records_list %}
+							{% if ai_record.pregnancy_diagnosis_date is not None %}
+							<tr data-src="{{ai_record.id}}">
+								<script>
                                         myStorage = window.sessionStorage;
                                         var object = {
                                         id: {{ai_record.id}},
@@ -63,147 +63,147 @@
                                         myStorage.setItem('pregnancy_diagnosis_id'+object.id,JSON.stringify
                                          (object))
                                         </script>
-                                            <td>{{ forloop.counter }}</td>
-                                            <td>{{ai_record.pregnancy_diagnosis_date}} </td>
-                                            <td>{{ai_record.cow.id}} </td>
-                                            <td>{{ai_record.cow.name }}</td>
-                                            <td>{{ai_record.pregnancy_diagnosis_result}} </td>
-                                            <td>{{ai_record.pregnancy_diagnosis_cost}} </td>
-                                            <td>{{ai_record.pregnancy_diagnosis_vet_name}}</td>
-                                            <td>
-                                                <button id="pregnancyDiagnosisEditBtn" type="button" data-toggle="modal"
-                                                    data-target="#pregnancyDiagnosisInputModal"
-                                                    class='btn btn-sm btn-primary' aria-label="Edit">
-                                                    <span class="fa fa-edit"></span>
-                                                </button>
-                                                <form id="deletePregnancyDiagnosisForm" method="post"
-                                                  action="/digitaldairy/delete_pregnancy_diagnosis">
-                                                    <input name="ai_record_id" type="hidden"
-                                                           value="{{ai_record.id}}">
-                                                    {% csrf_token %}
-                                                    <button form="deletePregnancyDiagnosisForm" type="submit"
-                                                    class='btn btn-sm btn-danger' aria-label="Delete">
-                                                    <span class="fa fa-times"></span>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                    {% endfor %}
-                                    {% endif %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="pregnancyDiagnosisInputModal" tabindex="-1"
-                aria-labelledby="pregnancyDiagnosisModalLabel"
-                role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title text-center" id="pregnancyDiagnosisModalLabel">
-                                    Add Pregnancy Diagnosis Record
-                                </h4>
-                                <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="pregnancyDiagnosisForm" method="post"
-                                action="/digitaldairy/save_pregnancy_diagnosis">
-                                    <div class="form-group">
-                                        <label for="ai_record_id" class="col-form-label">
-                                            Select Cow
-                                        </label>
-                                        <select required id="ai_record_id" class="form-control" name="ai_record_id">
-                                            <option value="ai_record_id" disabled selected="selected">Select
-                                            Cow</option>
-                                            {% if ai_records_list %}
-                                            {% for ai_record in ai_records_list %}
-                                            {% if not ai_record.pregnancy_diagnosis_date %}
-                                            <option value="{{ai_record.id}}" name="ai_record_id"> {{ai_record.cow.name}}
-                                            </option>
-                                            {% endif %}
-                                            {% endfor %}
-                                            {% endif %}
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregnancy_diagnosis_date" class="col-form-label">
-                                            Date
-                                        </label>
-                                        <input id="pregnancy_diagnosis_date" class="form-control" type="date" name="pregnancy_diagnosis_date" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregnancy_diagnosis_result" class="col-form-label">
-                                            Result
-                                        </label>
-                                        <select id="pregnancy_diagnosis_result" class="form-control"
-                                        name="pregnancy_diagnosis_result" required>
-                                            <option value="Positive">Positive</option>
-                                            <option value="Negative">Negative</option>
-                                            <option value="Unconfirmed">Unconfirmed</option>
-                                            <option value="Failed">Failed</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregnancy_diagnosis_cost" class="col-form-label">
-                                            Cost
-                                        </label>
-                                        <input id="pregnancy_diagnosis_cost" class="form-control" type="number" name="pregnancy_diagnosis_cost" min="0">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregnancy_diagnosis_vet_name" class="col-form-label">
-                                            Vet Name
-                                        </label>
-                                        <input id="pregnancy_diagnosis_vet_name" class="form-control" type="text"
-                                        name="pregnancy_diagnosis_vet_name">
-                                    </div>
-                                    {% csrf_token %}
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button form="pregnancyDiagnosisForm" type="submit" class="btn btn-primary">Save Record</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="section-b" class="tab-pane fade">
-                <div>
-                    <div class="row text-center">
-                        <div class="col-lg-12 col-sm-12 sf-html-block">
-                            <h4>Pregnancy Calendar List</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="table-responsive" style="overflow:auto;">
-                                <table id="pregnancyCalendarTable" class="table table-hover">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th> #</th>
-                                            <th> P.D Check </th>
-                                            <th> Diagnosis Date </th>
-                                            <th> Cow Id </th>
-                                            <th> Cow Name </th>
-                                            <th> Date Served </th>
-                                            <th> 1st Heat Check </th>
-                                            <th> 2nd Heat Check </th>
-                                            <th> Drying Date </th>
-                                            <th> Steaming Date </th>
-                                            <th> Actions </th>
-                                    </thead>
-                                    <tbody class="text-center">
-                                    {% if ai_records_list %}
-                                    {% for ai_record in ai_records_list %}
-                                    {% if ai_record.pregnancy_diagnosis_result == 'Positive' %}
-                                        <tr data-src="{{ai_record.id}}">
-                                        <script>
+								<td>{{ forloop.counter }}</td>
+								<td>{{ai_record.pregnancy_diagnosis_date}} </td>
+								<td>{{ai_record.cow.id}} </td>
+								<td>{{ai_record.cow.name }}</td>
+								<td>{{ai_record.pregnancy_diagnosis_result}} </td>
+								<td>{{ai_record.pregnancy_diagnosis_cost}} </td>
+								<td>{{ai_record.pregnancy_diagnosis_vet_name}}</td>
+								<td>
+									<button id="pregnancyDiagnosisEditBtn" type="button" data-toggle="modal"
+											data-target="#pregnancyDiagnosisInputModal"
+											class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deletePregnancyDiagnosisForm" method="post"
+										  action="{% url 'digitaldairy:delete_pregnancy_diagnosis' %}">
+										<input name="ai_record_id" type="hidden"
+											   value="{{ai_record.id}}">
+										{% csrf_token %}
+										<button form="deletePregnancyDiagnosisForm" type="submit"
+												class='btn btn-sm btn-danger' aria-label="Delete">
+											<span class="fa fa-times"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="pregnancyDiagnosisInputModal" tabindex="-1"
+			 aria-labelledby="pregnancyDiagnosisModalLabel"
+			 role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="pregnancyDiagnosisModalLabel">
+							Add Pregnancy Diagnosis Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="pregnancyDiagnosisForm" method="post"
+							  action="{% url 'digitaldairy:save_pregnancy_diagnosis' %}">
+							<div class="form-group">
+								<label for="ai_record_id" class="col-form-label">
+									Select Cow
+								</label>
+								<select required id="ai_record_id" class="form-control" name="ai_record_id">
+									<option value="ai_record_id" disabled selected="selected">Select
+										Cow</option>
+									{% if ai_records_list %}
+									{% for ai_record in ai_records_list %}
+									{% if not ai_record.pregnancy_diagnosis_date %}
+									<option value="{{ai_record.id}}" name="ai_record_id"> {{ai_record.cow.name}}
+									</option>
+									{% endif %}
+									{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="pregnancy_diagnosis_date" class="col-form-label">
+									Date
+								</label>
+								<input id="pregnancy_diagnosis_date" class="form-control" type="date" name="pregnancy_diagnosis_date" required>
+							</div>
+							<div class="form-group">
+								<label for="pregnancy_diagnosis_result" class="col-form-label">
+									Result
+								</label>
+								<select id="pregnancy_diagnosis_result" class="form-control"
+										name="pregnancy_diagnosis_result" required>
+									<option value="Positive">Positive</option>
+									<option value="Negative">Negative</option>
+									<option value="Unconfirmed">Unconfirmed</option>
+									<option value="Failed">Failed</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="pregnancy_diagnosis_cost" class="col-form-label">
+									Cost
+								</label>
+								<input id="pregnancy_diagnosis_cost" class="form-control" type="number" name="pregnancy_diagnosis_cost" min="0">
+							</div>
+							<div class="form-group">
+								<label for="pregnancy_diagnosis_vet_name" class="col-form-label">
+									Vet Name
+								</label>
+								<input id="pregnancy_diagnosis_vet_name" class="form-control" type="text"
+									   name="pregnancy_diagnosis_vet_name">
+							</div>
+							{% csrf_token %}
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="pregnancyDiagnosisForm" type="submit" class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="section-b" class="tab-pane fade">
+		<div>
+			<div class="row text-center">
+				<div class="col-lg-12 col-sm-12 sf-html-block">
+					<h4>Pregnancy Calendar List</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive" style="overflow:auto;">
+						<table id="pregnancyCalendarTable" class="table table-hover">
+							<thead class="text-center">
+							<tr>
+								<th> #</th>
+								<th> P.D Check </th>
+								<th> Diagnosis Date </th>
+								<th> Cow Id </th>
+								<th> Cow Name </th>
+								<th> Date Served </th>
+								<th> 1st Heat Check </th>
+								<th> 2nd Heat Check </th>
+								<th> Drying Date </th>
+								<th> Steaming Date </th>
+								<th> Actions </th>
+							</thead>
+							<tbody class="text-center">
+							{% if ai_records_list %}
+							{% for ai_record in ai_records_list %}
+							{% if ai_record.pregnancy_diagnosis_result == 'Positive' %}
+							<tr data-src="{{ai_record.id}}">
+								<script>
                                         myStorage = window.sessionStorage;
                                         var object = {
                                         id: {{ai_record.id}},
@@ -217,97 +217,97 @@
                                         myStorage.setItem('pregnancy_calendar_id'+object.id,JSON.stringify
                                          (object))
                                         </script>
-                                            <td>{{ forloop.counter }}</td>
-                                            <td>{{ai_record.pregnancy_check_date}} </td>
-                                            <td>{{ai_record.pregnancy_diagnosis_date}} </td>
-                                            <td>{{ai_record.cow.id}} </td>
-                                            <td>{{ai_record.cow.name }}</td>
-                                            <td>{{ai_record.service_date}} </td>
-                                            <td>{{ai_record.first_heat_check_date}} </td>
-                                            <td>{{ai_record.second_heat_check_date}}</td>
-                                            <td>{{ai_record.drying_date}}</td>
-                                            <td>{{ai_record.steaming_date}}</td>
-                                            <td>
-                                                <button id="pregnancyCalendarEditBtn" type="button" data-toggle="modal"
-                                                    data-target="#pregnancyCalendarEditModal" class='btn btn-sm btn-primary' aria-label="Edit">
-                                                    <span class="fa fa-edit"></span>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                    {% endfor %}
-                                    {% endif %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" id="pregnancyCalendarEditModal" tabindex="-1"
-                aria-labelledby="pregnancyCalendarEditModalLabel"
-                role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                    <h4 class="modal-title text-center" id="pregnancyCalendarEditModalLabel">
-                                        Edit Pregnancy Calendar Record
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="editPregnancyCalendarInputForm" method="post"
-                                action="/digitaldairy/save_pregnancy_calendar">
+								<td>{{ forloop.counter }}</td>
+								<td>{{ai_record.pregnancy_check_date}} </td>
+								<td>{{ai_record.pregnancy_diagnosis_date}} </td>
+								<td>{{ai_record.cow.id}} </td>
+								<td>{{ai_record.cow.name }}</td>
+								<td>{{ai_record.service_date}} </td>
+								<td>{{ai_record.first_heat_check_date}} </td>
+								<td>{{ai_record.second_heat_check_date}}</td>
+								<td>{{ai_record.drying_date}}</td>
+								<td>{{ai_record.steaming_date}}</td>
+								<td>
+									<button id="pregnancyCalendarEditBtn" type="button" data-toggle="modal"
+											data-target="#pregnancyCalendarEditModal" class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+								</td>
+							</tr>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal" id="pregnancyCalendarEditModal" tabindex="-1"
+			 aria-labelledby="pregnancyCalendarEditModalLabel"
+			 role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="pregnancyCalendarEditModalLabel">
+							Edit Pregnancy Calendar Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="editPregnancyCalendarInputForm" method="post"
+							  action="{% url 'digitaldairy:save_pregnancy_calendar' %}">
 
-                                    <input type="hidden" name="ai_record_id" id="ai_record_id" value="0">
-                                    <div class="form-group">
-                                        <label for="first_heat_check_date" class="col-form-label">
-                                            1st Heat Check Date
-                                        </label>
-                                        <input id="first_heat_check_date" class="form-control" type="date" name="first_heat_check_date" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="second_heat_check_date" class="col-form-label">
-                                            2nd Heat Check Date
-                                        </label>
-                                        <input id="second_heat_check_date" class="form-control" type="date" name="second_heat_check_date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregnancy_diagnosis_date" class="col-form-label">
-                                            Pregnancy Diagnosis Date
-                                        </label>
-                                        <input id="pregnancy_diagnosis_date" class="form-control" type="date" name="pregnancy_diagnosis_date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="drying_date" class="col-form-label">
-                                            Drying Date
-                                        </label>
-                                        <input id="drying_date" class="form-control" type="date" name="drying_date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="steaming_date" class="col-form-label">
-                                            Steaming Date
-                                        </label>
-                                        <input id="steaming_date" class="form-control" type="date" name="steaming_date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="due_date" class="col-form-label">
-                                            Due Date
-                                        </label>
-                                        <input id="due_date" class="form-control" type="date" name="due_date">
-                                    </div>
-                                    {% csrf_token %}
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button form="editPregnancyCalendarInputForm" type="submit" class="btn btn-primary">Save Record</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+							<input type="hidden" name="ai_record_id" id="ai_record_id" value="0">
+							<div class="form-group">
+								<label for="first_heat_check_date" class="col-form-label">
+									1st Heat Check Date
+								</label>
+								<input id="first_heat_check_date" class="form-control" type="date" name="first_heat_check_date" required>
+							</div>
+							<div class="form-group">
+								<label for="second_heat_check_date" class="col-form-label">
+									2nd Heat Check Date
+								</label>
+								<input id="second_heat_check_date" class="form-control" type="date" name="second_heat_check_date">
+							</div>
+							<div class="form-group">
+								<label for="pregnancy_diagnosis_date" class="col-form-label">
+									Pregnancy Diagnosis Date
+								</label>
+								<input id="pregnancy_diagnosis_date" class="form-control" type="date" name="pregnancy_diagnosis_date">
+							</div>
+							<div class="form-group">
+								<label for="drying_date" class="col-form-label">
+									Drying Date
+								</label>
+								<input id="drying_date" class="form-control" type="date" name="drying_date">
+							</div>
+							<div class="form-group">
+								<label for="steaming_date" class="col-form-label">
+									Steaming Date
+								</label>
+								<input id="steaming_date" class="form-control" type="date" name="steaming_date">
+							</div>
+							<div class="form-group">
+								<label for="due_date" class="col-form-label">
+									Due Date
+								</label>
+								<input id="due_date" class="form-control" type="date" name="due_date">
+							</div>
+							{% csrf_token %}
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="editPregnancyCalendarInputForm" type="submit" class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 {% endblock %}

@@ -119,6 +119,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+# Email Settings
+EMAIL_HOST = 'gmail.com'
+EMAIL_PORT = 200
+EMAIL_HOST_USER = 'bwwaweru17@gmail.com'
+EMAIL_HOST_PASSWORD = 'Brianmuciri182016'
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
 
 
 # Static files (CSS, JavaScript, Images)

@@ -7,6 +7,7 @@ import datetime
 import dateutil.relativedelta
 import itertools
 import collections
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -21,6 +22,34 @@ def index(request):
 	context = {
 	}
 	return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
+
+@require_http_methods(['POST'])
+def send_message(request):
+	senders_email = request.POST.get('email')
+	senders_phone_number = request.POST.get('phone_number')
+	senders_first_name = request.POST.get('first_name').strip().title()
+	senders_last_name = request.POST.get('last_name').strip().title()
+	message = request.POST.get('message')
+	form = {}
+	errors = []
+	if len(senders_first_name) < 4:
+		errors.append("Your first name is invalid")
+	if len(senders_last_name) < 4:
+		errors.append("Your last name is invalid")
+	if len(senders_phone_number) < 10 and not senders_phone_number.isdigit():
+		errors.append("Your phone number is invalid")
+	if len(message) < 4:
+		errors.append("Please write a message long enough")
+	form['errors'] = errors
+	context = {
+		"form": form,
+	}
+	if form['errors']:
+		return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
+	else:
+		send_mail('Subject here', 'Here is the message.', 'bwwaweru18@gmail.com', recipient_list=[senders_email], fail_silently= False)
+		return HttpResponseRedirect(reverse('digitaldairy:home'))
+
 
 
 @login_required
@@ -428,13 +457,15 @@ def get_vaccinations(request):
 @require_http_methods(['GET'])
 def get_deaths_autopsy(request):
 	death_records_list = Deaths.objects.all()
+	death_without_autopsies_list = Deaths.objects.filter(autopsy_date=None)
 	all_cows = Cow.objects.all()
 	context = {
 		'death_records_list' : death_records_list,
+		'death_without_autopsies_list' : death_without_autopsies_list,
 		'all_cows' : all_cows,
 
 	}
-	return render(request, context=context, template_name='digitaldairy/html/deaths.html')
+	return render(request, context=context, template_name='digitaldairy/html/deaths-autopsies.html')
 
 
 @login_required
@@ -1543,9 +1574,8 @@ def save_calf(request):
 @login_required
 @require_http_methods(['POST'])
 def save_cow_autopsy_record(request):
-	cow_id = request.POST['cow_id']
-	referenced_cow = get_object_or_404(Cow, pk=cow_id)
-	death_record =  get_object_or_404(Deaths, pk=referenced_cow)
+	death_record_id = request.POST['death_record_id']
+	death_record =  get_object_or_404(Deaths, pk=death_record_id)
 	autopsy_date = request.POST.get('autopsy_date')
 	autopsy_results = request.POST.get('autopsy_results')
 	autopsy_cost = request.POST.get('autopsy_cost')
@@ -1799,6 +1829,24 @@ def delete_vaccination(request):
 
 @login_required
 @require_http_methods(['POST'])
+def delete_deworming(request):
+	deworming_id = request.POST['deworming_id']
+	deworming = get_object_or_404(Deworming, pk=deworming_id)
+	deworming.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:deworming"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_semen_catalog(request):
+	semen_catalog_id = request.POST['semen_catalog_id']
+	semen_catalog = get_object_or_404(SemenRecords, pk=semen_catalog_id)
+	semen_catalog.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:semen_catalog"))
+
+
+@login_required
+@require_http_methods(['POST'])
 def delete_cow_disease(request):
 	disease_id = request.POST['disease_id']
 	disease = get_object_or_404(Diseases, pk=disease_id)
@@ -1901,6 +1949,26 @@ def delete_cow_body_traits(request):
 	body_traits_to_delete = get_object_or_404(CowBodyTraits, pk=body_traits_id)
 	body_traits_to_delete.delete()
 	return HttpResponseRedirect(reverse("digitaldairy:cow_profile"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_cow_death(request):
+	cow_id = request.POST.get('cow_id')
+	cow_death_to_delete = get_object_or_404(Deaths, pk=cow_id)
+	cow_death_to_delete.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:deaths_autopsy"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_cow_death_autopsy(request):
+	cow_id = request.POST.get('cow_id')
+	cow_death_to_delete = get_object_or_404(Deaths, pk=cow_id)
+	cow_death_to_delete.autopsy_date = None
+	cow_death_to_delete.autopsy_results = ''
+	cow_death_to_delete.autopsy_cost = 0
+	return HttpResponseRedirect(reverse("digitaldairy:deaths_autopsy"))
 
 
 @login_required

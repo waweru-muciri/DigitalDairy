@@ -79,7 +79,7 @@
                                         data-toggle="modal" data-target="#employeesInputModal">
                                             <span class="fa fa-edit"></span>
                                         </button>
-                                        <form id="deleteEmployeeForm" method="post" action="/digitaldairy/delete_employee">
+                                        <form id="deleteEmployeeForm" method="post" action="{% url 'digitaldairy:delete_employee' %}">
                                             {% csrf_token %}
                                             <input name="employee_id" type="hidden" value="{{employee.id}}">
                                             <button form="deleteEmployeeForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
@@ -110,7 +110,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="employeeInputForm" method="post" action="/digitaldairy/employees/">
+                        <form id="employeeInputForm" method="post" action="{% url 'digitaldairy:employees' %}">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="employee_name" class="col-form-label">
@@ -211,7 +211,7 @@
                                         data-toggle="modal" data-target="#employeesInputModal">
                                             <span class="fa fa-edit"></span>
                                         </button>
-                                        <form id="deleteSalaryAdvanceForm" method="post" action="/digitaldairy/deleteemployee">
+                                        <form id="deleteSalaryAdvanceForm" method="post" action="{% url 'digitaldairy:delete_employee' %}">
                                             {% csrf_token %}
                                             <input name="employee_name" type="hidden" value=" {{employee.name}} ">
                                             <button form="deleteSalaryAdvanceForm" type="button" class='btn btn-sm btn-danger' aria-label="Delete">
@@ -271,7 +271,7 @@
                                     <td> {{ paid_salary.salary_amount }} </td>
                                     <td> {{ paid_salary.balance_after_salary }} </td>
                                     <td>
-                                        <form id="deleteSalaryForm" method="post" action="/digitaldairy/delete_employee_salary">
+                                        <form id="deleteSalaryForm" method="post" action="{% url 'digitaldairy:delete_employee_salary' %}">
                                             {% csrf_token %}
                                             <input name="employee_id" type="hidden"
                                                    value=" {{paid_salary.employee.id}} ">

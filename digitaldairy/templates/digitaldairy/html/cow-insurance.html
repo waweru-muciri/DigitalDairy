@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<form id="insuranceRecordsSearchForm" method="get" action="/digitaldairy/cow_insurance/">
+		<form id="insuranceRecordsSearchForm" method="get" action="{% url 'digitaldairy:cow_insurance' %}">
 			<div class="row text-center">
 				<div class="col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-12 sf-html-block">
 					<select required class="form-control" name="cow_id">
@@ -46,7 +46,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="insuranceInputForm" method="post" action="/digitaldairy/cow_insurance/">
+					<form id="insuranceInputForm" method="post" action="{% url 'digitaldairy:cow_insurance' %}">
 						{% csrf_token %}
 						<div class="form-group">
 							<label for="from_date" class="col-form-label">
@@ -146,7 +146,7 @@
 								<button id="insuranceEditBtn" type="button" data-toggle="modal" data-target="#insuranceInputModal" class="btn btn-sm btn-primary" aria-label="Edit">
 									<span class="fa fa-edit"></span>
 								</button>
-								<form id="deleteInsuranceForm" method="post" action="/digitaldairy/delete_insurance">
+								<form id="deleteInsuranceForm" method="post" action="{% url 'digitaldairy:delete_insurance' %}">
 									<input name="insurance_id" type="hidden" value="{{insurance.id}}">
 									{% csrf_token %}
 									<button form="deleteInsuranceForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">

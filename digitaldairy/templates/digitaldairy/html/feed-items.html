@@ -31,7 +31,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="feedItemForm" method="post" action="/digitaldairy/save_feed_item">
+                    <form id="feedItemForm" method="post" action="{% url 'digitaldairy:save_feed_item' %}">
                         <div class="form-group">
                             <label for="item_name" class="col-form-label">
                                 Item Name
@@ -121,7 +121,7 @@
                                       data-target="#feedItemInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
                                       <span class="fa fa-edit"></span>
                                   </button>
-                                  <form id="deleteFeedItemForm" method="post" action="/digitaldairy/delete_feed_item">
+                                  <form id="deleteFeedItemForm" method="post" action="{% url 'digitaldairy:delete_feed_item' %}">
                                     <input name="feed_item_name" type="hidden" value="{{feed_item.name}}">
                                     {% csrf_token %}
                                     <button form="deleteFeedItemForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">

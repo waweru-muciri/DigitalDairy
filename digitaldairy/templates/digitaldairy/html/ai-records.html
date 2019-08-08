@@ -33,7 +33,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="airRecordInputForm" method="post" action="/digitaldairy/save_cow_ai_record">
+							<form id="airRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
 								{% csrf_token %}
 								<div class="form-group">
 									<label for="cow_id" class="col-form-label">
@@ -164,7 +164,7 @@
                                                 <span class="fa fa-edit"></span>
                                             </button>
                                             <form id="deleteAiRecordForm" method="post"
-                                              action="/digitaldairy/delete_ai_record">
+                                              action="{% url 'digitaldairy:delete_ai_record' %}">
                                                 <input name="ai_record_id" type="hidden"
                                                        value="{{ai_record.id}}">
                                                 {% csrf_token %}
@@ -305,9 +305,15 @@
 														data-target="#editAiRecordInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
 														<span class="fa fa-edit"></span>
 													</button>
-													<button type="button" class='btn btn-sm btn-danger' aria-label="Delete">
-														<span class="fa fa-times"></span>
-													</button>
+													<form id="deleteAiRecordForm2" method="post"
+													  action="{% url 'digitaldairy:delete_ai_record' %}">
+														<input name="ai_record_id" type="hidden"
+															   value="{{ai_record.id}}">
+														{% csrf_token %}
+														<button form="deleteAiRecordForm2" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+															<span class="fa fa-times"></span>
+														</button>
+													</form>
 												</td>
 											</tr>
 											{% endfor %}
@@ -332,7 +338,7 @@
 								</button>
 						</div>
 						<div class="modal-body">
-							<form id="editAiRecordInputForm" method="post" action="/digitaldairy/save_cow_ai_record">
+							<form id="editAiRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
 								<input type="hidden" name="ai_record_id" id="ai_record_id" value="0">
                                 <div class="form-group">
                                     <label for="service_date" class="col-form-label">

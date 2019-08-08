@@ -42,7 +42,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form id="feedFormulationInputForm" method="post" action="/digitaldairy/save_feed_formulation">
+						<form id="feedFormulationInputForm" method="post" action="{% url 'digitaldairy:save_feed_formulation' %}">
 						{% csrf_token %}
 							<div class="form-group">
 								<label for="feed_formulation_name" class="col-form-label">
@@ -142,7 +142,7 @@
 													data-toggle="modal" data-target="#feedItemInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
 														<span class="fa fa-edit"></span>
 													</button>
-													<form id="deleteFeedFormulationPartForm" method="post" action="/digitaldairy/delete_feed_formulation_part">
+													<form id="deleteFeedFormulationPartForm" method="post" action="{% url 'digitaldairy:delete_feed_formulation_part' %}">
 				                                        <input name="feed_formulation_part_id" type="hidden" value="{{feed_item_part.id}}">
 				                                        {% csrf_token %}
 				                                        <button form="deleteFeedFormulationPartForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
@@ -160,7 +160,7 @@
 									<button type="button" id="feedFormulationEditBtn" data-toggle="modal" data-target="#feedFormulationInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
 										<span class="fa fa-edit"></span>
 									</button>
-									<form id="deleteFeedFormulationForm" method="post" action="/digitaldairy/delete_feed_formulation">
+									<form id="deleteFeedFormulationForm" method="post" action="{% url 'digitaldairy:delete_feed_formulation' %}">
                                         <input name="feed_formulation_id" type="hidden" value="{{feed_formulation.id}}">
                                         {% csrf_token %}
                                         <button form="deleteFeedFormulationForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
@@ -295,7 +295,7 @@
 										<span class="fa fa-edit"></span>
 									</button>
 									<form id="deleteFeedProgrammeForm" method="post"
-									action="/digitaldairy/delete_feeding_programme">
+									action="{% url 'digitaldairy:delete_feeding_programme' %}">
                                         <input name="feeding_programme_id" type="hidden"
                                         value="{{feeding_programme.id}}">
                                         {% csrf_token %}
