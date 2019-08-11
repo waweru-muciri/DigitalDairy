@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
    console.log('Service workers are not supported.');
 }
 var postUrl = 'https://digitaldairy.herokuapp.com';
-postUrl = 'http://127.0.0.1:8000';
+// postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
