@@ -169,7 +169,19 @@
 						<tbody class="text-center">
 							{% if milk_payments_list %}
 							{% for milk_payment in milk_payments_list %}
-							<tr>
+							<tr data-src="{{ milk_payment.id }}">
+								<script>
+									myStorage = window.sessionStorage;
+									var object = {
+									id: {{milk_payment.id}},
+									client_name: '{{milk_payment.client.name}}',
+									date_of_payment:'{{ milk_payment.date_of_payment|date:"Y-m-d" }}',
+									 to_date:'{{ milk_payment.to_date|date:"Y-m-d" }}',
+									 from_date:'{{ milk_payment.from_date|date:"Y-m-d" }}',
+									 amount_paid: {{milk_payment.amount_paid}},
+									 }
+									 myStorage.setItem('milk_sale_payment_'+ object.id,JSON.stringify(object))
+								</script>
 								<td> {{ forloop.counter }} </td>
 								<td> {{ milk_payment.client.name }} </td>
 								<td> {{ milk_payment.date_of_payment }} </td>

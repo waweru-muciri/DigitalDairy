@@ -63,38 +63,40 @@
                         </div>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <h4>Summary for {{ current_date|date:"F Y" }}</h4>
-                        <div class="row">
-                            <p class="col-lg-6 text-center">
-                               [{{ current_date|date:"F" }}] Total Milk (kgs):
-                            </p>
-                            <p class="col-lg-6 text-center">
-                                {{ total_month_milk_production|floatformat:2 }} Kgs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 text-center">
-                                Average Per Day: 
-                            </p>
-                            <p class="col-lg-6 text-center">
-                                {{ average_daily_milk_quantity|floatformat:2 }} kgs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 text-center">
-                                Highest Quantity Recorded: 
-                            </p>
-                            <p class="col-lg-6 text-center">
-                                {{ highest_day_quantity }} kgs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 text-center">
-                                Lowest Quantity Recorded: 
-                            </p>
-                            <p class="col-lg-6 text-center">
-                                {{ lowest_day_quantity }} kgs
-                            </p>
+                        <div class="summary">
+                            <h4>Summary for {{ current_date|date:"F Y" }}</h4>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                   [{{ current_date|date:"F" }}] Total Milk (kgs):
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ total_month_milk_production|floatformat:2 }} Kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Average Per Day:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ average_daily_milk_quantity|floatformat:2 }} kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Highest Quantity Recorded:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ highest_day_quantity }} kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Lowest Quantity Recorded:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ lowest_day_quantity }} kgs
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

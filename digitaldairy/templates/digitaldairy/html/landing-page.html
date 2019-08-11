@@ -15,7 +15,7 @@
 					</p>
 				</div>
 				<div class="col-lg-12 col-md-12 u-mt-70 text-center">
-					<img src="{% static 'images/digital-dairy1.png' %}" alt="Image" width="100%">
+					<img src="{% static 'images/digital-dairy2.png' %}" alt="Image" width="100%">
 				</div>
 			</div> <!-- END row-->
 		</div> <!-- END container-->
@@ -101,12 +101,12 @@
 		</div>
 	</section>
 	<section class="pb_section pb_slant-light pb_pb-220 pb-0" id="section-reviews">
-		<div class="">
+		<div class="container">
 			<div class="row justify-content-center mb-1">
 				<div class="col-md-6 text-center mb-5">
 					<h5 class="text-uppercase pb_font-15 mb-2 pb_color-dark-opacity-3 pb_letter-spacing-2">
 						<strong>Reviews</strong></h5>
-					<h2>Good Reviews From Good People</h2>
+					<h2>Good Reviews From Great Farms</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -210,22 +210,22 @@
 				</div>
 			</div> <!-- END row-->
 			<div class="row">
-				<div class="col-md-4 mt-4">
+				<div class="col-lg-6 col-md-6 mt-4">
 					<div class="bg-white box-shadow-v2 rounded py-5">
 						<!--<i class="material-icons md-48">subscriptions</i>-->
 						<h4 class="u-mb-35 u-mt-15">
-							10+ Cows
+							1-20 Cows
 						</h4>
 						<hr class="m-0">
 						<ul class="list-unstyled u-py-30 u-lh-2">
 							<li><strong>Unlimited</strong> access and support</li>
 							<li><strong>20</strong> farm alerts and notifications  </li>
-							<li><strong>10+</strong> animals to track</li>
+							<li><strong>1-20</strong> animals to track</li>
 							<li><strong>5GB</strong> Monthly Bandwidth</li>
 						</ul>
 						<hr class="m-0">
 						<h2 class="u-fs-60 u-fw-600 u-my-20">
-							<sup class="u-fs-20">$</sup>10
+							<sup class="u-fs-20">Ksh</sup>2000
 						</h2>
 						<a href="#contact" data-scrollto="contact" class="btn btn-white btn-rounded">
 							Get Started
@@ -233,21 +233,21 @@
 					</div>
 				</div> <!-- END col-md-4-->
 
-				<div class="col-md-4 mt-4">
+				<div class="col-lg-6 col-md-6 mt-4">
 					<div class="bg-white box-shadow-v2 rounded py-5">
 						<h4 class="u-mb-35 u-mt-15">
-							30+ Cows
+							20-40 Cows
 						</h4>
 						<hr class="m-0">
 						<ul class="list-unstyled u-py-30 u-lh-2">
 							<li><strong>Unlimited</strong> access to the platform</li>
 							<li><strong>20</strong> farm alerts and notifications</li>
-							<li><strong>30+</strong> animals to track</li>
+							<li><strong>20-40</strong> animals to track</li>
 							<li><strong>10GB</strong> Monthly Bandwidth</li>
 						</ul>
 						<hr class="m-0">
 						<h2 class="u-fs-60 u-fw-600 u-my-20">
-							<sup class="u-fs-20">$</sup>50
+							<sup class="u-fs-20">Ksh</sup>2500
 						</h2>
 						<a href="#contact" data-scrollto="contact" class="btn btn-white btn-rounded">
 							Get Started
@@ -255,10 +255,32 @@
 					</div>
 				</div> <!-- END col-md-4-->
 
-				<div class="col-md-4 mt-4">
+				<div class="col-lg-6 col-md-6 mt-4">
 					<div class="bg-white box-shadow-v2 rounded py-5">
 						<h4 class="u-mb-35 u-mt-15">
-							50+ Cows
+							40-50 Cows
+						</h4>
+						<hr class="m-0">
+						<ul class="list-unstyled u-py-30 u-lh-2">
+							<li><strong>Unlimited</strong> access to the platform</li>
+							<li><strong>Unlimited</strong> farm alerts and notifications</li>
+							<li><strong>40-50</strong> animals to track</li>
+							<li><strong>20GB</strong> Monthly Bandwidth</li>
+						</ul>
+						<hr class="m-0">
+						<h2 class="u-fs-60 u-fw-600 u-my-20">
+							<sup class="u-fs-20">Ksh</sup>3000
+						</h2>
+						<a href="#contact" data-scrollto="contact" class="btn btn-white btn-rounded">
+							Get Started
+						</a>
+					</div>
+				</div> <!-- END col-md-4-->
+
+				<div class="col-lg-6 col-md-6 mt-4">
+					<div class="bg-white box-shadow-v2 rounded py-5">
+						<h4 class="u-mb-35 u-mt-15">
+							Above 50 Cows
 						</h4>
 						<hr class="m-0">
 						<ul class="list-unstyled u-py-30 u-lh-2">
@@ -269,7 +291,7 @@
 						</ul>
 						<hr class="m-0">
 						<h2 class="u-fs-60 u-fw-600 u-my-20">
-							<sup class="u-fs-20">$</sup>99
+							<sup class="u-fs-20">Ksh</sup>4000
 						</h2>
 						<a href="#contact" data-scrollto="contact" class="btn btn-white btn-rounded">
 							Get Started
@@ -371,14 +393,21 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2 class="h1 text-center text-white u-mb-30">
-						Do You Want to Start a <br> Dairy Farm?
-					</h2>
+					<h3 class="h1 text-center text-white u-mb-30 text-capitalize">
+						Get the power to manage your farm like never before
+					</h3>
 					<div class="u-h-4 u-w-50 bg-white rounded u-mb-70 mx-auto"></div>
 					{% if form.errors %}
 						<div class="text-center alert alert-danger">
 							{% for error in form.errors %}
 							<p> {{error}} </p>
+							{% endfor %}
+						</div>
+					{% endif %}
+					{% if form.success_messages %}
+						<div class="text-center alert alert-success">
+							{% for success_message in form.success_messages %}
+							<p class="text-center alert alert-success"> {{success_message}} </p>
 							{% endfor %}
 						</div>
 					{% endif %}

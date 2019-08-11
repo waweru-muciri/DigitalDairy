@@ -23,12 +23,13 @@ def index(request):
 	}
 	return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
 
+
 @require_http_methods(['POST'])
 def send_message(request):
-	senders_email = request.POST.get('email')
-	senders_phone_number = request.POST.get('phone_number')
-	senders_first_name = request.POST.get('first_name').strip().title()
-	senders_last_name = request.POST.get('last_name').strip().title()
+	senders_email = request.POST['email']
+	senders_phone_number = request.POST['phone_number']
+	senders_first_name = request.POST['first_name'].strip().title()
+	senders_last_name = request.POST['last_name'].strip().title()
 	message = request.POST.get('message')
 	form = {}
 	errors = []
@@ -41,13 +42,18 @@ def send_message(request):
 	if len(message) < 4:
 		errors.append("Please write a message long enough")
 	form['errors'] = errors
+	success_messages = []
 	context = {
 		"form": form,
 	}
 	if form['errors']:
 		return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
 	else:
-		send_mail('Subject here', 'Here is the message.', 'bwwaweru18@gmail.com', recipient_list=[senders_email], fail_silently= False)
+		success_messages.append("Message sent successfully!")
+		success_messages.append("We will get back to you shortly!")
+		form['success_messages'] = success_messages
+		send_mail('Hey, DigitalDairy dude!', message, 'smartfarmsoftwares@gmail.com', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
+		# return a different view showing the user that the message has been sent
 		return HttpResponseRedirect(reverse('digitaldairy:home'))
 
 
@@ -470,14 +476,6 @@ def get_deaths_autopsy(request):
 
 @login_required
 @require_http_methods(['GET'])
-def get_health_statistics(request):
-	context = {
-	}
-	return render(request, context=context, template_name='digitaldairy/html/health-statistics.html')
-
-
-@login_required
-@require_http_methods(['GET'])
 def cow_diseases(request):
 	diseases_list = Diseases.objects.all()
 	context = {
@@ -755,7 +753,7 @@ def cow_milk_production_history(request):
 		'all_cows': all_cows,
 		'from_date': from_date,
 		'to_date': to_date,
-		'cow': referenced_cow,
+		'referenced_cow': referenced_cow,
 		'milk_production_list': milk_production_list
 	}
 	return render(request, context=context, template_name='digitaldairy/html/cow-milk-production-history.html')
@@ -1087,7 +1085,7 @@ def expenses(request):
 @login_required
 @require_http_methods(['GET'])
 def milk_sales(request):
-	milk_sale_date = request.GET.get('milk_sale_date')
+	milk_sale_date = request.GET.get('milk_sale_date')if request.GET.get('milk_sale_date') is not None else request.session.get('milk_sale_date')
 	if milk_sale_date == None:
 		milk_sale_date = general_to_date
 	else:
@@ -1126,7 +1124,6 @@ def milk_sales_payments(request):
 	if request.method == 'GET':
 		month = request.GET.get('month')
 		year = request.GET.get('year')
-		print(month, year)
 		if year is not None:
 			try:
 				year = int(year)
@@ -1148,6 +1145,8 @@ def milk_sales_payments(request):
 		selected_month_milk_sales_list = MilkSales.objects.filter(date__month=month, date__year=year)
 		milk_payments_list = MilkSalesPayments.objects.filter(date_of_payment__month=month, date_of_payment__year=year)
 		client_id = request.GET.get('client_id')
+		if client_id is None:
+			client_id = request.session.get('client_id')
 		if client_id != None:
 			client = get_object_or_404(Clients, pk=client_id)
 			milk_payments_list = milk_payments_list.filter(client=client)
@@ -1171,7 +1170,7 @@ def milk_sales_payments(request):
 		return render(request, context=context, template_name='digitaldairy/html/milk_sales_payments.html')
 	elif request.method == 'POST':
 		# get information from the post object
-		milk_sales_payment_id = request.POST.get('milk_sales_payment_id')
+		milk_sales_payment_id = request.POST.get('milk_sale_payment_id')
 		client_id = request.POST.get('client_id')
 		referenced_client = get_object_or_404(Clients, pk=client_id)
 		date_of_payment = request.POST.get('payment_date')
@@ -1188,6 +1187,8 @@ def milk_sales_payments(request):
 		milk_sales_payment.amount_paid = amount_paid
 		# save the instance
 		milk_sales_payment.save()
+		# save selected client in session
+		request.session['client_id'] = referenced_client.name
 		return HttpResponseRedirect(reverse("digitaldairy:milk_sales_payments"))
 
 
@@ -1240,14 +1241,19 @@ def get_consumer_consumption_history(request):
 @require_http_methods(['POST'])
 def save_milk_sale(request):
 	client_id = request.POST.get('client_id')
+	milk_sale_id = request.POST.get('milk_sale_id')
 	sale_date = request.POST.get('sale_date')
 	quantity = request.POST.get('sale_quantity')
 	client = get_object_or_404(Clients, pk=client_id)
-	created_record, created = MilkSales.objects \
-		.update_or_create(client=client,date=sale_date, defaults={
-		'quantity': quantity,
-	})
-	return HttpResponseRedirect('/digitaldairy/milk_sales/?milk_sale_date={0}'.format(sale_date))
+	milk_sale =  MilkSales()
+	milk_sale.id = milk_sale_id
+	milk_sale.client = client
+	milk_sale.date = sale_date
+	milk_sale.quantity = quantity
+	# save milk_sale_date in session
+	request.session['milk_sale_date'] = sale_date
+	milk_sale.save()
+	return HttpResponseRedirect(reverse('digitaldairy:milk_sales'))
 
 
 @login_required
@@ -1333,15 +1339,19 @@ def save_feed_formulation(request):
 @login_required
 @require_http_methods(['POST'])
 def save_milk_consumption(request):
+	milk_consumption_id = request.POST.get('milk_consumption_id')
 	consumer_name = request.POST.get('consumer_id')
 	consumer = get_object_or_404(Consumers, pk=consumer_name)
 	quantity = request.POST.get('consumed_quantity')
 	consumption_date = request.POST.get('consumption_date')
-	created_record, created = MilkConsumptions.objects \
-		.update_or_create(consumer=consumer, date=consumption_date, defaults={
-		'quantity': quantity,
-	})
-	return HttpResponseRedirect('/digitaldairy/milk_sales/?milk_sale_date={0}'.format(consumption_date))
+	milk_consumption = MilkConsumptions()
+	milk_consumption.id = milk_consumption_id
+	milk_consumption.consumer = consumer
+	milk_consumption.date = consumption_date
+	milk_consumption.quantity = quantity
+	milk_consumption.save()
+	request.session['milk_sale_date'] = consumption_date
+	return HttpResponseRedirect(reverse('digitaldairy:milk_sales'))
 
 
 @login_required
@@ -1991,3 +2001,30 @@ def delete_pregnancy_diagnosis(request):
 	ai_record.pregnancy_diagnosis_vet_name = ''
 	ai_record.save()
 	return HttpResponseRedirect(reverse("digitaldairy:pregnancy_diagnosis"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_ai_record(request):
+	ai_record_id = request.POST.get('ai_record_id')
+	ai_record = get_object_or_404(AiRecords, pk=ai_record_id)
+	ai_record.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:ai_records"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_calving(request):
+	calving_id = request.POST.get('calving_id')
+	calving = get_object_or_404(Calvings, pk=calving_id)
+	calving.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:calving_maternity"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_cow_insurance(request):
+	cow_insurance_id = request.POST.get('insurance_id')
+	cow_insurance = get_object_or_404(CowInsurance, pk=cow_insurance_id)
+	cow_insurance.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:cow_insurance"))

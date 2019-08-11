@@ -8,7 +8,10 @@
 						<form id="cowMilkProductionHistorySearchForm" method="get" action="{% url 'digitaldairy:milk_production_history' %}">
 							<div class="row">
 								<div class="col-lg-3 col-md-3  sf-html-block">
-									<select required class="form-control" name="cow_id">
+									<select id="selectedMilkProdHistoryCow" required class="form-control" name="cow_id">
+									<script>
+										var selectedCow = '{{referenced_cow}}';
+									</script>
 										<option value="cow_id" disabled selected="selected">Select cow</option>
 										{% if all_cows %}
 										{% for cow in all_cows %}

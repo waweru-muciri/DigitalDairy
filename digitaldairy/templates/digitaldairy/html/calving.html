@@ -172,9 +172,9 @@
 												<span class="fa fa-edit"></span>
 											</button>
 											<form id="deleteCalvingForm" method="post"
-											action="{% url 'digitaldairy:delete_calving_record' %}">
+											action="{% url 'digitaldairy:delete_calving' %}">
 												{% csrf_token %}
-												<input name="cow_id" type="hidden"
+												<input name="calving_id" type="hidden"
 												value=" {{calving_record.ai_record.id}} ">
 												<button form="deleteCalvingForm" type="button" class='btn btn-sm btn-danger' aria-label="Delete">
 													<span class="fa fa-times"></span>

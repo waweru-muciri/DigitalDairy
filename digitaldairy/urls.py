@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('', views.index, name="home"),
-    path('send_message', views.send_message, name="send_message"),
     path('digitaldairy/', views.index, name="digital_dairy"),
+    path('send_message', views.send_message, name="send_message"),
     path('cows/', views.cows, name="cows"),
     path('body_traits/', views.cow_profile, name="cow_profile"),
     path('daily_milk_production/', views.daily_milk_production,
@@ -23,7 +23,7 @@ urlpatterns = [
     path('income/', views.income, name="income"),
     path('expenses/', views.expenses, name="expenses"),
     path('milk_production_history/',
-         views.cow_milk_production_history, name="get_cow_milk_production_history"),
+         views.cow_milk_production_history, name="milk_production_history"),
     path('milk_production_statistics/',
          views.get_milk_production_statistics, name="milk_production_statistics"),
     path('cow_sales/', views.get_cow_sales, name="cow_sales"),
@@ -37,8 +37,6 @@ urlpatterns = [
     path('vaccinations/', views.get_vaccinations, name="vaccinations"),
     path('deaths_autopsy/', views.get_deaths_autopsy, name="deaths_autopsy"),
     path('cow_diseases/', views.cow_diseases, name="cow_diseases"),
-    path('health_statistics/', views.get_health_statistics,
-         name="health_statistics"),
     path('semen_catalog/', views.get_semen_catalog, name="semen_catalog"),
     path('ai-records/', views.get_ai_records, name="ai_records"),
     path('pregnancy-diagnosis/', views.get_pregnancy_diagnosis,
@@ -132,10 +130,14 @@ urlpatterns = [
          name="delete_feed_formulation_part"),
     path('delete_pregnancy_diagnosis', views.delete_pregnancy_diagnosis,
          name="delete_pregnancy_diagnosis"),
+    path('delete_ai_record', views.delete_ai_record, name="delete_ai_record"),
+    path('delete_calving', views.delete_calving, name="delete_calving"),
     path('delete_milk_production_target', views.delete_milk_production_target,
          name="delete_milk_production_target"),
     path('delete_calf_feeding', views.delete_calf_feeding,
          name="delete_calf_feeding"),
+    path('delete_cow_insurance', views.delete_cow_insurance,
+         name="delete_cow_insurance"),
 ]
 
 app_name = 'digitaldairy'

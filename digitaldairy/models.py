@@ -1,8 +1,28 @@
 from django.db import models
 from django.urls import reverse
 import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 # Create your models here.
+
+
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	phone_number = models.CharField(max_length=12)
+	client_address = models.CharField(max_length=100, blank=True, default='')
+	farm_name = models.CharField(max_length=100, blank=True, default='')
+	farm_location = models.CharField(max_length=100, blank=True, default='')
+
+	def __str__(self):
+		return self.user.username
+
+def create_profile(sender, **kwargs):
+	if kwargs['created']:
+		UserProfile.objects.create(user=kwargs['instance'])
+
+
+post_save.connect(create_profile, sender=User)
 
 
 class SemenRecords(models.Model):
@@ -461,9 +481,9 @@ class FeedingProgramme(models.Model):
 	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
 	feeding_category = models.CharField(max_length=30, default="Heifer",
-	                            choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'),
-	                                     ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'),
-	                                     ('Calf', 'Calf'), ('Weaner', 'Weaner'), ('Weaner 1', 'Weaner 1'),('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ('Yearling', 'Yearling'), ('Bulling', 'Bulling'), ('Bull', 'Bull')])
+	                                    choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'),
+	                                             ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'),
+	                                             ('Calf', 'Calf'), ('Weaner', 'Weaner'), ('Weaner 1', 'Weaner 1'),('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ('Yearling', 'Yearling'), ('Bulling', 'Bulling'), ('Bull', 'Bull')])
 
 	class Meta:
 		db_table = 'feeding_programme'

@@ -63,54 +63,56 @@
                         </div>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <h4>Summary for {{ current_date|date:"F Y" }}</h4>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Total Milk Sales (Kgs):
-                            </p>
-                            <p class="col-lg-6 col-md-6 ">
-                                {{ total_month_milk_sales_quantity|floatformat:2 }} Kgs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Total Milk Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ total_month_milk_sales|floatformat:2 }} Kshs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Average Daily Sales (Kgs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ average_daily_milk_sale_quantity|floatformat:2 }} Kgs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Average Daily Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ average_daily_milk_sale|floatformat:2 }} Kshs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Highest Sale (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ highest_day_sale }} Kshs
-                            </p>
-                        </div>
-                        <div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Lowest Sale (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ lowest_day_sale }} Kshs
-                            </p>
+                        <div class="summary">
+                            <h4>Summary for {{ current_date|date:"F Y" }}</h4>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Total Milk Sales (Kgs):
+                                </p>
+                                <p class="col-lg-6 col-md-6 ">
+                                    {{ total_month_milk_sales_quantity|floatformat:2 }} Kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Total Milk Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ total_month_milk_sales|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Average Daily Sales (Kgs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ average_daily_milk_sale_quantity|floatformat:2 }} Kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Average Daily Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ average_daily_milk_sale|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Highest Sale (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ highest_day_sale }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Lowest Sale (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ lowest_day_sale }} Kshs
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,47 +142,49 @@
 						</div>
 					</div>
 					<div class="col-lg-4 text-center">
-                        <h4>Summary for {{ current_date|date:"Y" }} </h4>
-						<div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                {{ current_date|date:"Y" }} Total Milk Sales (Kgs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ total_year_milk_sales_quantity|floatformat:2 }} Kgs
-                            </p>
-						</div>
-						<div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                {{ current_date|date:"Y" }} Total Milk Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ total_year_milk_sales|floatformat:2 }} Kshs
-                            </p>
-						</div>
-						<div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Average Monthly Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ average_monthly_milk_sales|floatformat:2 }} Kshs
-                            </p>
-						</div>
-						<div class="row">
-                            <p class="col-lg-6 col-md-6">
-                                Highest Month Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ highest_month_milk_sale|floatformat:2 }} Kshs
-                            </p>
-						</div>
-						<div class="row">
-                            <p class="col-lg-6 col-md-6">
-                               Lowest Month Sales (Kshs):
-                            </p>
-                            <p class="col-lg-6 col-md-6">
-                                {{ lowest_month_milk_sale|floatformat:2 }} Kshs
-                            </p>
-						</div>
+					    <div class="summary">
+                            <h4>Summary for {{ current_date|date:"Y" }} </h4>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    {{ current_date|date:"Y" }} Total Milk Sales (Kgs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ total_year_milk_sales_quantity|floatformat:2 }} Kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    {{ current_date|date:"Y" }} Total Milk Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ total_year_milk_sales|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Average Monthly Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ average_monthly_milk_sales|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                    Highest Month Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ highest_month_milk_sale|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 col-md-6">
+                                   Lowest Month Sales (Kshs):
+                                </p>
+                                <p class="col-lg-6 col-md-6">
+                                    {{ lowest_month_milk_sale|floatformat:2 }} Kshs
+                                </p>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>

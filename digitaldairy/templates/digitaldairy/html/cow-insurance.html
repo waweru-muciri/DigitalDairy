@@ -146,7 +146,7 @@
 								<button id="insuranceEditBtn" type="button" data-toggle="modal" data-target="#insuranceInputModal" class="btn btn-sm btn-primary" aria-label="Edit">
 									<span class="fa fa-edit"></span>
 								</button>
-								<form id="deleteInsuranceForm" method="post" action="{% url 'digitaldairy:delete_insurance' %}">
+								<form id="deleteInsuranceForm" method="post" action="{% url 'digitaldairy:delete_cow_insurance' %}">
 									<input name="insurance_id" type="hidden" value="{{insurance.id}}">
 									{% csrf_token %}
 									<button form="deleteInsuranceForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">

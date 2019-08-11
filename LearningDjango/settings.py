@@ -120,10 +120,11 @@ USE_L10N = True
 
 USE_TZ = True
 # Email Settings
-EMAIL_HOST = 'gmail.com'
-EMAIL_PORT = 200
-EMAIL_HOST_USER = 'bwwaweru17@gmail.com'
-EMAIL_HOST_PASSWORD = 'Brianmuciri182016'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'smartfarmsoftwares@gmail.com'
+EMAIL_HOST_PASSWORD = 'Smartfarmsoftwares182016'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
@@ -140,8 +141,8 @@ STATICFILES_DIRS = [
 LOGIN_URL = '/digitaldairy/'
 LOGIN_REDIRECT_URL = '/digitaldairy/daily_milk_production/'
 ACCOUNT_ACTIVATION_DAYS = 7 # one week activation window
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 # STATICFILES_FINDERS = [
 #     'django.contrib.staticfiles.finders.FileSystemFinder',
 # ]

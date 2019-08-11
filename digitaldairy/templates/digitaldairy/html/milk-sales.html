@@ -161,14 +161,15 @@
 					<tbody class="text-center">
 						{% if consumption_list %}
 							{% for consumption in consumption_list %}
-							<tr data-src="{{consumption.consumer.name}}">
+							<tr data-src="{{consumption.id}}">
 								<script>
 									myStorage = window.sessionStorage;
-									var object = {consumer_name: '{{consumption.consumer.name}}',
-									consumption_date:
-									 '{{ consumption.date|date:"Y-m-d" }}',
+									var object = {
+									id: {{consumption.id}},
+									consumer_name: '{{consumption.consumer.name}}',
+									consumption_date:'{{ consumption.date|date:"Y-m-d" }}',
 									consumption_quantity: {{consumption.quantity}}}
-									 myStorage.setItem('milk_consumption_'+ object.consumer_name,JSON.stringify
+									 myStorage.setItem('milk_consumption_'+ object.id,JSON.stringify
 									 (object))
 								</script>
 								<td> {{ consumption.date }} </td>
@@ -216,14 +217,15 @@
 								<tbody class="text-center">
 									{% if sales_list %}
 										{% for sale in sales_list %}
-										<tr data-src="{{ sale.client.name }}">
+										<tr data-src="{{ sale.id }}">
 											<script>
 												myStorage = window.sessionStorage;
-												var object = {client_name: '{{sale.client.name}}', sale_date:
-												 '{{ sale.date|date:"Y-m-d" }}',
+												var object = {
+												id: {{sale.id}},
+												client_name: '{{sale.client.name}}',
+												sale_date:'{{ sale.date|date:"Y-m-d" }}',
 												sale_quantity: {{sale.quantity}}}
-												 myStorage.setItem('milk_sale_'+ object.client_name,JSON.stringify(object))
-												 console.log(myStorage.getItem('milk_sale_'+object.client_name))
+												 myStorage.setItem('milk_sale_'+ object.id,JSON.stringify(object))
 											</script>
 											<td> {{ sale.date }} </td>
 											<td> {{ sale.client.name }} </td>
@@ -252,53 +254,55 @@
 			</div>
 		</div>
 		<div class="col-lg-4 col-sm-12 col-md-12 text-center sf-html-block">
-		<h4> Daily Sales &amp; Consumption Summary </h4>
-		<div class="row">
-			<div class="col-lg-6 form-group">
-				<label for="quantity-sold-label">
-					Quantity Sold:
-				</label>
+			<div class="summary">
+			<h4> Daily Sales &amp; Consumption Summary </h4>
+			<div class="row">
+				<div class="col-lg-6 form-group">
+					<label for="quantity-sold-label">
+						Quantity Sold:
+					</label>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label id="quantity-sold-label">
+						{{ total_sales }} (Kgs)
+					</label>
+				</div>
 			</div>
-			<div class="col-lg-6 form-group">
-				<label id="quantity-sold-label">
-					{{ total_sales }} (Kgs)
-				</label>
+			<div class="row">
+				<div class="col-lg-6 form-group">
+					<label for="total_money-from-sales-label">
+						Total Milk Sales :
+					</label>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label id="total_money-from-sales-label">
+						{{ total_amount_of_money_from_sales }} (Kshs)
+					</label>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 form-group">
-				<label for="total_money-from-sales-label">
-					Total Milk Sales :
-				</label>
+			<div class="row">
+				<div class="col-lg-6 form-group">
+					<label for="total-quantity-consumed-label">
+						Quantity Consumed :
+					</label>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label id="total-quantity-consumed-label">
+						{{ total_consumption }} (Kgs)
+					</label>
+				</div>
 			</div>
-			<div class="col-lg-6 form-group">
-				<label id="total_money-from-sales-label">
-					{{ total_amount_of_money_from_sales }} (Kshs)
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 form-group">
-				<label for="total-quantity-consumed-label">
-					Quantity Consumed :
-				</label>
-			</div>
-			<div class="col-lg-6 form-group">
-				<label id="total-quantity-consumed-label">
-					{{ total_consumption }} (Kgs)
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 form-group">
-				<label for="total-money-from-consumption-label">
-					Total Quantity Consumed :
-				</label>
-			</div>
-			<div class="col-lg-6 form-group">
-				<label id="total-money-from-consumption-label">
-					0.00 (Kshs)
-				</label>
+			<div class="row">
+				<div class="col-lg-6 form-group">
+					<label for="total-money-from-consumption-label">
+						Total Quantity Consumed :
+					</label>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label id="total-money-from-consumption-label">
+						0.00 (Kshs)
+					</label>
+				</div>
 			</div>
 		</div>
 	</div>

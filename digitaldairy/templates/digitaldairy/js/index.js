@@ -1,3 +1,14 @@
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/js/service-worker.js').then((reg) => {
+            console.log('Service worker registered.', reg)
+        }, /*catch*/ function(error) {
+             console.log('Service worker registration failed:', error);
+        });
+    });
+}else {
+   console.log('Service workers are not supported.');
+}
 var postUrl = 'https://digitaldairy.herokuapp.com';
 postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
@@ -93,7 +104,6 @@ $('#consumerInputModal').on('show.bs.modal', function (event) {
 $('#clientInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     var client_name = $(event.relatedTarget).parent().parent().attr('data-src');
-    console.log($(event.relatedTarget))
     if ($(event.relatedTarget).attr('id') == 'editClientBtn') {
         modal.find('.modal-title').text("Edit Client Details")
         var client = JSON.parse(myStorage.getItem('client_' + client_name))
@@ -109,32 +119,80 @@ $('#clientInputModal').on('show.bs.modal', function (event) {
 })
 $('#milkSaleInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
-    var milk_sale_client = $(event.relatedTarget).parent().parent().attr('data-src');
-    console.log($(event.relatedTarget))
+    var milk_sale_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'milkSaleEditBtn') {
         modal.find('.modal-title').text("Edit Milk Sale Record")
-        var milk_sale = JSON.parse(myStorage.getItem('milk_sale_' + milk_sale_client))
+        var milk_sale = JSON.parse(myStorage.getItem('milk_sale_' + milk_sale_id))
+        var milk_sale_id_input = modal.find('input[name=milk_sale_id]')
+        if (milk_sale_id_input.length == 1) {
+            milk_sale_id_input.val(milk_sale.id)
+        }
+        else {
+            milk_sale_id_input = "<input id='milk_sale_id' type='hidden' class='form-control' name='milk_sale_id'>";
+            modal.find('#sale_date').before(milk_sale_id_input)
+            milk_sale_id_input = modal.find('input[name=milk_sale_id]')
+            milk_sale_id_input[0].value = milk_sale.id
+        }
         modal.find('#client_id').val(milk_sale.client_name)
         modal.find('#sale_date').val(milk_sale.sale_date)
         modal.find('#sale_quantity').val(milk_sale.sale_quantity)
     }
     else {
+        modal.find('input[name=milk_sale_id]').remove()
         clearTextAndNumberInputFields(modal);
         modal.find('.modal-title').text("Add Milk Sale Record")
     }
 })
+$('#milkPaymentsInputModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var milk_sale_payment_id = $(event.relatedTarget).parent().parent().attr('data-src');
+    if ($(event.relatedTarget).attr('id') == 'milkSalePaymentEditBtn') {
+        modal.find('.modal-title').text("Edit Milk Sale Payment Record")
+        var milk_payment = JSON.parse(myStorage.getItem('milk_sale_payment_' + milk_sale_payment_id))
+        var milk_sale_payment_id_input = modal.find('input[name=milk_sale_payment_id]')
+        if (milk_sale_payment_id_input.length == 1) {
+            milk_sale_payment_id_input.val(milk_payment.id)
+        }
+        else {
+            milk_sale_payment_id_input = "<input id='milk_sale_payment_id' type='hidden' class='form-control' name='milk_sale_payment_id'>";
+            modal.find('#payment_date').before(milk_sale_payment_id_input)
+            milk_sale_payment_id_input = modal.find('input[name=milk_sale_payment_id]')
+            milk_sale_payment_id_input.val(milk_payment.id)
+        }
+        modal.find('#client_id').val(milk_payment.client_name)
+        modal.find('#payment_date').val(milk_payment.date_of_payment)
+        modal.find('#from_date').val(milk_payment.from_date)
+        modal.find('#to_date').val(milk_payment.to_date)
+        modal.find('#amount_paid').val(milk_payment.amount_paid)
+    }
+    else {
+        modal.find('input[name=milk_sale_payment_id]').remove()
+        clearTextAndNumberInputFields(modal);
+        modal.find('.modal-title').text("Add Milk Sale Payment Record")
+    }
+})
 $('#milkConsumptionInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
-    var milk_consumption_consumer = $(event.relatedTarget).parent().parent().attr('data-src');
-    console.log($(event.relatedTarget))
+    var milk_consumption_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'milkConsumptionEditBtn') {
         modal.find('.modal-title').text("Edit Milk Consumption Details")
-        var milk_consumption = JSON.parse(myStorage.getItem('milk_consumption_' + milk_consumption_consumer))
+        var milk_consumption = JSON.parse(myStorage.getItem('milk_consumption_' + milk_consumption_id))
+        var milk_consumption_id_input = modal.find('input[name=milk_consumption_id]')
+        if (milk_consumption_id_input.length == 1) {
+            milk_consumption_id_input.val(weight_record.id)
+        }
+        else {
+            milk_consumption_id_input = "<input id='milk_consumption_id' type='hidden' class='form-control' name='milk_consumption_id'>";
+            modal.find('#consumption_date').before(milk_consumption_id_input)
+            milk_consumption_id_input = modal.find('input[name=milk_consumption_id]')
+            milk_consumption_id_input.val(milk_consumption.id)
+        }
         modal.find('#consumption_date').val(milk_consumption.consumption_date)
         modal.find('#consumer_id').val(milk_consumption.consumer_name)
         modal.find('#consumed_quantity').val(milk_consumption.consumption_quantity)
     }
     else {
+        modal.find('input[name=milk_consumption_id]').remove();
         clearTextAndNumberInputFields(modal);
         modal.find('.modal-title').text("Add Consumption Record")
     }
@@ -357,7 +415,7 @@ $('#animalAutopsyInputModal').on('show.bs.modal', function (event) {
         var death_record = JSON.parse(myStorage.getItem('death_' + death_cow_id))
         option.setAttribute('value', death_record.cow_id);
         option.innerText = death_record.cow_id
-        if(modal.find('select#death_record_id').val(death_record.cow_id)[0].selectedIndex == -1) {
+        if (modal.find('select#death_record_id').val(death_record.cow_id)[0].selectedIndex == -1) {
             modal.find('select#death_record_id')[0].add(option)
             modal.find('select#death_record_id').val(death_record.cow_id)
         }
@@ -741,9 +799,11 @@ $(document).ready(function () {
     var selectedMonth = window.month;
     var selectedYear = window.year;
     var selectedClient = window.client;
+    var selectedCow = window.selectedCow;
     $('select[name=month]').val(selectedMonth);
     $('input[name=year]').val(selectedYear);
     $('select[name=client_id]').val(selectedClient);
+    $('select[id=selectedMilkProdHistoryCow]').val(selectedCow);
     //	configure milk production table pagination
     var tablesToAddPaginationTo = ['#milkProductionTable', '#milkProductionTargetsTable', '#monthlyMilkProductionTable', '#clientsTable', '#consumersTable', '#dailyMilkConsumptionTable', '#dailyMilkSalesTable', '#salesSummaryTable', '#consumptionSummaryTable', '#cowsTable', '#cowWeightsTable', '#calvesGrowthTable', '#calfFeedingTable', '#cowSalesTable', '#cowTreatmentsTable', '#cowDewormingTable', '#cowVaccinationsTable', '#cowDeathsTable', '#cowAutopsiesTable', '#cowSemenCatalogTable', '#cowAiRecordsTable', '#failedIseminationsTable', '#inseminationsHistoryTable', '#pregnancyDiagnosisTable', '#pregnancyCalendarTable', '#calvingsTable', '#abortionsTable', '#cowInsuranceTable', '#incomeTable', '#expensesTable', '#employeesTable', '#salaryAdvancesTable', '#salariesTable', '#feedItemsTable', '#feedingProgrammesTable', '#feedingFormulationsTable', '#cowDiseasesTable', '#breedingStatisticsTable']
     setPagination(tablesToAddPaginationTo);
@@ -838,7 +898,7 @@ $(function () {
     var canvases;
     function init() {
         canvases = document.getElementsByTagName('canvas');
-        for(var i=0; i < canvases.length; i++){
+        for (var i = 0; i < canvases.length; i++) {
             var canvas = canvases[i];
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
@@ -849,7 +909,7 @@ $(function () {
         }
     }
     function resizeCanvas() {
-        for(var i=0; i < canvases.length; i++){
+        for (var i = 0; i < canvases.length; i++) {
             var canvas = canvases[i];
             // set up temporary canvas
             var tempCanvas = document.createElement('canvas');
