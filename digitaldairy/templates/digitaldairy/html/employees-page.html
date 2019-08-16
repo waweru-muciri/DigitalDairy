@@ -1,7 +1,23 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Employees Management {% endblock %}
 {% block content %}
-<section class="container">
+{% if employees_list %}
+    <script>
+    {% for employee in employees_list %}
+        var object = {
+            name: '{{employee.name}}',
+            id: '{{employee.id}}',
+            date_hired: '{{employee.date_hired|date:'Y-m-d'}}',
+            salary: {{employee.salary}},
+            department: '{{employee.department}}',
+            designation: '{{employee.designation}}',
+            contacts: '{{employee.contacts}}',
+        }
+        window.sessionStorage.setItem('employee_'+object.id,JSON.stringify(object));
+    {% endfor %}
+    </script>
+{% endif %}
+<div class="container">
     <ul class="nav nav-tabs">
         <li class="nav-link text-center" style="flex:1;">
             <a data-toggle="tab" href="#section-a"> Employees List </a>
@@ -10,7 +26,7 @@
             <a data-toggle="tab" href="#section-b"> Employees Salary &amp; Advances </a>
         </li>
     </ul>
-</section>
+</div>
 <div class="tab-content">
     <section id="section-a" class="tab-pane fade active show">
         <div class="container">
@@ -50,20 +66,6 @@
                                 {% if employees_list %}
                                 {% for employee in employees_list %}
                                 <tr data-src="{{employee.id}}">
-                                    <script>
-                                        myStorage = window.sessionStorage;
-                                        var object = {
-                                        name: '{{employee.name}}',
-                                        id: '{{employee.id}}',
-                                        date_hired: '{{employee.date_hired|date:'Y-m-d'}}',
-                                        salary: {{employee.salary}},
-                                        department: '{{employee.department}}',
-                                        designation: '{{employee.designation}}',
-                                        contacts: '{{employee.contacts}}',
-                                        }
-                                        myStorage.setItem('employee_'+object.id,JSON.stringify
-                                         (object))
-                                    </script>
                                     <td> {{ forloop.counter }} </td>
                                     <td> {{ employee.name }} </td>
                                     <td> {{ employee.id }} </td>

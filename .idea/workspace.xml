@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" description="'November', 'December']," line="964" />
+    <bookmark url="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" description="'November', 'December']," line="987" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b32f645-0ab8-4a1a-9249-5ae14e29c707" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/user-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LearningDjango/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/LearningDjango/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/migrations/0002_userprofile.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/breeding-statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/breeding-statistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-milk-production-history.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-milk-production-history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales-statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales-statistics.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/monthly-milk-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/monthly-milk-production.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/views.py" afterDir="false" />
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="1341" column="23" selection-start-line="1341" selection-start-column="4" selection-end-line="1341" selection-end-column="23" />
+            <state relative-caret-position="471">
+              <caret line="928" column="39" selection-start-line="928" selection-start-column="39" selection-end-line="928" selection-end-column="39" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -51,8 +50,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="178" column="106" lean-forward="true" selection-start-line="178" selection-start-column="106" selection-end-line="178" selection-end-column="106" />
+            <state relative-caret-position="192">
+              <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="11" column="40" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -60,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="151" column="6" selection-start-line="151" selection-start-column="6" selection-end-line="151" selection-end-column="6" />
+            <state relative-caret-position="432">
+              <caret line="179" column="56" lean-forward="true" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -73,19 +81,10 @@
         <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="94" column="26" lean-forward="true" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
+              <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="171" column="73" selection-start-line="171" selection-start-column="56" selection-end-line="171" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -102,24 +101,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fa fa-times</find>
-      <find>/digitaldairy</find>
-      <find>digitaldairy/</find>
-      <find>deaths</find>
-      <find>delete_cow_death</find>
-      <find>deworming</find>
-      <find>/digitaldairy/</find>
-      <find>{% url 'digitaldairy:' %}</find>
-      <find>%}/</find>
-      <find>ai_records</find>
-      <find>Calving</find>
-      <find>calving</find>
-      <find>delete_calving</find>
       <find>delete_insurance</find>
       <find>delete_cow_insurance</find>
       <find>image/png</find>
       <find>selected</find>
-      <find>milk_production_history</find>
       <find>milkPaymentsInputModal</find>
       <find>milkSales</find>
       <find>MilkSales</find>
@@ -128,10 +113,24 @@
       <find>milk_sale</find>
       <find>milk_sales</find>
       <find>save_consumptio</find>
-      <find>save_milk_sale</find>
       <find>MilkSalesP</find>
       <find>save_milk_c</find>
       <find>milkConsu</find>
+      <find>exp</find>
+      <find>income</find>
+      <find>save_income</find>
+      <find>save_exp</find>
+      <find>save_i</find>
+      <find>save</find>
+      <find>save_milk</find>
+      <find>daily_milk_prod</find>
+      <find>milk_production_history</find>
+      <find>consumer</find>
+      <find>save_client</find>
+      <find>save_milk_sale</find>
+      <find>delete_client</find>
+      <find>clients_stat</find>
+      <find>var selected</find>
     </findStrings>
     <replaceStrings>
       <replace>expenseInputModal</replace>
@@ -175,15 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-feeds.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/weight-recording.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/abortions.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/abortions.9ce0de130c23.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/cow-insurance.5f8f63c87271.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/semen-catalog.9281719b20b8.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/vaccinations.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/cow-health.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/cows.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/feed-items.html" />
@@ -191,14 +181,10 @@
         <option value="$PROJECT_DIR$/staticfiles/html/cow-insurance.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/cow-sales.806415c00c4e.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/cow-feeds.fea244314643.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/common-header.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/ai-records.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calf-management.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" />
         <option value="$PROJECT_DIR$/staticfiles/html/deaths.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/all.css" />
@@ -206,11 +192,9 @@
         <option value="$PROJECT_DIR$/LearningDjango/settings.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/models.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/user-profile.html" />
         <option value="$PROJECT_DIR$/digitaldairy/admin.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/monthly-milk-production.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales-statistics.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" />
@@ -218,13 +202,28 @@
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/manifest.json" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/icons/digital_dairy128.svg" />
-        <option value="$PROJECT_DIR$/digitaldairy/urls.py" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-milk-production-history.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/urls.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" />
         <option value="$PROJECT_DIR$/digitaldairy/views.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/migrations/0002_milksales.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/migrations/0003_auto_20190815_2008.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/models.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
       </list>
     </option>
@@ -241,7 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,7 +271,7 @@
               <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
@@ -281,22 +279,19 @@
               <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
               <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
               <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -400,25 +395,6 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.30418536" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.8917526" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.9348199" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32933104" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.41580757" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9347079" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="1" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.30418536" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
@@ -428,7 +404,26 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32933104" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.41580757" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9347079" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9329897" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.30418536" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.8917526" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.9348199" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32933104" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.41580757" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9329897" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -481,90 +476,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="192" column="69" selection-start-line="192" selection-start-column="69" selection-end-line="192" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="152" column="65" selection-start-line="152" selection-start-column="65" selection-end-line="152" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="234" column="65" selection-start-line="234" selection-start-column="65" selection-end-line="234" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/daily-feeding.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="128" column="57" selection-start-line="128" selection-start-column="57" selection-end-line="128" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-657">
-          <caret line="235" column="82" lean-forward="true" selection-start-line="235" selection-start-column="82" selection-end-line="235" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="137" column="79" selection-start-line="137" selection-start-column="79" selection-end-line="137" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="221" column="51" lean-forward="true" selection-start-line="215" selection-start-column="44" selection-end-line="221" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="103" column="61" selection-start-line="103" selection-start-column="61" selection-end-line="103" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="279" column="61" selection-start-line="279" selection-start-column="61" selection-end-line="279" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="127" column="53" selection-start-line="127" selection-start-column="53" selection-end-line="127" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="135" column="73" selection-start-line="135" selection-start-column="73" selection-end-line="135" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LearningDjango/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -593,13 +504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -618,13 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="157" column="51" lean-forward="true" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2269">
-          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -719,9 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11592">
@@ -749,20 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="8" column="10" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="141" column="102" selection-start-line="141" selection-start-column="75" selection-end-line="141" selection-end-column="102" />
         </state>
       </provider>
     </entry>
@@ -794,47 +674,169 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="151" column="6" selection-start-line="151" selection-start-column="6" selection-end-line="151" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="325">
+          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="1341" column="23" selection-start-line="1341" selection-start-column="4" selection-end-line="1341" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="528">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" selection-start-line="3" selection-end-line="15" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="13" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2168">
+          <caret line="88" column="82" lean-forward="true" selection-start-line="88" selection-start-column="82" selection-end-line="88" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="35" column="29" lean-forward="true" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="94" column="26" lean-forward="true" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
+          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
+    <entry file="file://$PROJECT_DIR$/digitaldairy/migrations/0003_auto_20190815_2008.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="171" column="73" selection-start-line="171" selection-start-column="56" selection-end-line="171" selection-end-column="73" />
+        <state relative-caret-position="135">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/migrations/0002_milksales.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="27" column="26" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="27" selection-end-column="12" />
+          <folding>
+            <marker date="1565889052535" expanded="true" signature="262:1047" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="179" column="56" lean-forward="true" selection-start-line="179" selection-start-column="56" selection-end-line="179" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="217" column="90" selection-start-line="217" selection-start-column="90" selection-end-line="217" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="928" column="39" selection-start-line="928" selection-start-column="39" selection-end-line="928" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="178" column="106" lean-forward="true" selection-start-line="178" selection-start-column="106" selection-end-line="178" selection-end-column="106" />
+        <state relative-caret-position="192">
+          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
         </state>
       </provider>
     </entry>

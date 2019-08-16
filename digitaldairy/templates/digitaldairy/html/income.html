@@ -1,7 +1,19 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Daily Income {% endblock %}
 {% block content %}
-{% load subtract_dates %}
+{% if income_list %}
+    <script>
+    {% for income in income_list %}
+        var object = {
+            id: {{ income.id }},
+            date: '{{ income.date|date:"Y-m-d" }}',
+            amount: {{ income.amount }},
+            source: '{{ income.source }}',
+        }
+        window.sessionStorage.setItem('income_' + object.id, JSON.stringify(object))
+    {% endfor %}
+    </script>
+{% endif %}
 <section id="section-a" class="tab-pane fade active show">
     <div class="row text-center">
         <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
@@ -111,16 +123,6 @@
                             {% if income_list %}
                             {% for income in income_list %}
                             <tr data-src="{{income.id}}">
-                                <script>
-                                    myStorage = window.sessionStorage;
-                                    var object = {
-                                        id: {{ income.id }},
-                                    date: '{{ income.date|date:"Y-m-d" }}',
-                                        amount: { { income.amount } },
-                                    source: '{{ income.source }}',
-                                    }
-                                    myStorage.setItem('income_' + object.id, JSON.stringify(object))
-                                </script>
                                 <td> {{ forloop.counter }} </td>
                                 <td> {{ income.date }} </td>
                                 <td> {{ income.amount }} </td>

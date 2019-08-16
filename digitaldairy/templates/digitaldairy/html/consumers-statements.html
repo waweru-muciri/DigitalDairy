@@ -8,10 +8,13 @@
 			<div class="row sf-html-block">
 				<div class="col-lg-4 col-sm-12 form-group">
 					<select id="consumer_id" class="form-control" name="consumer_id">
+						<script>
+							var consumer = "{{ consumer.id }}";
+						</script>
 						<option value="consumer_id" disabled selected="selected">Select Consumer</option>
 						{% if consumers_list %}
 						{% for consumer in consumers_list %}
-						<option value="{{ consumer.name }}" name="consumer_id"> {{ consumer.name }} </option>
+						<option value="{{ consumer.id }}" name="consumer_id"> {{ consumer.name }} </option>
 						{% endfor %}
 						{% endif %}
 					</select>

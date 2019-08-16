@@ -1,6 +1,21 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Daily Milk Production {% endblock %}
 {% block content %}
+{% if milk_production_list %}
+<script>
+	{% for milk_production in milk_production_list %}
+		var object = {
+			id: {{ milk_production.id }},
+			cow_id: '{{milk_production.cow_id}}',
+			milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
+			am_quantity: {{ milk_production.am_quantity }},
+			noon_quantity: {{ milk_production.noon_quantity }},
+			pm_quantity: {{ milk_production.pm_quantity }},
+		}
+	window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object));
+	{% endfor %}
+</script>
+{% endif %}
 <section class="container">
 	<ul class="nav nav-tabs">
 		<li class="nav-link text-center" style="flex:1;">
@@ -129,14 +144,6 @@
 								{% if milk_production_list %}
 								{% for milk_production in milk_production_list %}
 								<tr data-src="{{milk_production.id}}">
-									<script>
-										var object = {
-											id: {{ milk_production.id }},
-											cow_id: '{{milk_production.cow_id}}',  											milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
-											am_quantity: {{ milk_production.am_quantity }},noon_quantity: {{ milk_production.noon_quantity }}, pm_quantity: {{ milk_production.pm_quantity }}
-										}
-										window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object))
-									</script>
 									<td> {{ milk_production.cow_id.id }} </td>
 									<td>
 										<a href="{{ milk_production.cow_id.milk_production_history_url }}">

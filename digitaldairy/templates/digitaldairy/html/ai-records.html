@@ -1,405 +1,406 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Animal Breeding {% endblock %}
 {% block content %}
-		<section>
-			<div>
-				<ul class="nav nav-tabs">
-					<li class="nav-link text-center" style="flex:1;">
-						<a data-toggle="tab" href="#section-a"> Live Inseminations List </a>
-					</li>
-					<li class="nav-link text-center" style="flex:1;">
-						<a data-toggle="tab" href="#section-b">Failed Inseminations List</a>
-					</li>
-					<li class="nav-link text-center" style="flex:1;">
-						<a data-toggle="tab" href="#section-c">Pregnancy Levels List</a>
-					</li><li class="nav-link text-center" style="flex:1;">
-						<a data-toggle="tab" href="#section-d"> Inseminations History</a>
-					</li>
-				</ul>
-			</div>
-		</section>
-		<div class="tab-content">
-			<div class="modal" id="aiRecordInputModal" tabindex="-1" aria-labelledby="aiRecordInputModalLabel"
-			role="dialog" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-								<h4 class="modal-title text-center" id="aiRecordInputModalLabel">
-									Add AI Record
-								</h4>
-								<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
+{% if ai_records_list %}
+	<script>
+	{% for ai_record in ai_records_list %}
+		var object = {
+		id: {{ai_record.id}},
+		service_date: '{{ai_record.service_date|date:"Y-m-d"}}',
+		bull_code: '{{ai_record.semen_record.bull_code}}',
+		bull_name: '{{ai_record.semen_record.bull_name}}',
+		inbreeding_status: '{{ai_record.inbreeding}}',
+		ai_cost: {{ai_record.cost}},
+		open_days: {{ai_record.open_days}},
+		repeats: {{ai_record.repeats}},
+		vet_name: '{{ai_record.vet_name}}',
+		}
+		window.sessionStorage.setItem('ai_record_'+object.id,JSON.stringify(object))
+	{% endfor %}
+	</script>
+{% endif %}
+
+<div>
+	<ul class="nav nav-tabs">
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-a"> Live Inseminations List </a>
+		</li>
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-b">Failed Inseminations List</a>
+		</li>
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-c">Pregnancy Levels List</a>
+		</li><li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-d"> Inseminations History</a>
+		</li>
+	</ul>
+</div>
+<div class="tab-content">
+	<div class="modal" id="aiRecordInputModal" tabindex="-1" aria-labelledby="aiRecordInputModalLabel"
+	role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<h4 class="modal-title text-center" id="aiRecordInputModalLabel">
+							Add AI Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<form id="airRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="cow_id" class="col-form-label">
+								Select Cow
+							</label>
+							<select required id="cow_id" class="form-control" name="cow_id">
+									<option value="cow_id" disabled selected="selected">Select cow</option>
+										{% if all_cows %}
+										{% for cow in all_cows %}
+										<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+										{% endfor %}
+										{% endif %}
+								</select>
 						</div>
-						<div class="modal-body">
-							<form id="airRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
-								{% csrf_token %}
-								<div class="form-group">
-									<label for="cow_id" class="col-form-label">
-										Select Cow
-									</label>
-									<select required id="cow_id" class="form-control" name="cow_id">
-											<option value="cow_id" disabled selected="selected">Select cow</option>
-												{% if all_cows %}
-												{% for cow in all_cows %}
-												<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
-												{% endfor %}
-												{% endif %}
-										</select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="service_date" class="col-form-label">
-                                        Service Date
-                                    </label>
-                                    <input id="service_date" class="form-control" type="date" name="service_date" required>
-                                </div>
-								<div class="form-group">
-									<label for="bull_code" class="col-form-label">
-										Bull Code
-									</label>
-									<input id="bull_code" class="form-control" type="text" name="bull_code" min="0">
-								</div>
-								<div class="form-group">
-									<label for="bull_name" class="col-form-label">
-										Bull Name
-									</label>
-									<input id="bull_name" class="form-control"  type="text" name="bull_name" min="0">
-								</div>
-								<div class="form-group">
-									<label for="ai_cost" class="col-form-label">
-										Cost
-									</label>
-									<input id="ai_cost" class="form-control" type="number" name="ai_cost" min="0">
-								</div>
-								<div class="form-group">
-									<label for="vet_name" class="col-form-label">
-										Vet Name
-									</label>
-									<input id="vet_name" class="form-control" type="text" name="vet_name" min="0">
-								</div>
-							</form>
+						<div class="form-group">
+							<label for="service_date" class="col-form-label">
+								Service Date
+							</label>
+							<input id="service_date" class="form-control" type="date" name="service_date" required>
 						</div>
-						<div class="modal-footer">
-							<button form="airRecordInputForm" type="submit" class="btn btn-primary">Save Record</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<div class="form-group">
+							<label for="bull_code" class="col-form-label">
+								Bull Code
+							</label>
+							<input id="bull_code" class="form-control" type="text" name="bull_code" min="0">
 						</div>
-					</div>
+						<div class="form-group">
+							<label for="bull_name" class="col-form-label">
+								Bull Name
+							</label>
+							<input id="bull_name" class="form-control"  type="text" name="bull_name" min="0">
+						</div>
+						<div class="form-group">
+							<label for="ai_cost" class="col-form-label">
+								Cost
+							</label>
+							<input id="ai_cost" class="form-control" type="number" name="ai_cost" min="0">
+						</div>
+						<div class="form-group">
+							<label for="vet_name" class="col-form-label">
+								Vet Name
+							</label>
+							<input id="vet_name" class="form-control" type="text" name="vet_name" min="0">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button form="airRecordInputForm" type="submit" class="btn btn-primary">Save Record</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
-			<div id="section-a" class="tab-pane fade active show">
-				<div>
-					<div class="row text-center">
-						<div class="col-lg-6 col-md-6 sf-html-block">
-							<h4>Live Inseminations List</h4>
-						</div>
-						<div class="col-lg-6 col-md-6 sf-html-block">
-							<button type="button" data-toggle="modal" data-target="#aiRecordInputModal" class="btn btn-primary">
-								<span>
-									&plus;New AI Record
-								</span>
-							</button>
-						</div>
-					</div>
+		</div>
+	</div>
+	<div id="section-a" class="tab-pane fade active show">
+		<div>
+			<div class="row text-center">
+				<div class="col-lg-6 col-md-6 sf-html-block">
+					<h4>Live Inseminations List</h4>
 				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="table-responsive">
-							<table id="cowAiRecordsTable" class="table table-hover">
-								<thead class="text-center">
+				<div class="col-lg-6 col-md-6 sf-html-block">
+					<button type="button" data-toggle="modal" data-target="#aiRecordInputModal" class="btn btn-primary">
+						<span>
+							&plus;New AI Record
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="table-responsive">
+					<table id="cowAiRecordsTable" class="table table-hover">
+						<thead class="text-center">
+							<tr>
+								<th> # </th>
+								<th>Cow Id</th>
+								<th>Cow Name</th>
+								<th>Lact</th>
+								<th>Service date</th>
+								<th>Bull Name</th>
+								<th>Cost (ksh)</th>
+								<th>Vet Name</th>
+								<th>P.D Status</th>
+								<th>Open Days</th>
+								<th>Repeats</th>
+								<th>Inbreeding</th>
+								<th>Calving Status</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+							{% if ai_records_list %}
+							{% for ai_record in ai_records_list %}
+							{% if ai_record.pregnancy_diagnosis_result != 'Failed' and ai_record.calving_status == 'Not Yet' %}
+							<tr  data-src="{{ai_record.id}}">
+								<td> {{ forloop.counter }} </td>
+								<td> {{ ai_record.cow }} </td>
+								<td> {{ ai_record.cow.name }} </td>
+								<td> {{ ai_record.cow.lactations }} </td>
+								<td> {{ ai_record.service_date }} </td>
+								<td> {{ ai_record.semen_record.bull_name }} </td>
+								<td> {{ ai_record.cost }} </td>
+								<td> {{ ai_record.vet_name }} </td>
+								<td> {{ ai_record.pregnancy_diagnosis_result }}</td>
+								<td> {{ ai_record.open_days }} </td>
+								<td> {{ ai_record.repeats }} </td>
+								<td> {{ ai_record.inbreeding }} </td>
+								<td> {{ ai_record.calving_status }} </td>
+								<td>
+									<button id="aiRecordEditBtn" type="button" data-toggle="modal"
+										data-target="#editAiRecordInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deleteAiRecordForm" method="post"
+									  action="{% url 'digitaldairy:delete_ai_record' %}">
+										<input name="ai_record_id" type="hidden"
+											   value="{{ai_record.id}}">
+										{% csrf_token %}
+										<button form="deleteAiRecordForm" type="submit"
+												class='btn btn-sm btn-danger' aria-label="Delete">
+											<span class="fa fa-times"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="section-b" class="tab-pane fade">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="table-responsive">
+					<table id="failedIseminationsTable" class="table table-hover">
+						<thead class="text-center">
+							<tr>
+								<th> &nap; </th>
+								<th>Cow Id</th>
+								<th>Cow Name</th>
+								<th>Service date</th>
+								<th>Bull Name</th>
+								<th>Repeats</th>
+								<th>Vet Name</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+									{% if ai_records_list %}
+									{% for ai_record in ai_records_list %}
+									{% if ai_record.pregnancy_diagnosis_result == 'Failed' %}
 									<tr>
-										<th> # </th>
-										<th>Cow Id</th>
-										<th>Cow Name</th>
-										<th>Lact</th>
-										<th>Service date</th>
-										<th>Bull Name</th>
-										<th>Cost (ksh)</th>
-										<th>Vet Name</th>
-										<th>P.D Status</th>
-										<th>Open Days</th>
-										<th>Repeats</th>
-										<th>Inbreeding</th>
-										<th>Calving Status</th>
-										<th>Actions</th>
+										<td> {{ forloop.counter }} </td>
+										<td> {{ ai_record.cow }} </td>
+										<td> {{ ai_record.cow.name }} </td>
+										<td> {{ ai_record.service_date }} </td>
+										<td> {{ ai_record.semen_record.bull_name }} </td>
+										<td> {{ ai_record.repeats }} </td>
+										<td> {{ ai_record.vet_name }} </td>
 									</tr>
-								</thead>
-								<tbody class="text-center">
-                                    {% if ai_records_list %}
-                                    {% for ai_record in ai_records_list %}
-                                    {% if ai_record.pregnancy_diagnosis_result != 'Failed' and ai_record.calving_status == 'Not Yet' %}
-                                    <script>
-									myStorage = window.sessionStorage;
-									var object = {
-									id: {{ai_record.id}},
-									service_date: '{{ai_record.service_date|date:"Y-m-d"}}',
-									bull_code: '{{ai_record.semen_record.bull_code}}',
-									bull_name: '{{ai_record.semen_record.bull_name}}',
-									inbreeding_status: '{{ai_record.inbreeding}}',
-									ai_cost: {{ai_record.cost}},
-									open_days: {{ai_record.open_days}},
-									repeats: {{ai_record.repeats}},
-									vet_name: '{{ai_record.vet_name}}',
-									}
-									myStorage.setItem('ai_record_'+object.id,JSON.stringify
-									 (object))
-									</script>
-                                    <tr  data-src="{{ai_record.id}}">
-                                        <td> {{ forloop.counter }} </td>
-                                        <td> {{ ai_record.cow }} </td>
-                                        <td> {{ ai_record.cow.name }} </td>
-                                        <td> {{ ai_record.cow.lactations }} </td>
-                                        <td> {{ ai_record.service_date }} </td>
-                                        <td> {{ ai_record.semen_record.bull_name }} </td>
-                                        <td> {{ ai_record.cost }} </td>
-                                        <td> {{ ai_record.vet_name }} </td>
-                                        <td> {{ ai_record.pregnancy_diagnosis_result }}</td>
-                                        <td> {{ ai_record.open_days }} </td>
-                                        <td> {{ ai_record.repeats }} </td>
-                                        <td> {{ ai_record.inbreeding }} </td>
-                                        <td> {{ ai_record.calving_status }} </td>
-                                        <td>
-                                            <button id="aiRecordEditBtn" type="button" data-toggle="modal"
-                                                data-target="#editAiRecordInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
-                                                <span class="fa fa-edit"></span>
-                                            </button>
-                                            <form id="deleteAiRecordForm" method="post"
-                                              action="{% url 'digitaldairy:delete_ai_record' %}">
-                                                <input name="ai_record_id" type="hidden"
-                                                       value="{{ai_record.id}}">
-                                                {% csrf_token %}
-                                                <button form="deleteAiRecordForm" type="submit"
-                                                        class='btn btn-sm btn-danger' aria-label="Delete">
-                                                    <span class="fa fa-times"></span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {% endif %}
-                                    {% endfor %}
-                                    {% endif %}
-                                </tbody>
-							</table>
-						</div>
-					</div>
+									{% endif %}
+									{% endfor %}
+									{% endif %}
+								</tbody>
+					</table>
 				</div>
-            </div>
-			<div id="section-b" class="tab-pane fade">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="table-responsive">
-							<table id="failedIseminationsTable" class="table table-hover">
-								<thead class="text-center">
-									<tr>
-										<th> &nap; </th>
-										<th>Cow Id</th>
-										<th>Cow Name</th>
-										<th>Service date</th>
-										<th>Bull Name</th>
-										<th>Repeats</th>
-										<th>Vet Name</th>
+			</div>
+		</div>
+	</div>
+	<div id="section-c" class="tab-pane fade">
+		<div class="row">
+			{% if pregnancy_levels_list %}
+			{% for pregnancy_level in pregnancy_levels_list %}
+			<div class="col-lg-6 col-sm-12 col-md-12">
+				<div class="table-responsive">
+					<div class="text-center">
+						<h5>{{pregnancy_level.0}} Months</h5>
+					</div>
+					<table class="table table-hover">
+					   <thead class="text-center">
+						   <tr>
+							   <th>Cow Id</th>
+							   <th>Cow Name</th>
+							   <th>Date Served</th>
+							   <th>Due date</th>
+						   </tr>
+					   </thead>
+					   <tbody class="text-center">
+							{% if pregnancy_level.1 %}
+							{% for ai_record in pregnancy_level.1 %}
+						   <tr>
+							   <td>{{ai_record.cow.id}}</td>
+							   <td>{{ai_record.cow.name}}</td>
+							   <td>{{ai_record.service_date}}</td>
+							   <td>{{ai_record.due_date}}</td>
+						   </tr>
+						   {% endfor %}
+						   {% endif %}
+					   </tbody>
+					</table>
+				</div>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+	<div id="section-d" class="tab-pane fade">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="inseminationsHistoryTable"
+						class="table table-hover">
+							<thead class="text-center">
+								<tr>
+									<th> # </th>
+									<th>Cow Id</th>
+									<th>Cow Name</th>
+									<th>Lact</th>
+									<th>Service date</th>
+									<th>Bull Name</th>
+									<th>Cost (ksh)</th>
+									<th>Vet Name</th>
+									<th>P.D Status</th>
+									<th>Open Days</th>
+									<th>Repeats</th>
+									<th>Inbreeding</th>
+									<th>Calving Status</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+									{% if ai_records_list %}
+									{% for ai_record in ai_records_list %}
+									<tr data-src="{{ai_record.id}}">
+										<td> {{ forloop.counter }} </td>
+										<td> {{ ai_record.cow }} </td>
+										<td> {{ ai_record.cow.name }} </td>
+										<td> {{ ai_record.lact }} </td>
+										<td> {{ ai_record.service_date }} </td>
+										<td> {{ ai_record.semen_record.bull_name }} </td>
+										<td> {{ ai_record.cost }} </td>
+										<td> {{ ai_record.vet_name }} </td>
+										<td> {{ ai_record.pregnancy_diagnosis_result }} </td>
+										<td> {{ ai_record.open_days }} </td>
+										<td> {{ ai_record.repeats }} </td>
+										<td> {{ ai_record.inbreeding }} </td>
+										<td> {{ ai_record.calving_status }} </td>
+										<td>
+											<button id="aiRecordEditBtn2" type="button" data-toggle="modal"
+												data-target="#editAiRecordInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
+												<span class="fa fa-edit"></span>
+											</button>
+											<form id="deleteAiRecordForm2" method="post"
+											  action="{% url 'digitaldairy:delete_ai_record' %}">
+												<input name="ai_record_id" type="hidden"
+													   value="{{ai_record.id}}">
+												{% csrf_token %}
+												<button form="deleteAiRecordForm2" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+													<span class="fa fa-times"></span>
+												</button>
+											</form>
+										</td>
 									</tr>
-								</thead>
-								<tbody class="text-center">
-											{% if ai_records_list %}
-											{% for ai_record in ai_records_list %}
-											{% if ai_record.pregnancy_diagnosis_result == 'Failed' %}
-											<tr>
-												<td> {{ forloop.counter }} </td>
-												<td> {{ ai_record.cow }} </td>
-												<td> {{ ai_record.cow.name }} </td>
-												<td> {{ ai_record.service_date }} </td>
-												<td> {{ ai_record.semen_record.bull_name }} </td>
-												<td> {{ ai_record.repeats }} </td>
-												<td> {{ ai_record.vet_name }} </td>
-											</tr>
-											{% endif %}
-											{% endfor %}
-											{% endif %}
-										</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-            </div>
-			<div id="section-c" class="tab-pane fade">
-				<div class="row">
-					{% if pregnancy_levels_list %}
-					{% for pregnancy_level in pregnancy_levels_list %}
-					<div class="col-lg-6 col-sm-12 col-md-12">
-						<div class="table-responsive">
-							<div class="text-center">
-								<h5>{{pregnancy_level.0}} Months</h5>
-							</div>
-							<table class="table table-hover">
-							   <thead class="text-center">
-								   <tr>
-									   <th>Cow Id</th>
-									   <th>Cow Name</th>
-									   <th>Date Served</th>
-									   <th>Due date</th>
-								   </tr>
-							   </thead>
-							   <tbody class="text-center">
-									{% if pregnancy_level.1 %}
-									{% for ai_record in pregnancy_level.1 %}
-								   <tr>
-									   <td>{{ai_record.cow.id}}</td>
-									   <td>{{ai_record.cow.name}}</td>
-									   <td>{{ai_record.service_date}}</td>
-									   <td>{{ai_record.due_date}}</td>
-								   </tr>
-								   {% endfor %}
-								   {% endif %}
-							   </tbody>
-							</table>
-						</div>
-					</div>
-					{% endfor %}
-					{% endif %}
-				</div>
-            </div>
-            <div id="section-d" class="tab-pane fade">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                                <table id="inseminationsHistoryTable"
-                                class="table table-hover">
-                                    <thead class="text-center">
-										<tr>
-											<th> # </th>
-											<th>Cow Id</th>
-											<th>Cow Name</th>
-											<th>Lact</th>
-											<th>Service date</th>
-											<th>Bull Name</th>
-											<th>Cost (ksh)</th>
-											<th>Vet Name</th>
-											<th>P.D Status</th>
-											<th>Open Days</th>
-											<th>Repeats</th>
-											<th>Inbreeding</th>
-											<th>Calving Status</th>
-											<th>Actions</th>
-										</tr>
-                                    </thead>
-                                    <tbody class="text-center">
-											{% if ai_records_list %}
-											{% for ai_record in ai_records_list %}
-											<tr data-src="{{ai_record.id}}">
-												<td> {{ forloop.counter }} </td>
-												<td> {{ ai_record.cow }} </td>
-												<td> {{ ai_record.cow.name }} </td>
-												<td> {{ ai_record.lact }} </td>
-												<td> {{ ai_record.service_date }} </td>
-												<td> {{ ai_record.semen_record.bull_name }} </td>
-												<td> {{ ai_record.cost }} </td>
-												<td> {{ ai_record.vet_name }} </td>
-												<td> {{ ai_record.pregnancy_diagnosis_result }} </td>
-												<td> {{ ai_record.open_days }} </td>
-												<td> {{ ai_record.repeats }} </td>
-												<td> {{ ai_record.inbreeding }} </td>
-												<td> {{ ai_record.calving_status }} </td>
-												<td>
-													<button id="aiRecordEditBtn2" type="button" data-toggle="modal"
-														data-target="#editAiRecordInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
-														<span class="fa fa-edit"></span>
-													</button>
-													<form id="deleteAiRecordForm2" method="post"
-													  action="{% url 'digitaldairy:delete_ai_record' %}">
-														<input name="ai_record_id" type="hidden"
-															   value="{{ai_record.id}}">
-														{% csrf_token %}
-														<button form="deleteAiRecordForm2" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
-															<span class="fa fa-times"></span>
-														</button>
-													</form>
-												</td>
-											</tr>
-											{% endfor %}
-											{% endif %}
-										</tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="modal" id="editAiRecordInputModal" tabindex="-1" aria-labelledby="editAiRecordInputModalLabel"
-			role="dialog" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-								<h4 class="modal-title text-center" id="editAiRecordInputModalLabel">
-									Edit Insemination Record
-								</h4>
-								<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-						</div>
-						<div class="modal-body">
-							<form id="editAiRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
-								<input type="hidden" name="ai_record_id" id="ai_record_id" value="0">
-                                <div class="form-group">
-                                    <label for="service_date" class="col-form-label">
-                                        Service/Heat Date
-                                    </label>
-                                    <input id="service_date" class="form-control" type="date" name="service_date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inbreeding_status" class="col-form-label">
-                                        Inbreeding
-                                    </label>
-                                    <select id="inbreeding_status" class="form-control" name="inbreeding_status">
-                                        <option value="True">True</option>
-                                        <option value="False" selected>False</option>
-                                    </select>
-                                </div>
-								<div class="form-group">
-									<label for="bull_name" class="col-form-label">
-										Bull Name
-									</label>
-									<input id="bull_name" class="form-control"  type="text" name="bull_name" min="0" required>
-								</div>
-								<div class="form-group">
-									<label for="bull_code" class="col-form-label">
-										Bull Code
-									</label>
-									<input id="bull_code" class="form-control" type="text" name="bull_code" min="0" required>
-								</div>
-								<div class="form-group">
-									<label for="ai_cost" class="col-form-label">
-										Cost
-									</label>
-									<input id="ai_cost" class="form-control" type="number" name="ai_cost" min="0">
-								</div>
-								<div class="form-group">
-									<label for="open_days" class="col-form-label">
-										Open Days
-									</label>
-									<input id="open_days" class="form-control" type="number" name="open_days" min="0">
-								</div>
-								<div class="form-group">
-									<label for="repeats" class="col-form-label">
-										Repeats
-									</label>
-									<input id="repeats" class="form-control" type="number" name="repeats" min="0">
-								</div>
-								<div class="form-group">
-									<label for="vet_name" class="col-form-label">
-										Vet Name
-									</label>
-									<input id="vet_name" class="form-control" type="text" name="vet_name" min="0">
-                                </div>
-								{% csrf_token %}
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button form="editAiRecordInputForm" type="submit" class="btn btn-primary">Save Record</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
+									{% endfor %}
+									{% endif %}
+								</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
+	<div class="modal" id="editAiRecordInputModal" tabindex="-1" aria-labelledby="editAiRecordInputModalLabel"
+	role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<h4 class="modal-title text-center" id="editAiRecordInputModalLabel">
+							Edit Insemination Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<form id="editAiRecordInputForm" method="post" action="{% url 'digitaldairy:save_cow_ai_record' %}">
+						<input type="hidden" name="ai_record_id" id="ai_record_id" value="0">
+						<div class="form-group">
+							<label for="service_date" class="col-form-label">
+								Service/Heat Date
+							</label>
+							<input id="service_date" class="form-control" type="date" name="service_date" required>
+						</div>
+						<div class="form-group">
+							<label for="inbreeding_status" class="col-form-label">
+								Inbreeding
+							</label>
+							<select id="inbreeding_status" class="form-control" name="inbreeding_status">
+								<option value="True">True</option>
+								<option value="False" selected>False</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="bull_name" class="col-form-label">
+								Bull Name
+							</label>
+							<input id="bull_name" class="form-control"  type="text" name="bull_name" min="0" required>
+						</div>
+						<div class="form-group">
+							<label for="bull_code" class="col-form-label">
+								Bull Code
+							</label>
+							<input id="bull_code" class="form-control" type="text" name="bull_code" min="0" required>
+						</div>
+						<div class="form-group">
+							<label for="ai_cost" class="col-form-label">
+								Cost
+							</label>
+							<input id="ai_cost" class="form-control" type="number" name="ai_cost" min="0">
+						</div>
+						<div class="form-group">
+							<label for="open_days" class="col-form-label">
+								Open Days
+							</label>
+							<input id="open_days" class="form-control" type="number" name="open_days" min="0">
+						</div>
+						<div class="form-group">
+							<label for="repeats" class="col-form-label">
+								Repeats
+							</label>
+							<input id="repeats" class="form-control" type="number" name="repeats" min="0">
+						</div>
+						<div class="form-group">
+							<label for="vet_name" class="col-form-label">
+								Vet Name
+							</label>
+							<input id="vet_name" class="form-control" type="text" name="vet_name" min="0">
+						</div>
+						{% csrf_token %}
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button form="editAiRecordInputForm" type="submit" class="btn btn-primary">Save Record</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

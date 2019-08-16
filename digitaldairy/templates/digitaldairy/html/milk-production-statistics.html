@@ -1,6 +1,28 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Milk Production Statistics {% endblock %}
 {% block content %}
+<script>
+    var monthlyMilkProductionList = [];
+        {% if grouped_yearly_milk_production_dict %}
+        {% for grouped_yearly_milk_production in grouped_yearly_milk_production_dict %}
+        var monthlyMilkProductionObject = {}
+        monthlyMilkProductionObject.month ={{ grouped_yearly_milk_production.0 }};
+        monthlyMilkProductionObject.quantity= {{ grouped_yearly_milk_production.1 }};
+        monthlyMilkProductionList.push(monthlyMilkProductionObject);
+        {% endfor %}
+        {% endif %}
+       window.sessionStorage.setItem('monthlyMilkProductionList', JSON.stringify(monthlyMilkProductionList));
+    var dailyMilkProductionList = [];
+        {% if total_daily_milk_production_dict %}
+        {% for total_daily_milk_production in total_daily_milk_production_dict %}
+        var dailyMilkProductionObject = {}
+        dailyMilkProductionObject.day ='{{ total_daily_milk_production.0 }}';
+        dailyMilkProductionObject.quantity= {{ total_daily_milk_production.1 }};
+        dailyMilkProductionList.push(dailyMilkProductionObject);
+        {% endfor %}
+        {% endif %}
+       window.sessionStorage.setItem('dailyMilkProductionList', JSON.stringify(dailyMilkProductionList));
+</script>
 		<section class="section-a">
             <div class="container text-center">
                 <form id="milkProductionStatsSearchForm" method="get"
@@ -45,19 +67,6 @@
                 </div>
                 <div style="width:100%;" class="row">
                     <div class="col-lg-8">
-                        <script>
-                        var myStorage = window.sessionStorage;
-                            var dailyMilkProductionList = [];
-                                {% if total_daily_milk_production_dict %}
-                                {% for total_daily_milk_production in total_daily_milk_production_dict %}
-                                var dailyMilkProductionObject = {}
-                                dailyMilkProductionObject.day ='{{ total_daily_milk_production.0 }}';
-                                dailyMilkProductionObject.quantity= {{ total_daily_milk_production.1 }};
-                                dailyMilkProductionList.push(dailyMilkProductionObject);
-                                {% endfor %}
-                                {% endif %}
-                               myStorage.setItem('dailyMilkProductionList', JSON.stringify(dailyMilkProductionList));
-                        </script>
                         <div class="table-responsive" style="overflow:auto;">
                             <canvas id="monthlyMilkProductionChart" height="150px"></canvas>
                         </div>
@@ -109,20 +118,6 @@
 					<div class="col-lg-8">
 						<div class="table-responsive">
                             <canvas id="yearlyMilkProductionChart" height="150px"></canvas>
-                            <script>
-                            var myStorage = window.sessionStorage;
-                                var monthlyMilkProductionList = [];
-                                    {% if grouped_yearly_milk_production_dict %}
-                                    {% for grouped_yearly_milk_production in grouped_yearly_milk_production_dict %}
-                                    var monthlyMilkProductionObject = {}
-                                    monthlyMilkProductionObject.month ={{ grouped_yearly_milk_production.0 }};
-                                    monthlyMilkProductionObject.quantity= {{ grouped_yearly_milk_production.1 }};
-                                    monthlyMilkProductionList.push(monthlyMilkProductionObject);
-                                    {% endfor %}
-                                    {% endif %}
-                                   myStorage.setItem('monthlyMilkProductionList', JSON.stringify
-                                   (monthlyMilkProductionList));
-                            </script>
 						</div>
 					</div>
 					<div class="col-lg-4">

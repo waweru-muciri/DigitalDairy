@@ -9,12 +9,12 @@
 				<div class="col-lg-4 col-sm-12 form-group">
 					<select id="client_id" class="form-control" name="client_id" required>
 					<script>
-						var client = "{{ client }}";
+						var client = "{{ client.id }}";
 					</script>
 						<option value="client_id" disabled selected>Select Client</option>
 						{% if clients_list %}
 						{% for client in clients_list %}
-						<option value="{{ client.name }}" name="client_id"> {{ client.name }} </option>
+						<option value="{{ client.id }}" name="client_id"> {{ client.name }} </option>
 						{% endfor %}
 						{% endif %}
 					</select>

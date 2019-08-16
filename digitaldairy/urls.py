@@ -56,7 +56,7 @@ urlpatterns = [
     path('save_cow', views.save_cow, name="save_cow"),
     path('save_calf', views.save_calf, name="save_calf"),
     path('save_weight', views.save_weight, name="save_weight"),
-    path('save_milk_production', views.save_day_milk_production,
+    path('save_milk_production', views.save_milk_production,
          name="save_milk_production"),
     path('save_daily_milk_target', views.save_daily_milk_target,
          name="save_daily_milk_target"),

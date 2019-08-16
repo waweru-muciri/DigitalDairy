@@ -1,6 +1,19 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Cow Diseases {% endblock %}
 {% block content %}
+{% if diseases_list %}
+		<script>
+		{% for disease in diseases_list %}
+			var object = {
+			id: {{disease.id}},
+			name: '{{disease.name}}',
+			details: '{{disease.details}}',
+			date_discovered: '{{disease.date_discovered|date:"Y-m-d"}}',
+			}
+			window.sessionStorage.setItem('disease_'+object.id,JSON.stringify(object))
+		{% endfor %}
+		</script>
+{% endif %}
 <section>
 	<div class="container-fluid">
 		<div class="row text-center">
@@ -76,16 +89,6 @@
 								{% if diseases_list %}
 								{% for disease in diseases_list %}
 								<tr data-src="{{disease.id}}">
-									<script>
-									myStorage = window.sessionStorage;
-									var object = {
-									id: {{disease.id}},
-									name: '{{disease.name}}',
-									details: '{{disease.details}}',
-									date_discovered: '{{disease.date_discovered|date:"Y-m-d"}}',
-									}
-									myStorage.setItem('disease_'+object.id,JSON.stringify(object))
-									</script>
 									<td> {{ forloop.counter }} </td>
 									<td> {{ disease.date_discovered }} </td>
 									<td> {{ disease.name }} </td>

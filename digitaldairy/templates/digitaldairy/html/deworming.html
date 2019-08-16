@@ -1,6 +1,21 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Animal Deworming Records {% endblock %}
 {% block content %}
+{% if deworming_records_list %}
+	<script>
+		{% for deworming_record in deworming_records_list %}
+			var object = {
+				deworming_id: {{deworming_record.id}},
+				cow_id: '{{deworming_record.cow.id}}',
+				dewormer: '{{deworming_record.dewormer}}',
+				deworming_date: '{{deworming_record.deworming_date|date:"Y-m-d"}}',
+				next_deworming_date: '{{deworming_record.next_deworming_date|date:"Y-m-d"}}',
+				deworming_cost: {{deworming_record.deworming_cost}},
+			}
+			window.sessionStorage.setItem('deworming_'+{{deworming_record.id}},JSON.stringify(object))
+		{% endfor %}
+	</script>
+{% endif %}
 		<section class="section-a">
 			<div class="container text-center">
 				<div class="row sf-html-block">
@@ -102,20 +117,6 @@
 										{% if deworming_records_list %}
 										{% for deworming_record in deworming_records_list %}
 										<tr data-src="{{deworming_record.id}}">
-											<script>
-											myStorage = window.sessionStorage;
-											var object = {
-											deworming_id: {{deworming_record.id}},
-											cow_id: '{{deworming_record.cow.id}}',
-											dewormer: '{{deworming_record.dewormer}}',
-											deworming_date: '{{deworming_record.deworming_date|date:"Y-m-d"}}',
-											next_deworming_date: '{{deworming_record.next_deworming_date|date:"Y-m-d"}}',
-											deworming_cost: {{deworming_record.deworming_cost}},
-											}
-											myStorage.setItem('deworming_'+{{deworming_record.id}},JSON.stringify
-											 (object))
-											</script>
-
 											<td> {{ deworming_record.cow }} </td>
 											<td>
 												<a href="{{ deworming_record.get_deworming_history_url }}">

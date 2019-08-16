@@ -2,6 +2,34 @@
 {% block title %} Daily Milk Sales &amp; Consumption {% endblock %}
 {% block content %}
 {% load mathfilters %}
+{% if consumption_list %}
+	<script>
+		myStorage = window.sessionStorage;
+		{% for consumption in consumption_list %}
+				var object = {
+					id: {{consumption.id}},
+					consumer_name: '{{consumption.consumer.name}}',
+					consumption_date:'{{ consumption.date|date:"Y-m-d" }}',
+					consumption_quantity: {{consumption.quantity}}
+				}
+				myStorage.setItem('milk_consumption_'+ object.id,JSON.stringify(object));
+		{% endfor %}
+	</script>
+{% endif %}
+{% if sales_list %}
+	<script>
+		myStorage = window.sessionStorage;
+		{% for sale in sales_list %}
+				var object = {
+					id: {{sale.id}},
+					client_name: '{{sale.client.name}}',
+					sale_date:'{{ sale.date|date:"Y-m-d" }}',
+					sale_quantity: {{sale.quantity}},
+					}
+				myStorage.setItem('milk_sale_'+ object.id,JSON.stringify(object));
+		{% endfor %}
+	</script>
+{% endif %}
 <section class="section-a">
 	<div class="container text-center">
 		<div class="row sf-html-block">
@@ -162,16 +190,6 @@
 						{% if consumption_list %}
 							{% for consumption in consumption_list %}
 							<tr data-src="{{consumption.id}}">
-								<script>
-									myStorage = window.sessionStorage;
-									var object = {
-									id: {{consumption.id}},
-									consumer_name: '{{consumption.consumer.name}}',
-									consumption_date:'{{ consumption.date|date:"Y-m-d" }}',
-									consumption_quantity: {{consumption.quantity}}}
-									 myStorage.setItem('milk_consumption_'+ object.id,JSON.stringify
-									 (object))
-								</script>
 								<td> {{ consumption.date }} </td>
 								<td>{{ consumption.consumer.name }}</td>
 								<td> {{ consumption.quantity }} </td>
@@ -218,15 +236,6 @@
 									{% if sales_list %}
 										{% for sale in sales_list %}
 										<tr data-src="{{ sale.id }}">
-											<script>
-												myStorage = window.sessionStorage;
-												var object = {
-												id: {{sale.id}},
-												client_name: '{{sale.client.name}}',
-												sale_date:'{{ sale.date|date:"Y-m-d" }}',
-												sale_quantity: {{sale.quantity}}}
-												 myStorage.setItem('milk_sale_'+ object.id,JSON.stringify(object))
-											</script>
 											<td> {{ sale.date }} </td>
 											<td> {{ sale.client.name }} </td>
 											<td> {{ sale.quantity }} </td>

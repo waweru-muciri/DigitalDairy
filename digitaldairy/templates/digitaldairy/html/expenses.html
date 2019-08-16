@@ -1,6 +1,19 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Expenses Records {% endblock %}
 {% block content %}
+{% if expenses_list %}
+    <script>
+    {% for expense in expenses_list %}
+        var object = {
+            id: {{ expense.id }},
+            date: '{{ expense.date|date:"Y-m-d" }}',
+            amount: {{ expense.amount }},
+            source: '{{ expense.source }}',
+        }
+        window.sessionStorage.setItem('expense_' + object.id, JSON.stringify(object));
+    {% endfor %}
+    </script>
+{% endif %}
 <section id="section-b">
     <div class="row text-center">
         <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
@@ -60,6 +73,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                {% if errors %}
+				<div class="alert alert-danger text-center">
+					{% for error in errors %}
+					    <p>{{error}}</p>
+					{% endfor %}
+				</div>
+				{% endif %}
                 <div class="modal-body">
                     <form id="expenseInputForm" method="post" action="{% url 'digitaldairy:save_expense' %}">
                         {% csrf_token %}

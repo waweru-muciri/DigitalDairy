@@ -1,16 +1,67 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/js/service-worker.js').then((reg) => {
-            console.log('Service worker registered.', reg)
-        }, /*catch*/ function(error) {
-             console.log('Service worker registration failed:', error);
+        navigator.serviceWorker.register('/static/js/service-worker.js', {
+            scope: '/digitaldairy/',
+        }).then((registration) => {
+            console.log('[Service Worker] registered.', registration);
+            // return registration.pushManager.getSubscription().then(async function (subscription) {
+            //     //registration part
+            //     if (subscription) {
+            //         return subscription;
+            //     } else {
+            //         // const response = await fetch('./vapidPublicKey');
+            //         // const vapidPublicKey = await response.text();
+            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+            //         // return registration.pushManager.subscribe({
+            //         //     userVisibleOnly: true,
+            //         //     applicationServerKey: convertedVapidKey
+            //         // });
+            //     }
+            // });
+        }, /*catch*/(error) => {
+            console.log('[Service Worker] registration failed:', error);
+        }).then((subscription) => {
+            console.log('[Service Worker] subscription ' + subscription)
+            //subscription part
+            //send subscription details as JSON to the server using fetch
+            // fetch('./register', {
+            //     method: 'post',
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ subscription: subscription })
+            // });
         });
+        //request to show notifications when the user requests it by creating /// a button
+        var button = document.getElementById('notifications-button');
+        if (button) {
+            button.addEventListener('click', function (event) {
+                Notification.requestPermission().then((result) => {
+                    if (result === 'granted') {
+                        randomNotification();
+                    }
+                });
+            });
+        }
+        function randomNotification() {
+            var randomItem = Math.floor(Math.random() * 1000);
+            var notifTitle = 'Notification Title';
+            var notifBody = 'Created by Brian Muciri';
+            var notifImg = ''
+            var options = {
+                body: notifBody,
+                icon: notifImg,
+            }
+            var notif = new Notification(notifTitle, options);
+            setTimeout(randomNotification, 30000);
+        }
     });
-}else {
-   console.log('Service workers are not supported.');
 }
+else {
+    console.log('Service workers are not supported.');
+}
+
 var postUrl = 'https://digitaldairy.herokuapp.com';
-// postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
@@ -88,31 +139,53 @@ $('#targetInputModal').on('show.bs.modal', function (event) {
 })
 $('#consumerInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
-    var consumer_name = $(event.relatedTarget).parent().parent().attr('data-src');
+    var consumer_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'editConsumerBtn') {
         modal.find('.modal-title').text("Edit Consumer Details")
-        var consumer = JSON.parse(myStorage.getItem('consumer_' + consumer_name))
+        var consumer = JSON.parse(myStorage.getItem('consumer_' + consumer_id))
+        var consumer_id_input = modal.find('input[name=consumer_id]')
+        if (consumer_id_input.length == 1) {
+            consumer_id_input.val(consumer.id)
+        }
+        else {
+            consumer_id_input = "<input id='consumer_id' type='hidden' class='form-control' name='consumer_id'>";
+            modal.find('#consumer_name').before(consumer_id_input)
+            consumer_id_input = modal.find('input[name=consumer_id]')
+            consumer_id_input[0].value = consumer.id
+        }
         modal.find('#consumer_name').val(consumer.consumer_name)
         modal.find('#consumer_contacts').val(consumer.consumer_contacts)
         modal.find('#consumer_location').val(consumer.consumer_location)
     }
     else {
+        modal.find('input[name=consumer_id]').remove();
         clearTextAndNumberInputFields(modal);
         modal.find('.modal-title').text("Add Consumer Record")
     }
 })
 $('#clientInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
-    var client_name = $(event.relatedTarget).parent().parent().attr('data-src');
+    var client_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'editClientBtn') {
         modal.find('.modal-title').text("Edit Client Details")
-        var client = JSON.parse(myStorage.getItem('client_' + client_name))
+        var client = JSON.parse(myStorage.getItem('client_' + client_id))
+        var client_id_input = modal.find('input[name=client_id]')
+        if (client_id_input.length == 1) {
+            client_id_input.val(client.id)
+        }
+        else {
+            client_id_input = "<input id='client_id' type='hidden' class='form-control' name='client_id'>";
+            modal.find('#client_name').before(client_id_input)
+            client_id_input = modal.find('input[name=client_id]')
+            client_id_input[0].value = client.id
+        }
         modal.find('#client_name').val(client.client_name)
         modal.find('#client_contacts').val(client.client_contacts)
         modal.find('#client_location').val(client.client_location)
         modal.find('#client_unit_price').val(client.client_unit_price)
     }
     else {
+        modal.find('input[name=client_id]').remove();
         clearTextAndNumberInputFields(modal);
         modal.find('.modal-title').text("Add Client Record")
     }
@@ -795,14 +868,16 @@ setPagination = function (tablesToAddPaginationTo) {
     });
 }
 $(document).ready(function () {
-    //select the user selected month
+    // select values passed to the client from the server 
     var selectedMonth = window.month;
     var selectedYear = window.year;
     var selectedClient = window.client;
+    var selectedConsumer = window.consumer;
     var selectedCow = window.selectedCow;
     $('select[name=month]').val(selectedMonth);
     $('input[name=year]').val(selectedYear);
     $('select[name=client_id]').val(selectedClient);
+    $('select[name=consumer_id]').val(selectedConsumer);
     $('select[id=selectedMilkProdHistoryCow]').val(selectedCow);
     //	configure milk production table pagination
     var tablesToAddPaginationTo = ['#milkProductionTable', '#milkProductionTargetsTable', '#monthlyMilkProductionTable', '#clientsTable', '#consumersTable', '#dailyMilkConsumptionTable', '#dailyMilkSalesTable', '#salesSummaryTable', '#consumptionSummaryTable', '#cowsTable', '#cowWeightsTable', '#calvesGrowthTable', '#calfFeedingTable', '#cowSalesTable', '#cowTreatmentsTable', '#cowDewormingTable', '#cowVaccinationsTable', '#cowDeathsTable', '#cowAutopsiesTable', '#cowSemenCatalogTable', '#cowAiRecordsTable', '#failedIseminationsTable', '#inseminationsHistoryTable', '#pregnancyDiagnosisTable', '#pregnancyCalendarTable', '#calvingsTable', '#abortionsTable', '#cowInsuranceTable', '#incomeTable', '#expensesTable', '#employeesTable', '#salaryAdvancesTable', '#salariesTable', '#feedItemsTable', '#feedingProgrammesTable', '#feedingFormulationsTable', '#cowDiseasesTable', '#breedingStatisticsTable']
