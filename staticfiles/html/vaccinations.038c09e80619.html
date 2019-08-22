@@ -1,0 +1,153 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %}  Vaccination Records {% endblock %}
+{% block content %}
+<section class="section-a">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 sf-html-block">
+				<h4>Cow Vaccination Records</h4>
+			</div>
+			<div class="col-lg-6 col-md-6 sf-html-block">
+				<button type="button" data-toggle="modal"
+				data-target="#vaccineInputModal" class="btn btn-primary">
+					<span>
+						&plus; Add Vaccination Record
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="vaccineInputModal" tabindex="-1" aria-labelledby="vaccineInputModalLabel"
+	role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<h4 class="modal-title text-center" id="vaccineInputModalLabel">
+							Add Vaccination Record
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<form id="vaccineInputForm" method="post" action="{% url 'digitaldairy:save_cow_vaccination_record' %}">
+						{% csrf_token %}
+						<input id='vaccination_id' type='hidden' class='form-control' name='vaccination_id'>
+						<div class="form-group">
+							<label for="vaccination_date" class="col-form-label">
+								Date
+							</label>
+							<input id="vaccination_date" class="form-control" type="date" name="vaccination_date" required>
+						</div>
+						<div class="form-group">
+							<label for="cow_id" class="col-form-label">
+								Select Cow
+							</label>
+							<select required id="cow_id" class="form-control" name="cow_id">
+								<option value="cow_id" disabled selected="selected">Select cow</option>
+									{% if all_cows %}
+									{% for cow in all_cows %}
+									<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+									{% endfor %}
+									{% endif %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="vaccine" class="col-form-label">
+								Vaccine
+							</label>
+							<input id="vaccine" class="form-control" name="vaccine" required>
+						</div>
+
+						<div class="form-group">
+							<label for="vaccination_cost" class="col-form-label">
+								Cost (Kshs)
+							</label>
+							<input id="vaccination_cost" class="form-control" type="number" name="vaccination_cost">
+						</div>
+						<div class="form-group">
+							<label for="next_vaccination_date" class="col-form-label">
+								Next Vaccination Date
+							</label>
+							<input id="next_vaccination_date" class="form-control" type="date" name="next_vaccination_date">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button form="vaccineInputForm" type="submit" class="btn btn-primary">Save Record</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<div style="width:100%;" class="row">
+			<div class="col-lg-12">
+				<div class="table-responsive" style="overflow:auto;">
+					<table id="cowVaccinationsTable" class="table table-hover">
+						<thead class="text-center">
+							<tr>
+								<th> Cow Id </th>
+								<th> Cow Name </th>
+								<th> Vaccination Date </th>
+								<th> Vaccine </th>
+								<th> Cost (Kshs) </th>
+								<th> Next Vaccination Date </th>
+								<th> Actions</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+								{% if vaccination_records_list %}
+								{% for vaccination_record in vaccination_records_list %}
+								<tr data-src="{{vaccination_record.id}}">
+									<script>
+									myStorage = window.sessionStorage;
+									var object = {
+									vaccination_id: {{vaccination_record.id}},
+									cow_id: '{{vaccination_record.cow.id}}',
+									vaccine: '{{vaccination_record.vaccine}}',
+									vaccination_date: '{{vaccination_record.vaccination_date|date:"Y-m-d"}}',
+									next_vaccination_date: '{{vaccination_record.next_vaccination_date|date:"Y-m-d"}}',
+									vaccination_cost: {{vaccination_record.vaccination_cost}},
+									}
+									myStorage.setItem('vaccination_'+{{vaccination_record.id}},JSON.stringify
+									 (object))
+									</script>
+									<td> {{ vaccination_record.cow.id }} </td>
+									<td>
+										<a href="{{ vaccination_record.get_vaccination_history_url }}">
+										{{ vaccination_record.cow.name }}
+										</a>
+									</td>
+									<td> {{ vaccination_record.vaccination_date }} </td>
+									<td> {{ vaccination_record.vaccine }} </td>
+									<td> {{ vaccination_record.vaccination_cost }} </td>
+									<td> {{ vaccination_record.next_vaccination_date }} </td>
+									<td>
+										<button id="vaccinationEditBtn" type="button" data-toggle="modal"
+											data-target="#vaccineInputModal" class='btn btn-sm btn-primary'
+												aria-label="Edit">
+											<span class="fa fa-edit"></span>
+										</button>
+										<form id="deleteVaccinationForm" method="post"
+										action="{% url 'digitaldairy:delete_vaccination' %}">
+										{% csrf_token %}
+											<input name="vaccination_id" type="hidden"
+											value="{{vaccination_record.id}}">
+											<button form="deleteVaccinationForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
+												<span class="fa fa-times"></span>
+											</button>
+										</form>
+									</td>
+								</tr>
+								{% endfor %}
+								{% endif %}
+							</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

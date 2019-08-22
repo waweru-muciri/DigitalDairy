@@ -133,7 +133,7 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/var/www/digitaldairy.com/static/'
-STATIC_URL = '/digitaldairy/templates/digitaldairy/'
+STATIC_URL = '/ghhj/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "digitaldairy/templates/digitaldairy"),
 ]

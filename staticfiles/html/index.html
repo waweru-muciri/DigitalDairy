@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<title>{% block title %} {% endblock %}</title>
+	<meta charset="utf-8">
+	<meta name="description" content="DigitalDairy Dairy Farm Management Software Products. DigitalDairy offers dairy farms the best in farm management software products and platforms.">
+	<meta name="author" content="Brian Muciri">
+	<meta name="viewport"
+		content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=2; user-scalable=true;">
+	<!-- FontAwesome -->
+	<!--<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"-->
+		<!--type="text/css">-->
+		<!-- Google web fonts -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" href="{% static 'bootstrap-4.0.0-dist/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/all.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/landing-page.css' %}" media="screen">
+
+</head>
+
+<body id="top">
+	<header class="header header-shadow header-shrink sticky-top bg-gray-v2">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<a class="navbar-brand" href="{% url 'digitaldairy:digital_dairy' %}">
+					<img src="{% static 'images/digital-dairy2.svg' %}" alt="Digital Dairy logo">
+				</a>
+				<button class="navbar-toggler p-0" data-toggle="collapse" data-target="#navbarNav">
+					<div class="hamburger hamburger--spin js-hamburger">
+						<div class="hamburger-box">
+							<div class="hamburger-inner"></div>
+						</div>
+					</div>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#about" data-scrollto="about">ABOUT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#section-features" data-scrollto="section-features">FEATURES</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#section-reviews" data-scrollto="section-reviews">REVIEWS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#pricing" data-scrollto="pricing">PRICING</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact" data-scrollto="contact">CONTACT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'login' %}">Log In</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/accounts/register">REGISTER</a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div> <!-- END container-->
+	</header>
+	{% block content %}
+	{% endblock %}
+	<footer>
+		<section class="bg-gray-v2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 mb-5 mb-lg-0">
+						<img src="{% static 'images/digital-dairy2.svg' %}" alt="Digital Dairy logo">
+						<p class="u-my-40">
+						Here at DigitalDairy we develop and provide optimized managerial resources to dairy farms. Alongside this goal is development of a variety of software products and services. Whether it be a website, app or any other software product, we offer the best to our customers and clients. </p>
+						<form class="form-inline">
+							<div class="input-group box-shadow-v1 u-rounded-50 bg-white u-of-hidden">
+								<div class="input-group-addon bg-white border-0 pl-4 pr-0">
+									<span class="icon icon-Mail text-primary"></span>
+								</div>
+								<input class="form-control border-0 p-3" placeholder="Enter your email" type="text">
+								<button type="submit" class="input-group-btn btn bg-white">
+									<span class="icon icon-Arrow text-primary"></span>
+								</button>
+							</div>
+						</form>
+
+					</div>
+					<div class="col-lg-2 col-md-6 ml-auto mb-5 mb-lg-0">
+						<h4>Useful Links</h4>
+						<div class="u-h-4 u-w-50 bg-primary rounded mt-3 u-mb-40"></div>
+						<ul class="list-unstyled u-lh-2">
+							<li><a href="#about" data-scrollto="about">About Us </a> </li>
+							<li><a href="#section-reviews" data-scrollto="section-reviews">Testimonials </a> </li>
+							<li><a href="#pricing">Pricing </a> </li>
+							<li><a href="#contact" data-scrollto="contact">Contact Us</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-6 ml-auto mb-5 mb-lg-0">
+						<h4>Contact Info</h4>
+						<div class="u-h-4 u-w-50 bg-primary rounded mt-3 u-mb-40"></div>
+						<ul class="list-unstyled">
+							<li class="mb-2">
+								<span class="icon icon-Phone2 text-primary mr-2"></span> 254. 742. 654. 637
+							</li>
+							<li class="mb-2">
+								<span class="icon icon-Mail text-primary mr-2"></span> <a
+									href="mailto:bwwaweru18@gmail.com">Brian Muciri</a>
+							</li>
+							<li class="mb-2">
+								<span class="icon icon-Pointer text-primary mr-2"></span> Nairobi, Kenya
+							</li>
+						</ul>
+						<ul class="list-inline social social-rounded social-white mt-4">
+							<li class="list-inline-item">
+								<a href="https://facebook.com/digitaldairy" target="_blank"><i class="fa fa-facebook"></i></a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#"><i class="fa fa-twitter"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div> <!-- END row-->
+			</div> <!-- END container-->
+		</section> <!-- END section-->
+
+		<section class="u-py-40">
+			<div class="container">
+				<p class="mb-0 text-center">
+					&copy; Copyright 2019 <a class="text-primary" href="https://brianmuciri.world" target="_blank">Brian
+						Muciri</a>
+				</p>
+			</div>
+		</section>
+	</footer>
+	<!-- JavaScript files -->
+	<!-- JQuery -->
+	<script src="{% static 'jQuery/jquery.js' %}"></script>
+	<!-- Bootstrap js -->
+	<script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}"></script>
+	<script src="{% static 'js/index1.js' %}"></script>
+</body>
+</html>

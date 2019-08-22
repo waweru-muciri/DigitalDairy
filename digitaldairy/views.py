@@ -14,7 +14,6 @@ from django.core.mail import send_mail
 
 general_to_date = datetime.date.today()
 general_from_date = datetime.date(2000,1,1)
-# comment this out after all is said and done
 
 
 @require_http_methods(['GET'])
@@ -1242,12 +1241,12 @@ def get_consumer_consumption_history(request):
 @login_required
 @require_http_methods(['POST'])
 def save_milk_sale(request):
-	client_id = request.POST.get('client_id')
+	client_id = request.POST['client_id']
 	milk_sale_id = request.POST.get('milk_sale_id')
 	sale_date = request.POST.get('sale_date')
 	quantity = request.POST.get('sale_quantity')
 	client = get_object_or_404(Clients, pk=client_id)
-	milk_sale =  MilkSales()
+	milk_sale = MilkSales()
 	milk_sale.id = milk_sale_id
 	milk_sale.client = client
 	milk_sale.date = sale_date
@@ -1275,7 +1274,7 @@ def save_cow_sale(request):
 		'client_name': client_name,
 		'sale_remarks': sale_remarks,
 	})
-	return HttpResponseRedirect('/digitaldairy/cow_sales/')
+	return HttpResponseRedirect(reverse('digitaldairy:cow_sales'))
 
 
 @login_required

@@ -1,0 +1,168 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Sales Records {% endblock %}
+{% block content %}
+		<section class="section-a">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 order-lg-2 order-md-2 sf-html-block">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#cowSaleInputModal">
+                            <span>
+                                &plus; New Sale Record
+                            </span>
+                        </button>
+					</div>
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<h4>Cow Sales Records</h4>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="cowSaleInputModal" tabindex="-1" aria-labelledby="cowSaleInputModalLabel"
+			role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h4 class="modal-title text-center" id="cowSaleInputModalLabel">
+									Add Sale Record
+								</h4>
+								<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+							<form id="cowSaleInputForm" method="post" action="{% url 'digitaldairy:save_cow_sale' %}">
+								{% csrf_token %}
+								<div class="form-group">
+									<label for="sale_date" class="col-form-label">
+										Date Sold
+									</label>
+									<input id="sale_date" class="form-control" type="date" name="sale_date" required>
+								</div>
+								<div class="form-group">
+									<label for="cow_id" class="col-form-label">
+										Select Cow
+									</label>
+									<select id="cow_id" class="form-control" name="cow_id" required>
+										<option value="cow_id" disabled selected="selected">Select Cow</option>
+										{% if cows_list %}
+										{% for cow in cows_list %}
+										<option value="{{ cow.id }}" name="cow_id"> {{ cow.name }} </option>
+										{% endfor %}
+										{% endif %}
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="client_name" class="col-form-label">
+										Client Name
+									</label>
+									<input id="client_name" class="form-control"  type="text" name="client_name">
+								</div>
+								<div class="form-group">
+									<label for="cow_value" class="col-form-label">
+										Cost
+									</label>
+									<input id="cow_value" class="form-control" type="number" name="cow_value" min="0">
+								</div>
+								<div class="form-group">
+									<label for="sale_remarks" class="col-form-label">
+										Remarks
+									</label>
+									<input id="sale_remarks" class="form-control" type="text" name="sale_remarks">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button form="cowSaleInputForm" type="submit" class="btn btn-primary">Save Record</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+                <div style="width:100%;" class="row">
+					<div class="col-lg-8">
+						<div class="table-responsive" style="overflow:auto;">
+							<table id="cowSalesTable" class="table table-hover">
+								<thead class="text-center">
+									<tr>
+										<th>Date Sold</th>
+										<th>Cow Id</th>
+										<th>Cow Name</th>
+										<th>Client</th>
+										<th>Cost</th>
+										<th>Remarks</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									{% if cow_sales_list %}
+									{% for cow_sale in cow_sales_list %}
+									<tr data-src="{{cow_sale.cow.id}}">
+										<script>
+											myStorage = window.sessionStorage;
+											var object = {
+											cow_id: '{{cow_sale.cow.id}}',
+											cow_name: '{{cow_sale.cow.name}}',
+											sale_date: '{{cow_sale.date|date:"Y-m-d"}}',
+											client_name: '{{cow_sale.client_name}}',
+											cow_value: {{cow_sale.cow_value}},
+											sale_remarks: '{{cow_sale.sale_remarks}}',
+											}
+											myStorage.setItem('cow_sale_'+ object.cow_id,JSON.stringify
+											 (object))
+										</script>
+										<td> {{ cow_sale.date|date:"Y/m/d" }} </td>
+										<td> {{ cow_sale.cow}} </td>
+										<td> {{ cow_sale.cow.name }} </td>
+										<td> {{ cow_sale.client_name }} </td>
+										<td> {{ cow_sale.cow_value }} </td>
+										<td> {{ cow_sale.sale_remarks  }} </td>
+										<td>
+											<button id="cowSaleEditBtn" type="button" data-toggle="modal"
+													data-target="#cowSaleInputModal"
+												class='btn btn-sm btn-primary' aria-label="Edit">
+												<span class="fa fa-edit"></span>
+											</button>
+											<form id="deleteCowSaleForm" method="post"
+												  action="{% url 'digitaldairy:delete_cow_sale' %}">
+												<input name="cow_id" type="hidden" value="{{cow_sale.cow.id}}">
+												{% csrf_token %}
+												<button form="deleteCowSaleForm" type="submit"
+														class='btn btn-sm btn-danger' aria-label="Delete">
+													<span class="fa fa-times"></span>
+												</button>
+											</form>
+										</td>
+									</tr>
+									{% endfor %}
+									{% endif %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="summary">
+							<h4 class="text-center">Cow Sales Summary</h4>
+							<div class="row">
+									<p class="col-lg-6 text-center">
+										Sold Cows:
+									</p>
+									<p class="col-lg-6 text-center">
+										{{ cow_sales_list|length }}
+									</p>
+							</div>
+							<div class="row">
+									<p class="col-lg-6 text-center">
+										Gross Sales (ksh):
+									</p>
+									<p class="col-lg-6 text-center">
+										{{ gross_cow_sales|floatformat:2 }} Kshs
+									</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

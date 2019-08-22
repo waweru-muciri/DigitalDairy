@@ -1,0 +1,194 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Calving/Maternity Records {% endblock %}
+{% block content %}
+{% load subtract_dates %}
+		<section class="section-a">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<h4>Calving Records</h4>
+					</div>
+					<div class="col-lg-6 col-md-6 sf-html-block">
+						<button type="button" data-toggle="modal" data-target="#calvingInputModal" class="btn btn-primary">
+							<span>
+								&plus; Add Calving Record
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="calvingInputModal" tabindex="-1" aria-labelledby="calvingInputModalLabel"
+			role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h4 class="modal-title text-center" id="calvingInputModalLabel">
+									Add Calving Record
+								</h4>
+								<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+							<form id="calvingInputForm" method="post" action="{% url 'digitaldairy:save_calving_record' %}">
+								<div class="form-group">
+                                        <label for="ai_record_id" class="col-form-label">
+                                            Select Cow
+                                        </label>
+									<select required id="ai_record_id" class="form-control" name="ai_record_id">
+										<option value="ai_record_id" disabled selected="selected">Select
+										Cow</option>
+										{% if ai_records_list %}
+										{% for ai_record in ai_records_list %}
+										<option value="{{ai_record.id}}" name="ai_record_id"> {{ ai_record.cow.name }}
+										</option>
+										{% endfor %}
+										{% endif %}
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="calf_code" class="col-form-label">
+										Calf Code
+									</label>
+									<input id="calf_code" class="form-control"  type="text" name="calf_code" required>
+								</div>
+								<div class="form-group">
+									<label for="calf_name" class="col-form-label">
+										Calf Name
+									</label>
+									<input id="calf_name" class="form-control"  type="text" name="calf_name" required>
+								</div>
+                                <div class="form-group">
+                                    <label for="calving_date" class="col-form-label">
+                                        Calving Date
+                                    </label>
+                                    <input id="calving_date" class="form-control" type="date"
+                                    name="calving_date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calf_sex" class="col-form-label">
+                                        Calf Sex
+                                    </label>
+                                    <select id="calf_sex" class="form-control" name="calf_sex" required>
+                                        <option selected value="Heifer">Heifer</option>
+                                        <option value="Bull">Bull</option>
+                                    </select>
+                                </div>
+								<div class="form-group">
+                                    <label for="calving_type" class="col-form-label">
+                                        Calving Type
+                                    </label>
+                                    <select id="calving_type" class="form-control" name="calving_type" required>
+                                        <option selected value="Single">Single</option>
+                                        <option value="Twin">Twin</option>
+                                    </select>
+                                </div>
+								<div class="form-group">
+									<label for="calf_breed" class="col-form-label">
+										Breed
+									</label>
+									<input id="calf_breed" class="form-control" type="text" name="calf_breed">
+								</div>
+								<div class="form-group">
+									<label for="calf_color" class="col-form-label">
+										Color
+									</label>
+									<input id="calf_color" class="form-control" type="text" name="calf_color">
+								</div>
+								<div class="form-group">
+									<label for="calf_weight" class="col-form-label">
+										Weight
+									</label>
+									<input id="calf_weight" class="form-control" type="number" min="0" name="calf_weight">
+								</div>
+								{% csrf_token %}
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button form="calvingInputForm" type="submit" class="btn btn-primary">Save Record</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="table-responsive">
+							<table id="calvingsTable" class="table table-hover">
+								<thead class="text-center">
+									<tr>
+										<th>Calf Code/Id</th>
+										<th>Calf Name</th>
+										<th>Date of Birth </th>
+										<th>Sex </th>
+										<th>Breed</th>
+										<th>Color</th>
+										<th>Weight</th>
+										<th>Progeny</th>
+										<th>Sire Name</th>
+										<th>Dam Name</th>
+										<th>Calving Interval</th>
+										<th>Dam Age</th>
+										<th>Actions </th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									{% if calving_records_list %}
+									{% for calving_record in calving_records_list %}
+									<script>
+										myStorage = window.sessionStorage;
+										var object =
+										{
+										id: {{ calving_record.ai_record.id }},
+										calf_code: '{{calving_record.calf.id}}',
+										calf_name: '{{calving_record.calf.name}}',
+										calf_color: '{{calving_record.calf.color}}',
+										calf_breed: '{{calving_record.calf.breed}}',
+										calf_weight: {{ calving_record.calf.birth_weight }},
+										calving_date: '{{calving_record.calving_date|date:"Y-m-d"}}',
+										calving_type: '{{calving_record.calving_type}}',
+										calf_sex: '{{calving_record.calf.category}}',
+										}
+										myStorage.setItem('calving_'+ object.id,JSON.stringify(object))
+									</script>
+									<tr data-src="{{calving_record.ai_record.id}}">
+										<td> {{ calving_record.calf.id }} </td>
+										<td> {{ calving_record.calf.name }} </td>
+										<td> {{ calving_record.calf.dob|date:"Y/m/d" }} </td>
+										<td> {{ calving_record.calf.category }} </td>
+										<td> {{ calving_record.calf.breed }} </td>
+										<td> {{ calving_record.calf.color }} </td>
+										<td> {{ calving_record.calf.birth_weight  }} </td>
+										<td> {{ calving_record.progeny  }} </td>
+										<td> {{ calving_record.calf.sire.bull_name }} </td>
+										<td> {{ calving_record.calf.dam.name }} </td>
+										<td> {{ calving_record.calving_interval }} Days </td>
+										{% now 'SHORT_DATE_FORMAT' as current_date %}
+										<td> {{ current_date|minus_dates:calving_record.calf.dam.dob }} days</td>
+										<td>
+											<button type="button" id="calvingEditBtn" data-toggle="modal" data-target="#calvingInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
+												<span class="fa fa-edit"></span>
+											</button>
+											<form id="deleteCalvingForm" method="post"
+											action="{% url 'digitaldairy:delete_calving' %}">
+												{% csrf_token %}
+												<input name="calving_id" type="hidden"
+												value=" {{calving_record.ai_record.id}} ">
+												<button form="deleteCalvingForm" type="button" class='btn btn-sm btn-danger' aria-label="Delete">
+													<span class="fa fa-times"></span>
+												</button>
+											</form>
+										</td>
+									</tr>
+									{% endfor %}
+									{% endif %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

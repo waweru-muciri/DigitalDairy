@@ -1,7 +1,7 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/static/js/service-worker.js', {
-            scope: '/digitaldairy/',
+            scope: '/static/',
         }).then((registration) => {
             console.log('[Service Worker] registered.', registration);
             // return registration.pushManager.getSubscription().then(async function (subscription) {
@@ -206,7 +206,7 @@ $('#milkSaleInputModal').on('show.bs.modal', function (event) {
             milk_sale_id_input = modal.find('input[name=milk_sale_id]')
             milk_sale_id_input[0].value = milk_sale.id
         }
-        modal.find('#client_id').val(milk_sale.client_name)
+        modal.find('#client_id').val(milk_sale.client_id)
         modal.find('#sale_date').val(milk_sale.sale_date)
         modal.find('#sale_quantity').val(milk_sale.sale_quantity)
     }
@@ -252,7 +252,7 @@ $('#milkConsumptionInputModal').on('show.bs.modal', function (event) {
         var milk_consumption = JSON.parse(myStorage.getItem('milk_consumption_' + milk_consumption_id))
         var milk_consumption_id_input = modal.find('input[name=milk_consumption_id]')
         if (milk_consumption_id_input.length == 1) {
-            milk_consumption_id_input.val(weight_record.id)
+            milk_consumption_id_input.val(milk_consumption.id)
         }
         else {
             milk_consumption_id_input = "<input id='milk_consumption_id' type='hidden' class='form-control' name='milk_consumption_id'>";
@@ -261,7 +261,7 @@ $('#milkConsumptionInputModal').on('show.bs.modal', function (event) {
             milk_consumption_id_input.val(milk_consumption.id)
         }
         modal.find('#consumption_date').val(milk_consumption.consumption_date)
-        modal.find('#consumer_id').val(milk_consumption.consumer_name)
+        modal.find('#consumer_id').val(milk_consumption.consumer_id)
         modal.find('#consumed_quantity').val(milk_consumption.consumption_quantity)
     }
     else {

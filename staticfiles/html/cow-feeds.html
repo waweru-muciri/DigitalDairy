@@ -1,0 +1,318 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Animal Feeding {% endblock %}
+{% block content %}
+{% load mathfilters %}
+<section class="container">
+	<ul class="nav nav-tabs">
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-b"> Feed Formulation </a>
+		</li>
+		<li class="nav-link text-center" style="flex:1;">
+			<a data-toggle="tab" href="#section-d"> Feeding Programmes </a>
+		</li>
+	</ul>
+</section>
+<section class="tab-content">
+	<section id="section-b" class="tab-pane fade active show">
+		<div class="row text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+				<h4>
+					Feed Formulations
+				</h4>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+				        data-target="#feedFormulationInputModal">
+	                <span>
+	                    &plus; New Feed Formulation
+	                </span>
+				</button>
+            </div>
+		</div>
+		<div class="modal" id="feedFormulationInputModal" tabindex="-1"
+		     aria-labelledby="feedFormulationInputModalLabel" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="feedFormulationInputModalLabel">
+							New Feed Formulation
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="feedFormulationInputForm" method="post" action="{% url 'digitaldairy:save_feed_formulation' %}">
+						{% csrf_token %}
+							<div class="form-group">
+								<label for="feed_formulation_name" class="col-form-label">
+									Identifier/Name
+								</label>
+								<input id="feed_formulation_name" class="form-control" type="text"
+								name="feed_formulation_name" minlength="2" required>
+							</div>
+							<div class="form-group">
+								<label for="feed_formulation_quantity" class="col-form-label">
+									Feed Formulation Quantity
+								</label>
+								<input id="feed_formulation_quantity" class="form-control" type="number" name="feed_formulation_quantity" min="0" required>
+							</div>
+							<div class="form-group">
+								<label for="feed_item" class="col-form-label">
+									Select Item
+								</label>
+								<select id="feed_item"  class="form-control" name="feed_item" required>
+									<option value="Select Item" disabled selected>Select Item</option>
+									{% if feeds_list %}
+									{% for feed_item in feeds_list %}
+									<option value="{{feed_item.name}}" name="feed_item">
+									{{feed_item.name}} ({{ feed_item.available_stock }})
+									</option>
+									{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="feed_formulation_part_quantity" class="col-form-label">
+									Item Quantity
+								</label>
+								<input id="feed_formulation_part_quantity" class="form-control" type="number" name="feed_formulation_part_quantity" min="0" required>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="feedFormulationInputForm" type="submit" class="btn btn-primary">Save
+							Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="feedingFormulationsTable" class="table table-hover">
+							<thead class="text-center">
+								<tr>
+									<th> # </th>
+									<th> Identifier </th>
+									<th> Quantity </th>
+									<th> Items in Feed Formulation </th>
+									<th> Actions </th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+							{% if feed_formulations_list %}
+							{% for feed_formulation in feed_formulations_list %}
+							<tr data-src="{{ feed_formulation.id }}">
+								<script>
+								myStorage = window.sessionStorage;
+								var object = {
+								id: {{ feed_formulation.id }},
+								quantity: {{ feed_formulation.quantity }},
+								name: '{{feed_formulation.name}}',
+								}
+								myStorage.setItem('feeding_formulation_'+ object.id,JSON.stringify(object))
+							</script>
+								<td> {{ forloop.counter }} </td>
+								<td> {{ feed_formulation.name }} </td>
+								<td> {{ feed_formulation.quantity }} </td>
+								{% with feed_formulation.feedformulationpart_set.all as feed_formulation_item_list %}
+								<td>
+									<table width="100%">
+										<thead class="text-center">
+											<tr>
+												<th>Item Name</th>
+												<th>Quantity</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody class="text-center">
+										{% for feed_item_part in feed_formulation_item_list %}
+											<tr>
+											   <td>
+											        {{ feed_item_part.feed_item.name }}
+											   </td>
+											   <td>
+												   {{ feed_item_part.quantity }}
+											   </td>
+											   <td>
+													<button type="button" id="feedFormulationItemEditBtn"
+													data-toggle="modal" data-target="#feedItemInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
+														<span class="fa fa-edit"></span>
+													</button>
+													<form id="deleteFeedFormulationPartForm" method="post" action="{% url 'digitaldairy:delete_feed_formulation_part' %}">
+				                                        <input name="feed_formulation_part_id" type="hidden" value="{{feed_item_part.id}}">
+				                                        {% csrf_token %}
+				                                        <button form="deleteFeedFormulationPartForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+				                                            <span class="fa fa-times"></span>
+				                                        </button>
+				                                    </form>
+												</td>
+											</tr>
+										{% endfor %}
+										</tbody>
+									</table>
+								</td>
+								{% endwith %}
+								<td>
+									<button type="button" id="feedFormulationEditBtn" data-toggle="modal" data-target="#feedFormulationInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deleteFeedFormulationForm" method="post" action="{% url 'digitaldairy:delete_feed_formulation' %}">
+                                        <input name="feed_formulation_id" type="hidden" value="{{feed_formulation.id}}">
+                                        {% csrf_token %}
+                                        <button form="deleteFeedFormulationForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </form>
+								</td>
+							</tr>
+							{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="section-d" class="tab-pane fade">
+		<div class="row text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+				<h4>
+					Feeding Programmes
+				</h4>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+				        data-target="#feedingProgramInputDialog">
+                <span>
+                    &plus; New Feeding Program
+                </span>
+				</button>
+			</div>
+		</div>
+		<div class="modal" id="feedingProgramInputDialog" tabindex="-1" aria-labelledby="feedingProgramInputDialogLabel" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="feedingProgramInputDialogLabel">
+							Add Feeding Program
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="feedingProgrammeInputForm" method="post">
+							<div class="form-group">
+								<label for="feed_formulation_select" class="col-form-label">
+									Select Feed Formulation
+								</label>
+								<select id="feed_formulation_select"  class="form-control" name="feed_formulation_id" required>
+									<option value="Select Feed Formulation" disabled selected>Select Feed Formulation</option>
+									{% if feed_formulations_list %}
+									{% for feed_formulation in feed_formulations_list %}
+									<option value="{{feed_formulation.id}}"
+									name="feed_formulation_id">{{feed_formulation.name}} ({{ feed_formulation.quantity }})</option>
+									{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="feed_quantity" class="col-form-label">
+									Quantity Per Day
+								</label>
+								<input id="feed_quantity" class="form-control" type="number" name="feed_quantity" min="0" required>
+							</div>
+							<div class="form-group">
+								<label for="feeding_category" class="col-form-label">
+									Feeding Group
+								</label>
+								<select id="feeding_category"  class="form-control" name="feeding_category" required>
+									<option value="Select Group" disabled selected>Select
+										Group</option>
+									<option value="Milker">Milker</option>
+									<option value="Dry">Dry</option>
+									<option value="Steamer">Steamer</option>
+									<option value="Heifer">Heifer</option>
+									<option value="Incalf-Heifer">Incalf Heifer</option>
+									<option value="Calf">Calf</option>
+									<option value="Weaner-1">Weaner 1</option>
+									<option value="Weaner-2">Weaner 2</option>
+									<option value="Weaner-3">Weaner 3</option>
+									<option value="Bull">Bull</option>
+									<option value="Bulling-Calf">Bulling Calf</option>
+									<option value="Yearling">Yearling</option>
+								</select>
+								{% csrf_token %}
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="feedingProgrammeInputForm" type="submit" class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table id="feedingProgrammesTable" class="table table-hover">
+							<thead class="text-center">
+								<tr>
+									<th> # </th>
+									<th> Feed Formulation </th>
+									<th> Quantity </th>
+									<th> Target Group </th>
+									<th> Actions </th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+							{% if feeding_programmes_list %}
+							{% for feeding_programme in feeding_programmes_list %}
+							<script>
+								myStorage = window.sessionStorage;
+								var object = {
+								id: {{ feeding_programme.id }},
+								feed_formulation_id: {{ feeding_programme.feed_formulation.id }},
+								quantity: {{ feeding_programme.quantity }},
+								feeding_category: '{{feeding_programme.feeding_category}}',
+								}
+								myStorage.setItem('feeding_programme_'+ object.id,JSON.stringify(object))
+							</script>
+							<tr data-src="{{ feeding_programme.id }}">
+								<td> {{ forloop.counter }} </td>
+								<td> {{ feeding_programme.feed_formulation.name }} </td>
+								<td> {{feeding_programme.quantity}} </td>
+								<td> {{feeding_programme.feeding_category}} </td>
+								<td>
+									<button type="button" id="feedingProgrammeEditBtn" data-toggle="modal" data-target="#feedingProgramInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
+										<span class="fa fa-edit"></span>
+									</button>
+									<form id="deleteFeedProgrammeForm" method="post"
+									action="{% url 'digitaldairy:delete_feeding_programme' %}">
+                                        <input name="feeding_programme_id" type="hidden"
+                                        value="{{feeding_programme.id}}">
+                                        {% csrf_token %}
+                                        <button form="deleteFeedProgrammeForm" type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </form>
+								</td>
+							</tr>
+							{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+{% endblock %}
