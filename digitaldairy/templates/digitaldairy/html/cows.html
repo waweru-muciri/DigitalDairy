@@ -16,7 +16,6 @@
 		sire_id: '{{cow.sire.id}}',
 		cow_dam: '{{cow.dam}}',
 		cow_category: '{{cow.category}}',
-		cow_status: '{{cow.status}}',
 		birth_weight: {{cow.birth_weight}},
 		cow_group: '{{cow.group}}',
 		cow_source: '{{cow.source}}',
@@ -137,12 +136,6 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="status" class="col-form-label">
-								Status
-							</label>
-							<input id="status" class="form-control" type="text" name="status">
-						</div>
-						<div class="form-group">
 							<label for="group" class="col-form-label">
 								Group
 							</label>
@@ -152,7 +145,7 @@
 							<label for="birth_weight" class="col-form-label">
 								Birth Weight
 							</label>
-							<input id="birth_weight" class="form-control"  type="number" name="birth_weight" min="0">
+							<input id="birth_weight" class="form-control"  type="number" name="birth_weight" min="0" step="0.01">
 						</div>
 						<div class="form-group">
 							<label for="source" class="col-form-label">

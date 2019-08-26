@@ -1,19 +1,1189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" description="'November', 'December']," line="1039" />
+    <bookmark url="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" description="'November', 'December']," line="1057" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b32f645-0ab8-4a1a-9249-5ae14e29c707" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LearningDjango/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/LearningDjango/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/abortions.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/abortions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calf-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calf-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-feeds.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-feeds.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/daily-feeding.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/daily-feeding.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/pregnancy-diagnosis.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/pregnancy-diagnosis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/weight-recording.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/weight-recording.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/buttons.print.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/dataTables.bootstrap4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/dataTables.buttons.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/jquery.dataTables.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/digitaldairy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/autocomplete.781713f30664.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/autocomplete.781713f30664.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/autocomplete.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/autocomplete.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/base.94893682937c.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/base.ae33e6383baa.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/base.ae33e6383baa.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/base.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/changelists.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/changelists.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/changelists.f6dc691f8d62.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/changelists.f6dc691f8d62.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/dashboard.7ac78187c567.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/dashboard.7ac78187c567.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/dashboard.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/fonts.168bab448fee.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/fonts.168bab448fee.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/fonts.cc6140298ba7.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/fonts.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/fonts.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/forms.31b2f650d92e.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/forms.31b2f650d92e.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/forms.8e9f67423063.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/forms.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/forms.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/login.252ffabd6548.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/login.252ffabd6548.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/login.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive.3a465780d49f.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive.3a465780d49f.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive_rtl.51c7445ceeff.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive_rtl.51c7445ceeff.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive_rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/responsive_rtl.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/rtl.30f903442dc5.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/rtl.30f903442dc5.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/rtl.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.7cf1de939f3b.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.7cf1de939f3b.md.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.md.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.3805311d5fc1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.3805311d5fc1.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.min.d44571114a90.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/vendor/select2/select2.min.d44571114a90.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/widgets.5e372b41c483.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/widgets.5e372b41c483.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/widgets.a7251c097987.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/widgets.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/css/widgets.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/LICENSE.d273d63619c9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/LICENSE.d273d63619c9.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/LICENSE.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/README.ab99e6b541ea.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/README.ab99e6b541ea.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/README.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Bold-webfont.50d75e48e0a3.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Bold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Light-webfont.c73eb1ceba33.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Light-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Regular-webfont.35b07eb2f871.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/fonts/Roboto-Regular-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/LICENSE.2c54f4e1ca1c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/LICENSE.2c54f4e1ca1c.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/LICENSE.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/README.a70711a38d87.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/README.a70711a38d87.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/README.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/calendar-icons.39b290681a8b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/calendar-icons.39b290681a8b.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/calendar-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/calendar-icons.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_off.7a23bf31ef8a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_off.7a23bf31ef8a.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_off.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_on.0047eba25b67.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_on.0047eba25b67.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/gis/move_vertex_on.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-addlink.d519b3bab011.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-addlink.d519b3bab011.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-addlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-addlink.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-alert.034cc7d8a67f.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-alert.034cc7d8a67f.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-alert.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-alert.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-calendar.ac7aea671bea.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-calendar.ac7aea671bea.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-calendar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-calendar.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-changelink.18d2fd706348.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-changelink.18d2fd706348.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-changelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-changelink.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-clock.e1d4dfac3f2b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-clock.e1d4dfac3f2b.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-clock.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-clock.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-deletelink.564ef9dc3854.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-deletelink.564ef9dc3854.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-deletelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-deletelink.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-no.439e821418cd.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-no.439e821418cd.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-no.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-no.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown-alt.81536e128bb6.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown-alt.81536e128bb6.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown-alt.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown-alt.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown.a18cb4398978.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown.a18cb4398978.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-unknown.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-viewlink.41eb31f7826e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-viewlink.41eb31f7826e.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-viewlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-viewlink.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-yes.d2f9f035226a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-yes.d2f9f035226a.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-yes.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/icon-yes.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/inline-delete.fec1b761f254.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/inline-delete.fec1b761f254.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/inline-delete.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/inline-delete.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/search.7cf54ff789c6.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/search.7cf54ff789c6.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/search.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/selector-icons.b4555096cea2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/selector-icons.b4555096cea2.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/selector-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/selector-icons.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/sorting-icons.3a097b59f104.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/sorting-icons.3a097b59f104.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/sorting-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/sorting-icons.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-add.e59d620a9742.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-add.e59d620a9742.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-add.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-add.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-arrowright.bbfb788a849e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-arrowright.bbfb788a849e.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-arrowright.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/img/tooltag-arrowright.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectBox.b49f008d186b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectBox.b49f008d186b.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectBox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectBox.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectFilter2.32ea9335ce47.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectFilter2.32ea9335ce47.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectFilter2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/SelectFilter2.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.2fb8e8349c22.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.2fb8e8349c22.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.min.5fa8cb0403f1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.min.5fa8cb0403f1.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/actions.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/DateTimeShortcuts.c085703ffd82.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/DateTimeShortcuts.c085703ffd82.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/DateTimeShortcuts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/DateTimeShortcuts.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/RelatedObjectLookups.ea0683bea064.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/RelatedObjectLookups.ea0683bea064.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/RelatedObjectLookups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/admin/RelatedObjectLookups.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/autocomplete.cfd2c4dc8981.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/autocomplete.cfd2c4dc8981.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/autocomplete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/autocomplete.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/calendar.aae57adab5f6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/calendar.aae57adab5f6.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/calendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/calendar.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/cancel.d6b4b556c3aa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/cancel.d6b4b556c3aa.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/cancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/cancel.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/change_form.9e85003a1a38.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/change_form.9e85003a1a38.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/change_form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/change_form.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.1007b1686bfd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.1007b1686bfd.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.min.d4e905d48000.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.min.d4e905d48000.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/collapse.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/core.9c3bce7d1006.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/core.9c3bce7d1006.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/core.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/core.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.3b3fb199b064.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.3b3fb199b064.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.min.4d23f8660b21.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.min.4d23f8660b21.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/inlines.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/jquery.init.95b62fa19378.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/jquery.init.95b62fa19378.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/jquery.init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/jquery.init.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/popup_response.6ce3197f8fc8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/popup_response.6ce3197f8fc8.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/popup_response.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/popup_response.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.2f90da7170ec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.2f90da7170ec.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.min.85fd5e0fb706.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.min.85fd5e0fb706.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate_init.0d3b53c37074.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate_init.0d3b53c37074.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate_init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/prepopulate_init.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/timeparse.51258861a46a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/timeparse.51258861a46a.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/timeparse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/timeparse.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/urlify.4087f3e18796.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/urlify.4087f3e18796.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/urlify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/urlify.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/LICENSE.a158210a2737.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/LICENSE.a158210a2737.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/LICENSE.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.6a07da9fae93.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.6a07da9fae93.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.min.a09e13ee94d5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.min.a09e13ee94d5.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/jquery/jquery.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/LICENSE.7cf1de939f3b.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/LICENSE.7cf1de939f3b.md.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/LICENSE.md.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ar.a8bb27ec698c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ar.a8bb27ec698c.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ar.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/az.498dc667b34e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/az.498dc667b34e.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/az.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/bg.89cba4df3c86.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/bg.89cba4df3c86.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/bg.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ca.2eaad4eb1950.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ca.2eaad4eb1950.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ca.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/cs.a68bcd293adc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/cs.a68bcd293adc.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/cs.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/da.cbf897a0ae53.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/da.cbf897a0ae53.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/da.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/de.366d0aacb55f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/de.366d0aacb55f.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/de.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/el.5629ce65500f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/el.5629ce65500f.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/el.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/en.05649b26c086.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/en.05649b26c086.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/en.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/es.dc9dbf9d65df.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/es.dc9dbf9d65df.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/es.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/et.c3953fb90b6b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/et.c3953fb90b6b.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/et.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/eu.11b925456433.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/eu.11b925456433.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/eu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/eu.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fa.98e52839b583.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fa.98e52839b583.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fa.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fi.659847deefdc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fi.659847deefdc.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fi.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fr.b06a3340de45.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fr.b06a3340de45.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/fr.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/gl.78a87f7c0a51.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/gl.78a87f7c0a51.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/gl.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/he.222d90ee0344.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/he.222d90ee0344.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/he.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hi.116a90b7111b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hi.116a90b7111b.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hi.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hr.e1d2c70b4df5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hr.e1d2c70b4df5.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hr.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hu.db45641f10b2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hu.db45641f10b2.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/hu.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/id.6ee6c9c64b94.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/id.6ee6c9c64b94.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/id.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/is.808c7d47acb5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/is.808c7d47acb5.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/is.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/is.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/it.bae1661dbb77.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/it.bae1661dbb77.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/it.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ja.19cf1ce8a03d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ja.19cf1ce8a03d.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ja.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/km.6074a9c5575c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/km.6074a9c5575c.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/km.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/km.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ko.74b17541834f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ko.74b17541834f.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ko.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ko.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lt.a0783b1bd159.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lt.a0783b1bd159.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lt.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lv.07fe2a580d17.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lv.07fe2a580d17.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/lv.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/mk.4986d7fc3ff3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/mk.4986d7fc3ff3.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/mk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/mk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ms.23e7b4369579.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ms.23e7b4369579.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ms.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nb.137e184004aa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nb.137e184004aa.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nb.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nl.c363ace8aa05.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nl.c363ace8aa05.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/nl.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pl.76465b54a6b0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pl.76465b54a6b0.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pl.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt-BR.9efbbac4fda8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt-BR.9efbbac4fda8.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt-BR.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt.5d6ccc53b347.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt.5d6ccc53b347.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/pt.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ro.1ddc2b9980dc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ro.1ddc2b9980dc.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ro.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ru.d83609abf2e0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ru.d83609abf2e0.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/ru.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sk.a0f1a818d092.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sk.a0f1a818d092.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.2f3047aad49e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.2f3047aad49e.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr.157bc6eb978e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr.157bc6eb978e.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sr.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sv.2b21bb3f6110.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sv.2b21bb3f6110.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/sv.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/th.2a4ece4c4355.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/th.2a4ece4c4355.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/th.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/tr.c1925d8817db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/tr.c1925d8817db.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/tr.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/uk.3d56f311192d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/uk.3d56f311192d.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/uk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/vi.3520aa7bdea8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/vi.3520aa7bdea8.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/vi.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-CN.419002d3c6c1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-CN.419002d3c6c1.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-CN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-CN.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-TW.c021537edf2c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-TW.c021537edf2c.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/i18n/zh-TW.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.a95323cb4760.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.a95323cb4760.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.min.da607360bcc6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.min.da607360bcc6.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/select2/select2.full.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/LICENSE.d64cecf4f157.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/LICENSE.d64cecf4f157.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/LICENSE.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.1865b1cf5085.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.1865b1cf5085.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.min.c95393b8ca4d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.min.c95393b8ca4d.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/admin/js/vendor/xregexp/xregexp.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.29a167266801.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.29a167266801.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css.252fc8f161d2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css.252fc8f161d2.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.6ba2de34dbaa.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.6ba2de34dbaa.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css.88911562570a.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css.88911562570a.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-grid.min.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.7dc6d49bddb5.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.7dc6d49bddb5.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css.6898152aff34.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css.6898152aff34.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.4e5593337250.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.4e5593337250.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css.0d44c2c533fc.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css.0d44c2c533fc.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap-reboot.min.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.0f87da57f192.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.0f87da57f192.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css.baebc743a8e9.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css.baebc743a8e9.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.450fc463b8b1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.450fc463b8b1.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css.d35c9e55233c.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css.d35c9e55233c.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/css/bootstrap.min.css.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.448c34a56d69.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.89889688147b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.89889688147b.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.e18bbf611f2a.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.e18bbf611f2a.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.f4769f9bdb74.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.fa2772327f55.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.6866f102282d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.6866f102282d.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js.61b82bbc09dd.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js.61b82bbc09dd.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.js.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.98d2c1da1c0a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.98d2c1da1c0a.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js.91b4eb2e34d3.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js.91b4eb2e34d3.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.d810a38ca278.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.d810a38ca278.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js.a9071a2bbefe.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js.a9071a2bbefe.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.js.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.14d449eb8876.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.14d449eb8876.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js.331c9bac5363.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js.331c9bac5363.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/bootstrap-4.0.0-dist/js/bootstrap.min.js.map.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/all.1dd64bee5d3c.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/all.1dd64bee5d3c.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/all.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/all.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/all.daca74d9bf8b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/buttons.dataTables.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/buttons.dataTables.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/buttons.dataTables.min.e6cea0e64f5a.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/buttons.dataTables.min.e6cea0e64f5a.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/dataTables.min.2b00ab9c394b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/dataTables.min.2b00ab9c394b.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/dataTables.min.a90c1390403e.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/dataTables.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/dataTables.min.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.5159a5d89abe.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.5159a5d89abe.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-BoldItalic.ee425cc83f37.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-BoldItalic.ee425cc83f37.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-BoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.dc4c7cbc44c8.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.dc4c7cbc44c8.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLightItalic.71efb00c2fc4.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLightItalic.71efb00c2fc4.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Light.29047654270f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Light.29047654270f.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-LightItalic.453b2bbf7ad0.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-LightItalic.453b2bbf7ad0.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-LightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ee83103a4a77.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ee83103a4a77.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-MediumItalic.eb7dadea8e7c.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-MediumItalic.eb7dadea8e7c.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-MediumItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.c02b4dc6554c.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.c02b4dc6554c.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-RegularItalic.40bbef08ca6f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-RegularItalic.40bbef08ca6f.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-RegularItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-RegularItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.1ca9107e7544.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.1ca9107e7544.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBoldItalic.25178032f9e8.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBoldItalic.25178032f9e8.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.969246a285e7.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.969246a285e7.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ThinItalic.984c6ee79e11.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ThinItalic.984c6ee79e11.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/IBMPlexSans-ThinItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/OFL.5c7bb1d9d37e.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/OFL.5c7bb1d9d37e.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/IBM_Plex_Sans/OFL.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Black.e3242149669b.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Black.e3242149669b.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Black.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BlackItalic.59a08c761852.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BlackItalic.59a08c761852.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BlackItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BlackItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Bold.a3b387c93882.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Bold.a3b387c93882.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Bold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BoldItalic.215a9e631fb4.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BoldItalic.215a9e631fb4.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-BoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBold.e375c6fe9bbe.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBold.e375c6fe9bbe.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBoldItalic.9b9e2f4637ef.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBoldItalic.9b9e2f4637ef.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLight.94603128108f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLight.94603128108f.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLight.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLightItalic.f9ab30a63e11.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLightItalic.f9ab30a63e11.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Light.2f354053d1c9.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Light.2f354053d1c9.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Light.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-LightItalic.3eb3e9207469.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-LightItalic.3eb3e9207469.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-LightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Medium.0098f804fc2d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Medium.0098f804fc2d.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Medium.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-MediumItalic.97573fc844f3.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-MediumItalic.97573fc844f3.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-MediumItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Regular.a8a117360e71.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Regular.a8a117360e71.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Regular.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-RegularItalic.b0cf52e5f2f3.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-RegularItalic.b0cf52e5f2f3.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-RegularItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-RegularItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBold.bbcd5bbb5993.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBold.bbcd5bbb5993.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBoldItalic.9b5089e2084e.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBoldItalic.9b5089e2084e.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Thin.b50f5872459e.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Thin.b50f5872459e.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-Thin.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ThinItalic.5ba39d1f3eea.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ThinItalic.5ba39d1f3eea.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/Montserrat-ThinItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/OFL.5da468cc0e20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/OFL.5da468cc0e20.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Montserrat/OFL.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/OFL.3b9d30de0142.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/OFL.3b9d30de0142.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/OFL.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Black.c0c229f908a9.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Black.c0c229f908a9.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Black.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BlackItalic.b922be80b91d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BlackItalic.b922be80b91d.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BlackItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BlackItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Bold.922cb3bc86ec.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Bold.922cb3bc86ec.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Bold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BoldItalic.8161b4565324.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BoldItalic.8161b4565324.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-BoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBold.c1c9dae06c12.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBold.c1c9dae06c12.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBoldItalic.aa7152bfd462.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBoldItalic.aa7152bfd462.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLight.eddcc9ade226.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLight.eddcc9ade226.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLight.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLightItalic.841e0fb52a5f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLightItalic.841e0fb52a5f.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ExtraLightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Light.fcac2dd0845b.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Light.fcac2dd0845b.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Light.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-LightItalic.bb1f0d6733b7.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-LightItalic.bb1f0d6733b7.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-LightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Medium.28bc024aa316.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Medium.28bc024aa316.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Medium.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-MediumItalic.225c1b756eb2.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-MediumItalic.225c1b756eb2.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-MediumItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Regular.dd1aed50244d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Regular.dd1aed50244d.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Regular.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-RegularItalic.77d795b8314c.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-RegularItalic.77d795b8314c.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-RegularItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-RegularItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBold.5bb3128376ff.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBold.5bb3128376ff.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBoldItalic.aa2a78e72980.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBoldItalic.aa2a78e72980.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-SemiBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Thin.ca29a3f58721.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Thin.ca29a3f58721.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-Thin.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ThinItalic.75d7187df71e.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ThinItalic.75d7187df71e.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Poppins/Poppins-ThinItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/OFL.52a45f434f9a.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/OFL.52a45f434f9a.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/OFL.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Black.3469d4a9bf3b.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Black.3469d4a9bf3b.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Black.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BlackItalic.d506ea2c17e7.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BlackItalic.d506ea2c17e7.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BlackItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BlackItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Bold.2f99a85426a4.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Bold.2f99a85426a4.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Bold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BoldItalic.51e9eba593a9.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BoldItalic.51e9eba593a9.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-BoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBold.75ea7efd0237.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBold.75ea7efd0237.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBoldItalic.0e4347b8f79d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBoldItalic.0e4347b8f79d.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLight.3d4b8bcd55b8.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLight.3d4b8bcd55b8.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLight.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLightItalic.f01d3d975d04.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLightItalic.f01d3d975d04.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ExtraLightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Light.353ea0a0ae70.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Light.353ea0a0ae70.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Light.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-LightItalic.635f3af3f498.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-LightItalic.635f3af3f498.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-LightItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Medium.818653e12968.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Medium.818653e12968.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Medium.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-MediumItalic.97885780bc74.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-MediumItalic.97885780bc74.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-MediumItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Regular.84abe14c9756.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Regular.84abe14c9756.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Regular.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-RegularItalic.e97be495a4a4.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-RegularItalic.e97be495a4a4.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-RegularItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-RegularItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBold.6ec58d1ea836.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBold.6ec58d1ea836.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBold.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBoldItalic.1bf952d52783.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBoldItalic.1bf952d52783.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-SemiBoldItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Thin.c791c1700119.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Thin.c791c1700119.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-Thin.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ThinItalic.7310c614dc18.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ThinItalic.7310c614dc18.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/fonts/Raleway/Raleway-ThinItalic.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/landing-page.5dc13d505d6d.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/landing-page.5dc13d505d6d.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/landing-page.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/landing-page.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/normalize.112272e51c80.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/normalize.112272e51c80.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/normalize.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/normalize.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/styles.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/styles.d8f1aaadcc25.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/css/styles.d8f1aaadcc25.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/abortions.cc5f22ce3412.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/abortions.cc5f22ce3412.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/abortions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/abortions.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/ai-records.1204292f33bc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/ai-records.1204292f33bc.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/ai-records.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/ai-records.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-alerts.c8655caddd79.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-alerts.c8655caddd79.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-alerts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-alerts.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-statistics.aef1c597b86c.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-statistics.aef1c597b86c.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-statistics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/breeding-statistics.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calf-management.4fd984ec17c4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calf-management.4fd984ec17c4.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calf-management.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calf-management.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calving.bb0ae259c87f.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calving.bb0ae259c87f.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calving.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/calving.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-consumers.553e42d36010.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-consumers.553e42d36010.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-consumers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-consumers.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-statements.9b2dc8a30b3a.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-statements.9b2dc8a30b3a.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-statements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/clients-statements.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/common-header.c5eeceaf454f.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/common-header.c5eeceaf454f.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/common-header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/common-header.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/consumers-statements.d23d33c7f174.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/consumers-statements.d23d33c7f174.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/consumers-statements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/consumers-statements.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-feeds.8705391c9dba.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-feeds.8705391c9dba.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-feeds.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-feeds.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-health.a4e9dd7069bc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-health.a4e9dd7069bc.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-health.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-health.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-insurance.c8f33aa2f65c.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-insurance.c8f33aa2f65c.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-insurance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-insurance.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-milk-production-history.c3106c3620e3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-milk-production-history.c3106c3620e3.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-milk-production-history.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-milk-production-history.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-profile.0de04e62095a.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-profile.0de04e62095a.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-profile.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-sales.62c874de25b1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-sales.62c874de25b1.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-sales.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cow-sales.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cows.461eeefd4517.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cows.461eeefd4517.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cows.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/cows.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/daily-feeding.83104aafa139.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/daily-feeding.83104aafa139.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/daily-feeding.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/daily-feeding.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deaths-autopsies.1757d7a781d3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deaths-autopsies.1757d7a781d3.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deaths-autopsies.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deaths-autopsies.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deworming.8a3d09f68a5f.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deworming.8a3d09f68a5f.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deworming.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/deworming.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/diseases.c634a6abc215.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/diseases.c634a6abc215.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/diseases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/diseases.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/employees-page.ed28217c8626.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/employees-page.ed28217c8626.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/employees-page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/employees-page.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/expenses.63f747cfc586.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/expenses.63f747cfc586.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/expenses.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/expenses.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/feed-items.10fbfca31631.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/feed-items.10fbfca31631.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/feed-items.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/feed-items.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/health-statistics.bfcab5085a3d.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/health-statistics.bfcab5085a3d.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/health-statistics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/health-statistics.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/income.4b725a583c27.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/income.4b725a583c27.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/income.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/income.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/index.2a1fb6ab378b.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/index.2a1fb6ab378b.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/index.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/lactation-milk-production.d9e47256db50.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/lactation-milk-production.d9e47256db50.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/lactation-milk-production.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/lactation-milk-production.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/landing-page.2a76eb5c66f5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/landing-page.2a76eb5c66f5.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/landing-page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/landing-page.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/login.5e31ef2300e8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/login.5e31ef2300e8.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/login.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/manifest.995cb3d8020e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/manifest.995cb3d8020e.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/manifest.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production-statistics.7ec4343001a5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production-statistics.7ec4343001a5.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production-statistics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production-statistics.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production.14f441542458.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production.14f441542458.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-production.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales-statistics.9e5915fe07d6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales-statistics.9e5915fe07d6.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales-statistics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales-statistics.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales.8ba7d55512ff.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales.8ba7d55512ff.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk-sales.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk_sales_payments.34ea787099fc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk_sales_payments.34ea787099fc.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk_sales_payments.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/milk_sales_payments.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/monthly-milk-production.7473160857ec.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/monthly-milk-production.7473160857ec.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/monthly-milk-production.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/monthly-milk-production.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/pregnancy-diagnosis.5b8aa408255c.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/pregnancy-diagnosis.5b8aa408255c.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/pregnancy-diagnosis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/pregnancy-diagnosis.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/semen-catalog.2b8fec44fd87.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/semen-catalog.2b8fec44fd87.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/semen-catalog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/semen-catalog.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/user-profile.5b02a4b6ede4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/user-profile.5b02a4b6ede4.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/user-profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/user-profile.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/vaccinations.038c09e80619.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/vaccinations.038c09e80619.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/vaccinations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/vaccinations.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/weight-recording.dcd831796464.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/weight-recording.dcd831796464.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/weight-recording.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/html/weight-recording.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cow-treatments.cf988330ad27.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cow-treatments.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cows-2.38fc10906aaa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cows-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cows-3.9fc9d78229ec.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/cows-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.ce9d83a57aa6.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.ce9d83a57aa6.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.da0f46d286b5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy1.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.3d03d003938f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.b160e55a5639.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.b160e55a5639.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy2.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy3.a82ca70cab69.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy4.f564aac08685.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/digital-dairy4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy128.27d84ed316e1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy128.27d84ed316e1.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy128.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy128.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy144.48c0afd463b7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy144.48c0afd463b7.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy144.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy144.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy152.fab06cf743a3.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy152.fab06cf743a3.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy152.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy152.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy192.6afa41475dce.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy192.6afa41475dce.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy192.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy192.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy256.c4f5d9a74add.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy256.c4f5d9a74add.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy256.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy256.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy512.3c86abaef10c.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy512.3c86abaef10c.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy512.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/icons/digital_dairy512.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_asc.9326ad44ae4b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_asc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_asc_disabled.d7dc10c78f23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_asc_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_both.9a6486086d09.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_both.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_desc.1fc418e33fd5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_desc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_desc_disabled.bda51e15154a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/images/sort_desc_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/jQuery/jquery.220afd743d9e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/jQuery/jquery.220afd743d9e.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/jQuery/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/jQuery/jquery.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/buttons.print.min.d1d9e41d99e7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/buttons.print.min.d1d9e41d99e7.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/buttons.print.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/buttons.print.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/chart.js@2.8.0.b235b564de9c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/chart.js@2.8.0.b235b564de9c.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/chart.js@2.8.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/chart.js@2.8.0.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.bootstrap4.min.b63fdeeb4941.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.bootstrap4.min.b63fdeeb4941.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.bootstrap4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.bootstrap4.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.buttons.min.6cfa09baa20e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.buttons.min.6cfa09baa20e.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.buttons.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/dataTables.buttons.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index.dcfbf8bce448.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index.dcfbf8bce448.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index1.627ed591cdfb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index1.627ed591cdfb.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/index1.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/jquery.dataTables.min.68e14434ba09.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/jquery.dataTables.min.68e14434ba09.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/jquery.dataTables.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/jquery.dataTables.min.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/service-worker.2f58cb1086bb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/service-worker.2f58cb1086bb.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/service-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/js/service-worker.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/staticfiles.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +1196,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26967">
-              <caret line="904" column="5" selection-start-line="904" selection-start-column="4" selection-end-line="904" selection-end-column="5" />
+            <state relative-caret-position="37656">
+              <caret line="1578" column="15" selection-start-line="1578" selection-start-column="15" selection-end-line="1578" selection-end-column="15" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -36,19 +1206,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
+        <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+            <state relative-caret-position="5544">
+              <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
+        <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="135" column="19" selection-start-line="135" selection-start-column="19" selection-end-line="135" selection-end-column="19" />
+            <state relative-caret-position="447">
+              <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,36 +1238,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selected</find>
-      <find>milkPaymentsInputModal</find>
-      <find>milkSales</find>
-      <find>MilkSales</find>
-      <find>payment</find>
-      <find>milk_sales_payments</find>
-      <find>milk_sale</find>
-      <find>milk_sales</find>
-      <find>save_consumptio</find>
-      <find>MilkSalesP</find>
-      <find>save_milk_c</find>
-      <find>milkConsu</find>
-      <find>exp</find>
-      <find>income</find>
-      <find>save_income</find>
-      <find>save_exp</find>
-      <find>save_i</find>
-      <find>save</find>
-      <find>save_milk</find>
-      <find>daily_milk_prod</find>
-      <find>milk_production_history</find>
-      <find>consumer</find>
-      <find>save_client</find>
-      <find>save_milk_sale</find>
-      <find>delete_client</find>
-      <find>clients_stat</find>
       <find>var selected</find>
       <find>milkC</find>
       <find>milkSale</find>
       <find>#</find>
+      <find>milkSaleP</find>
+      <find>milk_sale_payment</find>
+      <find>milk_sales_payment</find>
+      <find>vaccination</find>
+      <find>save_cow_death</find>
+      <find>delete_semen</find>
+      <find>milk_sales_payments</find>
+      <find>daily_milk</find>
+      <find>userpr</find>
+      <find>payments</find>
+      <find>milk_payme</find>
+      <find>milk_sale</find>
+      <find>milk_sales</find>
+      <find>input type=&quot;</find>
+      <find>type=&quot;number&quot;</find>
+      <find>milk_payments</find>
+      <find>cow_status</find>
+      <find>datetime.strp</find>
+      <find>save_milk_con</find>
+      <find>save_milk_consumption</find>
+      <find>MilkSales</find>
+      <find>save_cow</find>
+      <find>document.</find>
+      <find>Cow</find>
+      <find>save_milk_sale</find>
+      <find>UserProfile</find>
     </findStrings>
     <replaceStrings>
       <replace>expenseInputModal</replace>
@@ -138,57 +1311,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/staticfiles/html/cow-insurance.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/cow-sales.806415c00c4e.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/cow-feeds.fea244314643.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/common-header.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/ai-records.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calf-management.html" />
-        <option value="$PROJECT_DIR$/staticfiles/html/deaths.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/user-profile.html" />
         <option value="$PROJECT_DIR$/digitaldairy/admin.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/monthly-milk-production.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales-statistics.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/breeding-statistics.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/manifest.json" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/icons/digital_dairy128.svg" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-milk-production-history.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/diseases.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" />
         <option value="$PROJECT_DIR$/digitaldairy/urls.py" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" />
         <option value="$PROJECT_DIR$/digitaldairy/migrations/0002_milksales.py" />
         <option value="$PROJECT_DIR$/digitaldairy/migrations/0003_auto_20190815_2008.py" />
-        <option value="$PROJECT_DIR$/digitaldairy/models.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumers-statements.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_reset_complete.html" />
         <option value="$PROJECT_DIR$/templates/registration/password_reset_email.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" />
-        <option value="$PROJECT_DIR$/digitaldairy/views.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/all.css" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css" />
-        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
         <option value="$PROJECT_DIR$/LearningDjango/settings.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/pregnancy-diagnosis.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-feeds.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/weight-recording.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/abortions.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-consumers.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calf-management.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/employees-page.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/income.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/daily-feeding.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-profile.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/feed-items.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales-statistics.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css" />
+        <option value="$PROJECT_DIR$/digitaldairy/views.py" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
+        <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/models.py" />
       </list>
     </option>
   </component>
@@ -204,6 +1377,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,12 +1399,22 @@
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
               <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
-              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
               <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
-              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
@@ -241,7 +1425,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -345,10 +1528,10 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.30418536" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.2167414" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.47250858" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49925262" visible="true" weight="0.9347079" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.9348199" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -364,10 +1547,10 @@
     <layout-to-restore>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.30418536" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.2167414" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.47250858" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.9347079" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.9348199" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -426,20 +1609,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/calving.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="178" column="99" lean-forward="true" selection-start-line="178" selection-start-column="99" selection-end-line="178" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-insurance.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -517,25 +1686,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11592">
-          <caret line="433" column="66" selection-start-line="433" selection-start-column="66" selection-end-line="433" selection-end-column="66" />
-          <folding>
-            <element signature="n#style#0;n#section#6;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/digital-dairy1.svg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/icons/digital_dairy128.svg">
       <provider selected="true" editor-type-id="images" />
@@ -554,45 +1706,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="34" column="78" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="74" column="48" selection-start-line="74" selection-start-column="48" selection-end-line="74" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -659,16 +1776,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/migrations/0002_milksales.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="27" selection-end-column="12" />
-          <folding>
-            <marker date="1565889052535" expanded="true" signature="262:1047" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/migrations/0002_milksales.py" />
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/clients-statements.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -718,33 +1826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="69" lean-forward="true" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2171">
-          <caret line="179" selection-start-line="179" selection-end-line="179" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26967">
-          <caret line="904" column="5" selection-start-line="904" selection-start-column="4" selection-end-line="904" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LearningDjango/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -755,26 +1836,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/staticfiles/staticfiles.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="47" lean-forward="true" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/staticfiles.json" />
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/all.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -782,17 +1844,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="135" column="19" selection-start-line="135" selection-start-column="19" selection-end-line="135" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/semen-catalog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="807">
+          <caret line="134" column="80" selection-start-line="134" selection-start-column="64" selection-end-line="134" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/vaccinations.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-281">
+          <caret line="86" column="45" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/landing-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11328">
+          <caret line="427" column="74" lean-forward="true" selection-start-line="427" selection-start-column="74" selection-end-line="427" selection-end-column="74" />
+          <folding>
+            <element signature="n#style#0;n#section#6;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-sales.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="200" column="64" lean-forward="true" selection-start-line="200" selection-start-column="64" selection-end-line="200" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2645">
+          <caret line="136" column="30" selection-start-line="136" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk_sales_payments.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="168" selection-start-line="168" selection-end-line="169" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="39" column="54" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="54" />
+          <folding>
+            <element signature="e#1414#1419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="881" column="62" lean-forward="true" selection-start-line="881" selection-start-column="62" selection-end-line="881" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37656">
+          <caret line="1578" column="15" selection-start-line="1578" selection-start-column="15" selection-end-line="1578" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5544">
+          <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

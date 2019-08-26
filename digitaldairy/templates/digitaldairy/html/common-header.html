@@ -26,7 +26,7 @@
 	<link href="{% static 'css/buttons.dataTables.min.css' %}" rel="stylesheet" />
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
-	<title>{% block title %} {% endblock %}</title>
+	<title>{% block title %} {% endblock %} {{ user.profile.farm_name}}</title>
 </head>
 
 <body>
@@ -69,7 +69,7 @@
 								Customers</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{% url 'digitaldairy:milk_sales' %}">Daily Sales</a>
+							<a class="dropdown-item" href="{% url 'digitaldairy:milk_sales' %}">Daily Sales & Consumption</a>
 						</li>
 						<li>
 							<a class="dropdown-item" href="{% url 'digitaldairy:clients_statements' %}">Clients
@@ -195,9 +195,6 @@
 							<a class="dropdown-item" href="{% url 'digitaldairy:expenses' %}">Daily Expenses</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">Farm Finance Statistics</a>
-						</li>
-						<li>
 							<a class="dropdown-item" href="{% url 'digitaldairy:employees' %}">Employees List &amp;
 								Payroll</a>
 						</li>
@@ -232,11 +229,11 @@
 	<script src="{% static 'js/chart.js@2.8.0.js' %}"></script>
 	<!-- Bootstrap js -->
 	<script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}"></script>
-	<script src="{% static 'js/index.js' %}"></script>
-	<!-- DataTables js -->
-	<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
-	<script src="{% static 'js/dataTables.buttons.min.js' %}"></script>
-	<script src="{% static 'js/buttons.print.min.js' %}"></script>
+	 <!--DataTables js-->
+	<script type="text/javascript" src="{% static 'js/pdfmake.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/vfs_fonts.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>

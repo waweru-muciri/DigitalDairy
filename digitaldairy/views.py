@@ -91,8 +91,9 @@ def daily_milk_production(request):
 			total_previous_day_milk_p =  sum((cow_previous_day_milk_p.am_quantity,cow_previous_day_milk_p.noon_quantity, cow_previous_day_milk_p.pm_quantity))
 		else:
 			total_previous_day_milk_p = 0
-		totals_list.append({'cow':milk_p.cow_id,'gain':(cow_day_milk_production_total - total_previous_day_milk_p) })
-	day_and_previous_day_totals_sorted = sorted(totals_list, key=lambda x:x['gain'], reverse=True)
+		difference = cow_day_milk_production_total - total_previous_day_milk_p
+		totals_list.append({'cow':milk_p.cow_id, 'difference': difference})
+	day_and_previous_day_totals_sorted = sorted(totals_list, key=lambda x:x['difference'], reverse=True)
 	# get all cows to pass on to the template
 	all_cows = Cow.objects.all().values()
 	# get all milk targets
@@ -143,10 +144,8 @@ def monthly_milk_production(request):
 	# calculate total selected month milk quantity
 	total_selected_month_milk_quantity = sum([selected_month_milk_production.get('am_quantity')+ selected_month_milk_production.get('noon_quantity') + selected_month_milk_production.get('pm_quantity') for selected_month_milk_production in selected_month_milk_production_list.values()])
 	# group month milk production by cow by sorting first
-	selected_month_milk_production_list = sorted(selected_month_milk_production_list,
-	                                             key=lambda x:x.cow_id.id)
-	previous_month_milk_production_list = sorted(previous_month_milk_production_list,
-	                                             key=lambda x:x.cow_id.id)
+	selected_month_milk_production_list = sorted(selected_month_milk_production_list, key=lambda x:x.cow_id.id)
+	previous_month_milk_production_list = sorted(previous_month_milk_production_list, key=lambda x:x.cow_id.id)
 	milk_production_list = []
 	previous_month_milk_production_dict = {}
 	for key, group in itertools.groupby(previous_month_milk_production_list, lambda x: x.cow_id.id):
@@ -867,7 +866,7 @@ def clients_statements(request):
 	else:
 		referenced_client = clients_list[0] if clients_list.count() > 1 else None
 	milk_sales_list = MilkSales.objects.filter(date__gte=sales_from_date, date__lte=sales_to_date,client=referenced_client)
-	milk_sales_payments_list = MilkSalesPayments.objects.filter(from_date__gte=sales_from_date, to_date__lte=sales_to_date, client=referenced_client)
+	milk_sales_payments_list = MilkSalesPayments.objects.filter(milk_sale_date__gte=sales_from_date, milk_sale_date__lte=sales_to_date, client=referenced_client)
 	total_sales_value = sum([milk_sale.quantity * milk_sale.unit_price for milk_sale in milk_sales_list])
 	total_quantity_sold = sum([milk_sale.quantity for milk_sale in milk_sales_list])
 	total_milk_sales_payments = sum([milk_sales_payment.amount_paid for milk_sales_payment in milk_sales_payments_list])
@@ -1125,6 +1124,10 @@ def milk_sales_payments(request):
 	if request.method == 'GET':
 		month = request.GET.get('month')
 		year = request.GET.get('year')
+		if year is None:
+			year = request.session.get('year')
+		if month is None:
+			month = request.session.get('month')
 		if year is not None:
 			try:
 				year = int(year)
@@ -1172,24 +1175,31 @@ def milk_sales_payments(request):
 	elif request.method == 'POST':
 		# get information from the post object
 		milk_sales_payment_id = request.POST.get('milk_sale_payment_id')
-		client_id = request.POST.get('client_id')
+		client_id = request.POST['client_id']
 		referenced_client = get_object_or_404(Clients, pk=client_id)
 		date_of_payment = request.POST.get('payment_date')
-		from_date = request.POST.get('from_date')
-		to_date = request.POST.get('to_date')
+		milk_sale_date = request.POST.get('milk_sale_date')
+		if milk_sale_date is not None:
+			try:
+				milk_sale_date = datetime.datetime.strptime(milk_sale_date, '%Y-%m-%d')
+			except ValueError:
+				return
+		else:
+			return 
 		amount_paid = request.POST.get('amount_paid')
 		# add information to payment instance
 		milk_sales_payment = MilkSalesPayments()
 		milk_sales_payment.id = milk_sales_payment_id
 		milk_sales_payment.date_of_payment = date_of_payment
-		milk_sales_payment.from_date = from_date
-		milk_sales_payment.to_date = to_date
+		milk_sales_payment.milk_sale_date = milk_sale_date
 		milk_sales_payment.client = referenced_client
 		milk_sales_payment.amount_paid = amount_paid
 		# save the instance
 		milk_sales_payment.save()
 		# save selected client in session
-		request.session['client_id'] = referenced_client.name
+		request.session['client_id'] = referenced_client.id
+		request.session['month'] = milk_sale_date.month
+		request.session['year'] = milk_sale_date.year
 		return HttpResponseRedirect(reverse("digitaldairy:milk_sales_payments"))
 
 
@@ -1246,15 +1256,9 @@ def save_milk_sale(request):
 	sale_date = request.POST.get('sale_date')
 	quantity = request.POST.get('sale_quantity')
 	client = get_object_or_404(Clients, pk=client_id)
-	milk_sale = MilkSales()
-	milk_sale.id = milk_sale_id
-	milk_sale.client = client
-	milk_sale.date = sale_date
-	milk_sale.quantity = quantity
-	milk_sale.unit_price = client.unit_price
+	_milk_sale_to_save, _created = MilkSales.objects.update_or_create(client=client,date=sale_date,defaults={'quantity': quantity, 'unit_price': client.unit_price})
 	# save milk_sale_date in session
 	request.session['milk_sale_date'] = sale_date
-	milk_sale.save()
 	return HttpResponseRedirect(reverse('digitaldairy:milk_sales'))
 
 
@@ -1345,12 +1349,7 @@ def save_milk_consumption(request):
 	consumer = get_object_or_404(Consumers, pk=consumer_name)
 	quantity = request.POST.get('consumed_quantity')
 	consumption_date = request.POST.get('consumption_date')
-	milk_consumption = MilkConsumptions()
-	milk_consumption.id = milk_consumption_id
-	milk_consumption.consumer = consumer
-	milk_consumption.date = consumption_date
-	milk_consumption.quantity = quantity
-	milk_consumption.save()
+	_milk_consumption_to_save, _created = MilkConsumptions.objects.update_or_create(consumer=consumer, date=consumption_date, defaults={'quantity': quantity})
 	request.session['milk_sale_date'] = consumption_date
 	return HttpResponseRedirect(reverse('digitaldairy:milk_sales'))
 
@@ -1416,9 +1415,10 @@ def save_cow_deworming_record(request):
 @require_http_methods(['POST'])
 def save_cow_vaccination_record(request):
 	vaccination_id = request.POST.get('vaccination_id')
-	cow_id = request.POST.get('cow_id')
+	cow_id = request.POST['cow_id']
+	print(cow_id)
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
-	vaccination_date = request.POST.get('vaccination_date')
+	vaccination_date = request.POST['vaccination_date']
 	vaccine = request.POST.get('vaccine')
 	vaccination_cost = request.POST.get('vaccination_cost')
 	next_vaccination_date = request.POST.get('next_vaccination_date')
@@ -1438,9 +1438,10 @@ def save_cow_vaccination_record(request):
 def save_cow_death_record(request):
 	cow_id = request.POST['cow_id']
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
-	death_date = request.POST.get('death_date')
+	death_date = request.POST['death_date']
 	autopsy_date = request.POST.get('autopsy_date')
 	death_cause = request.POST.get('death_cause')
+	referenced_cow.status = 'Inactive'
 	created_record, created = Deaths.objects \
 		.update_or_create(cow=referenced_cow, defaults={
 		'death_date': death_date,
@@ -1563,9 +1564,8 @@ def save_cow(request):
 	sire_id = request.POST.get('sire_id').strip()
 	dam_id = request.POST.get('dam')
 	category = request.POST.get('category')
-	status = request.POST.get('status')
 	source = request.POST.get('source')
-	cow_to_save = Cow(id=cow_id, group=group, name=cow_name, birth_weight=birth_weight, breed=breed, dob=date_of_birth, grade=grade, source= source, lactations=lactations, status=status, category=category, color=color)
+	cow_to_save = Cow(id=cow_id, group=group, name=cow_name, birth_weight=birth_weight, breed=breed, dob=date_of_birth, grade=grade, source= source, lactations=lactations, category=category, color=color)
 	if dam_id is not None and len(dam_id) > 1:
 		dam = get_object_or_404(Cow, pk=dam_id)
 		cow_to_save.dam = dam

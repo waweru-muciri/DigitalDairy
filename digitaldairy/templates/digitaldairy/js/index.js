@@ -1,67 +1,68 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/js/service-worker.js', {
-            scope: '/static/',
-        }).then((registration) => {
-            console.log('[Service Worker] registered.', registration);
-            // return registration.pushManager.getSubscription().then(async function (subscription) {
-            //     //registration part
-            //     if (subscription) {
-            //         return subscription;
-            //     } else {
-            //         // const response = await fetch('./vapidPublicKey');
-            //         // const vapidPublicKey = await response.text();
-            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
-            //         // return registration.pushManager.subscribe({
-            //         //     userVisibleOnly: true,
-            //         //     applicationServerKey: convertedVapidKey
-            //         // });
-            //     }
-            // });
-        }, /*catch*/(error) => {
-            console.log('[Service Worker] registration failed:', error);
-        }).then((subscription) => {
-            console.log('[Service Worker] subscription ' + subscription)
-            //subscription part
-            //send subscription details as JSON to the server using fetch
-            // fetch('./register', {
-            //     method: 'post',
-            //     headers: {
-            //         'Content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ subscription: subscription })
-            // });
-        });
-        //request to show notifications when the user requests it by creating /// a button
-        var button = document.getElementById('notifications-button');
-        if (button) {
-            button.addEventListener('click', function (event) {
-                Notification.requestPermission().then((result) => {
-                    if (result === 'granted') {
-                        randomNotification();
-                    }
-                });
-            });
-        }
-        function randomNotification() {
-            var randomItem = Math.floor(Math.random() * 1000);
-            var notifTitle = 'Notification Title';
-            var notifBody = 'Created by Brian Muciri';
-            var notifImg = ''
-            var options = {
-                body: notifBody,
-                icon: notifImg,
-            }
-            var notif = new Notification(notifTitle, options);
-            setTimeout(randomNotification, 30000);
-        }
-    });
-}
-else {
-    console.log('Service workers are not supported.');
-}
+//if ('serviceWorker' in navigator) {
+//    window.addEventListener('load', () => {
+//        navigator.serviceWorker.register('/static/js/service-worker.js', {
+//            scope: '/static/',
+//        }).then((registration) => {
+//            console.log('[Service Worker] registered.', registration);
+//            // return registration.pushManager.getSubscription().then(async function (subscription) {
+//            //     //registration part
+//            //     if (subscription) {
+//            //         return subscription;
+//            //     } else {
+//            //         // const response = await fetch('./vapidPublicKey');
+//            //         // const vapidPublicKey = await response.text();
+//            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+//            //         // return registration.pushManager.subscribe({
+//            //         //     userVisibleOnly: true,
+//            //         //     applicationServerKey: convertedVapidKey
+//            //         // });
+//            //     }
+//            // });
+//        }, /*catch*/(error) => {
+//            console.log('[Service Worker] registration failed:', error);
+//        }).then((subscription) => {
+//            console.log('[Service Worker] subscription ' + subscription)
+//            //subscription part
+//            //send subscription details as JSON to the server using fetch
+//            // fetch('./register', {
+//            //     method: 'post',
+//            //     headers: {
+//            //         'Content-type': 'application/json'
+//            //     },
+//            //     body: JSON.stringify({ subscription: subscription })
+//            // });
+//        });
+//        //request to show notifications when the user requests it by creating /// a button
+//        var button = document.getElementById('notifications-button');
+//        if (button) {
+//            button.addEventListener('click', function (event) {
+//                Notification.requestPermission().then((result) => {
+//                    if (result === 'granted') {
+//                        randomNotification();
+//                    }
+//                });
+//            });
+//        }
+//        function randomNotification() {
+//            var randomItem = Math.floor(Math.random() * 1000);
+//            var notifTitle = 'Notification Title';
+//            var notifBody = 'Created by Brian Muciri';
+//            var notifImg = ''
+//            var options = {
+//                body: notifBody,
+//                icon: notifImg,
+//            }
+//            var notif = new Notification(notifTitle, options);
+//            setTimeout(randomNotification, 30000);
+//        }
+//    });
+//}
+//else {
+//    console.log('Service workers are not supported.');
+//}
 
-var postUrl = 'https://digitaldairy.herokuapp.com';
+//var postUrl = 'https://digitaldairy.herokuapp.com';
+var postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
@@ -232,7 +233,7 @@ $('#milkPaymentsInputModal').on('show.bs.modal', function (event) {
             milk_sale_payment_id_input = modal.find('input[name=milk_sale_payment_id]')
             milk_sale_payment_id_input.val(milk_payment.id)
         }
-        modal.find('#client_id').val(milk_payment.client_name)
+        modal.find('#client_id').val(milk_payment.client_id)
         modal.find('#payment_date').val(milk_payment.date_of_payment)
         modal.find('#from_date').val(milk_payment.from_date)
         modal.find('#to_date').val(milk_payment.to_date)
@@ -292,7 +293,6 @@ $('#cowInputModal').on('show.bs.modal', function (event) {
         modal.find('#sire_id').val(cow.cow_sire)
         modal.find('#dam').val(cow.cow_dam)
         modal.find('#category').val(cow.cow_category)
-        modal.find('#status').val(cow.cow_status)
         modal.find('#birth_weight').val(cow.birth_weight)
         modal.find('#group').val(cow.cow_group)
         modal.find('#source').val(cow.cow_source)
@@ -860,15 +860,34 @@ $('#cowBodyTraitsInputModal').on('show.bs.modal', function (event) {
 setPagination = function (tablesToAddPaginationTo) {
     tablesToAddPaginationTo.forEach(function (table) {
         $(table).DataTable({
+            "processing": true,
+            "columnDefs": [
+                {
+                    "targets": ':contains(Actions)',
+                    "visible": true,
+                    "searchable": false
+                },
+            ],
             dom: 'Bfrtip',
             buttons: [
-                'print'
-            ]
+	            {
+	                extend: 'print',
+	                exportOptions: {
+		                columns: ':not(:contains(Actions))'
+		            }
+	            },
+	            {
+	                extend: 'excel',
+	                exportOptions: {
+		                columns: ':not(:contains(Actions))'
+		            }
+	            },
+	        ],
         });
     });
 }
 $(document).ready(function () {
-    // select values passed to the client from the server 
+    // select values passed to the client from the server
     var selectedMonth = window.month;
     var selectedYear = window.year;
     var selectedClient = window.client;

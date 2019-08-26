@@ -17,17 +17,23 @@ class UserProfile(models.Model):
 	def __str__(self):
 		return self.user.username
 
+
 def create_profile(sender, **kwargs):
 	if kwargs['created']:
 		UserProfile.objects.create(user=kwargs['instance'])
 
 
+def save_profile(sender, instance, **kwargs):
+	instance.profile.save()
+
+
 post_save.connect(create_profile, sender=User)
+post_save.connect(save_profile, sender=User)
 
 
 class SemenRecords(models.Model):
 	id = models.AutoField(primary_key=True)
-	bull_code = models.CharField(max_length=100)
+	bull_code = models.CharField(max_length=100, db_index=True)
 	bull_name = models.CharField(max_length=100, blank=True)
 	bull_breed = models.CharField(max_length=100, blank=True, default='')
 	num_of_straws = models.DecimalField(max_digits=10, default=0, decimal_places=2)
@@ -52,7 +58,7 @@ class Cow(models.Model):
 	sire = models.ForeignKey(SemenRecords, related_name="cow_sire", null=True, on_delete=models.SET_NULL)
 	dam = models.ForeignKey('self', related_name="cow_dam", null=True, on_delete=models.SET_NULL)
 	group = models.CharField(max_length=30, blank=True, default='')
-	status = models.CharField(max_length=30, blank=True, default='Open')
+	status = models.CharField(max_length=30, blank=True, default='Active')
 	birth_weight = models.DecimalField(default=0, null=True, decimal_places=2, max_digits=10)
 	category = models.CharField(max_length=30, default="Heifer", choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'), ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'), ('Calf', 'Calf'), ( 'Weaner',  'Weaner'), ('Weaner 1', 'Weaner 1'), ('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ( 'Yearling',  'Yearling'),('Bulling', 'Bulling'), ('Bull', 'Bull')])
 	source = models.CharField(max_length=50, blank=True, default='')
@@ -306,14 +312,13 @@ class MilkSalesPayments(models.Model):
 	client = models.ForeignKey(Clients,on_delete=models.CASCADE)
 	amount_paid = models.DecimalField(max_digits=20, null=True, default=0, decimal_places=2)
 	date_of_payment = models.DateField()
-	from_date = models.DateField()
-	to_date = models.DateField()
+	milk_sale_date = models.DateField()
 
 	@property
 	def balance(self):
-		milk_sales_within_dates = MilkSales.objects.filter(date__gte=self.from_date, date__lte=self.to_date, client=self.client)
-		total_milk_sales = sum([milk_sale.quantity * milk_sale.client.unit_price for milk_sale in milk_sales_within_dates])
-		return total_milk_sales - self.amount_paid
+		milk_sales_for_date = MilkSales.objects.filter(date=self.milk_sale_date, client=self.client)
+		total_milk_sale = sum([milk_sale.quantity * milk_sale.unit_price for milk_sale in milk_sales_for_date])
+		return total_milk_sale - self.amount_paid
 
 	class Meta:
 		db_table = 'milk_sales_payments'

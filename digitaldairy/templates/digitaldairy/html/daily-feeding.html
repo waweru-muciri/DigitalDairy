@@ -69,7 +69,7 @@
                             <label for="feed_formulation_quantity" class="col-form-label">
                                 Quantity
                             </label>
-                            <input id="feed_formulation_quantity" class="form-control" type="number" name="feed_formulation_quantity" min="0">
+                            <input id="feed_formulation_quantity" class="form-control" type="number" step="0.01" name="feed_formulation_quantity" min="0">
                         </div>
                         {% csrf_token %}
                     </form>

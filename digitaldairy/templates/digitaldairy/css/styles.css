@@ -6,13 +6,10 @@
     font-weight: 400;
 }
 **/
-.navbar-nav .dropdown-menu{
-	background-color: inherit;
+.navbar-collapse .navbar-nav{
+	flex-basis: 100%;
+	justify-content: space-evenly;
 }
-.dropdown-item{
-	color: #fff;
-}
-
 .sf-html-block{
     padding: 16px;
 }

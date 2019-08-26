@@ -44,7 +44,7 @@
 							<label for="cow_id" class="col-form-label">
 								Select Cow
 							</label>
-							<select required id="cow_id" class="form-control" name="cow_id">
+							<select id="cow_id" class="form-control" name="cow_id" required>
 								<option value="cow_id" disabled selected="selected">Select cow</option>
 									{% if all_cows %}
 									{% for cow in all_cows %}
@@ -64,7 +64,7 @@
 							<label for="vaccination_cost" class="col-form-label">
 								Cost (Kshs)
 							</label>
-							<input id="vaccination_cost" class="form-control" type="number" name="vaccination_cost">
+							<input id="vaccination_cost" class="form-control" type="number" name="vaccination_cost" step="0.01">
 						</div>
 						<div class="form-group">
 							<label for="next_vaccination_date" class="col-form-label">
@@ -82,9 +82,9 @@
 		</div>
 	</div>
 	<div class="">
-		<div style="width:100%;" class="row">
+		<div class="row">
 			<div class="col-lg-12">
-				<div class="table-responsive" style="overflow:auto;">
+				<div class="table-responsive">
 					<table id="cowVaccinationsTable" class="table table-hover">
 						<thead class="text-center">
 							<tr>

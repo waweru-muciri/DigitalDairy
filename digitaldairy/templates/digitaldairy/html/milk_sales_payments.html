@@ -21,7 +21,7 @@
 						<option value="client_id" disabled selected>Select Client</option>
 						{% if clients_list %}
 						{% for client in clients_list %}
-						<option value="{{ client.name }}" name="client_id"> {{ client.name }} </option>
+						<option value="{{ client.id }}" name="client_id"> {{ client.name }} </option>
 						{% endfor %}
 						{% endif %}
 					</select>
@@ -31,7 +31,7 @@
 						<script>
 							var month = {{ selected_month_date| date:'m' }};
 							var year = {{ selected_month_date| date:'Y' }};
-							var client = "{{ client }}";
+							var client = {% if client.id %} {{ client.id }} {% else %} {{ client }} {% endif %}
 						</script>
 						<option value="1">January</option>
 						<option value="2">February</option>
@@ -79,26 +79,20 @@
 							<input id="payment_date" class="form-control" type="date" name="payment_date" required>
 						</div>
 						<div class="form-group">
-							<label for="from_date" class="col-form-label">
-								From Date
+							<label for="milk_sale_date" class="col-form-label">
+								Milk Sale Date
 							</label>
-							<input id="from_date" class="form-control" type="date" name="from_date" required>
-						</div>
-						<div class="form-group">
-							<label for="to_date" class="col-form-label">
-								To Date
-							</label>
-							<input id="to_date" class="form-control" type="date" name="to_date" required>
+							<input id="milk_sale_date" class="form-control" type="date" name="milk_sale_date" required>
 						</div>
 						<div class="form-group">
 							<label for="client_id" class="col-form-label">
 								Select Client
 							</label>
-							<select id="client_id" class="form-control" name="client_id">
+							<select id="client_id" class="form-control" name="client_id" required>
 								<option value="client_id" disabled selected>Select Client</option>
 								{% if clients_list %}
 								{% for client in clients_list %}
-								<option value="{{ client.name }}" name="client_id"> {{ client.name }} </option>
+								<option value="{{ client.id }}" name="client_id"> {{ client.name }} </option>
 								{% endfor %}
 								{% endif %}
 							</select>
@@ -107,7 +101,7 @@
 							<label for="amount_paid" class="col-form-label">
 								Amount
 							</label>
-							<input id="amount_paid" class="form-control" type="number" name="amount_paid" min="0" required>
+							<input id="amount_paid" class="form-control" type="number" name="amount_paid" min="0" step="0.01" required>
 						</div>
 					</form>
 				</div>
@@ -128,7 +122,7 @@
 						<div class="row">
 							<div class="col-lg-6 col-sm-12 col-md-6 text-center">
 								 <p> Client:
-									 <span class="badge badge-info">{{client}} </span>
+									 <span class="badge badge-info">{% if client.id %} {{ client.name }} {% else %} {{ client }} {% endif %} </span>
 								 </p>
 								 <p>Total Quantity Sold:
 									 <span class="badge badge-info">{{total_quantity_sold}} </span>
@@ -159,8 +153,7 @@
 								<th> # </th>
 								<th> Client Name</th>
 								<th> Date of Payment </th>
-								<th> From Date </th>
-								<th> To Date </th>
+								<th> Milk Sale Date </th>
 								<th> Amount Paid (Ksh) </th>
 								<th> Balance (Ksh) </th>
 								<th> Actions </th>
@@ -174,7 +167,7 @@
 									myStorage = window.sessionStorage;
 									var object = {
 									id: {{milk_payment.id}},
-									client_name: '{{milk_payment.client.name}}',
+									client_id: {{milk_payment.client.id}},
 									date_of_payment:'{{ milk_payment.date_of_payment|date:"Y-m-d" }}',
 									 to_date:'{{ milk_payment.to_date|date:"Y-m-d" }}',
 									 from_date:'{{ milk_payment.from_date|date:"Y-m-d" }}',
@@ -185,8 +178,7 @@
 								<td> {{ forloop.counter }} </td>
 								<td> {{ milk_payment.client.name }} </td>
 								<td> {{ milk_payment.date_of_payment }} </td>
-								<td> {{ milk_payment.from_date }} </td>
-								<td> {{ milk_payment.to_date }} </td>
+								<td> {{ milk_payment.milk_sale_date }} </td>
 								<td> {{ milk_payment.amount_paid }}</td>
 								<td> {{	milk_payment.balance }}</td>
 								<td>
