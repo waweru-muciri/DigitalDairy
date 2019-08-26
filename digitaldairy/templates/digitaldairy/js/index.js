@@ -1,68 +1,67 @@
-//if ('serviceWorker' in navigator) {
-//    window.addEventListener('load', () => {
-//        navigator.serviceWorker.register('/static/js/service-worker.js', {
-//            scope: '/static/',
-//        }).then((registration) => {
-//            console.log('[Service Worker] registered.', registration);
-//            // return registration.pushManager.getSubscription().then(async function (subscription) {
-//            //     //registration part
-//            //     if (subscription) {
-//            //         return subscription;
-//            //     } else {
-//            //         // const response = await fetch('./vapidPublicKey');
-//            //         // const vapidPublicKey = await response.text();
-//            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
-//            //         // return registration.pushManager.subscribe({
-//            //         //     userVisibleOnly: true,
-//            //         //     applicationServerKey: convertedVapidKey
-//            //         // });
-//            //     }
-//            // });
-//        }, /*catch*/(error) => {
-//            console.log('[Service Worker] registration failed:', error);
-//        }).then((subscription) => {
-//            console.log('[Service Worker] subscription ' + subscription)
-//            //subscription part
-//            //send subscription details as JSON to the server using fetch
-//            // fetch('./register', {
-//            //     method: 'post',
-//            //     headers: {
-//            //         'Content-type': 'application/json'
-//            //     },
-//            //     body: JSON.stringify({ subscription: subscription })
-//            // });
-//        });
-//        //request to show notifications when the user requests it by creating /// a button
-//        var button = document.getElementById('notifications-button');
-//        if (button) {
-//            button.addEventListener('click', function (event) {
-//                Notification.requestPermission().then((result) => {
-//                    if (result === 'granted') {
-//                        randomNotification();
-//                    }
-//                });
-//            });
-//        }
-//        function randomNotification() {
-//            var randomItem = Math.floor(Math.random() * 1000);
-//            var notifTitle = 'Notification Title';
-//            var notifBody = 'Created by Brian Muciri';
-//            var notifImg = ''
-//            var options = {
-//                body: notifBody,
-//                icon: notifImg,
-//            }
-//            var notif = new Notification(notifTitle, options);
-//            setTimeout(randomNotification, 30000);
-//        }
-//    });
-//}
-//else {
-//    console.log('Service workers are not supported.');
-//}
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/js/service-worker.js', {
+            scope: '/static/',
+        }).then((registration) => {
+            console.log('[Service Worker] registered.', registration);
+            // return registration.pushManager.getSubscription().then(async function (subscription) {
+            //     //registration part
+            //     if (subscription) {
+            //         return subscription;
+            //     } else {
+            //         // const response = await fetch('./vapidPublicKey');
+            //         // const vapidPublicKey = await response.text();
+            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+            //         // return registration.pushManager.subscribe({
+            //         //     userVisibleOnly: true,
+            //         //     applicationServerKey: convertedVapidKey
+            //         // });
+            //     }
+            // });
+        }, /*catch*/(error) => {
+            console.log('[Service Worker] registration failed:', error);
+        }).then((subscription) => {
+            console.log('[Service Worker] subscription ' + subscription)
+            //subscription part
+            //send subscription details as JSON to the server using fetch
+            // fetch('./register', {
+            //     method: 'post',
+            //     headers: {
+            //         'Content-type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ subscription: subscription })
+            // });
+        });
+        //request to show notifications when the user requests it by creating /// a button
+        var button = document.getElementById('notifications-button');
+        if (button) {
+            button.addEventListener('click', function (event) {
+                Notification.requestPermission().then((result) => {
+                    if (result === 'granted') {
+                        randomNotification();
+                    }
+                });
+            });
+        }
+        function randomNotification() {
+            var randomItem = Math.floor(Math.random() * 1000);
+            var notifTitle = 'Notification Title';
+            var notifBody = 'Created by Brian Muciri';
+            var notifImg = ''
+            var options = {
+                body: notifBody,
+                icon: notifImg,
+            }
+            var notif = new Notification(notifTitle, options);
+            setTimeout(randomNotification, 30000);
+        }
+    });
+}
+else {
+    console.log('Service workers are not supported.');
+}
 
-//var postUrl = 'https://digitaldairy.herokuapp.com';
-var postUrl = 'http://127.0.0.1:8000';
+var postUrl = 'https://digitaldairy.herokuapp.com';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
