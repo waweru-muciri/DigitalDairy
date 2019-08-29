@@ -62,7 +62,7 @@ else {
 }
 
 var postUrl = 'https://digitaldairy.herokuapp.com';
-var postUrl = 'http://127.0.0.1:8000';
+//var postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
