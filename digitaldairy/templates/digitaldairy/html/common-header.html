@@ -26,7 +26,7 @@
 	<link href="{% static 'css/buttons.dataTables.min.css' %}" rel="stylesheet" />
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
-	<title>{% block title %} {% endblock %} {{ user.profile.farm_name}}</title>
+	<title>{% block title %} {% endblock %} - {{ user.userprofile.farm_name}}</title>
 </head>
 
 <body>
@@ -205,10 +205,10 @@
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="listitem" aria-expanded="false" aria-haspopup="true" href="#">Welcome , {{user.username}}</a>
 					<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
 						<li>
-							<a class="dropdown-item" href="#">Account Profile</a>
+							<a class="dropdown-item" href="{% url 'accounts:profile' %}">Account Profile</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Log Out</a>
+							<a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
 						</li>
 					</ul>
 				</li>

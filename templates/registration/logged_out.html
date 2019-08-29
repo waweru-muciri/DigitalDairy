@@ -1,5 +1,8 @@
 {% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Digital Dairy Cattle Management Software {% endblock %}
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+  <div class="text-center">
+    <p class="alert alert-success">Logged out!</p>
+    <a href="{% url 'login' %}">Login to DigitalDairy?</a>
+  </div>
 {% endblock %}

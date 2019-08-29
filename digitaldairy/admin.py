@@ -1,5 +1,5 @@
 from django.contrib import admin
-from digitaldairy.models import UserProfile
+from accounts.models import UserProfile
 
 # Register your models here.
 admin.site.register(UserProfile)

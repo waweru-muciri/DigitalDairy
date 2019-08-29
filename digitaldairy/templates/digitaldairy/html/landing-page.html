@@ -1,5 +1,5 @@
 {% extends "digitaldairy/html/index.html" %}
-{% block title %} Digital Dairy Cattle Management Software {% endblock %}
+{% block title %} DigitalDairy Cattle Management Software {% endblock %}
 {% block content %}
 {% load static %}
 <section id="about" class="pb-0">
@@ -359,9 +359,8 @@
 								<ul class="list-unstyled u-fw-600 u-lh-2 u-mt-30">
 									<li><i class="text-primary mr-2">&#x2714;</i>Professional and easy-to-use
 										software</li>
-									<li><i class="text-primary mr-2">&#x2714;</i>Setup and installations takes
-										ten
-										minutes</li>
+									<li><i class="text-primary mr-2">&#x2714;</i>Setup and installations takes less than
+										ten minutes</li>
 									<li><i class="text-primary mr-2">&#x2714;</i>Perfect for any device with
 										pixel-perfect design</li>
 								</ul>
@@ -383,11 +382,11 @@
 									health modules etc and use them in the management of farm activities.
 								</p>
 								<ul class="list-unstyled u-fw-600 u-lh-2 u-mt-30">
-									<li><i class="fa fa-check text-primary mr-2"></i>Unlimited access to the
+									<li><i class="text-primary mr-2">&#x2714;</i>Unlimited access to the
 										platform</li>
-									<li><i class="fa fa-check text-primary mr-2"></i>Easily accessible from anywhere
+									<li><i class="text-primary mr-2">&#x2714;</i>Easily accessible from anywhere
 										in the world</li>
-									<li><i class="fa fa-check text-primary mr-2"></i>Support when you need it</li>
+									<li><i class="text-primary mr-2">&#x2714;</i>Support when you need it</li>
 								</ul>
 							</div> <!-- END col-md-6 -->
 						</div> <!-- END row-->
@@ -407,17 +406,12 @@
 					Get the power to manage your farm like never before
 				</h3>
 				<div class="u-h-4 u-w-50 bg-white rounded u-mb-70 mx-auto"></div>
-				{% if form.errors %}
-				<div class="text-center alert alert-danger">
-					{% for error in form.errors %}
-					<p> {{error}} </p>
-					{% endfor %}
-				</div>
-				{% endif %}
-				{% if form.success_messages %}
-				<div class="text-center alert alert-success">
-					{% for success_message in form.success_messages %}
-					<p class="text-center alert alert-success"> {{success_message}} </p>
+				{% if messages %}
+				<div class="text-center">
+					{% for message in messages %}
+					{% if message.tags %}
+					<p class="alert alert-{{message.tags}}"> {{message}} </p>
+					{% endif %}
 					{% endfor %}
 				</div>
 				{% endif %}

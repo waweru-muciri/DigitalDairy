@@ -1,34 +1,22 @@
 from django.db import models
 from django.urls import reverse
 import datetime
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 
 # Create your models here.
 
+animal_choices = [('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'), ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'), ('Calf', 'Calf'), ('Weaner', 'Weaner'), ('Weaner 1', 'Weaner 1'),('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ('Yearling', 'Yearling'), ('Bulling', 'Bulling'), ('Bull', 'Bull')]
 
-class UserProfile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	phone_number = models.CharField(max_length=12)
-	client_address = models.CharField(max_length=100, blank=True, default='')
-	farm_name = models.CharField(max_length=100, blank=True, default='')
-	farm_location = models.CharField(max_length=100, blank=True, default='')
+cow_grade_choices = [('PEDIGREE', 'PEDIGREE'), ('APPENDIX', 'APPENDIX'), ('POOL', 'POOL'), ('INTERMEDIATE', 'INTERMEDIATE'), ('FOUNDATION', 'FOUNDATION')]
 
-	def __str__(self):
-		return self.user.username
+pregnancy_diagnosis_result_choices = [('Positive', 'Positive'), ('Negative', 'Negative'), ('Unconfirmed', 'Unconfirmed'), ('Failed', 'Failed')]
 
+calving_status_choices = [("Not Yet", "Not Yet"), ("Calved", "Calved"),("Miscarriaged", "Miscarriaged"), ("Aborted", "Aborted")]
 
-def create_profile(sender, **kwargs):
-	if kwargs['created']:
-		UserProfile.objects.create(user=kwargs['instance'])
+calving_type_choices =[('Single', 'Single'), ('Twin', 'Twin')]
 
+abortion_or_miscarriage_choices = [('Miscarriage', 'Miscarriage'), ('Abortion', 'Abortion')]
 
-def save_profile(sender, instance, **kwargs):
-	instance.profile.save()
-
-
-post_save.connect(create_profile, sender=User)
-post_save.connect(save_profile, sender=User)
+inbreeding_choices = [("True", "True"),("False", "False")]
 
 
 class SemenRecords(models.Model):
@@ -51,7 +39,7 @@ class Cow(models.Model):
 	id = models.CharField(primary_key=True, max_length=100)
 	name = models.CharField(max_length=100)
 	lactations = models.IntegerField(null=True, default=0)
-	grade = models.CharField(max_length=30, blank=True, default='PEDIGREE', choices=[('PEDIGREE', 'PEDIGREE'), ('APPENDIX', 'APPENDIX'), ('POOL', 'POOL'), ('INTERMEDIATE', 'INTERMEDIATE'), ('FOUNDATION','FOUNDATION')])
+	grade = models.CharField(max_length=30, blank=True, default='PEDIGREE', choices=cow_grade_choices)
 	breed = models.CharField(max_length=30, blank=True, default='')
 	color = models.CharField(max_length=30, blank=True, default='')
 	dob = models.DateField()
@@ -60,7 +48,7 @@ class Cow(models.Model):
 	group = models.CharField(max_length=30, blank=True, default='')
 	status = models.CharField(max_length=30, blank=True, default='Active')
 	birth_weight = models.DecimalField(default=0, null=True, decimal_places=2, max_digits=10)
-	category = models.CharField(max_length=30, default="Heifer", choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'), ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'), ('Calf', 'Calf'), ( 'Weaner',  'Weaner'), ('Weaner 1', 'Weaner 1'), ('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ( 'Yearling',  'Yearling'),('Bulling', 'Bulling'), ('Bull', 'Bull')])
+	category = models.CharField(max_length=30, default="Heifer", choices=animal_choices)
 	source = models.CharField(max_length=50, blank=True, default='')
 
 	def get_absolute_url(self):
@@ -181,8 +169,12 @@ class MilkProductions(models.Model):
 	noon_quantity = models.DecimalField(decimal_places =2, null=True, default=0, max_digits=10)
 	pm_quantity = models.DecimalField(decimal_places =2, null=True, default=0, max_digits=10)
 
+	@property
+	def total(self):
+		return self.am_quantity + self.noon_quantity + self.pm_quantity
+
 	def __str__(self):
-		return str(self.am_quantity + self.noon_quantity + self.pm_quantity)
+		return str(sum([self.am_quantity, self.noon_quantity, self.pm_quantity]))
 
 	class Meta:
 		unique_together = [['milk_date', 'cow_id']]
@@ -334,7 +326,7 @@ class AiRecords(models.Model):
 	vet_name = models.CharField(max_length=100, blank=True, default='')
 	open_days = models.IntegerField(null=True, default=0)
 	repeats = models.IntegerField(null=True, default=0)
-	inbreeding = models.CharField(max_length=5, default="False",choices=[("True", "True"),("False", "False")])
+	inbreeding = models.CharField(max_length=5, default="False",choices=inbreeding_choices)
 	first_heat_check_date = models.DateField(null=True)
 	second_heat_check_date = models.DateField(null=True)
 	drying_date = models.DateField(null=True)
@@ -343,8 +335,8 @@ class AiRecords(models.Model):
 	pregnancy_diagnosis_date = models.DateField(null=True)
 	pregnancy_diagnosis_cost = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	pregnancy_diagnosis_vet_name = models.CharField(max_length=100, blank=True, default='')
-	pregnancy_diagnosis_result = models.CharField(max_length=20, default="Unconfirmed", choices=[('Positive', 'Positive'), ('Negative', 'Negative'), ('Unconfirmed', 'Unconfirmed'), ('Failed', 'Failed')])
-	calving_status = models.CharField(max_length=100, default="Not Yet", choices=[("Not Yet", "Not Yet"), ("Calved", "Calved"),("Miscarriaged", "Miscarriaged"), ("Aborted","Aborted")])
+	pregnancy_diagnosis_result = models.CharField(max_length=20, default="Unconfirmed", choices=pregnancy_diagnosis_result_choices)
+	calving_status = models.CharField(max_length=100, default="Not Yet", choices=calving_status_choices)
 	due_date = models.DateField(null=True)
 
 	def __str__(self):
@@ -361,7 +353,7 @@ class Calvings(models.Model):
 	ai_record = models.ForeignKey(AiRecords, db_column='ai_record', primary_key=True, on_delete=models.CASCADE)
 	calf = models.ForeignKey(Cow, db_index=True, db_column='calf', on_delete=models.CASCADE)
 	calving_date = models.DateField()
-	calving_type = models.CharField(max_length=7, default='Single', choices=[('Single', 'Single'), ('Twin', 'Twin')])
+	calving_type = models.CharField(max_length=7, default='Single', choices=calving_type_choices)
 
 	def __str__(self):
 		return "{0} {1} {2}".format(self.ai_record.cow, self.calf, self.calving_date)
@@ -387,8 +379,7 @@ class Calvings(models.Model):
 class AbortionMiscarriages(models.Model):
 	ai_record = models.ForeignKey(AiRecords,  db_column='ai_record', on_delete=models.CASCADE, primary_key=True)
 	date = models.DateField()
-	type = models.CharField(max_length=20, choices=[('Miscarriage', 'Miscarriage'),
-	                                                ('Abortion', 'Abortion')])
+	type = models.CharField(max_length=20, choices=abortion_or_miscarriage_choices)
 	cost = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	cause = models.CharField(max_length=1000, blank=True, default='')
 	vet_name = models.CharField(max_length=100, blank=True, default='')
@@ -470,13 +461,17 @@ class FeedFormulation(models.Model):
 	class Meta:
 		db_table = 'feed_formulation'
 
+	@property
+	def total_cost(self):
+		feed_formulation_parts = self.feedformulationpart_set.all()
+		return sum([feed_formulation_part.quantity * feed_formulation_part.feed_item.unit_price for feed_formulation_part in feed_formulation_parts])
+		
 
 class FeedFormulationPart(models.Model):
 	id = models.AutoField(primary_key=True)
 	feed_item = models.ForeignKey(FeedItems, on_delete=models.CASCADE)
 	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
 	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
-
 
 	class Meta:
 		index_together = [['feed_item', 'feed_formulation']]
@@ -488,10 +483,7 @@ class FeedingProgramme(models.Model):
 	id = models.AutoField(primary_key=True)
 	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
-	feeding_category = models.CharField(max_length=30, default="Heifer",
-	                                    choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'),
-	                                             ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'),
-	                                             ('Calf', 'Calf'), ('Weaner', 'Weaner'), ('Weaner 1', 'Weaner 1'),('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'), ('Yearling', 'Yearling'), ('Bulling', 'Bulling'), ('Bull', 'Bull')])
+	feeding_category = models.CharField(max_length=30, choices=animal_choices)
 
 	class Meta:
 		db_table = 'feeding_programme'
@@ -502,12 +494,7 @@ class DailyFeeding(models.Model):
 	date = models.DateField()
 	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
-	feeding_category = models.CharField(max_length=30, default="Heifer",
-	                                    choices=[('Milker', 'Milker'), ('Heifer', 'Heifer'), ('Dry', 'Dry'),
-	                                             ('Steamer', 'Steamer'), ('Incalf Heifer', 'Incalf Heifer'),
-	                                             ('Calf', 'Calf'), ('Weaner', 'Weaner'), ('Weaner 1', 'Weaner 1'),
-	                                             ('Weaner 2', 'Weaner 2'), ('Weaner 3', 'Weaner 3'),
-	                                             ('Yearling', 'Yearling'), ('Bulling', 'Bulling'), ('Bull', 'Bull')])
+	feeding_category = models.CharField(max_length=30, choices=animal_choices)
 
 	class Meta:
 		db_table = 'daily_feeding'
@@ -522,7 +509,6 @@ class CowInsurance(models.Model):
 	insured_value = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	premium_amount = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 
-
 	class Meta:
 		db_table = 'cow_insurance'
 
@@ -533,7 +519,6 @@ class Expense(models.Model):
 	amount = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	source = models.CharField(max_length=30, blank=True, default='')
 
-
 	class Meta:
 		db_table = 'expense'
 
@@ -543,7 +528,6 @@ class Income(models.Model):
 	date = models.DateField()
 	amount = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	source = models.CharField(max_length=30, blank=True, default='')
-
 
 	class Meta:
 		db_table = 'income'

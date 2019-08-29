@@ -2,6 +2,28 @@
 {% block title %} Animal Feeding {% endblock %}
 {% block content %}
 {% load mathfilters %}
+{% if feed_formulations_list %}
+<script>
+{% for feed_formulation in feed_formulations_list %}
+	var object = {
+	id: {{ feed_formulation.id }},
+	quantity: {{ feed_formulation.quantity }},
+	name: '{{feed_formulation.name}}',
+	}
+	window.sessionStorage.setItem('feeding_formulation_'+ object.id,JSON.stringify(object));
+	{% with feed_formulation.feedformulationpart_set.all as feed_formulation_item_list %}
+	{% for feed_item_part in feed_formulation_item_list %}
+		var feed_part = {
+			id: {{ feed_item_part.id }},
+			quantity: {{ feed_item_part.quantity }},
+			name: '{{feed_item_part.feed_item.name}}',
+			}
+		window.sessionStorage.setItem('feeding_formulation_part_'+ feed_part.id,JSON.stringify(feed_part));
+	{% endfor %}
+	{% endwith %}
+{% endfor %}
+</script>
+{% endif %}
 <section class="container">
 	<ul class="nav nav-tabs">
 		<li class="nav-link text-center" style="flex:1;">
@@ -28,6 +50,36 @@
 	                </span>
 				</button>
             </div>
+		</div>
+		<div class="modal" id="feedFormulationItemInputModal" tabindex="-1" aria-labelledby="feedFormulationItemInputModalLabel" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center" id="feedFormulationItemInputModalLabel">
+							Edit Feed Formulation Part
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="feedFormulationPartInputForm" method="post" action="{% url 'digitaldairy:save_feed_formulation_part'%}">
+						{% csrf_token %}
+							<div class="form-group">
+								<label for="feed_form_part_quantity" class="col-form-label">
+									Quantity
+								</label>
+								<input id="feed_form_part_quantity" class="form-control" type="number" step="0.01" name="feed_form_part_quantity" min="0" required>
+								<input id="feed_form_part_id" class="form-control" type="hidden"  name="feed_form_part_id" min="0" required>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button form="feedFormulationPartInputForm" type="submit" class="btn btn-primary">Save Record</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal" id="feedFormulationInputModal" tabindex="-1"
 		     aria-labelledby="feedFormulationInputModalLabel" role="dialog" aria-hidden="true">
@@ -61,7 +113,7 @@
 								<label for="feed_item" class="col-form-label">
 									Select Item
 								</label>
-								<select id="feed_item"  class="form-control" name="feed_item" required>
+								<select required id="feed_item"  class="form-control" name="feed_item">
 									<option value="Select Item" disabled selected>Select Item</option>
 									{% if feeds_list %}
 									{% for feed_item in feeds_list %}
@@ -99,6 +151,7 @@
 									<th> Identifier </th>
 									<th> Quantity </th>
 									<th> Items in Feed Formulation </th>
+									<th> Total Cost </th>
 									<th> Actions </th>
 								</tr>
 							</thead>
@@ -106,15 +159,6 @@
 							{% if feed_formulations_list %}
 							{% for feed_formulation in feed_formulations_list %}
 							<tr data-src="{{ feed_formulation.id }}">
-								<script>
-								myStorage = window.sessionStorage;
-								var object = {
-								id: {{ feed_formulation.id }},
-								quantity: {{ feed_formulation.quantity }},
-								name: '{{feed_formulation.name}}',
-								}
-								myStorage.setItem('feeding_formulation_'+ object.id,JSON.stringify(object))
-							</script>
 								<td> {{ forloop.counter }} </td>
 								<td> {{ feed_formulation.name }} </td>
 								<td> {{ feed_formulation.quantity }} </td>
@@ -130,7 +174,7 @@
 										</thead>
 										<tbody class="text-center">
 										{% for feed_item_part in feed_formulation_item_list %}
-											<tr>
+											<tr data-src="{{feed_item_part.id}}">
 											   <td>
 											        {{ feed_item_part.feed_item.name }}
 											   </td>
@@ -138,8 +182,8 @@
 												   {{ feed_item_part.quantity }}
 											   </td>
 											   <td>
-													<button type="button" id="feedFormulationItemEditBtn"
-													data-toggle="modal" data-target="#feedItemInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
+													<button type="button" id="feedFormulationPartEditBtn"
+													data-toggle="modal" data-target="#feedFormulationItemInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
 														<span class="fa fa-edit"></span>
 													</button>
 													<form id="deleteFeedFormulationPartForm" method="post" action="{% url 'digitaldairy:delete_feed_formulation_part' %}">
@@ -156,6 +200,7 @@
 									</table>
 								</td>
 								{% endwith %}
+								<td> {{ feed_formulation.total_cost|floatformat:2 }}  </td>
 								<td>
 									<button type="button" id="feedFormulationEditBtn" data-toggle="modal" data-target="#feedFormulationInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
 										<span class="fa fa-edit"></span>

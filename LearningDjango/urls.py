@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('digitaldairy.urls')),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls'), name='accounts'),
     path('digitaldairy/', include('digitaldairy.urls'), name="digitaldairy"),
     path('admin/', admin.site.urls),
 ]

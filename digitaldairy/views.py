@@ -8,6 +8,7 @@ import dateutil.relativedelta
 import itertools
 import collections
 from django.core.mail import send_mail
+from django.contrib import messages
 
 # Create your views here.
 
@@ -30,30 +31,26 @@ def send_message(request):
 	senders_first_name = request.POST['first_name'].strip().title()
 	senders_last_name = request.POST['last_name'].strip().title()
 	message = request.POST.get('message')
-	form = {}
-	errors = []
 	if len(senders_first_name) < 4:
-		errors.append("Your first name is invalid")
+		messages.error(request, "Your first name must be a minimum of four letters")
+		return render(request, template_name='digitaldairy/html/landing-page.html')
 	if len(senders_last_name) < 4:
-		errors.append("Your last name is invalid")
+		messages.error(request, "Your last name must be a minimum of four letters")
+		return render(request, template_name='digitaldairy/html/landing-page.html')
+
 	if len(senders_phone_number) < 10 and not senders_phone_number.isdigit():
-		errors.append("Your phone number is invalid")
+		messages.error(request, "Your phone number is invalid")
+		return render(request, template_name='digitaldairy/html/landing-page.html')
+
 	if len(message) < 4:
-		errors.append("Please write a message long enough")
-	form['errors'] = errors
-	success_messages = []
-	context = {
-		"form": form,
-	}
-	if form['errors']:
-		return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
-	else:
-		success_messages.append("Message sent successfully!")
-		success_messages.append("We will get back to you shortly!")
-		form['success_messages'] = success_messages
-		send_mail('Hey, DigitalDairy dude!', message, 'smartfarmsoftwares@gmail.com', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
-		# return a different view showing the user that the message has been sent
-		return HttpResponseRedirect(reverse('digitaldairy:home'))
+		messages.error(request, "Your last name must be a minimum of four letters")
+		return render(request, template_name='digitaldairy/html/landing-page.html')
+
+	messages.success(request, "Message sent successfully!")
+	messages.success(request, "We will get back to you shortly!")
+	send_mail('Hi, ' + senders_email + ' wants your software!', message, 'smartfarmsoftwares@gmail.com', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
+	# return a different view showing the user that the message has been sent
+	return HttpResponseRedirect(reverse('digitaldairy:home'))
 
 
 
@@ -71,7 +68,7 @@ def cows(request):
 @require_http_methods(['GET'])
 def daily_milk_production(request):
 	milk_production_date = request.GET.get('milk_production_date')
-	milk_production_date = milk_production_date if milk_production_date is not None else request.session.get('milk_production_date')
+	milk_production_date = milk_production_date if milk_production_date else request.session.get('milk_production_date')
 	if milk_production_date is None:
 		milk_production_date = general_to_date
 	else:
@@ -86,7 +83,7 @@ def daily_milk_production(request):
 	for milk_p in day_milk_production:
 		cow_previous_day_milk_p = previous_day_milk_production.filter(cow_id=milk_p.cow_id)
 		cow_day_milk_production_total = sum((milk_p.am_quantity,milk_p.noon_quantity, milk_p.pm_quantity))
-		if len(cow_previous_day_milk_p) != 0:
+		if cow_previous_day_milk_p.count() > 0:
 			cow_previous_day_milk_p = cow_previous_day_milk_p[0]
 			total_previous_day_milk_p =  sum((cow_previous_day_milk_p.am_quantity,cow_previous_day_milk_p.noon_quantity, cow_previous_day_milk_p.pm_quantity))
 		else:
@@ -99,8 +96,8 @@ def daily_milk_production(request):
 	# get all milk targets
 	milk_production_targets_list = MilkTargets.objects.all()
 	total_day_milk_production = sum([(cow_milk_production.am_quantity + cow_milk_production.noon_quantity + cow_milk_production.pm_quantity) for cow_milk_production in day_milk_production])
-	average_milk_quantity = total_day_milk_production / len(day_milk_production) if len(day_milk_production) > 0 else 0
-	un_milked_cows = len(all_cows) - len(day_milk_production)
+	average_milk_quantity = total_day_milk_production / day_milk_production.count() if len(day_milk_production) > 0 else 0
+	un_milked_cows = len(all_cows) - day_milk_production.count()
 	day_milk_production = sorted(day_milk_production,key= lambda x: (x.am_quantity + x.noon_quantity + x.pm_quantity),reverse=True)
 
 	context = {
@@ -121,7 +118,7 @@ def daily_milk_production(request):
 def monthly_milk_production(request):
 	month = request.GET.get('month')
 	year = request.GET.get('year')
-	if year is not None:
+	if year:
 		try:
 			year = int(year)
 			year = 1 if year < 1 else year
@@ -129,7 +126,7 @@ def monthly_milk_production(request):
 			year = datetime.date.today().year
 	else:
 		year = datetime.date.today().year
-	if month is not None:
+	if month:
 		try:
 			month = int(month)
 			month = 1 if (month > 12 or month < 1) else month
@@ -168,7 +165,7 @@ def monthly_milk_production(request):
 		                             })
 	for milk_p in milk_production_list:
 		cow_milk_target = MilkTargets.objects.filter(cow_id=milk_p['cow_id'])
-		milk_p['monthly_milk_target'] = cow_milk_target[0].target_quantity * 30 if len(cow_milk_target) > 0 else 0
+		milk_p['monthly_milk_target'] = cow_milk_target[0].target_quantity * 30 if cow_milk_target.count() > 0 else 0
 		milk_p['variance'] = milk_p['monthly_milk_target'] - milk_p['total_selected_month_quantity']
 	milk_production_list = sorted(milk_production_list, key = lambda x:x.get('total_selected_month_quantity',0), reverse=True)
 	context = {
@@ -186,14 +183,14 @@ def monthly_milk_production(request):
 def get_sales_statistics(request):
 	month = request.GET.get('month')
 	year = request.GET.get('year')
-	if month is not None:
+	if month:
 		try:
 			month = int(month)
 		except:
 			month = datetime.date.today().month
 	else:
 		month = datetime.date.today().month
-	if year is not None:
+	if year:
 		try:
 			year = int(year)
 		except:
@@ -411,7 +408,7 @@ def save_weight(request):
 @require_http_methods(['GET'])
 def get_cow_health(request):
 	cow_id = request.GET.get('cow_id')
-	if cow_id is not None:
+	if cow_id:
 		referenced_cow = get_object_or_404(Cow, pk=cow_id)
 		treatment_records_list = TreatmentRecords.objects.filter(cow=referenced_cow)
 	else:
@@ -428,7 +425,7 @@ def get_cow_health(request):
 @require_http_methods(['GET'])
 def get_deworming(request):
 	cow_id = request.GET.get('cow_id')
-	if cow_id is not None:
+	if cow_id:
 		referenced_cow = get_object_or_404(Cow, pk=cow_id)
 		deworming_records_list = Deworming.objects.filter(cow=referenced_cow)
 	else:
@@ -445,7 +442,7 @@ def get_deworming(request):
 @require_http_methods(['GET'])
 def get_vaccinations(request):
 	cow_id = request.GET.get('cow_id')
-	if cow_id is not None:
+	if cow_id:
 		referenced_cow = get_object_or_404(Cow, pk=cow_id)
 		vaccination_records_list = Vaccinations.objects.filter(cow=referenced_cow)
 	else:
@@ -548,14 +545,14 @@ def abortions_miscarriages(request):
 def breeding_statistics(request):
 	month = request.GET.get('month')
 	year = request.GET.get('year')
-	if month is not None:
+	if month:
 		try:
 			month = int(month)
 		except:
 			month = general_to_date.month
 	else:
 		month = general_to_date.month
-	if year is not None:
+	if year:
 		try:
 			year = int(year)
 		except:
@@ -623,14 +620,14 @@ def breeding_alerts(request):
 def get_milk_production_statistics(request):
 	month = request.GET.get('month')
 	year = request.GET.get('year')
-	if month is not None:
+	if month:
 		try:
 			month = int(month)
 		except:
 			month = general_to_date.month
 	else:
 		month = general_to_date.month
-	if year is not None:
+	if year:
 		try:
 			year = int(year)
 		except:
@@ -730,14 +727,14 @@ def cow_milk_production_history(request):
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
 	from_date_string = request.GET.get('from_date')
 	to_date_string = request.GET.get('to_date')
-	if from_date_string is not None:
+	if from_date_string:
 		try:
 			from_date = datetime.datetime.strptime(from_date_string, '%Y-%m-%d')
 		except ValueError:
 			from_date = general_from_date
 	else:
 		from_date = general_from_date
-	if to_date_string is not None:
+	if to_date_string:
 		try:
 			to_date = datetime.datetime.strptime(to_date_string, '%Y-%m-%d')
 		except ValueError:
@@ -761,8 +758,8 @@ def cow_milk_production_history(request):
 @login_required
 @require_http_methods(['POST'])
 def save_milk_production(request):
-	cow_id = request.POST.get('cow_id')
-	milk_date = request.POST.get('milk_date')
+	cow_id = request.POST['cow_id']
+	milk_date = request.POST['milk_date']
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
 	am_quantity = request.POST.get('am_quantity')
 	noon_quantity = request.POST.get('noon_quantity')
@@ -846,7 +843,7 @@ def clients_statements(request):
 	client_id = request.GET.get('client_id')
 	clients_list = Clients.objects.all()
 	# set sales_from_date to default date if None else try to parse it
-	if sales_from_date is not None:
+	if sales_from_date:
 		try:
 			sales_from_date = datetime.datetime.strptime(sales_from_date, '%Y-%m-%d')
 		except:
@@ -854,14 +851,14 @@ def clients_statements(request):
 	else:
 		sales_from_date = general_from_date.replace(year= general_to_date.year, month= general_to_date.month)
 	# set sales_to_date to general_to_date if None else try to parse it
-	if sales_to_date is not None:
+	if sales_to_date:
 		try:
 			sales_to_date = datetime.datetime.strptime(sales_to_date, '%Y-%m-%d')
 		except:
 			sales_to_date = general_to_date
 	else:
 		sales_to_date = general_to_date
-	if client_id is not None:
+	if client_id:
 		referenced_client = get_object_or_404(Clients, pk=client_id)
 	else:
 		referenced_client = clients_list[0] if clients_list.count() > 1 else None
@@ -894,7 +891,7 @@ def consumers_statements(request):
 	referenced_consumer = 'All Consumers'
 	consumers_list = Consumers.objects.all()
 	# set consumption_from_date to default from_date if None else try to parse it
-	if consumption_from_date is not None:
+	if consumption_from_date:
 		try:
 			consumption_from_date= datetime.datetime.strptime(consumption_from_date, '%Y-%m-%d')
 		except:
@@ -902,7 +899,7 @@ def consumers_statements(request):
 	else:
 		consumption_from_date = general_from_date.replace(year=general_to_date.year, month= general_to_date.month)
 	# set consumption_to_date to default to_date if None else try to parse it
-	if consumption_to_date is not None:
+	if consumption_to_date:
 		try:
 			consumption_to_date= datetime.datetime.strptime(consumption_to_date, '%Y-%m-%d')
 		except:
@@ -910,7 +907,7 @@ def consumers_statements(request):
 	else:
 		consumption_to_date = general_to_date
 	milk_consumption_list = MilkConsumptions.objects.filter(date__gte=consumption_from_date, date__lte=consumption_to_date)
-	if consumer_id is not None:
+	if consumer_id:
 		referenced_consumer = get_object_or_404(Consumers, pk=consumer_id)
 		milk_consumption_list = milk_consumption_list.filter(consumer=referenced_consumer)
 	total_quantity_consumed = sum([milk_consumption.quantity for milk_consumption in milk_consumption_list])
@@ -1016,7 +1013,7 @@ def cow_insurance(request):
 
 
 def getMonthIfNotNone(month):
-	if month is not None:
+	if month:
 		try:
 			month = int(month)
 			month = month if month < 13 and month > 0 else general_to_date.month
@@ -1028,7 +1025,7 @@ def getMonthIfNotNone(month):
 
 
 def getYearIfNotNone(year):
-	if year is not None:
+	if year:
 		try:
 			year = int(year)
 			year = year if year > 0 else general_to_date.year
@@ -1043,8 +1040,8 @@ def getYearIfNotNone(year):
 @login_required
 @require_http_methods(['GET'])
 def income(request):
-	income_month = request.GET.get('month') if request.GET.get('month') is not None else request.session.get('month')
-	income_year = request.GET.get('year') if request.GET.get('year') is not None else request.session.get('year')
+	income_month = request.GET.get('month') if request.GET.get('month') else request.session.get('month')
+	income_year = request.GET.get('year') if request.GET.get('year') else request.session.get('year')
 	income_month = getMonthIfNotNone(income_month)
 	income_year = getYearIfNotNone(income_year)
 	year_income_list = Income.objects.filter(date__year=income_year)
@@ -1064,8 +1061,8 @@ def income(request):
 @login_required
 @require_http_methods(['GET'])
 def expenses(request):
-	expenses_month = request.GET.get('month') if request.GET.get('month') is not None else request.session.get('month')
-	expenses_year = request.GET.get('year') if request.GET.get('year') is not None else request.session.get('year')
+	expenses_month = request.GET.get('month') if request.GET.get('month') else request.session.get('month')
+	expenses_year = request.GET.get('year') if request.GET.get('year') else request.session.get('year')
 	expenses_month = getMonthIfNotNone(expenses_month)
 	expenses_year = getYearIfNotNone(expenses_year)
 	expenses_chosen_date = datetime.date(expenses_year, expenses_month, 1)
@@ -1085,7 +1082,7 @@ def expenses(request):
 @login_required
 @require_http_methods(['GET'])
 def milk_sales(request):
-	milk_sale_date = request.GET.get('milk_sale_date')if request.GET.get('milk_sale_date') is not None else request.session.get('milk_sale_date')
+	milk_sale_date = request.GET.get('milk_sale_date')if request.GET.get('milk_sale_date') else request.session.get('milk_sale_date')
 	if milk_sale_date == None:
 		milk_sale_date = general_to_date
 	else:
@@ -1128,7 +1125,7 @@ def milk_sales_payments(request):
 			year = request.session.get('year')
 		if month is None:
 			month = request.session.get('month')
-		if year is not None:
+		if year:
 			try:
 				year = int(year)
 				year = 1 if year < 1 else year
@@ -1136,7 +1133,7 @@ def milk_sales_payments(request):
 				year = general_to_date.year
 		else:
 			year = general_to_date.year
-		if month is not None:
+		if month:
 			try:
 				month = int(month)
 				month = 1 if (month > 12 or month < 1) else month
@@ -1179,7 +1176,7 @@ def milk_sales_payments(request):
 		referenced_client = get_object_or_404(Clients, pk=client_id)
 		date_of_payment = request.POST.get('payment_date')
 		milk_sale_date = request.POST.get('milk_sale_date')
-		if milk_sale_date is not None:
+		if milk_sale_date:
 			try:
 				milk_sale_date = datetime.datetime.strptime(milk_sale_date, '%Y-%m-%d')
 			except ValueError:
@@ -1205,54 +1202,75 @@ def milk_sales_payments(request):
 
 @login_required
 @require_http_methods(['GET'])
-def get_client_purchase_history(request):
-	client_name = request.GET.get('client_name')
-	client = get_object_or_404(Clients, pk=client_name)
-	from_date = request.GET.get('from_date')
-	to_date = request.GET.get('to_date')
-	client_purchase_history = []
-	if to_date is None:
-		to_date = general_to_date
-	elif from_date is None:
-		client_purchase_history = MilkSales.objects.filter(client=client)
-	if from_date is not None:
-		client_purchase_history = MilkSales.objects.filter(client=client) \
-			.filter(date__gte=from_date).filter(date__lte=to_date)
+def get_client_purchase_history(request, client_id):
+	client = get_object_or_404(Clients, pk=client_id)
+	sales_from_date = request.GET.get('sales_from_date')
+	sales_to_date = request.GET.get('sales_to_date')
+	if not sales_from_date:
+		sales_from_date = general_from_date
+	else:
+		try:
+			sales_from_date = datetime.datetime.strptime(sales_from_date, '%Y-%m-%d').date()
+		except:
+			messages.error(request, "Sales from date is in wrong format")
+			return render(request, template_name="digitaldairy/html/client-purchase-history.html.html")
+	if not sales_to_date:
+		sales_to_date = general_to_date
+	else:
+		try:
+			sales_to_date = datetime.datetime.strptime(sales_to_date, '%Y-%m-%d').date()
+		except:
+			messages.error(request, "Sales to date is in wrong format")
+			return render(request, template_name="digitaldairy/html/client-purchase-history.html.html")
+	milk_sales_list = MilkSales.objects.filter(client=client) \
+		.filter(date__gte=sales_from_date).filter(date__lte=sales_to_date)
 	context = {
 		'client': client,
-		'client_purchase_history': client_purchase_history
+		'sales_from_date': sales_from_date,
+		'sales_to_date': sales_to_date,
+		'milk_sales_list': milk_sales_list
 	}
-	return render(request, context=context, template_name="digitaldairy/html/milk-sales.html")
+	return render(request, context=context, template_name="digitaldairy/html/client-purchase-history.html")
 
 
 @login_required
 @require_http_methods(['GET'])
-def get_consumer_consumption_history(request):
-	consumer_name = request.GET.get('consumer_name')
-	consumer = get_object_or_404(Consumers, pk=consumer_name)
-	from_date = request.GET.get('from_date')
-	to_date = request.GET.get('to_date')
-	consumer_consumption_history = []
-	if to_date is None:
-		to_date = general_to_date
-	elif from_date is None:
-		consumer_consumption_history= MilkConsumptions.objects.filter(consumer=consumer)
-	if from_date is not None:
-		consumer_consumption_history = MilkConsumptions.objects.filter(consumer=consumer) \
-			.filter(date__gte=from_date) \
-			.filter(date__lte=to_date)
+def get_consumer_consumption_history(request, consumer_id):
+	consumer = get_object_or_404(Consumers, pk=consumer_id)
+	consumption_from_date = request.GET.get('consumption_from_date')
+	consumption_to_date = request.GET.get('consumption_to_date')
+	if not consumption_from_date:
+		consumption_from_date = general_from_date
+	else:
+		try:
+			consumption_from_date = datetime.datetime.strptime(consumption_from_date, '%Y-%m-%d').date()
+		except:
+			messages.error(request, "Consumption from date is in wrong format")
+			return render(request, template_name="digitaldairy/html/consumer-consumption-history.html")
+	if not consumption_to_date:
+		consumption_to_date = general_to_date
+	else:
+		try:
+			consumption_to_date = datetime.datetime.strptime(consumption_to_date, '%Y-%m-%d').date()
+		except:
+			messages.error(request, "Consumption to date is in wrong format")
+			return render(request, template_name="digitaldairy/html/consumer-consumption-history.html")
+	milk_consumption_list = MilkConsumptions.objects.filter(consumer=consumer) \
+			.filter(date__gte=consumption_from_date) \
+			.filter(date__lte=consumption_to_date)
 	context = {
 		'consumer': consumer,
-		'consumer_consumption_history':consumer_consumption_history
+		'consumption_from_date': consumption_from_date,
+		'consumption_to_date': consumption_to_date,
+		'milk_consumption_list':milk_consumption_list
 	}
-	return render(request, context=context, template_name="digitaldairy/html/milk-sales.html")
+	return render(request, context=context, template_name="digitaldairy/html/consumer-consumption-history.html")
 
 
 @login_required
 @require_http_methods(['POST'])
 def save_milk_sale(request):
 	client_id = request.POST['client_id']
-	milk_sale_id = request.POST.get('milk_sale_id')
 	sale_date = request.POST.get('sale_date')
 	quantity = request.POST.get('sale_quantity')
 	client = get_object_or_404(Clients, pk=client_id)
@@ -1268,8 +1286,8 @@ def save_cow_sale(request):
 	cow_id = request.POST['cow_id']
 	sale_date = request.POST['sale_date']
 	cow_value = request.POST['cow_value']
-	client_name = request.POST['client_name']
-	sale_remarks = request.POST['sale_remarks']
+	client_name = request.POST.get('client_name')
+	sale_remarks = request.POST.get('sale_remarks')
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
 	created_record, created = CowSales.objects \
 		.update_or_create(cow=referenced_cow, defaults={
@@ -1303,7 +1321,7 @@ def save_daily_feeding(request):
 @login_required
 @require_http_methods(['POST'])
 def save_feed_item(request):
-	feed_item_name = request.POST.get('item_name')
+	feed_item_name = request.POST['item_name']
 	item_unit_measure = request.POST.get('item_unit_measure')
 	item_unit_price = request.POST.get('item_unit_price')
 	item_available_stock = request.POST.get('item_available_stock')
@@ -1313,6 +1331,7 @@ def save_feed_item(request):
 	feed_item_record.unit_of_measure = item_unit_measure
 	feed_item_record.unit_price = item_unit_price
 	feed_item_record.initial_stock = item_available_stock
+	feed_item_record.available_stock = item_available_stock
 	feed_item_record.reorder_level = item_reorder_level
 	feed_item_record.save()
 	return HttpResponseRedirect(reverse('digitaldairy:cow_feed_items'))
@@ -1328,17 +1347,26 @@ def save_feed_formulation(request):
 	feed_item = get_object_or_404(FeedItems, pk=feed_item_name)
 	feed_formulation_part_quantity = request.POST.get('feed_formulation_part_quantity')
 	# create and save feed formulation instance
-	feed_formulation = FeedFormulation()
-	feed_formulation.id = feed_formulation_id
-	feed_formulation.name = feed_formulation_name
-	feed_formulation.quantity = feed_formulation_quantity
-	feed_formulation.save()
+	feed_formulation, _created = FeedFormulation.objects.update_or_create(name=feed_formulation_name, defaults={'quantity': feed_formulation_quantity})
 	# create feed formulation part to refer to feed formulation
-	feed_formulation_part = FeedFormulationPart()
-	feed_formulation_part.feed_item = feed_item
-	feed_formulation_part.quantity = feed_formulation_part_quantity
-	feed_formulation_part.feed_formulation = feed_formulation
+	feed_formulation_part, _created = FeedFormulationPart.objects.update_or_create(feed_item=feed_item,feed_formulation=feed_formulation, defaults={
+		'quantity': feed_formulation_part_quantity})
 	return HttpResponseRedirect(reverse('digitaldairy:cow_feeds'))
+
+
+@login_required
+@require_http_methods(['POST'])
+def save_feed_formulation_part(request):
+	feed_form_part_id = request.POST['feed_form_part_id']
+	feed_formulation_part_quantity = request.POST.get('feed_form_part_quantity')
+	# create and save feed formulation instance
+	_feed_formulation_part, _created = FeedFormulationPart.objects.update_or_create(id=feed_form_part_id, defaults={
+		'quantity': feed_formulation_part_quantity})
+	return JsonResponse({
+			'id': _feed_formulation_part.id,
+			'name': _feed_formulation_part.feed_item.name,
+			'quantity': _feed_formulation_part.quantity,
+			})
 
 
 @login_required
@@ -1471,7 +1499,7 @@ def save_cow_disease_record(request):
 @require_http_methods(['POST'])
 def save_semen_catalog(request):
 	semen_catalog_id = request.POST.get('semen_catalog_id')
-	bull_code = request.POST.get('bull_code')
+	bull_code = request.POST['bull_code']
 	bull_name = request.POST.get('bull_name')
 	bull_breed = request.POST.get('bull_breed')
 	num_of_straws = request.POST.get('num_of_straws')
@@ -1479,8 +1507,8 @@ def save_semen_catalog(request):
 	company_name = request.POST.get('company_name')
 	semen_catalog = SemenRecords()
 	semen_catalog.id = semen_catalog_id
-	semen_catalog.bull_code = bull_code if (bull_code is not None and len(bull_code) > 0) else bull_name
-	semen_catalog.bull_name = bull_name
+	semen_catalog.bull_code = bull_code
+	semen_catalog.bull_name = bull_name if bull_name else bull_code
 	semen_catalog.bull_breed = bull_breed
 	semen_catalog.num_of_straws = num_of_straws
 	semen_catalog.cost_per_straw = cost_per_straw
@@ -1494,17 +1522,16 @@ def save_semen_catalog(request):
 def save_income(request):
 	income_id = request.POST.get('income_id')
 	income_date = request.POST.get('income_date')
-	errors = []
-	if income_date is None:
-		errors.append('Date is not available')
-		return render(request, context={'errors': errors}, template_name='digitaldairy/html/income.html')
+	if not income_date:
+		messages.error(request, 'Date not available!')
+		return render(request, template_name='digitaldairy/html/income.html')
 	else:
 		try:
 			income_date = datetime.datetime.strptime(income_date, '%Y-%m-%d').date()
 		except:
-			errors.append('Date is in wrong format.')
-			errors.append('Please give a correct date in the format yyyy-mm-dd')
-			return render(request, context={'errors': errors}, template_name='digitaldairy/html/income.html')
+			messages.error(request, 'Date is in wrong format.')
+			messages.error(request, 'Please give a correct date in the format yyyy-mm-dd')
+			return render(request, template_name='digitaldairy/html/income.html')
 	income_amount = request.POST.get('income_amount')
 	income_source = request.POST.get('income_source')
 	income = Income()
@@ -1522,20 +1549,19 @@ def save_income(request):
 @login_required
 @require_http_methods(['POST'])
 def save_expense(request):
-	expense_id = request.POST.get('expense_id')
-	expense_date = request.POST.get('expense_date')
-	errors = []
-	if expense_date is None:
-		errors.append('Date is not available')
-		return render(request, context={'errors': errors}, template_name='digitaldairy/html/expenses.html')
+	expense_id = request.POST['expense_id']
+	expense_date = request.POST['expense_date']
+	if not expense_date:
+		messages.error(request, 'Date is not available')
+		return render(request, template_name='digitaldairy/html/expenses.html')
 	else:
 		try:
 			expense_date = datetime.datetime.strptime(expense_date, '%Y-%m-%d').date()
 		except:
-			errors.append('Expenses date is in wrong format.')
-			errors.append('Please give a correct date in the format yyyy-mm-dd')
-			return render(request, context={'errors': errors}, template_name='digitaldairy/html/expenses.html')
-	expense_amount = request.POST.get('expense_amount')
+			messages.error(request, 'Expenses date is in wrong format.')
+			messages.error(request, 'Please give a correct date in the format yyyy-mm-dd')
+			return render(request, template_name='digitaldairy/html/expenses.html')
+	expense_amount = request.POST['expense_amount']
 	expense_source = request.POST.get('expense_source')
 	expense = Expense()
 	expense.id = expense_id
@@ -1566,10 +1592,10 @@ def save_cow(request):
 	category = request.POST.get('category')
 	source = request.POST.get('source')
 	cow_to_save = Cow(id=cow_id, group=group, name=cow_name, birth_weight=birth_weight, breed=breed, dob=date_of_birth, grade=grade, source= source, lactations=lactations, category=category, color=color)
-	if dam_id is not None and len(dam_id) > 1:
+	if dam_id:
 		dam = get_object_or_404(Cow, pk=dam_id)
 		cow_to_save.dam = dam
-	if sire_id is not None and len(sire_id) > 1:
+	if sire_id:
 		sire = get_object_or_404(SemenRecords, bull_code=sire_id)
 		cow_to_save.sire = sire
 	cow_to_save.save()
@@ -1590,15 +1616,14 @@ def save_calf(request):
 	breed = request.POST.get('breed')
 	sire_id = request.POST.get('sire')
 	sire = None
-	if sire_id is not None and len(sire_id) > 1:
+	if sire_id:
 		sire = get_object_or_404(SemenRecords,pk=sire_id)
 	dam_id = request.POST.get('dam')
 	dam = None
-	if dam_id is not None and len(dam_id) > 1:
+	if dam_id:
 		dam = get_object_or_404(Cow, pk=dam_id)
 	category = request.POST.get('category')
-	status = request.POST.get('status')
-	cow_to_save = Cow(id=cow_id, group=group, name=cow_name, birth_weight=birth_weight, sire=sire, dam=dam, breed=breed, dob=date_of_birth, grade=grade, lactations=lactations, status=status, category=category, color=color)
+	cow_to_save = Cow(id=cow_id, group=group, name=cow_name, birth_weight=birth_weight, sire=sire, dam=dam, breed=breed, dob=date_of_birth, grade=grade, lactations=lactations, category=category, color=color)
 	cow_to_save.save()
 	return HttpResponseRedirect(reverse("digitaldairy:cows"))
 
@@ -1626,21 +1651,20 @@ def save_cow_ai_record(request):
 	ai_record_id = request.POST.get('ai_record_id')
 	cow_id = request.POST.get('cow_id')
 	service_date = request.POST.get('service_date')
-	if service_date is not None and len(service_date) > 0:
+	if service_date:
 		try:
 			service_date = datetime.datetime.strptime(service_date, '%Y-%m-%d')
 		except:
 			return ''
 	else:
 		return ''
-	bull_name = request.POST.get('bull_name')
 	bull_code = request.POST.get('bull_code')
 	semen_record = get_object_or_404(SemenRecords, bull_code=bull_code)
 	vet_name = request.POST.get('vet_name')
 	ai_cost = request.POST.get('ai_cost')
 	open_days = request.POST.get('open_days')
 	inbreeding_status = request.POST.get('inbreeding_status')
-	if ai_record_id is not None:
+	if ai_record_id:
 		ai_record = get_object_or_404(AiRecords, pk=ai_record_id)
 		ai_record.inbreeding = inbreeding_status
 		ai_record.open_days = open_days

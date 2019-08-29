@@ -193,7 +193,7 @@
 								<td> {{ consumption.date }} </td>
 								<td>{{ consumption.consumer.name }}</td>
 								<td> {{ consumption.quantity }} </td>
-								<td> {{ consumption.quantity|mul:consumption.consumer.unit_price }} </td>
+								<td> {{ consumption.quantity|mul:consumption.consumer.unit_price|floatformat:2 }} </td>
 								<td>
 									<button id="milkConsumptionEditBtn" type="button" data-toggle="modal" data-target="#milkConsumptionInputModal"
 										class='btn btn-sm btn-primary' aria-label="Edit">
@@ -239,7 +239,7 @@
 											<td> {{ sale.date }} </td>
 											<td> {{ sale.client.name }} </td>
 											<td> {{ sale.quantity }} </td>
-											<td> {{ sale.quantity|mul:sale.client.unit_price }} </td>
+											<td> {{ sale.quantity|mul:sale.client.unit_price|floatformat:2 }} </td>
 											<td>
 												<button id="milkSaleEditBtn" type="button" data-toggle="modal" data-target="#milkSaleInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
 													<span class="fa fa-edit"></span>

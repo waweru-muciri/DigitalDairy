@@ -2,6 +2,20 @@
 {% block title %} Animal Feeding {% endblock %}
 {% block content %}
 {% load mathfilters %}
+{% if feeds_list %}
+<script>
+{% for feed_item in feeds_list %}
+   var object = {
+   name: '{{ feed_item.name }}',
+   unit_price: {{ feed_item.unit_price }},
+   initial_stock: {{ feed_item.initial_stock }},
+   reorder_level: {{ feed_item.reorder_level }},
+   unit_of_measure: '{{ feed_item.unit_of_measure }}',
+   }
+   window.sessionStorage.setItem('feed_item_'+ object.name,JSON.stringify(object))
+{% endfor %}
+</script>
+{% endif %}
 <section id="section-a" class="tab-pane fade show active">
     <div class="row text-center">
         <div class="col-lg-6 col-md-6 col-sm-12 sf-html-block">
@@ -92,19 +106,8 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                           {% if feeds_list %}
-                           {% for feed_item in feeds_list %}
-                           <script>
-                               myStorage = window.sessionStorage;
-                               var object = {
-                               name: '{{ feed_item.name }}',
-                               unit_price: {{ feed_item.unit_price }},
-                               initial_stock: {{ feed_item.initial_stock }},
-                               reorder_level: {{ feed_item.reorder_level }},
-                               unit_of_measure: '{{ feed_item.unit_of_measure }}',
-                               }
-                               myStorage.setItem('feed_item_'+ object.name,JSON.stringify(object))
-                           </script>
+                        {% if feeds_list %}
+                            {% for feed_item in feeds_list %}
                            <tr data-src="{{ feed_item.name }}">
                               <td> {{ forloop.counter }} </td>
                               <td> {{ feed_item.name }} </td>

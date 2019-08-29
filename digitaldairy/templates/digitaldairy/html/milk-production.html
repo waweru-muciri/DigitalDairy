@@ -153,8 +153,7 @@
 									<td> {{ milk_production.am_quantity }} </td>
 									<td> {{ milk_production.noon_quantity }} </td>
 									<td> {{ milk_production.pm_quantity }} </td>
-									<td> {{ milk_production.am_quantity|add:milk_production.noon_quantity|add:milk_production.pm_quantity  }}
-									</td>
+									<td> {{ milk_production.total }}</td>
 									<td>
 										<button id="editMilkProductionBtn" type="button" data-toggle="modal"
 											data-target="#milkInputModal" class="btn btn-sm btn-primary"

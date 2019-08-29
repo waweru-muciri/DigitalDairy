@@ -10,7 +10,7 @@
                 client_name: '{{client.name}}',
                 client_location: '{{client.location}}',
                 client_contacts: '{{client.contacts}}',
-                client_unit_price: {{client.unit_price}},
+                client_unit_price: {{client.unit_price|floatformat:2}},
             }
              window.sessionStorage.setItem('client_'+ object.id,JSON.stringify(object))
         {% endfor %}
@@ -25,7 +25,7 @@
                 consumer_name: '{{consumer.name}}',
                 consumer_location: '{{consumer.location}}',
                 consumer_contacts: '{{consumer.contacts}}',
-                consumer_unit_price: {{consumer.unit_price}},
+                consumer_unit_price: {{consumer.unit_price|floatformat:2}},
             }
             window.sessionStorage.setItem('consumer_'+ object.id,JSON.stringify(object))
         {% endfor %}
@@ -77,10 +77,10 @@
                                 {% if clients_list %}
                                 {% for client in clients_list %}
                                 <tr data-src="{{client.id}}">
-                                    <td> {{ client.name }} </td>
+                                    <td> <a href="{% url 'digitaldairy:client_purchase_history' client.id %}">{{ client.name }}</a> </td>
                                     <td> {{ client.location }} </td>
                                     <td> {{ client.contacts }} </td>
-                                    <td> {{ client.unit_price }} </td>
+                                    <td> {{ client.unit_price|floatformat:2 }} </td>
                                     <td>
                                         <button id="editClientBtn" type="button" class='btn btn-sm btn-primary'
                                                 aria-label="Edit"
@@ -189,10 +189,10 @@
                                 {% if consumers_list %}
                                 {% for consumer in consumers_list %}
                                 <tr data-src="{{consumer.id}}">
-                                    <td> {{ consumer.name }} </td>
+                                    <td> <a href="{% url 'digitaldairy:consumer_consumption_history' consumer.id %}">{{ consumer.name }}</a> </td>
                                     <td> {{ consumer.location }} </td>
                                     <td> {{ consumer.contacts }} </td>
-                                    <td> {{ consumer.unit_price }} </td>
+                                    <td> {{ consumer.unit_price|floatformat:2 }} </td>
                                     <td>
                                         <button id="editConsumerBtn" type="button" class='btn btn-sm btn-primary' aria-label="Edit" data-toggle="modal" data-target="#consumerInputModal">
                                             <span class="fa fa-edit"></span>

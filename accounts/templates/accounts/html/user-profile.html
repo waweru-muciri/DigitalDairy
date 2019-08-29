@@ -1,0 +1,67 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} Account Settings {% endblock %}
+{% block content %}
+<section class="section-a">
+		<div class="row">
+			<div class="mx-auto col-lg-6 col-md-12 col-sm-12">
+				<div class="card">
+				  	<img class="card-img-top" src="..." alt="Card image cap">
+				 	 <div class="card-body">
+						<h3 class="card-title text-center">Personal Info</h3>
+						{% if messages %}
+						<div class="text-center">
+						{% for message in messages %}
+							{% if message.tags %}
+								<p class="alert alert-{{message.tags}}">{{message}}</p>
+							{% endif %}
+						{% endfor %}
+						</div>
+						{% endif %}
+						<form method="post" action="{% url 'accounts:profile' %}">
+							{% csrf_token %}
+							<div class="form-group row">
+								  <label for="first_name" class="col-md-4 col-lg-4 col-form-label">First Name</label>
+								  <div class="col-md-8 col-lg-8">
+									<input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name" value="{{user.first_name}}" required>
+								  </div>
+							</div>
+							<div class="form-group row">
+								  <label for="last_name" class="col-md-4 col-lg-4 col-form-label">Last Name</label>
+								  <div class="col-md-8 col-lg-8">
+									<input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name" value="{{user.last_name}}" required>
+								  </div>
+							</div>
+							<div class="form-group row">
+								  <label for="phone_number" class="col-md-4 col-lg-4 col-form-label">Phone Number</label>
+								  <div class="col-md-8 col-lg-8">
+									<input type="text" class="form-control" id="phone_number" placeholder="Phone Number" name="phone_number" value="{{user.userprofile.phone_number}}" required>
+								  </div>
+							</div>
+							<div class="form-group row">
+								  <label for="client_address" class="col-md-4 col-lg-4 col-form-label">Address</label>
+								  <div class="col-md-8 col-lg-8">
+									<input type="text" class="form-control" id="client_address" placeholder="Address" value="{{user.userprofile.client_address}}" name="client_address">
+								  </div>
+							</div>
+							<div class="form-group row">
+								  <label for="farm_name" class="col-md-4 col-lg-4 col-form-label">Farm Name</label>
+								  <div class="col-md-8 col-lg-8">
+									<input type="text" class="form-control" id="farm_name" placeholder="Farm Name" value="{{user.userprofile.farm_name}}" name="farm_name">
+								  </div>
+							</div>
+							<div class="form-group row">
+							  <label for="farm_location" class="col-md-4 col-lg-4 col-form-label">Farm Location</label>
+							  <div class="col-md-8 col-lg-8">
+								<input type="text" class="form-control" id="farm_location" placeholder="Farm Location" value="{{user.userprofile.farm_location}}" name="farm_location">
+							  </div>
+							</div>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary btn-md">Update Profile</button>
+							</div>
+						</form>
+				  </div>
+				</div>
+			</div>
+		</div>
+</section>
+{% endblock %}

@@ -62,6 +62,7 @@ else {
 }
 
 var postUrl = 'https://digitaldairy.herokuapp.com';
+var postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
 function clearTextAndNumberInputFields(modal) {
     modal.find('input[type=number]').val(0);
@@ -826,6 +827,20 @@ $('#feedFormulationInputModal').on('show.bs.modal', function (event) {
         modal.find('select[name=feed_item]').val('Select Item')
     }
 })
+$('#feedFormulationItemInputModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var feeding_formulation_part_id = $(event.relatedTarget).parent().parent().attr('data-src');
+    if ($(event.relatedTarget).attr('id') == 'feedFormulationPartEditBtn') {
+        modal.find('.modal-title').text("Edit Feed Formulation Item")
+        var feed_item_part = JSON.parse(myStorage.getItem('feeding_formulation_part_' + feeding_formulation_part_id))
+        var feeding_formulation_part_id_input = modal.find('input[name=feed_form_part_id]')
+        console.log(feed_item_part)
+        feeding_formulation_part_id_input.val(feed_item_part.id)
+        modal.find('#feed_form_part_quantity').val(feed_item_part.quantity)
+    } else {
+        clearTextAndNumberInputFields(modal);
+    }
+})
 $('#cowBodyTraitsInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     var body_traits_id = $(event.relatedTarget).parent().parent().attr('data-src');
@@ -924,7 +939,7 @@ $('#milkInputForm').on('submit', function (event) {
         tableRow.children('td')[2].innerText = data.am_quantity;
         tableRow.children('td')[3].innerText = data.noon_quantity;
         tableRow.children('td')[4].innerText = data.pm_quantity;
-        tableRow.children('td')[5].innerText = Number(data.am_quantity) + Number(data.noon_quantity) + Number(data.pm_quantity);
+        tableRow.children('td')[5].innerText = (parseFloat(data.am_quantity) + parseFloat(data.noon_quantity) + parseFloat(data.pm_quantity)).toFixed(2);
         tableRow.find('form > input[name=milk_production_id]').val(data.id)
         tableRow.find('form').attr('id', 'deleteMilkProductionForm' + data.id)
         tableRow.find('button[type=submit]').attr('form', 'deleteMilkProductionForm' + data.id)
@@ -954,6 +969,33 @@ $('form[id^=deleteMilkProductionTargetForm]').on('submit', function (event) {
     var formData = deleteForm.serialize();
     $.post(postUrl + '/digitaldairy/delete_milk_production_target', formData, function (data) {
         deleteForm.parents('table').DataTable().row(deleteForm.parents('tr')).remove().draw();
+    })
+    return false;
+});
+$('form[id=feedFormulationPartInputForm]').on('submit', function (event) {
+    event.preventDefault();
+    var form = $(this);
+    var formData = form.serialize();
+    $.post(postUrl + '/digitaldairy/save_feed_formulation_part', formData, function (data) {
+        myStorage.setItem('feeding_formulation_part_' + data.id, JSON.stringify(data));
+        //clear a field
+        form.find('input[name=feed_form_part_quantity]').val('')
+    })
+    return false;
+});
+$('form[id=feedFormulationInputForm]').on('submit', function (event) {
+    event.preventDefault();
+    var form = $(this);
+    var formData = form.serialize();
+    $.post(postUrl + '/digitaldairy/save_feed_formulation', formData, function (data) {
+//        myStorage.setItem('feeding_formulation_' + data.id, JSON.stringify(data));
+        //clear the required fields
+        var myDocument = $(data)
+        $('div.table-responsive').parent('div')[0].innerHTML = myDocument.find('div.table-responsive')[0].outerHTML;
+        var scriptWithData = myDocument.find('div.container-fluid script')
+        $('div.container-fluid').after(scriptWithData);
+        form.find('select[name=feed_item]').val('Select Item')
+        form.find('input[name=feed_formulation_part_quantity]').val('')
     })
     return false;
 });
