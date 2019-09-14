@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'rest_framework',
 	'digitaldairy.apps.DigitaldairyConfig',
 	'accounts.apps.AccountsConfig',
 	'django.contrib.admin',
@@ -41,7 +42,17 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'django_registration',
+	'event_management.apps.EventManagementConfig',
+	'fcm_django',
 ]
+
+FCM_DJANGO_SETTINGS = {
+	"FCM_SERVER_KEY": "AAAAMs4p04M:APA91bHc6njCwxoPoBZX_E7CqTm7cZvB9BmMjcs8i9vvHqqvZS5KejICtbAYZ5ljzXzdGLklsSu7DfvQnnv_LuC-rZ0dNkV3RaD7e66p4MXbCvGrGkw3-czgn4gRlpD3WqlaxIoakfU3",
+	"APP_VERBOSE_NAME": "digitaldairy",
+	"ONE_DEVICE_PER_USER": False,
+	"DELETE_INACTIVE_DEVICES": False,
+}
+
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
@@ -85,9 +96,18 @@ DATABASES = {
 		'PASSWORD': 'admin',
 		'HOST': '127.0.0.1',
 		'ssl_disabled' : 'True',
-	}
+	},
+	# 'event_company': {
+	# 		'ENGINE': 'django.db.backends.postgresql',
+	# 		'NAME': 'eventcompany',
+	# 		'USER': 'brian',
+	# 		'PASSWORD': 'admin',
+	# 		'HOST': '127.0.0.1',
+	# 		'ssl_disabled' : 'True',
+	# 	}
 }
 
+DATABASE_ROUTERS = ['LearningDjango.DbRouter.DbRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -134,7 +154,7 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/var/www/digitaldairy.com/static/'
-STATIC_URL = '/ghhj/static/'
+STATIC_URL = '/digitaldairy/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "digitaldairy/templates/digitaldairy"),
 	os.path.join(BASE_DIR, "accounts/templates/accounts"),

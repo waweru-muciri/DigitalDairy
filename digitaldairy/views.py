@@ -1,14 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import  login_required
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 from .models import *
 import datetime
+from datetime import date
 import dateutil.relativedelta
 import itertools
 import collections
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.template.loader import get_template
+import json
+from fcm_django.models import FCMDevice
 
 # Create your views here.
 
@@ -19,9 +24,13 @@ general_from_date = datetime.date(2000,1,1)
 
 @require_http_methods(['GET'])
 def index(request):
-	context = {
-	}
-	return render(request, context=context, template_name='digitaldairy/html/landing-page.html')
+	if request.user.is_authenticated:
+		return  HttpResponseRedirect(reverse('digitaldairy:daily_milk_production'))
+	return render(request, template_name='digitaldairy/html/landing-page.html')
+
+
+def firebase_messaging_sw_js(request):
+	return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
 
 
 @require_http_methods(['POST'])
@@ -31,27 +40,38 @@ def send_message(request):
 	senders_first_name = request.POST['first_name'].strip().title()
 	senders_last_name = request.POST['last_name'].strip().title()
 	message = request.POST.get('message')
+	messages = []
 	if len(senders_first_name) < 4:
-		messages.error(request, "Your first name must be a minimum of four letters")
-		return render(request, template_name='digitaldairy/html/landing-page.html')
+		messages.append("Your first name must be a minimum of four letters")
 	if len(senders_last_name) < 4:
-		messages.error(request, "Your last name must be a minimum of four letters")
-		return render(request, template_name='digitaldairy/html/landing-page.html')
+		messages.append("Your last name must be a minimum of four letters")
 
 	if len(senders_phone_number) < 10 and not senders_phone_number.isdigit():
-		messages.error(request, "Your phone number is invalid")
-		return render(request, template_name='digitaldairy/html/landing-page.html')
+		messages.append("Your phone number is invalid")
 
 	if len(message) < 4:
-		messages.error(request, "Your last name must be a minimum of four letters")
-		return render(request, template_name='digitaldairy/html/landing-page.html')
+		messages.append("Your last name must be a minimum of four letters")
 
-	messages.success(request, "Message sent successfully!")
-	messages.success(request, "We will get back to you shortly!")
+	messages.append("Message sent successfully!")
+	messages.append("We will get back to you shortly!")
 	send_mail('Hi, ' + senders_email + ' wants your software!', message, 'smartfarmsoftwares@gmail.com', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
-	# return a different view showing the user that the message has been sent
-	return HttpResponseRedirect(reverse('digitaldairy:home'))
+	return  JsonResponse({
+		'messages': messages,
+		})
 
+@csrf_exempt
+@login_required
+@require_http_methods(['POST'])
+def store_push_token(request):
+	json_data = json.loads(request.body)
+	subscription_token = json_data['push_token']
+	fcm_device = FCMDevice()
+	fcm_device.registration_id = subscription_token
+	fcm_device.user = request.user
+	fcm_device.name = request.user.username
+	fcm_device.type = 'web'
+	fcm_device.save()
+	return JsonResponse({'message': 'Token successfully stored'})
 
 
 @login_required
@@ -95,7 +115,10 @@ def daily_milk_production(request):
 	all_cows = Cow.objects.all().values()
 	# get all milk targets
 	milk_production_targets_list = MilkTargets.objects.all()
-	total_day_milk_production = sum([(cow_milk_production.am_quantity + cow_milk_production.noon_quantity + cow_milk_production.pm_quantity) for cow_milk_production in day_milk_production])
+	total_day_am_milk_quantity =  sum([cow_milk_production.am_quantity for cow_milk_production in day_milk_production])
+	total_day_noon_milk_quantity =  sum([cow_milk_production.noon_quantity for cow_milk_production in day_milk_production])
+	total_day_pm_milk_quantity =  sum([cow_milk_production.pm_quantity for cow_milk_production in day_milk_production])
+	total_day_milk_production = total_day_am_milk_quantity + total_day_noon_milk_quantity + total_day_pm_milk_quantity
 	average_milk_quantity = total_day_milk_production / day_milk_production.count() if len(day_milk_production) > 0 else 0
 	un_milked_cows = len(all_cows) - day_milk_production.count()
 	day_milk_production = sorted(day_milk_production,key= lambda x: (x.am_quantity + x.noon_quantity + x.pm_quantity),reverse=True)
@@ -104,6 +127,9 @@ def daily_milk_production(request):
 		'day_and_previous_day_totals_sorted': day_and_previous_day_totals_sorted,
 		'unmilked_cows': un_milked_cows,
 		'average_milk_quantity' : average_milk_quantity,
+		'total_day_am_milk_quantity' : total_day_am_milk_quantity,
+		'total_day_noon_milk_quantity' : total_day_noon_milk_quantity,
+		'total_day_pm_milk_quantity' : total_day_pm_milk_quantity,
 		'total_day_milk_production': total_day_milk_production,
 		'milk_production_targets_list': milk_production_targets_list,
 		'all_cows': all_cows,
@@ -281,7 +307,6 @@ def cow_feeds(request):
 @login_required
 @require_http_methods(['GET'])
 def cow_feed_items(request):
-
 	feeds_list = FeedItems.objects.all()
 	context = {
 		'feeds_list': feeds_list,
@@ -294,7 +319,9 @@ def cow_feed_items(request):
 def daily_feeding(request):
 	feed_formulations_list = FeedFormulation.objects.all()
 	daily_feeding_list = DailyFeeding.objects.all()
+	feeds_list = FeedItems.objects.all()
 	context = {
+		'feeds_list': feeds_list,
 		'daily_feeding_list': daily_feeding_list,
 		'feed_formulations_list': feed_formulations_list,
 	}
@@ -494,14 +521,13 @@ def get_semen_catalog(request):
 @require_http_methods(['GET'])
 def get_ai_records(request):
 	ai_records_list = AiRecords.objects.all()
-	sorted_ai_records_list = sorted(ai_records_list, key=lambda x: (x.due_date - x.service_date).days // 30)
-	pregnancy_levels_list = [(9- key, list(ai_records_iter)) for key, ai_records_iter in itertools.groupby(sorted_ai_records_list, key=lambda x: (x.due_date - general_to_date).days // 30)]
+	sorted_ai_records_list = sorted(ai_records_list.filter(pregnancy_diagnosis_result='Positive', calving_status="Not Yet"), key=lambda x: (x.due_date - x.service_date).days // 30)
+	pregnancy_levels_list = [(9 - key, list(ai_records_iter)) for key, ai_records_iter in itertools.groupby(sorted_ai_records_list, key=lambda x: (x.due_date - general_to_date).days // 30)]
 	all_cows = Cow.objects.all()
 	context = {
 		'pregnancy_levels_list' : pregnancy_levels_list,
 		'ai_records_list': ai_records_list,
 		'all_cows': all_cows,
-
 	}
 	return render(request, context=context, template_name='digitaldairy/html/ai-records.html')
 
@@ -519,7 +545,7 @@ def get_pregnancy_diagnosis(request):
 @login_required
 @require_http_methods(['GET'])
 def calving_maternity(request):
-	ai_records_list = AiRecords.objects.filter(calving_status = 'Not Yet')
+	ai_records_list = AiRecords.objects.filter(calving_status='Not Yet')
 	calving_records_list = Calvings.objects.all()
 	context = {
 		'ai_records_list': ai_records_list,
@@ -531,7 +557,7 @@ def calving_maternity(request):
 @login_required
 @require_http_methods(['GET'])
 def abortions_miscarriages(request):
-	ai_records_list = AiRecords.objects.all()
+	ai_records_list = AiRecords.objects.filter(calving_status=["Not Yet"])
 	abortions_miscarriages_list = AbortionMiscarriages.objects.all()
 	context = {
 		'abortions_miscarriages_list': abortions_miscarriages_list,
@@ -597,6 +623,28 @@ def breeding_statistics(request):
 		'conception_rate': conception_rate,
 	}
 	return render(request, context=context, template_name='digitaldairy/html/breeding-statistics.html')
+
+
+@login_required
+@require_http_methods(['GET'])
+def daily_alerts(request):
+	current_date = date.today()
+	current_day_dryings = AiRecords.objects.filter(drying_date=current_date)
+	current_day_steamings = AiRecords.objects.filter(steaming_date=current_date)
+	current_day_pregnancy_checks = AiRecords.objects.filter(pregnancy_check_date=current_date)
+	current_day_calvings = AiRecords.objects.filter(due_date=current_date)
+	current_day_dewormings = Deworming.objects.filter(next_deworming_date=current_date)
+	current_day_vaccinations = Vaccinations.objects.filter(next_vaccination_date=current_date)
+	context = {
+		'current_date': current_date,
+		"current_day_dryings": current_day_dryings,
+		"current_day_steamings": current_day_steamings,
+		"current_day_pregnancy_checks": current_day_pregnancy_checks,
+		"current_day_calvings": current_day_calvings,
+		"current_day_dewormings": current_day_dewormings,
+		"current_day_vaccinations": current_day_vaccinations,
+	}
+	return render(request, context=context, template_name='digitaldairy/html/daily-alerts.html')
 
 
 @login_required
@@ -940,10 +988,12 @@ def get_clients_and_consumers(request):
 @require_http_methods(['GET', 'POST'])
 def get_employees(request):
 	employees_list = Employees.objects.all()
-	salaries_advances = salaries_and_advances.objects.all()
+	salaries_advances = SalaryAdvances.objects.all()
+	paid_salaries = EmployeeSalaries.objects.all()
 	context = {
 		'employees_list': employees_list,
 		'salaries_advances': salaries_advances,
+		'paid_salaries': paid_salaries,
 	}
 	if request.method == 'GET':
 		return render(request, context=context, template_name='digitaldairy/html/employees-page.html')
@@ -969,10 +1019,49 @@ def get_employees(request):
 
 
 @login_required
+@require_http_methods(['POST'])
+def save_employee_salary_advance(request):
+	advance_id = request.POST.get("salary_advance_id")
+	advance_date = request.POST.get("advance_date")
+	employee_id = request.POST.get("employee_id")
+	employee = get_object_or_404(Employees, pk=employee_id)
+	salary_month_year = request.POST.get("salary_month_year")
+	salary_advance_amount = request.POST.get("salary_advance_amount")
+	employee_salary_advance = SalaryAdvances()
+	employee_salary_advance.id = advance_id
+	employee_salary_advance.employee = employee
+	employee_salary_advance.advance_date = advance_date
+	employee_salary_advance.salary_date = salary_month_year
+	employee_salary_advance.advance_amount = salary_advance_amount
+	employee_salary_advance.save()
+
+	return HttpResponseRedirect(reverse('digitaldairy:employees'))
+
+
+@login_required
+@require_http_methods(['POST'])
+def save_paid_salary(request):
+	salary_id = request.POST.get("salary_id")
+	salary_date = request.POST.get("salary_date")
+	salary_paid_date = request.POST.get("salary_paid_date")
+	employee_id = request.POST.get("employee_id")
+	salary_amount = request.POST.get("salary_amount")
+	employee = get_object_or_404(Employees, pk=employee_id)
+	employee_salary = EmployeeSalaries()
+	employee_salary.id = salary_id
+	employee_salary.employee = employee
+	employee_salary.salary_paid_date = salary_paid_date
+	employee_salary.salary_date = salary_date
+	employee_salary.salary_amount = salary_amount
+	employee_salary.save()
+
+	return HttpResponseRedirect(reverse('digitaldairy:employees'))
+
+
+@login_required
 @require_http_methods(['GET', 'POST'])
 def cow_insurance(request):
 	all_cows =  Cow.objects.all()
-	insurance_list = []
 	if request.method == 'GET':
 		cow_id = request.GET.get('cow_id')
 		if cow_id != None:
@@ -1009,7 +1098,6 @@ def cow_insurance(request):
 		'all_cows': all_cows
 	}
 	return render(request, context=context, template_name='digitaldairy/html/cow-insurance.html')
-
 
 
 def getMonthIfNotNone(month):
@@ -1303,17 +1391,17 @@ def save_cow_sale(request):
 @require_http_methods(['POST'])
 def save_daily_feeding(request):
 	daily_feeding_id = request.POST.get('daily_feeding_id')
-	feed_formulation_id = request.POST.get('feed_formulation')
-	feed_formulation = get_object_or_404(FeedFormulation, pk=feed_formulation_id)
+	feed_item_id = request.POST.get('feed_item')
+	feed_item = get_object_or_404(FeedItems, pk=feed_item_id)
 	feeding_date = request.POST.get('feeding_date')
 	feeding_category = request.POST.get('feeding_category')
-	feed_formulation_quantity = request.POST.get('feed_formulation_quantity')
+	feed_item_quantity = request.POST.get('feed_item_quantity')
 	daily_feeding_record = DailyFeeding()
 	daily_feeding_record.id = daily_feeding_id
-	daily_feeding_record.feed_formulation = feed_formulation
+	daily_feeding_record.feed_item = feed_item
 	daily_feeding_record.date = feeding_date
 	daily_feeding_record.feeding_category = feeding_category
-	daily_feeding_record.quantity = feed_formulation_quantity
+	daily_feeding_record.quantity = feed_item_quantity
 	daily_feeding_record.save()
 	return HttpResponseRedirect(reverse('digitaldairy:daily_feeding'))
 
@@ -1342,12 +1430,11 @@ def save_feed_item(request):
 def save_feed_formulation(request):
 	feed_formulation_id = request.POST.get('feed_formulation_id')
 	feed_formulation_name = request.POST.get('feed_formulation_name')
-	feed_formulation_quantity = request.POST.get('feed_formulation_quantity')
 	feed_item_name = request.POST.get('feed_item')
 	feed_item = get_object_or_404(FeedItems, pk=feed_item_name)
 	feed_formulation_part_quantity = request.POST.get('feed_formulation_part_quantity')
 	# create and save feed formulation instance
-	feed_formulation, _created = FeedFormulation.objects.update_or_create(name=feed_formulation_name, defaults={'quantity': feed_formulation_quantity})
+	feed_formulation = FeedFormulation.objects.filter(name=feed_formulation_name)
 	# create feed formulation part to refer to feed formulation
 	feed_formulation_part, _created = FeedFormulationPart.objects.update_or_create(feed_item=feed_item,feed_formulation=feed_formulation, defaults={
 		'quantity': feed_formulation_part_quantity})
@@ -1444,7 +1531,6 @@ def save_cow_deworming_record(request):
 def save_cow_vaccination_record(request):
 	vaccination_id = request.POST.get('vaccination_id')
 	cow_id = request.POST['cow_id']
-	print(cow_id)
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
 	vaccination_date = request.POST['vaccination_date']
 	vaccine = request.POST.get('vaccine')
@@ -1470,7 +1556,8 @@ def save_cow_death_record(request):
 	autopsy_date = request.POST.get('autopsy_date')
 	death_cause = request.POST.get('death_cause')
 	referenced_cow.status = 'Inactive'
-	created_record, created = Deaths.objects \
+	referenced_cow.save()
+	death_record, created = Deaths.objects \
 		.update_or_create(cow=referenced_cow, defaults={
 		'death_date': death_date,
 		'autopsy_date': autopsy_date,
@@ -1655,48 +1742,43 @@ def save_cow_ai_record(request):
 		try:
 			service_date = datetime.datetime.strptime(service_date, '%Y-%m-%d')
 		except:
-			return ''
+			messages.error(request, 'Date is in wrong format')
+			return render(request, template_name='digitaldairy/html/ai-records.html')
 	else:
-		return ''
+		messages.error(request, 'Service date is missing')
+		return render(request, template_name='digitaldairy/html/ai-records.html')
 	bull_code = request.POST.get('bull_code')
 	semen_record = get_object_or_404(SemenRecords, bull_code=bull_code)
 	vet_name = request.POST.get('vet_name')
 	ai_cost = request.POST.get('ai_cost')
 	open_days = request.POST.get('open_days')
+	repeats = request.POST.get('repeats')
 	inbreeding_status = request.POST.get('inbreeding_status')
+	# create an instance of  ai_record and save
 	if ai_record_id:
 		ai_record = get_object_or_404(AiRecords, pk=ai_record_id)
-		ai_record.inbreeding = inbreeding_status
-		ai_record.open_days = open_days
-		ai_record.ai_cost = ai_cost
-		ai_record.service_date = service_date
-		ai_record.first_heat_check_date = service_date + dateutil.relativedelta.relativedelta(days=21)
-		ai_record.second_heat_check_date = ai_record.first_heat_check_date + dateutil.relativedelta.relativedelta(days=21)
-		ai_record.pregnancy_check_date = service_date + dateutil.relativedelta.relativedelta(months=3)
-		ai_record.drying_date = service_date + dateutil.relativedelta.relativedelta(months=7)
-		ai_record.steaming_date = service_date + dateutil.relativedelta.relativedelta(months=8)
-		ai_record.due_date = service_date + dateutil.relativedelta.relativedelta(months=9)
-		ai_record.semen_record = semen_record
-		# the cow being referenced is not being changed here
-		# ai_record.cow = referenced_cow
-		ai_record.vet_name = vet_name
-		ai_record.cost = ai_cost
-		ai_record.save()
 	else:
 		ai_record = AiRecords()
+		ai_record.id = ai_record_id
+	if inbreeding_status:
+		ai_record.inbreeding = inbreeding_status
+	ai_record.open_days = open_days
+	ai_record.repeats = repeats
+	ai_record.ai_cost = ai_cost
+	ai_record.service_date = service_date
+	ai_record.first_heat_check_date = service_date + dateutil.relativedelta.relativedelta(days=21)
+	ai_record.second_heat_check_date = ai_record.first_heat_check_date + dateutil.relativedelta.relativedelta(days=21)
+	ai_record.pregnancy_check_date = service_date + dateutil.relativedelta.relativedelta(months=3)
+	ai_record.drying_date = service_date + dateutil.relativedelta.relativedelta(months=7)
+	ai_record.steaming_date = service_date + dateutil.relativedelta.relativedelta(months=8)
+	ai_record.due_date = service_date + dateutil.relativedelta.relativedelta(months=9)
+	ai_record.semen_record = semen_record
+	if not ai_record_id:
 		referenced_cow = get_object_or_404(Cow, pk=cow_id)
-		ai_record.service_date = service_date
-		ai_record.first_heat_check_date = ai_record.service_date +  dateutil.relativedelta.relativedelta(days=21)
-		ai_record.second_heat_check_date = ai_record.first_heat_check_date +  dateutil.relativedelta.relativedelta(days=21)
-		ai_record.pregnancy_check_date = ai_record.service_date +  dateutil.relativedelta.relativedelta(months=3)
-		ai_record.drying_date =  ai_record.service_date +  dateutil.relativedelta.relativedelta(months=7)
-		ai_record.steaming_date = ai_record.service_date +  dateutil.relativedelta.relativedelta(months=8)
-		ai_record.due_date =  ai_record.service_date +  dateutil.relativedelta.relativedelta(months=9)
-		ai_record.semen_record = semen_record
 		ai_record.cow = referenced_cow
-		ai_record.vet_name = vet_name
-		ai_record.cost = ai_cost
-		ai_record.save()
+	ai_record.vet_name = vet_name
+	ai_record.cost = ai_cost
+	ai_record.save()
 	return HttpResponseRedirect(reverse("digitaldairy:ai_records"))
 
 
@@ -1743,7 +1825,7 @@ def save_calving_record(request):
 @login_required
 @require_http_methods(['POST'])
 def save_abortion_miscarriage_record(request):
-	ai_record_id = request.POST.get('ai_record_id')
+	ai_record_id = request.POST['ai_record_id']
 	# get the ai_record associated with this abortion
 	ai_record = get_object_or_404(AiRecords, pk=ai_record_id)
 	# get additional attributes of the abortion/miscarriage instance
@@ -1752,7 +1834,8 @@ def save_abortion_miscarriage_record(request):
 	event_cause = request.POST.get('event_cause')
 	event_cost = request.POST.get('event_cost')
 	vet_name = request.POST.get('vet_name')
-	ai_record.calving_status = "Aborted" if event_cause == "Abortion"  else "Miscarriaged"
+	# save type of calving_status to the ai_record
+	ai_record.calving_status = "Aborted" if event_cause == "Abortion" else "Miscarriaged"
 	ai_record.save()
 	# build instance of abortion/miscarriage to save
 	abortion_miscarriage_to_save = AbortionMiscarriages()
@@ -1770,7 +1853,7 @@ def save_abortion_miscarriage_record(request):
 @login_required
 @require_http_methods(['POST'])
 def save_pregnancy_diagnosis(request):
-	ai_record_id = request.POST.get('ai_record_id')
+	ai_record_id = request.POST['ai_record_id']
 	ai_record = get_object_or_404(AiRecords, pk=ai_record_id)
 	pregnancy_diagnosis_date = request.POST.get('pregnancy_diagnosis_date')
 	pregnancy_diagnosis_result = request.POST.get('pregnancy_diagnosis_result')
@@ -1874,6 +1957,24 @@ def delete_income(request):
 	income = get_object_or_404(Income, pk=income_id)
 	income.delete()
 	return HttpResponseRedirect(reverse("digitaldairy:income"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_employee_salary_advance(request):
+	advance_salary_id = request.POST['advance_salary_id']
+	salary_advance = get_object_or_404(SalaryAdvances, pk=advance_salary_id)
+	salary_advance.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:employees"))
+
+
+@login_required
+@require_http_methods(['POST'])
+def delete_employee_salary(request):
+	salary_id = request.POST['salary_id']
+	employee_salary = get_object_or_404(EmployeeSalaries, pk=salary_id)
+	employee_salary.delete()
+	return HttpResponseRedirect(reverse("digitaldairy:employees"))
 
 
 @login_required
@@ -2065,6 +2166,7 @@ def delete_ai_record(request):
 def delete_calving(request):
 	calving_id = request.POST.get('calving_id')
 	calving = get_object_or_404(Calvings, pk=calving_id)
+	calving.ai_record.calving_status = "Not Yet"
 	calving.delete()
 	return HttpResponseRedirect(reverse("digitaldairy:calving_maternity"))
 

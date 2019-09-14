@@ -1,41 +1,152 @@
+function sendTokenToServer(token) {
+    // subscription part
+    // send subscription details as JSON to the server using fetch
+    fetch('/digitaldairy/store_push_token', {
+        method: 'post',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ push_token: token })
+    }).then((response) => {
+        console.log('Response from the server ', response.json().message);
+    }).catch((error) => {
+        console.log('Error occurred when sending token to the server');
+        console.log(error);
+    });
+}
+function showTokenError(msg, error) {
+    //show error has occurred to the user
+    alert(msg, error);
+}
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyD5p_4i0XpyZxpuh_7gGPuCQz6AP1gEc2U",
+    authDomain: "mymaps-162115.firebaseapp.com",
+    databaseURL: "https://mymaps-162115.firebaseio.com",
+    projectId: "mymaps-162115",
+    storageBucket: "mymaps-162115.appspot.com",
+    messagingSenderId: "218207212419",
+    appId: "1:218207212419:web:2d6ef6a6570d6f871b1cb6"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+//retrieve firebase messaging object
+var firebase_messaging = firebase.messaging();
+//add public key generated from console here
+firebase_messaging.usePublicVapidKey("BIu8DIXPg-3YonSd_qYzEQ_yd65HxyPq0ajwXq_noj0qQQy5aq-8Noic1M8LrGlx_Hq32zK6SwCZDVNr8r6jlqE");
+// Handle incoming messages. Called when:
+// - a message is received while the app has focus
+// - the user clicks on an app notification created by a service worker
+//   `firebase_messaging.setBackgroundMessageHandler` handler.
+firebase_messaging.onMessage((payload) => {
+    console.log('Firebase Message received. ', payload);
+    // ...
+});
+//request permission to receive notifications
+Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+        console.log('Notification permission granted');
+        // Get Instance ID token. Initially this makes a network call, once retrieved
+        // subsequent calls to getToken will return from cache.
+        firebase_messaging.getToken().then((currentToken) => {
+            if (currentToken) {
+                // retrieve token details 
+                // fetch('https://fcm.googleapis.com/fcm/send', {
+                //     method: 'post',
+                //     headers: {
+                //         'Content-type': 'application/json',
+                //         'Authorization': 'key=AAAAMs4p04M:APA91bHc6njCwxoPoBZX_E7CqTm7cZvB9BmMjcs8i9vvHqqvZS5KejICtbAYZ5ljzXzdGLklsSu7DfvQnnv_LuC-rZ0dNkV3RaD7e66p4MXbCvGrGkw3-czgn4gRlpD3WqlaxIoakfU3'
+                //     },
+                //     body: JSON.stringify({
+                //         "notification": {
+                //             "title": "Firebase",
+                //             "body": "Firebase is awesome",
+                //             "click_action": "http://localhost:3000/",
+                //             "icon": "http://url-to-an-icon/icon.png"
+                //         },
+                //         "to": currentToken
+                //     })
+                // }).then((response) => {
+                //     console.log('Response from the server ', response.json());
+                // }).catch((error) => {
+                //     console.log('Error occurred when sending token to the server');
+                //     console.log(error);
+                // });
+                sendTokenToServer(currentToken);
+                // updateUIForPushEnabled(currentToken);
+            } else {
+                // Show permission request.
+                console.log('No Instance ID token available. Request permission to generate one.');
+                // Show permission UI.
+                // updateUIForPushPermissionRequired();
+                // setTokenSentToServer(false);
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+            showTokenError('Error retrieving Instance ID token. ', err);
+            // setTokenSentToServer(false);
+        });
+
+        // Callback fired if Instance ID token is updated.
+        firebase_messaging.onTokenRefresh(() => {
+            firebase_messaging.getToken().then((refreshedToken) => {
+                console.log('Token refreshed.');
+                console.log(refreshedToken);
+                // Indicate that the new Instance ID token has not yet been sent to the
+                // app server.
+                // setTokenSentToServer(false);
+                // Send Instance ID token to app server.
+                sendTokenToServer(refreshedToken);
+                // ...
+            }).catch((err) => {
+                console.log('Unable to retrieve refreshed token ', err);
+                showTokenError('Unable to retrieve refreshed token ', err);
+            });
+        });
+
+    } else {
+        console.log('Unable to get permission to notify.');
+    }
+});
+//request user to add app to home screen 
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (event) => {
+    deferredPrompt = event;
+    // Update UI notify the user they can add to home screen
+    showInstallPromotion();
+})
+// show add to home screen promotion 
+showInstallPromotion = () => {
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+        } else {
+            console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+    });
+}
+//determine is app was sucessfully installed 
+window.addEventListener('appinstalled', (event) => {
+    console.log('DigitalDairy installed')
+})
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/js/service-worker.js', {
+        navigator.serviceWorker.register('/static/service-worker.js', {
             scope: '/static/',
-        }).then((registration) => {
-            console.log('[Service Worker] registered.', registration);
-            // return registration.pushManager.getSubscription().then(async function (subscription) {
-            //     //registration part
-            //     if (subscription) {
-            //         return subscription;
-            //     } else {
-            //         // const response = await fetch('./vapidPublicKey');
-            //         // const vapidPublicKey = await response.text();
-            //         // const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
-            //         // return registration.pushManager.subscribe({
-            //         //     userVisibleOnly: true,
-            //         //     applicationServerKey: convertedVapidKey
-            //         // });
-            //     }
-            // });
-        }, /*catch*/(error) => {
+        }).then((serviceWorkerRegistration) => {
+            //use my own service worker for receiving push messages
+            firebase_messaging.useServiceWorker(serviceWorkerRegistration);
+        }).catch((error) => {
             console.log('[Service Worker] registration failed:', error);
-        }).then((subscription) => {
-            console.log('[Service Worker] subscription ' + subscription)
-            //subscription part
-            //send subscription details as JSON to the server using fetch
-            // fetch('./register', {
-            //     method: 'post',
-            //     headers: {
-            //         'Content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ subscription: subscription })
-            // });
         });
-        //request to show notifications when the user requests it by creating /// a button
-        var button = document.getElementById('notifications-button');
-        if (button) {
-            button.addEventListener('click', function (event) {
+        //request to show notifications when the user requests it by creating a button
+        var notification_button = document.getElementById('notifications-button');
+        if (notification_button) {
+            notification_button.addEventListener('click', function (event) {
                 Notification.requestPermission().then((result) => {
                     if (result === 'granted') {
                         randomNotification();
@@ -47,7 +158,7 @@ if ('serviceWorker' in navigator) {
             var randomItem = Math.floor(Math.random() * 1000);
             var notifTitle = 'Notification Title';
             var notifBody = 'Created by Brian Muciri';
-            var notifImg = ''
+            var notifImg = '/static/images/icons/digital_dairy128.png'
             var options = {
                 body: notifBody,
                 icon: notifImg,
@@ -60,7 +171,6 @@ if ('serviceWorker' in navigator) {
 else {
     console.log('Service workers are not supported.');
 }
-
 var postUrl = 'https://digitaldairy.herokuapp.com';
 //var postUrl = 'http://127.0.0.1:8000';
 var option = document.createElement('option');
@@ -73,11 +183,9 @@ function getDate(date) {
     // add year to date string
     var date_string = new String(date.getUTCFullYear());
     // add month to date string
-    //    date_string = date_string.concat(date.getUTCMonth() + 1 < 10 ? '-0'+(date.getUTCMonth() + 1) :  '-'+(date.getUTCMonth() +1));
-    date_string = date_string.concat('-0' + 5);
+    date_string = date_string.concat(date.getUTCMonth() + 1 < 10 ? '-0' + (date.getUTCMonth() + 1) : '-' + (date.getUTCMonth() + 1));
     // add current date to date string
-    //	date_string = date_string.concat(date.getUTCDate() < 10 ? '-0'+date.getUTCDate() :'-'+date.getUTCDate());
-    date_string = date_string.concat('-' + 16);
+    date_string = date_string.concat(date.getUTCDate() < 10 ? '-0' + date.getUTCDate() : '-' + date.getUTCDate());
     return date_string;
 }
 var current_date_string = getDate(new Date());
@@ -522,6 +630,58 @@ $('#employeesInputModal').on('show.bs.modal', function (event) {
         modal.find('.modal-title').text(" Add Employee Record")
     }
 })
+$('#salaryAdvancesInputModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var salary_advances_id = $(event.relatedTarget).parent().parent().attr('data-src');
+    if ($(event.relatedTarget).attr('id') == 'salaryAdvanceEditBtn') {
+        modal.find('.modal-title').text("Edit Salary Advance Details")
+        var salary_advance_record = JSON.parse(myStorage.getItem('salary_advance_' + salary_advances_id))
+        var salary_advance_id_input = modal.find('input[name=salary_advance_id]')
+        if (salary_advance_id_input.length == 1) {
+            salary_advance_id_input.val(salary_advance_record.id)
+        }
+        else {
+            salary_advance_id_input = "<input id='salary_advance_id' type='hidden' class='form-control' name='salary_advance_id'>";
+            modal.find('#advance_date').after(salary_advance_id_input)
+            salary_advance_id_input = modal.find('input[name=salary_advance_id]')
+            salary_advance_id_input.val(salary_advance_record.id)
+        }
+        modal.find('#advance_date').val(salary_advance_record.advance_date)
+        modal.find('#employee_id').val(salary_advance_record.employee_id)
+        modal.find('#salary_month_year').val(salary_advance_record.salary_date)
+        modal.find('#salary_advance_amount').val(salary_advance_record.advance_amount)
+    }
+    else {
+        clearTextAndNumberInputFields(modal);
+        modal.find('.modal-title').text(" Add Salary Advance Record")
+    }
+})
+$('#salaryInputModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var salary_id = $(event.relatedTarget).parent().parent().attr('data-src');
+    if ($(event.relatedTarget).attr('id') == 'salaryEditBtn') {
+        modal.find('.modal-title').text("Edit Salary Details")
+        var salary_record = JSON.parse(myStorage.getItem('paid_salary_' + salary_id))
+        var salary_id_input = modal.find('input[name=salary_id]')
+        if (salary_id_input.length == 1) {
+            salary_id_input.val(salary_record.id)
+        }
+        else {
+            salary_id_input = "<input id='salary_id' type='hidden' class='form-control' name='salary_id'>";
+            modal.find('#salary_paid_date').after(salary_id_input)
+            salary_id_input = modal.find('input[name=salary_id]')
+            salary_id_input.val(salary_record.id)
+        }
+        modal.find('#salary_paid_date').val(salary_record.salary_paid_date)
+        modal.find('#employee_id').val(salary_record.employee_id)
+        modal.find('#salary_date').val(salary_record.salary_date)
+        modal.find('#salary_amount').val(salary_record.amount)
+    }
+    else {
+        clearTextAndNumberInputFields(modal);
+        modal.find('.modal-title').text(" Add Salary Record")
+    }
+})
 $('#semenInputModal').on('show.bs.modal', function (event) {
     var modal = $(this)
     var semen_catalog_id = $(event.relatedTarget).parent().parent().attr('data-src');
@@ -578,7 +738,13 @@ $('#pregnancyDiagnosisInputModal').on('show.bs.modal', function (event) {
     var pregnancy_diagnosis_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'pregnancyDiagnosisEditBtn') {
         modal.find('.modal-title').text("Edit Pregnancy Diagnosis Record")
-        var ai_record = JSON.parse(myStorage.getItem('pregnancy_diagnosis_id' + pregnancy_diagnosis_id))
+        var ai_record = JSON.parse(myStorage.getItem('pregnancy_diagnosis_id_' + pregnancy_diagnosis_id))
+        option.setAttribute('value', ai_record.id);
+        option.innerText = ai_record.cow_id
+        if (modal.find('select#ai_record_id1').val(ai_record.id)[0].selectedIndex == -1) {
+            modal.find('select#ai_record_id1')[0].add(option)
+            modal.find('select#ai_record_id1').val(ai_record.id)
+        }
         modal.find('#pregnancy_diagnosis_date').val(ai_record.pregnancy_diagnosis_date)
         modal.find('#pregnancy_diagnosis_result').val(ai_record.pregnancy_diagnosis_result)
         modal.find('#pregnancy_diagnosis_cost').val(ai_record.pregnancy_diagnosis_cost)
@@ -595,7 +761,7 @@ $('#pregnancyCalendarEditModal').on('show.bs.modal', function (event) {
     var pregnancy_calendar_id = $(event.relatedTarget).parent().parent().attr('data-src');
     if ($(event.relatedTarget).attr('id') == 'pregnancyCalendarEditBtn') {
         modal.find('.modal-title').text("Edit Pregnancy Calendar")
-        var ai_record = JSON.parse(myStorage.getItem('pregnancy_calendar_id' + pregnancy_calendar_id))
+        var ai_record = JSON.parse(myStorage.getItem('pregnancy_diagnosis_id_' + pregnancy_calendar_id));
         modal.find('input[name=ai_record_id]').val(ai_record.id)
         modal.find('#first_heat_check_date').val(ai_record.first_heat_check_date)
         modal.find('#second_heat_check_date').val(ai_record.second_heat_check_date)
@@ -742,6 +908,12 @@ $('#calvingInputModal').on('show.bs.modal', function (event) {
     if ($(event.relatedTarget).attr('id') == 'calvingEditBtn') {
         modal.find('.modal-title').text("Edit Calving Record")
         var calving_record = JSON.parse(myStorage.getItem('calving_' + calving_id))
+        option.setAttribute('value', calving_record.id);
+        option.innerText = calving_record.cow_id
+        if (modal.find('select#ai_record_id').val(calving_record.id)[0].selectedIndex == -1) {
+            modal.find('select#ai_record_id')[0].add(option)
+            modal.find('select#ai_record_id').val(calving_record.id)
+        }
         modal.find('#calf_code').val(calving_record.calf_code)
         modal.find('#calf_name').val(calving_record.calf_name)
         modal.find('#calving_date').val(calving_record.calving_date)
@@ -797,6 +969,33 @@ $('#feedingProgramInputDialog').on('show.bs.modal', function (event) {
         modal.find('.modal-title').text("Add Feeding Programme Record")
         modal.find('input[name=feeding_programme_id').remove();
         modal.find('select[name=feed_formulation_id]').val('Select Feed Formulation')
+        modal.find('select[name=feeding_category]').val('Select Group')
+    }
+})
+$('#dailyFeedingInputModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    var daily_feeding_id = $(event.relatedTarget).parent().parent().attr('data-src');
+    if ($(event.relatedTarget).attr('id') == 'dailyFeedingEditBtn') {
+        modal.find('.modal-title').text("Edit Daily Feeding Record")
+        var daily_feeding = JSON.parse(myStorage.getItem('daily_feeding_' + daily_feeding_id))
+        var daily_feeding_id_input = modal.find('input[name=daily_feeding_id]')
+        if (daily_feeding_id_input.length == 1) {
+            daily_feeding_id_input.val(daily_feeding.id)
+        }
+        else {
+            daily_feeding_id_input = "<input id='daily_feeding_id' type='hidden' class='form-control' name='daily_feeding_id'>";
+            modal.find('#feed_item_quantity').after(daily_feeding_id_input)
+            daily_feeding_id_input = modal.find('input[name=daily_feeding_id]')
+            daily_feeding_id_input.val(daily_feeding.id)
+        }
+        modal.find('#feed_item_quantity').val(daily_feeding.quantity)
+        modal.find('select[name=feeding_category]').val(daily_feeding.feeding_category)
+        modal.find('select[name=feed_item]').val(daily_feeding.feed_item)
+    } else {
+        clearTextAndNumberInputFields(modal);
+        modal.find('.modal-title').text("Add Daily Feeding Record")
+        modal.find('input[name=daily_feeding_id').remove();
+        modal.find('select[name=feed_item]').val('Select Item')
         modal.find('select[name=feeding_category]').val('Select Group')
     }
 })
@@ -884,19 +1083,19 @@ setPagination = function (tablesToAddPaginationTo) {
             ],
             dom: 'Bfrtip',
             buttons: [
-	            {
-	                extend: 'print',
-	                exportOptions: {
-		                columns: ':not(:contains(Actions))'
-		            }
-	            },
-	            {
-	                extend: 'excel',
-	                exportOptions: {
-		                columns: ':not(:contains(Actions))'
-		            }
-	            },
-	        ],
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(:contains(Actions))'
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(:contains(Actions))'
+                    }
+                },
+            ],
         });
     });
 }
@@ -988,7 +1187,7 @@ $('form[id=feedFormulationInputForm]').on('submit', function (event) {
     var form = $(this);
     var formData = form.serialize();
     $.post(postUrl + '/digitaldairy/save_feed_formulation', formData, function (data) {
-//        myStorage.setItem('feeding_formulation_' + data.id, JSON.stringify(data));
+        //        myStorage.setItem('feeding_formulation_' + data.id, JSON.stringify(data));
         //clear the required fields
         var myDocument = $(data)
         $('div.table-responsive').parent('div')[0].innerHTML = myDocument.find('div.table-responsive')[0].outerHTML;

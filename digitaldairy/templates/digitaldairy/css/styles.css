@@ -6,6 +6,24 @@
     font-weight: 400;
 }
 **/
+.text-success{
+  font-size: 20px;
+  padding: 20px 10px;
+  color: #28a745 !important;
+  display: none;
+}
+.text-success.active {
+  display: block;
+}
+.text-error{
+  padding: 20px 10px;
+  font-size: 20px;
+  display: none;
+  color: #dc3545 !important;
+}
+.text-error.active {
+  display: block;
+}
 .navbar-collapse .navbar-nav{
 	flex-basis: 100%;
 	justify-content: space-evenly;
@@ -17,9 +35,9 @@ form[id^='delete']{
     display:inline-block;
 }
 button.btn:hover {
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
 }
 .badge{
 	font-size:1rem;

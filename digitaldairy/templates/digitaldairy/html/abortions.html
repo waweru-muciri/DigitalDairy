@@ -48,10 +48,8 @@
 										Cow</option>
 										{% if ai_records_list %}
 										{% for ai_record in ai_records_list %}
-										{% if ai_record.pregnancy_diagnosis_result == 'Positive' %}
 										<option value="{{ai_record.id}}" name="ai_record_id"> {{ai_record.cow.name}}
 										</option>
-										{% endif %}
 										{% endfor %}
 										{% endif %}
 									</select>

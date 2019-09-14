@@ -2,6 +2,26 @@
 {% block title %} Calving/Maternity Records {% endblock %}
 {% block content %}
 {% load subtract_dates %}
+{% if calving_records_list %}
+<script>
+{% for calving_record in calving_records_list %}
+	var object =
+	{
+	id: '{{ calving_record.ai_record.id }}',
+	cow_id: '{{ calving_record.ai_record.cow.id }}',
+	calf_code: '{{calving_record.calf.id}}',
+	calf_name: '{{calving_record.calf.name}}',
+	calf_color: '{{calving_record.calf.color}}',
+	calf_breed: '{{calving_record.calf.breed}}',
+	calf_weight: {{ calving_record.calf.birth_weight }},
+	calving_date: '{{calving_record.calving_date|date:"Y-m-d"}}',
+	calving_type: '{{calving_record.calving_type}}',
+	calf_sex: '{{calving_record.calf.category}}',
+	}
+	window.sessionStorage.setItem('calving_'+ object.id,JSON.stringify(object));
+{% endfor %}
+</script>
+{% endif %}
 		<section class="section-a">
 			<div class="container text-center">
 				<div class="row">
@@ -119,6 +139,8 @@
 							<table id="calvingsTable" class="table table-hover">
 								<thead class="text-center">
 									<tr>
+										<th>Sire Name</th>
+										<th>Dam Name</th>
 										<th>Calf Code/Id</th>
 										<th>Calf Name</th>
 										<th>Date of Birth </th>
@@ -127,9 +149,7 @@
 										<th>Color</th>
 										<th>Weight</th>
 										<th>Progeny</th>
-										<th>Sire Name</th>
-										<th>Dam Name</th>
-										<th>Calving Interval</th>
+										<th>Dam Calving Interval</th>
 										<th>Dam Age</th>
 										<th>Actions </th>
 									</tr>
@@ -137,23 +157,9 @@
 								<tbody class="text-center">
 									{% if calving_records_list %}
 									{% for calving_record in calving_records_list %}
-									<script>
-										myStorage = window.sessionStorage;
-										var object =
-										{
-										id: {{ calving_record.ai_record.id }},
-										calf_code: '{{calving_record.calf.id}}',
-										calf_name: '{{calving_record.calf.name}}',
-										calf_color: '{{calving_record.calf.color}}',
-										calf_breed: '{{calving_record.calf.breed}}',
-										calf_weight: {{ calving_record.calf.birth_weight }},
-										calving_date: '{{calving_record.calving_date|date:"Y-m-d"}}',
-										calving_type: '{{calving_record.calving_type}}',
-										calf_sex: '{{calving_record.calf.category}}',
-										}
-										myStorage.setItem('calving_'+ object.id,JSON.stringify(object))
-									</script>
 									<tr data-src="{{calving_record.ai_record.id}}">
+										<td> {{ calving_record.calf.sire.bull_name }} </td>
+										<td> {{ calving_record.calf.dam.name }} </td>
 										<td> {{ calving_record.calf.id }} </td>
 										<td> {{ calving_record.calf.name }} </td>
 										<td> {{ calving_record.calf.dob|date:"Y/m/d" }} </td>
@@ -162,8 +168,6 @@
 										<td> {{ calving_record.calf.color }} </td>
 										<td> {{ calving_record.calf.birth_weight  }} </td>
 										<td> {{ calving_record.progeny  }} </td>
-										<td> {{ calving_record.calf.sire.bull_name }} </td>
-										<td> {{ calving_record.calf.dam.name }} </td>
 										<td> {{ calving_record.calving_interval }} Days </td>
 										{% now 'SHORT_DATE_FORMAT' as current_date %}
 										<td> {{ current_date|minus_dates:calving_record.calf.dam.dob }} days</td>
@@ -176,7 +180,7 @@
 												{% csrf_token %}
 												<input name="calving_id" type="hidden"
 												value=" {{calving_record.ai_record.id}} ">
-												<button form="deleteCalvingForm" type="button" class='btn btn-sm btn-danger' aria-label="Delete">
+												<button form="deleteCalvingForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
 													<span class="fa fa-times"></span>
 												</button>
 											</form>

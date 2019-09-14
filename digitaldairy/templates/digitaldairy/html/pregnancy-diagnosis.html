@@ -1,6 +1,27 @@
 {% extends "digitaldairy/html/common-header.html" %}
 {% block title %} Pregnancy Diagnosis {% endblock %}
 {% block content %}
+{% if ai_records_list %}
+<script>
+	{% for ai_record in ai_records_list %}
+	var object = {
+	id: '{{ai_record.id}}',
+	cow_id: '{{ai_record.cow.name}}',
+	pregnancy_diagnosis_date: '{{ai_record.pregnancy_diagnosis_date|date:"Y-m-d"}}',
+	pregnancy_diagnosis_result: '{{ai_record.pregnancy_diagnosis_result}}',
+	pregnancy_diagnosis_vet_name: '{{ai_record.pregnancy_diagnosis_vet_name}}',
+	pregnancy_diagnosis_cost: '{{ai_record.pregnancy_diagnosis_cost}}',
+	first_heat_check_date: '{{ai_record.first_heat_check_date|date:"Y-m-d"}}',
+	second_heat_check_date: '{{ai_record.second_heat_check_date|date:"Y-m-d"}}',
+	drying_date: '{{ai_record.drying_date|date:"Y-m-d"}}',
+	steaming_date: '{{ai_record.steaming_date|date:"Y-m-d"}}',
+	due_date: '{{ai_record.due_date|date:"Y-m-d"}}',
+	}
+	window.sessionStorage.setItem('pregnancy_diagnosis_id_'+object.id,JSON.stringify
+	 (object))
+	{% endfor %}
+</script>
+{% endif %}
 <section class="container">
 	<ul class="nav nav-tabs">
 		<li class="nav-link text-center" style="flex:1;">
@@ -49,20 +70,8 @@
 							<tbody class="text-center">
 							{% if ai_records_list %}
 							{% for ai_record in ai_records_list %}
-							{% if ai_record.pregnancy_diagnosis_date is not None %}
+							{% if ai_record.pregnancy_diagnosis_date %}
 							<tr data-src="{{ai_record.id}}">
-								<script>
-                                        myStorage = window.sessionStorage;
-                                        var object = {
-                                        id: {{ai_record.id}},
-                                        pregnancy_diagnosis_date: '{{ai_record.pregnancy_diagnosis_date|date:"Y-m-d"}}',
-                                        pregnancy_diagnosis_result: '{{ai_record.pregnancy_diagnosis_result}}',
-                                        pregnancy_diagnosis_vet_name: '{{ai_record.pregnancy_diagnosis_vet_name}}',
-                                        pregnancy_diagnosis_cost: {{ai_record.pregnancy_diagnosis_cost}},
-                                        }
-                                        myStorage.setItem('pregnancy_diagnosis_id'+object.id,JSON.stringify
-                                         (object))
-                                        </script>
 								<td>{{ forloop.counter }}</td>
 								<td>{{ai_record.pregnancy_diagnosis_date}} </td>
 								<td>{{ai_record.cow.id}} </td>
@@ -118,7 +127,7 @@
 								<label for="ai_record_id" class="col-form-label">
 									Select Cow
 								</label>
-								<select required id="ai_record_id" class="form-control" name="ai_record_id">
+								<select required id="ai_record_id1" class="form-control" name="ai_record_id">
 									<option value="ai_record_id" disabled selected="selected">Select
 										Cow</option>
 									{% if ai_records_list %}
@@ -203,20 +212,6 @@
 							{% for ai_record in ai_records_list %}
 							{% if ai_record.pregnancy_diagnosis_result == 'Positive' %}
 							<tr data-src="{{ai_record.id}}">
-								<script>
-                                        myStorage = window.sessionStorage;
-                                        var object = {
-                                        id: {{ai_record.id}},
-                                        pregnancy_diagnosis_date: '{{ai_record.pregnancy_diagnosis_date|date:"Y-m-d"}}',
-                                        first_heat_check_date: '{{ai_record.first_heat_check_date|date:"Y-m-d"}}',
-                                        second_heat_check_date: '{{ai_record.second_heat_check_date|date:"Y-m-d"}}',
-                                        drying_date: '{{ai_record.drying_date|date:"Y-m-d"}}',
-                                        steaming_date: '{{ai_record.steaming_date|date:"Y-m-d"}}',
-                                        due_date: '{{ai_record.due_date|date:"Y-m-d"}}',
-                                        }
-                                        myStorage.setItem('pregnancy_calendar_id'+object.id,JSON.stringify
-                                         (object))
-                                        </script>
 								<td>{{ forloop.counter }}</td>
 								<td>{{ai_record.pregnancy_check_date}} </td>
 								<td>{{ai_record.pregnancy_diagnosis_date}} </td>

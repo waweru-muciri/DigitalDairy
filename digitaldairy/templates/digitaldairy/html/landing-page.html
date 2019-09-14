@@ -142,8 +142,8 @@
 							<img style="min-height: 300px" class="d-block w-100" src="{% static 'images/cows-3.jpg' %}"
 								alt="Kefa Farm Image">
 							<div class="carousel-caption d-md-block">
-								<p>We use DigitalDairy to store and retrieve vital animal information such as
-									breeding records, animal health events etc. Kimani, Farm Manager</p>
+								<p>Digitaldairy gives us full control of our farm through useful insights, statistics
+									and summaries generated from farm records that we store on the platform. </p>
 							</div>
 						</div>
 					</div>
@@ -231,7 +231,7 @@
 					<hr class="m-0">
 					<ul class="list-unstyled u-py-30 u-lh-2">
 						<li><strong>Unlimited</strong> access and support</li>
-						<li><strong>20</strong> farm alerts and notifications </li>
+						<li><strong>100+</strong> farm alerts and notifications </li>
 						<li><strong>1-20</strong> animals to track</li>
 						<li><strong>5GB</strong> Monthly Bandwidth</li>
 					</ul>
@@ -253,7 +253,7 @@
 					<hr class="m-0">
 					<ul class="list-unstyled u-py-30 u-lh-2">
 						<li><strong>Unlimited</strong> access to the platform</li>
-						<li><strong>20</strong> farm alerts and notifications</li>
+						<li><strong>100+</strong> farm alerts and notifications</li>
 						<li><strong>20-40</strong> animals to track</li>
 						<li><strong>10GB</strong> Monthly Bandwidth</li>
 					</ul>
@@ -406,16 +406,10 @@
 					Get the power to manage your farm like never before
 				</h3>
 				<div class="u-h-4 u-w-50 bg-white rounded u-mb-70 mx-auto"></div>
-				{% if messages %}
-				<div class="text-center">
-					{% for message in messages %}
-					{% if message.tags %}
-					<p class="alert alert-{{message.tags}}"> {{message}} </p>
-					{% endif %}
-					{% endfor %}
+				<div id="text-error" class="text-center text-error"></div>
+				<div id="text-success" class="text-success text-center">
 				</div>
-				{% endif %}
-				<form action="{% url 'digitaldairy:send_message' %}" method="POST">
+				<form id="contactForm" name="contactForm" action="{% url 'digitaldairy:send_message' %}" method="POST">
 					{% csrf_token %}
 					<div class="row">
 						<div class="col-md-6 u-mb-30">

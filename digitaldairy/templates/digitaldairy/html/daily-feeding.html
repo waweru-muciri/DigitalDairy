@@ -2,6 +2,21 @@
 {% block title %} Daily Feeding {% endblock %}
 {% block content %}
 {% load mathfilters %}
+{% if daily_feeding_list %}
+<script>
+{% for daily_feeding in daily_feeding_list %}
+	var daily_feeding = {
+		id: {{ daily_feeding.id }},
+		quantity: '{{ daily_feeding.quantity }}',
+		feeding_category: '{{daily_feeding.feeding_category}}',
+		date: '{{daily_feeding.date}}',
+		feed_item: '{{daily_feeding.feed_item}}',
+		}
+	window.sessionStorage.setItem('daily_feeding_'+ daily_feeding.id,JSON.stringify(daily_feeding));
+{% endfor %}
+</script>
+{% endif %}
+
 <section>
     <div class="text-right sf-html-block">
         <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -32,14 +47,16 @@
                             <input id="feeding_date" class="form-control" type="date" name="feeding_date" required>
                         </div>
                         <div class="form-group">
-                            <label for="feed_formulation" class="col-form-label">
-                                Select Feed Formulation
+                            <label for="feed_item" class="col-form-label">
+                                Select Item
                             </label>
-                            <select id="feed_formulation"  class="form-control" name="feed_formulation" required>
-                                <option value="Select Feed Formulation" disabled selected="selected">Select Feed Formulation</option>
-                                {% if feed_formulations_list %}
-                                {% for feed_formulation in feed_formulations_list %}
-                                <option value="{{feed_formulation.id}}" name="feed_formulation">{{feed_formulation.name}} ({{ feed_formulation.quantity }})</option>
+                            <select required id="feed_item"  class="form-control" name="feed_item">
+                                <option value="Select Item" disabled selected>Select Item</option>
+                                {% if feeds_list %}
+                                {% for feed_item in feeds_list %}
+                                <option value="{{feed_item.name}}" name="feed_item">
+                                {{feed_item.name}} ({{ feed_item.available_stock }})
+                                </option>
                                 {% endfor %}
                                 {% endif %}
                             </select>
@@ -66,10 +83,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="feed_formulation_quantity" class="col-form-label">
+                            <label for="feed_item_quantity" class="col-form-label">
                                 Quantity
                             </label>
-                            <input id="feed_formulation_quantity" class="form-control" type="number" step="0.01" name="feed_formulation_quantity" min="0">
+                            <input id="feed_item_quantity" class="form-control" type="number" step="0.01" name="feed_item_quantity" min="0">
                         </div>
                         {% csrf_token %}
                     </form>
@@ -94,7 +111,7 @@
                             <tr>
                                 <th> # </th>
                                 <th> Date </th>
-                                <th> Items in Feed Formulation </th>
+                                <th> Item </th>
                                 <th> Item Quantity </th>
                                 <th> Feeding Group </th>
                                 <th> Actions </th>
@@ -103,20 +120,14 @@
                         <tbody class="text-center">
                             {% if daily_feeding_list %}
                             {% for daily_feeding in daily_feeding_list %}
-                            <tr>
+                            <tr data-src="{{daily_feeding.id}}">
                                 <td> {{ forloop.counter }} </td>
                                 <td> {{ daily_feeding.date }} </td>
-                                <td>
-                                {% with daily_feeding.feed_formulation.feedformulationpart_set.all as feed_formulation_item_list %}
-                                    {% for feed_item_part in feed_formulation_item_list %}
-                                    {{ feed_item_part.feed_item.name }} ({{feed_item_part.quantity}}),
-                                    {% endfor %}
-                                {% endwith %}
-                                </td>
+                                <td>{{ daily_feeding.feed_item }}</td>
                                 <td> {{daily_feeding.quantity}} </td>
                                 <td> {{daily_feeding.feeding_category}} </td>
                                 <td>
-                                    <button type="button" data-toggle="modal"
+                                    <button type="button" data-toggle="modal" id="dailyFeedingEditBtn"
                                         data-target="#dailyFeedingInputModal" class='btn btn-sm btn-primary' aria-label="Edit">
                                         <span class="fa fa-edit"></span>
                                     </button>

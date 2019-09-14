@@ -319,7 +319,6 @@ class MilkSalesPayments(models.Model):
 class AiRecords(models.Model):
 	id = models.AutoField(primary_key=True)
 	cow = models.ForeignKey(Cow, db_index=True, db_column='cow', on_delete=models.CASCADE)
-	# this needs to changed so that the field is not nullable
 	semen_record = models.ForeignKey(SemenRecords, on_delete=models.CASCADE)
 	service_date = models.DateField(db_index=True)
 	cost = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
@@ -358,13 +357,13 @@ class Calvings(models.Model):
 	def __str__(self):
 		return "{0} {1} {2}".format(self.ai_record.cow, self.calf, self.calving_date)
 
+	@property
 	def progeny(self):
 		if self.ai_record:
 			if self.ai_record.cow:
-				return Cow.objects.filter(dam=self.ai_record.cow, dob__lt=self.ai_record.cow.dob).count()
-			return 1
-		return 1
+				return Cow.objects.filter(dam=self.ai_record.cow, dob__lte=self.calf.dob).count()
 
+	@property
 	def calving_interval(self):
 		calving_list_after_this = Calvings.objects.filter(ai_record__cow = self.ai_record.cow, calving_date__gt=self.calving_date)
 		if len(calving_list_after_this) > 0:
@@ -408,23 +407,36 @@ class Employees(models.Model):
 		db_table = 'employees'
 
 
-class salaries_and_advances(models.Model):
+class SalaryAdvances(models.Model):
 	id = models.AutoField(primary_key=True)
 	employee = models.ForeignKey(Employees, db_index=True, db_column='employee', on_delete=models.CASCADE)
 	advance_date = models.DateField(null=True)
 	salary_date = models.DateField(null=True)
-	ending_month_date = models.DateField(null=True)
 	advance_amount = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
+
+	def __str__(self):
+		return "{0} {1}".format(self.employee.name, self.advance_amount)
+
+	def balance_after_advance(self):
+		return self.employee.salary - sum(salary_advance.advance_amount for salary_advance in list(SalaryAdvances.objects.filter(employee=self.employee, salary_date__month=self.salary_date.month, salary_date__year=self.salary_date.year, advance_date__lte=self.advance_date)))
+		
+	class Meta:
+		db_table = 'employees_salary_advances'
+
+
+class EmployeeSalaries(models.Model):
+	id = models.AutoField(primary_key=True)
+	employee = models.ForeignKey(Employees, db_index=True, db_column='employee', on_delete=models.CASCADE)
+	salary_paid_date = models.DateField()
+	salary_date = models.DateField(null=True)
 	salary_amount = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
-	balance_after_salary = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
-	balance_after_advance = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 
 
 	def __str__(self):
 		return "{0} {1}".format(self.employee.name, self.salary_amount)
 
 	class Meta:
-		db_table = 'salaries_advances'
+		db_table = 'employee_salaries'
 
 
 class CalfFeeding(models.Model):
@@ -456,7 +468,6 @@ class FeedItems(models.Model):
 class FeedFormulation(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=30, unique=True, default='')
-	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 
 	class Meta:
 		db_table = 'feed_formulation'
@@ -481,7 +492,6 @@ class FeedFormulationPart(models.Model):
 
 class FeedingProgramme(models.Model):
 	id = models.AutoField(primary_key=True)
-	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
 	feeding_category = models.CharField(max_length=30, choices=animal_choices)
 
@@ -492,8 +502,8 @@ class FeedingProgramme(models.Model):
 class DailyFeeding(models.Model):
 	id = models.AutoField(primary_key=True)
 	date = models.DateField()
+	feed_item = models.ForeignKey(FeedItems, on_delete=models.CASCADE)
 	quantity = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
-	feed_formulation = models.ForeignKey(FeedFormulation, on_delete=models.CASCADE)
 	feeding_category = models.CharField(max_length=30, choices=animal_choices)
 
 	class Meta:

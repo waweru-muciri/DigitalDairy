@@ -8,13 +8,39 @@
             name: '{{employee.name}}',
             id: '{{employee.id}}',
             date_hired: '{{employee.date_hired|date:'Y-m-d'}}',
-            salary: {{employee.salary}},
+            salary: '{{employee.salary}}',
             department: '{{employee.department}}',
             designation: '{{employee.designation}}',
             contacts: '{{employee.contacts}}',
         }
         window.sessionStorage.setItem('employee_'+object.id,JSON.stringify(object));
     {% endfor %}
+ 	{% if paid_salaries %}
+    {% for paid_salary in paid_salaries %}
+    var paid_salary = {
+            id: '{{paid_salary.id}}',
+            employee_name: '{{paid_salary.employee.name}}',
+            employee_id: '{{paid_salary.employee.id}}',
+            salary_paid_date: '{{paid_salary.salary_paid_date|date:'Y-m-d'}}',
+            salary_date: '{{paid_salary.salary_date|date:'Y-m-d'}}',
+            amount: '{{paid_salary.salary_amount}}',
+        }
+        window.sessionStorage.setItem('paid_salary_'+paid_salary.id,JSON.stringify(paid_salary));
+    {% endfor %}
+    {% endif %}
+    {% if salaries_advances %}
+	{% for advance in salaries_advances %}
+    var salary_advance = {
+            id: '{{advance.id}}',
+            employee_name: '{{advance.employee.name}}',
+            employee_id: '{{advance.employee.id}}',
+            advance_date: '{{advance.advance_date|date:'Y-m-d'}}',
+            salary_date: '{{advance.salary_date|date:'Y-m-d'}}',
+            advance_amount: '{{advance.advance_amount}}',
+        }
+        window.sessionStorage.setItem('salary_advance_'+salary_advance.id,JSON.stringify(salary_advance));
+    {% endfor %}
+    {% endif %}
     </script>
 {% endif %}
 <div class="container">
@@ -48,7 +74,7 @@
             <div  class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table id="employeesTable" class="table table-hover">
+                        <table id="employeesTable" class="table table-hover text-center">
                             <thead class="text-center">
                                 <tr>
                                     <th> # </th>
@@ -183,14 +209,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table id="salaryAdvancesTable" class="table table-hover">
+                        <table id="salaryAdvancesTable" class="table table-hover text-center">
                             <thead>
                                 <tr>
                                     <th> # </th>
                                     <th> Employee Name </th>
-                                    <th> Date </th>
-                                    <th> Month </th>
-                                    <th> Year </th>
+                                    <th> Date Advanced </th>
+                                    <th> For Month &amp; Year </th>
                                     <th> Advance Amount (Kshs) </th>
                                     <th> Balance </th>
                                     <th> Actions </th>
@@ -199,30 +224,27 @@
                             <tbody>
                                 {% if salaries_advances %}
                                 {% for advance in salaries_advances %}
-                                {% if advance.advance_date %}
-                                <tr>
+                                <tr data-src="{{advance.id}}">
                                     <td> {{ forloop.counter }} </td>
                                     <td> {{ advance.employee.name }} </td>
                                     <td> {{ advance.advance_date }} </td>
-                                    <td> {{ advance.ending_month_date|date:"F" }} </td>
-                                    <td> {{ advance.ending_month_date|date:"Y" }} </td>
+                                    <td> {{ advance.salary_date|date:"m/Y" }} </td>
                                     <td> {{ advance.advance_amount }} </td>
                                     <td> {{ advance.balance_after_advance }} </td>
                                     <td>
-                                        <button type="button" class='btn btn-sm btn-primary' aria-label="Edit"
-                                        data-toggle="modal" data-target="#employeesInputModal">
+                                        <button type="button" class='btn btn-sm btn-primary' aria-label="Edit" id="salaryAdvanceEditBtn"
+                                        data-toggle="modal" data-target="#salaryAdvancesInputModal">
                                             <span class="fa fa-edit"></span>
                                         </button>
-                                        <form id="deleteSalaryAdvanceForm" method="post" action="{% url 'digitaldairy:delete_employee' %}">
+                                        <form id="deleteSalaryAdvanceForm" method="post" action="{% url 'digitaldairy:delete_employee_salary_advance' %}">
                                             {% csrf_token %}
-                                            <input name="employee_name" type="hidden" value=" {{employee.name}} ">
-                                            <button form="deleteSalaryAdvanceForm" type="button" class='btn btn-sm btn-danger' aria-label="Delete">
+                                            <input name="advance_salary_id" type="hidden" value="{{advance.id}}">
+                                            <button form="deleteSalaryAdvanceForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
                                                 <span class="fa fa-times"></span>
                                             </button>
                                         </form>
                                     </td>
                                 </tr>
-                                {% endif %}
                                 {% endfor %}
                                 {% endif %}
                             </tbody>
@@ -248,36 +270,33 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="table-responsive">
-                        <table id="salariesTable" class="table table-hover">
+                        <table id="salariesTable" class="table table-hover text-center">
                             <thead>
                                 <tr>
                                     <th> # </th>
                                     <th> Employee Name </th>
                                     <th> Date Paid </th>
-                                    <th> Month </th>
-                                    <th> Year </th>
+                                    <th> For Month &amp; Year </th>
                                     <th> Salary Amount (Kshs) </th>
-                                    <th> Balance </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% if salaries_advances %}
-                                {% for paid_salary in salaries_advances %}
-                                <tr>
+                                {% if paid_salaries %}
+                                {% for paid_salary in paid_salaries %}
+                                <tr data-src="{{paid_salary.id}}">
                                     <td> {{ forloop.counter }} </td>
                                     <td> {{ paid_salary.employee.name }} </td>
-                                    <td> {{ paid_salary.salary_date }} </td>
-                                    <td> {{ paid_salary.ending_month_date|date:"F" }} </td>
-                                    <td> {{ paid_salary.ending_month_date|date:"Y" }} </td>
+                                    <td> {{ paid_salary.salary_paid_date }} </td>
+                                    <td> {{ paid_salary.salary_date|date:"m/Y" }} </td>
                                     <td> {{ paid_salary.salary_amount }} </td>
-                                    <td> {{ paid_salary.balance_after_salary }} </td>
                                     <td>
+										<button id="salaryEditBtn" type="button" class='btn btn-sm btn-primary' aria-label="Edit" data-toggle="modal" data-target="#salaryInputModal"><span class="fa fa-edit"></span>
+										</button>
                                         <form id="deleteSalaryForm" method="post" action="{% url 'digitaldairy:delete_employee_salary' %}">
                                             {% csrf_token %}
-                                            <input name="employee_id" type="hidden"
-                                                   value=" {{paid_salary.employee.id}} ">
-                                            <input name="salary_month" type="hidden" value=" {{paid_salary.paid_salary.ending_month_date|date:'m'}} "><input name="salary_year" type="hidden" value=" {{paid_salary.ending_month_date|date:'Y'}} ">
+                                            <input name="salary_id" type="hidden"
+                                                   value="{{paid_salary.id}}">
                                             <button form="deleteSalaryForm" type="submit" class='btn btn-sm btn-danger' aria-label="Delete">
                                                 <span class="fa fa-times"></span>
                                             </button>
@@ -306,19 +325,19 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="salaryAdvancesInputForm" method="post">
+                        <form id="salaryAdvancesInputForm" method="post" action="{% url 'digitaldairy:save_employee_salary_advance' %}">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="advance_date" class="col-form-label">
-                                    Date
+                                    Salary Advance Date
                                 </label>
                                 <input id="advance_date" class="form-control" type="date" name="advance_date" required>
                             </div>
                             <div class="form-group">
-                                <label for="ending_month_date" class="col-form-label">
-                                    Ending Month Date
+                                <label for="salary_month_year" class="col-form-label">
+                                    Salary Month
                                 </label>
-                                <input id="ending_month_date" class="form-control" type="date" name="ending_month_date" required>
+                                <input id="salary_month_year" class="form-control" type="date" name="salary_month_year" required>
                             </div>
                             <div class="form-group">
                                 <label for="employee_id" class="col-form-label">
@@ -334,10 +353,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="salary_advance" class="col-form-label">
+                                <label for="salary_advance_amount" class="col-form-label">
                                     Advance Amount
                                 </label>
-                                <input id="salary_advance" class="form-control" type="number" name="salary_advance" step="0.01" required>
+                                <input id="salary_advance_amount" class="form-control" type="number" name="salary_advance_amount" step="0.01" required>
                             </div>
                         </form>
                     </div>
@@ -362,19 +381,19 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="salaryInputForm" method="post">
+                        <form id="salaryInputForm" method="post" action="{% url 'digitaldairy:save_paid_salary' %}">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="salary_date" class="col-form-label">
-                                    Date
+                                <label for="salary_paid_date" class="col-form-label">
+                                    Date Paid
                                 </label>
-                                <input id="salary_date" class="form-control" type="date" name="advance_date" required>
+                                <input id="salary_paid_date" class="form-control" type="date" name="salary_paid_date" required>
                             </div>
                             <div class="form-group">
-                                <label for="ending_month_date" class="col-form-label">
-                                    Ending Month Date
+                                <label for="salary_date" class="col-form-label">
+                                    Salary Month &amp; Year
                                 </label>
-                                <input id="ending_month_date" class="form-control" type="date" name="ending_month_date" required>
+                                <input id="salary_date" class="form-control" type="date" name="salary_date" required>
                             </div>
                             <div class="form-group">
                                 <label for="employee_id" class="col-form-label">

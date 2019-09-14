@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"
-		content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=2; user-scalable=true;">
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=true,">
 	<link rel="manifest" href="{% static 'html/manifest.json' %}">
 	<!-- Address bar theme color-->
 	<meta name="theme-color" content="#2F3BA2" />
@@ -69,7 +69,8 @@
 								Customers</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{% url 'digitaldairy:milk_sales' %}">Daily Sales & Consumption</a>
+							<a class="dropdown-item" href="{% url 'digitaldairy:milk_sales' %}">Daily Sales &
+								Consumption</a>
 						</li>
 						<li>
 							<a class="dropdown-item" href="{% url 'digitaldairy:clients_statements' %}">Clients
@@ -202,7 +203,8 @@
 				</li>
 				{% if user.is_authenticated %}
 				<li class="nav-item dropdown navbar-right">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="listitem" aria-expanded="false" aria-haspopup="true" href="#">Welcome , {{user.username}}</a>
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="listitem" aria-expanded="false"
+						aria-haspopup="true" href="#">Welcome , {{user.username}}</a>
 					<ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
 						<li>
 							<a class="dropdown-item" href="{% url 'accounts:profile' %}">Account Profile</a>
@@ -223,13 +225,17 @@
 		</div>
 	</main>
 	<!-- JavaScript files -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-messaging.js"></script>
 	<!-- JQuery -->
 	<script src="{% static 'jQuery/jquery.js' %}"></script>
 	<!-- Chart js -->
 	<script src="{% static 'js/chart.js@2.8.0.js' %}"></script>
 	<!-- Bootstrap js -->
 	<script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}"></script>
-	 <!--DataTables js-->
+	<!--DataTables js-->
 	<script type="text/javascript" src="{% static 'js/pdfmake.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/vfs_fonts.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>

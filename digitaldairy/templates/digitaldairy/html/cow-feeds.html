@@ -7,7 +7,6 @@
 {% for feed_formulation in feed_formulations_list %}
 	var object = {
 	id: {{ feed_formulation.id }},
-	quantity: {{ feed_formulation.quantity }},
 	name: '{{feed_formulation.name}}',
 	}
 	window.sessionStorage.setItem('feeding_formulation_'+ object.id,JSON.stringify(object));
@@ -103,12 +102,7 @@
 								<input id="feed_formulation_name" class="form-control" type="text"
 								name="feed_formulation_name" minlength="2" required>
 							</div>
-							<div class="form-group">
-								<label for="feed_formulation_quantity" class="col-form-label">
-									Feed Formulation Quantity
-								</label>
-								<input id="feed_formulation_quantity" class="form-control" type="number" step="0.01" name="feed_formulation_quantity" min="0" required>
-							</div>
+							<h4 class="text-center">Add Items to Feed Formulation</h4>
 							<div class="form-group">
 								<label for="feed_item" class="col-form-label">
 									Select Item
@@ -148,8 +142,7 @@
 							<thead class="text-center">
 								<tr>
 									<th> # </th>
-									<th> Identifier </th>
-									<th> Quantity </th>
+									<th> Identifier/Name </th>
 									<th> Items in Feed Formulation </th>
 									<th> Total Cost </th>
 									<th> Actions </th>
@@ -161,7 +154,6 @@
 							<tr data-src="{{ feed_formulation.id }}">
 								<td> {{ forloop.counter }} </td>
 								<td> {{ feed_formulation.name }} </td>
-								<td> {{ feed_formulation.quantity }} </td>
 								{% with feed_formulation.feedformulationpart_set.all as feed_formulation_item_list %}
 								<td>
 									<table width="100%">
@@ -261,16 +253,10 @@
 									{% if feed_formulations_list %}
 									{% for feed_formulation in feed_formulations_list %}
 									<option value="{{feed_formulation.id}}"
-									name="feed_formulation_id">{{feed_formulation.name}} ({{ feed_formulation.quantity }})</option>
+									name="feed_formulation_id">{{feed_formulation.name}}</option>
 									{% endfor %}
 									{% endif %}
 								</select>
-							</div>
-							<div class="form-group">
-								<label for="feed_quantity" class="col-form-label">
-									Quantity Per Day
-								</label>
-								<input id="feed_quantity" class="form-control" type="number" step="0.01" name="feed_quantity" min="0" required>
 							</div>
 							<div class="form-group">
 								<label for="feeding_category" class="col-form-label">
@@ -312,7 +298,6 @@
 								<tr>
 									<th> # </th>
 									<th> Feed Formulation </th>
-									<th> Quantity </th>
 									<th> Target Group </th>
 									<th> Actions </th>
 								</tr>
@@ -325,7 +310,6 @@
 								var object = {
 								id: {{ feeding_programme.id }},
 								feed_formulation_id: {{ feeding_programme.feed_formulation.id }},
-								quantity: {{ feeding_programme.quantity }},
 								feeding_category: '{{feeding_programme.feeding_category}}',
 								}
 								myStorage.setItem('feeding_programme_'+ object.id,JSON.stringify(object))
@@ -333,7 +317,6 @@
 							<tr data-src="{{ feeding_programme.id }}">
 								<td> {{ forloop.counter }} </td>
 								<td> {{ feeding_programme.feed_formulation.name }} </td>
-								<td> {{feeding_programme.quantity}} </td>
 								<td> {{feeding_programme.feeding_category}} </td>
 								<td>
 									<button type="button" id="feedingProgrammeEditBtn" data-toggle="modal" data-target="#feedingProgramInputDialog" class='btn btn-sm btn-primary' aria-label="Edit">
