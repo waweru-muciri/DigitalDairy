@@ -1,6 +1,9 @@
 django
 django-heroku
 python-dateutil
+rest_framework
+apscheduler
+fcm_django
 gunicorn
 django-mathfilters
 django_registration
