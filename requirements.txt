@@ -1,7 +1,7 @@
 django
 django-heroku
 python-dateutil
-rest_framework
+djangorestframework
 apscheduler
 fcm_django
 gunicorn
