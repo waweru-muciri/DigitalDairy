@@ -1,138 +1,3 @@
-function sendTokenToServer(token) {
-    // subscription part
-    // send subscription details as JSON to the server using fetch
-    fetch('/digitaldairy/store_push_token', {
-        method: 'post',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({ push_token: token })
-    }).then((response) => {
-        console.log('Response from the server ', response.json().message);
-    }).catch((error) => {
-        console.log('Error occurred when sending token to the server');
-        console.log(error);
-    });
-}
-function showTokenError(msg, error) {
-    //show error has occurred to the user
-    alert(msg, error);
-}
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyD5p_4i0XpyZxpuh_7gGPuCQz6AP1gEc2U",
-    authDomain: "mymaps-162115.firebaseapp.com",
-    databaseURL: "https://mymaps-162115.firebaseio.com",
-    projectId: "mymaps-162115",
-    storageBucket: "mymaps-162115.appspot.com",
-    messagingSenderId: "218207212419",
-    appId: "1:218207212419:web:2d6ef6a6570d6f871b1cb6"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-//retrieve firebase messaging object
-var firebase_messaging = firebase.messaging();
-//add public key generated from console here
-firebase_messaging.usePublicVapidKey("BIu8DIXPg-3YonSd_qYzEQ_yd65HxyPq0ajwXq_noj0qQQy5aq-8Noic1M8LrGlx_Hq32zK6SwCZDVNr8r6jlqE");
-// Handle incoming messages. Called when:
-// - a message is received while the app has focus
-// - the user clicks on an app notification created by a service worker
-//   `firebase_messaging.setBackgroundMessageHandler` handler.
-firebase_messaging.onMessage((payload) => {
-    console.log('Firebase Message received. ', payload);
-    // ...
-});
-//request permission to receive notifications
-Notification.requestPermission().then((permission) => {
-    if (permission === 'granted') {
-        console.log('Notification permission granted');
-        // Get Instance ID token. Initially this makes a network call, once retrieved
-        // subsequent calls to getToken will return from cache.
-        firebase_messaging.getToken().then((currentToken) => {
-            if (currentToken) {
-                // retrieve token details 
-                // fetch('https://fcm.googleapis.com/fcm/send', {
-                //     method: 'post',
-                //     headers: {
-                //         'Content-type': 'application/json',
-                //         'Authorization': 'key=AAAAMs4p04M:APA91bHc6njCwxoPoBZX_E7CqTm7cZvB9BmMjcs8i9vvHqqvZS5KejICtbAYZ5ljzXzdGLklsSu7DfvQnnv_LuC-rZ0dNkV3RaD7e66p4MXbCvGrGkw3-czgn4gRlpD3WqlaxIoakfU3'
-                //     },
-                //     body: JSON.stringify({
-                //         "notification": {
-                //             "title": "Firebase",
-                //             "body": "Firebase is awesome",
-                //             "click_action": "http://localhost:3000/",
-                //             "icon": "http://url-to-an-icon/icon.png"
-                //         },
-                //         "to": currentToken
-                //     })
-                // }).then((response) => {
-                //     console.log('Response from the server ', response.json());
-                // }).catch((error) => {
-                //     console.log('Error occurred when sending token to the server');
-                //     console.log(error);
-                // });
-                sendTokenToServer(currentToken);
-                // updateUIForPushEnabled(currentToken);
-            } else {
-                // Show permission request.
-                console.log('No Instance ID token available. Request permission to generate one.');
-                // Show permission UI.
-                // updateUIForPushPermissionRequired();
-                // setTokenSentToServer(false);
-            }
-        }).catch((err) => {
-            console.log('An error occurred while retrieving token. ', err);
-            showTokenError('Error retrieving Instance ID token. ', err);
-            // setTokenSentToServer(false);
-        });
-
-        // Callback fired if Instance ID token is updated.
-        firebase_messaging.onTokenRefresh(() => {
-            firebase_messaging.getToken().then((refreshedToken) => {
-                console.log('Token refreshed.');
-                console.log(refreshedToken);
-                // Indicate that the new Instance ID token has not yet been sent to the
-                // app server.
-                // setTokenSentToServer(false);
-                // Send Instance ID token to app server.
-                sendTokenToServer(refreshedToken);
-                // ...
-            }).catch((err) => {
-                console.log('Unable to retrieve refreshed token ', err);
-                showTokenError('Unable to retrieve refreshed token ', err);
-            });
-        });
-
-    } else {
-        console.log('Unable to get permission to notify.');
-    }
-});
-//request user to add app to home screen 
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (event) => {
-    deferredPrompt = event;
-    // Update UI notify the user they can add to home screen
-    showInstallPromotion();
-})
-// show add to home screen promotion 
-showInstallPromotion = () => {
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-        } else {
-            console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-    });
-}
-//determine is app was sucessfully installed 
-window.addEventListener('appinstalled', (event) => {
-    console.log('DigitalDairy installed')
-})
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/static/service-worker.js', {
@@ -143,29 +8,121 @@ if ('serviceWorker' in navigator) {
         }).catch((error) => {
             console.log('[Service Worker] registration failed:', error);
         });
-        //request to show notifications when the user requests it by creating a button
-        var notification_button = document.getElementById('notifications-button');
-        if (notification_button) {
-            notification_button.addEventListener('click', function (event) {
-                Notification.requestPermission().then((result) => {
-                    if (result === 'granted') {
-                        randomNotification();
-                    }
-                });
+        function sendTokenToServer(token) {
+            // subscription part
+            // send subscription details as JSON to the server using fetch
+            fetch('/digitaldairy/store_push_token', {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ push_token: token })
+            }).then((response) => {
+                console.log('Response from the server ', response.json().message);
+            }).catch((error) => {
+                console.log('Error occurred when sending token to the server');
+                console.log(error);
             });
         }
-        function randomNotification() {
-            var randomItem = Math.floor(Math.random() * 1000);
-            var notifTitle = 'Notification Title';
-            var notifBody = 'Created by Brian Muciri';
-            var notifImg = '/static/images/icons/digital_dairy128.png'
-            var options = {
-                body: notifBody,
-                icon: notifImg,
-            }
-            var notif = new Notification(notifTitle, options);
-            setTimeout(randomNotification, 30000);
+        //show we failed to get a token
+        function showTokenError(msg, error) {
+            //show error has occurred to the user
+            alert(msg, error);
         }
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD5p_4i0XpyZxpuh_7gGPuCQz6AP1gEc2U",
+            authDomain: "mymaps-162115.firebaseapp.com",
+            databaseURL: "https://mymaps-162115.firebaseio.com",
+            projectId: "mymaps-162115",
+            storageBucket: "mymaps-162115.appspot.com",
+            messagingSenderId: "218207212419",
+            appId: "1:218207212419:web:2d6ef6a6570d6f871b1cb6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //retrieve firebase messaging object
+        var firebase_messaging = firebase.messaging();
+        //add public key generated from console here
+        firebase_messaging.usePublicVapidKey("BIu8DIXPg-3YonSd_qYzEQ_yd65HxyPq0ajwXq_noj0qQQy5aq-8Noic1M8LrGlx_Hq32zK6SwCZDVNr8r6jlqE");
+        // Handle incoming messages. Called when:
+        // - a message is received while the app has focus
+        // - the user clicks on an app notification created by a service worker
+        //   `firebase_messaging.setBackgroundMessageHandler` handler.
+        firebase_messaging.onMessage((payload) => {
+            console.log('Firebase Message received. ', payload);
+            // ...
+        });
+        //request permission to receive notifications
+        Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted');
+                // Get Instance ID token. Initially this makes a network call, once retrieved
+                // subsequent calls to getToken will return from cache.
+                firebase_messaging.getToken().then((currentToken) => {
+                    if (currentToken) {
+                        //send the token to the server
+                        sendTokenToServer(currentToken);
+                        // updateUIForPushEnabled(currentToken);
+                    } else {
+                        // Show permission request.
+                        console.log('No Instance ID token available. Request permission to generate one.');
+                        // Show permission UI.
+                        // updateUIForPushPermissionRequired();
+                        // setTokenSentToServer(false);
+                    }
+                }).catch((err) => {
+                    console.log('An error occurred while retrieving token. ', err);
+                    showTokenError('Error retrieving Instance ID token. ', err);
+                    // setTokenSentToServer(false);
+                });
+
+                // Callback fired if Instance ID token is updated.
+                firebase_messaging.onTokenRefresh(() => {
+                    firebase_messaging.getToken().then((refreshedToken) => {
+                        console.log('Token refreshed.');
+                        console.log(refreshedToken);
+                        // Indicate that the new Instance ID token has not yet been sent to the
+                        // app server.
+                        // setTokenSentToServer(false);
+                        // Send Instance ID token to app server.
+                        sendTokenToServer(refreshedToken);
+                        // ...
+                    }).catch((err) => {
+                        console.log('Unable to retrieve refreshed token ', err);
+                        showTokenError('Unable to retrieve refreshed token ', err);
+                    });
+                });
+
+            } else {
+                console.log('Unable to get permission to notify.');
+            }
+        });
+        //request user to add app to home screen 
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (event) => {
+            deferredPrompt = event;
+            // Update UI notify the user they can add to home screen
+            showInstallPromotion();
+        })
+        // show add to home screen promotion 
+        showInstallPromotion = () => {
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        }
+        //determine is app was sucessfully installed 
+        window.addEventListener('appinstalled', (event) => {
+            console.log('DigitalDairy installed')
+        })
     });
 }
 else {
