@@ -108,8 +108,8 @@ self.addEventListener('fetch', (evt) => {
             console.log('[Service Worker] fetching resource ' + evt.request.url);
             return r || fetch(evt.request).then((response) => {
                 return caches.open(CACHE_NAME).then((cache) => {
-                    console.log('[Service Worker] Caching new resource ' + e.request.url);
-                    cache.put(e.request, response.clone);
+                    console.log('[Service Worker] Caching new resource ' + evt.request.url);
+                    cache.put(evt.request, response.clone());
                     return response;
                 });
             }).catch((err) => {

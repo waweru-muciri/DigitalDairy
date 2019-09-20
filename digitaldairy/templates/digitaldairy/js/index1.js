@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.addEventListener("scroll", function (event) {
         if (document.body.scrollTop < 100 || document.documentElement.scrollTop < 100) {
-            document.getElementById('scroll-top').classList.add('d-none')
+            var scrollTopBtn = document.getElementById('scroll-top');
+            if(scrollTopBtn){
+            scrollTopBtn.classList.add('d-none')
+            }
         } else {
             document.getElementById('scroll-top').classList.add('d-block')
         }

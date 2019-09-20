@@ -3,17 +3,26 @@
 {% block content %}
 {% if milk_production_list %}
 <script>
-	{% for milk_production in milk_production_list %}
-	var object = {
-		id: {{ milk_production.id }},
-	cow_id: '{{milk_production.cow_id}}',
-		milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
-			am_quantity: { { milk_production.am_quantity } },
-	noon_quantity: { { milk_production.noon_quantity } },
-	pm_quantity: { { milk_production.pm_quantity } },
-		}
-	window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object));
-	{% endfor %}
+{% for milk_production in milk_production_list %}
+var object = {
+id: '{{ milk_production.id }}',
+cow_id: '{{milk_production.cow_id}}',
+milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
+am_quantity: '{{ milk_production.am_quantity }}',
+noon_quantity: '{{ milk_production.noon_quantity }}',
+pm_quantity: '{{ milk_production.pm_quantity }}',
+}
+window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object));
+{% endfor %}
+</script>
+{% endif %}
+{% if milk_production_targets_list %}
+<script>
+{% for milk_production_target in milk_production_targets_list %}
+var object = {
+	cow_id: '{{milk_production_target.cow_id.id}}', target_quantity: {{ milk_production_target.target_quantity }}}
+window.sessionStorage.setItem('milk_p_target_' + object.cow_id, JSON.stringify(object))
+{% endfor %}
 </script>
 {% endif %}
 <section class="container">

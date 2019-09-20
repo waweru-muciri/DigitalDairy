@@ -30,7 +30,13 @@ def index(request):
 
 
 def firebase_messaging_sw_js(request):
-	return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
+	# return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
+	return render(request, 'digitaldairy/firebase-messaging-sw.js',content_type="application/x-javascript")
+
+
+def service_worker_js(request):
+	# return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
+	return render(request, 'digitaldairy/service-worker.js',content_type="application/x-javascript")
 
 
 @require_http_methods(['POST'])

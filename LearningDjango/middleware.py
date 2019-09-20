@@ -8,7 +8,7 @@ class ServiceWorkerMiddleware:
         # the view (and later middleware) are called.
 
         response = self.get_response(request)
-        response['Service-Worker-Allowed'] = '/digitaldairy'
+        response['Service-Worker-Allowed'] = '/'
 
         # Code to be executed for each request/response after
         # the view is called.
