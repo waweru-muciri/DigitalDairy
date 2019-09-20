@@ -1,5 +1,21 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
+// Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD5p_4i0XpyZxpuh_7gGPuCQz6AP1gEc2U",
+            authDomain: "mymaps-162115.firebaseapp.com",
+            databaseURL: "https://mymaps-162115.firebaseio.com",
+            projectId: "mymaps-162115",
+            storageBucket: "mymaps-162115.appspot.com",
+            messagingSenderId: "218207212419",
+            appId: "1:218207212419:web:2d6ef6a6570d6f871b1cb6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //retrieve firebase messaging object
+        var firebase_messaging = firebase.messaging();
+        //add public key generated from console here
+        firebase_messaging.usePublicVapidKey("BIu8DIXPg-3YonSd_qYzEQ_yd65HxyPq0ajwXq_noj0qQQy5aq-8Noic1M8LrGlx_Hq32zK6SwCZDVNr8r6jlqE");
         navigator.serviceWorker.register('/static/service-worker.js').then((serviceWorkerRegistration) => {
             //use my own service worker for receiving push messages
             firebase_messaging.useServiceWorker(serviceWorkerRegistration);
@@ -28,22 +44,6 @@ if ('serviceWorker' in navigator) {
             //show error has occurred to the user
             alert(msg, error);
         }
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyD5p_4i0XpyZxpuh_7gGPuCQz6AP1gEc2U",
-            authDomain: "mymaps-162115.firebaseapp.com",
-            databaseURL: "https://mymaps-162115.firebaseio.com",
-            projectId: "mymaps-162115",
-            storageBucket: "mymaps-162115.appspot.com",
-            messagingSenderId: "218207212419",
-            appId: "1:218207212419:web:2d6ef6a6570d6f871b1cb6"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        //retrieve firebase messaging object
-        var firebase_messaging = firebase.messaging();
-        //add public key generated from console here
-        firebase_messaging.usePublicVapidKey("BIu8DIXPg-3YonSd_qYzEQ_yd65HxyPq0ajwXq_noj0qQQy5aq-8Noic1M8LrGlx_Hq32zK6SwCZDVNr8r6jlqE");
         // Handle incoming messages. Called when:
         // - a message is received while the app has focus
         // - the user clicks on an app notification created by a service worker
