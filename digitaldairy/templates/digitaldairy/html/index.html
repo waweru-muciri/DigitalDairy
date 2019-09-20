@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
 	<title>{% block title %} {% endblock %}</title>
 	<meta charset="utf-8">
-	<meta name="description" content="DigitalDairy Dairy Farm Management Software Products. DigitalDairy offers dairy farms the best in farm management software products and platforms.">
+	<meta name="description"
+		content="DigitalDairy Dairy Farm Management Software Products. DigitalDairy offers dairy farms the best in farm management software products and platforms.">
 	<meta name="author" content="Brian Muciri">
 	<meta name="viewport"
 		content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=2; user-scalable=true;">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	      rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Bootstrap css -->
 	<link rel="stylesheet" href="{% static 'bootstrap-4.0.0-dist/css/bootstrap.css' %}">
 	<link rel="stylesheet" href="{% static 'css/all.css' %}" media="screen">
@@ -60,6 +61,15 @@
 			</nav>
 		</div> <!-- END container-->
 	</header>
+	<!-- The modal -->
+	<div id="image-modal" class="image-modal">
+		<!-- Close button -->
+		<span id="image-modal-close" class="image-modal-close">&times;</span>
+		<!-- Modal content (The image) -->
+		<img alt="Modal Content" class="image-modal-content" id="modal-content-img">
+		<!-- Modal Caption (Image Text) -->
+		<div id="image-modal-caption"></div>
+	</div>
 	{% block content %}
 	{% endblock %}
 	<footer>
@@ -69,7 +79,10 @@
 					<div class="col-lg-4 mb-5 mb-lg-0">
 						<img src="{% static 'images/digital-dairy2.svg' %}" alt="Digital Dairy logo">
 						<p class="u-my-40">
-						Here at DigitalDairy we develop and provide optimized managerial resources to dairy farms. Alongside this goal is development of a variety of software products and services. Whether it be a website, app or any other software product, we offer the best to our customers and clients. </p>
+							Here at DigitalDairy we develop and provide optimized managerial resources to dairy farms.
+							Alongside this goal is development of a variety of software products and services. Whether
+							it be a website, app or any other software product, we offer the best to our customers and
+							clients. </p>
 						<form class="form-inline">
 							<div class="input-group box-shadow-v1 u-rounded-50 bg-white u-of-hidden">
 								<div class="input-group-addon bg-white border-0 pl-4 pr-0">
@@ -110,7 +123,8 @@
 						</ul>
 						<ul class="list-inline social social-rounded social-white mt-4">
 							<li class="list-inline-item">
-								<a href="https://facebook.com/digitaldairy" target="_blank"><i class="fa fa-facebook"></i></a>
+								<a href="https://facebook.com/digitaldairy" target="_blank"><i
+										class="fa fa-facebook"></i></a>
 							</li>
 							<li class="list-inline-item">
 								<a href="#"><i class="fa fa-twitter"></i></a>
@@ -137,4 +151,5 @@
 	<script src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}"></script>
 	<script src="{% static 'js/index1.js' %}"></script>
 </body>
+
 </html>

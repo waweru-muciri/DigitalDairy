@@ -4,13 +4,13 @@
 {% if milk_production_list %}
 <script>
 	{% for milk_production in milk_production_list %}
-		var object = {
-			id: {{ milk_production.id }},
-			cow_id: '{{milk_production.cow_id}}',
-			milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
-			am_quantity: {{ milk_production.am_quantity }},
-			noon_quantity: {{ milk_production.noon_quantity }},
-			pm_quantity: {{ milk_production.pm_quantity }},
+	var object = {
+		id: {{ milk_production.id }},
+	cow_id: '{{milk_production.cow_id}}',
+		milk_date: '{{milk_production.milk_date|date:"Y-m-d" }}',
+			am_quantity: { { milk_production.am_quantity } },
+	noon_quantity: { { milk_production.noon_quantity } },
+	pm_quantity: { { milk_production.pm_quantity } },
 		}
 	window.sessionStorage.setItem('milk_p_' + object.id, JSON.stringify(object));
 	{% endfor %}
@@ -40,7 +40,7 @@
 				<h3>Milk Production List &amp; Summary</h3>
 			</div>
 		</div>
-		<div class="container text-center non-printable">
+		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-6 mx-auto col-md-6 order-md-3 order-sm-3 sf-html-block">
 					<form id="milkProductionRecordsSearchForm" method="get">
@@ -96,20 +96,22 @@
 								<label for="am_quantity" class="col-form-label">
 									Am Milk Quantity
 								</label>
-								<input id="am_quantity" class="form-control" type="number" name="am_quantity" step="0.01" min="0">
+								<input id="am_quantity" class="form-control" type="number" name="am_quantity"
+									step="0.01" min="0">
 							</div>
 							<div class="form-group">
 								<label for="noon_quantity" class="col-form-label">
 									Noon Milk Quantity
 								</label>
-								<input id="noon_quantity" class="form-control" type="number" name="noon_quantity" step="0.01"
-									min="0">
+								<input id="noon_quantity" class="form-control" type="number" name="noon_quantity"
+									step="0.01" min="0">
 							</div>
 							<div class="form-group">
 								<label for="pm_quantity" class="col-form-label">
 									PM Milk Quantity
 								</label>
-								<input id="pm_quantity" class="form-control" type="number" name="pm_quantity" step="0.01" min="0">
+								<input id="pm_quantity" class="form-control" type="number" name="pm_quantity"
+									step="0.01" min="0">
 							</div>
 						</form>
 					</div>
@@ -369,7 +371,8 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form id="targetInputForm" action="{% url 'digitaldairy:save_daily_milk_target' %}" method="post">
+						<form id="targetInputForm" action="{% url 'digitaldairy:save_daily_milk_target' %}"
+							method="post">
 							{% csrf_token %}
 							<div class="form-group">
 								<label for="cow_id" class="col-form-label">
@@ -458,14 +461,12 @@
 											aria-label="Edit">
 											<span class="fa fa-edit"></span>
 										</button>
-										<form id="deleteMilkProductionTargetForm0"
-											method="post" action="{% url 'digitaldairy:delete_milk_production_target' %}">
-											<input name="cow_id" type="hidden"
-												value="">
+										<form id="deleteMilkProductionTargetForm0" method="post"
+											action="{% url 'digitaldairy:delete_milk_production_target' %}">
+											<input name="cow_id" type="hidden" value="">
 											{% csrf_token %}
-											<button
-												form="deleteMilkProductionTargetForm0"
-												type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
+											<button form="deleteMilkProductionTargetForm0" type="submit"
+												class="btn btn-sm btn-danger" aria-label="Delete">
 												<span class="fa fa-times"></span>
 											</button>
 										</form>

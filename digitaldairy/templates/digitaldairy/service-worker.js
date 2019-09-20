@@ -106,7 +106,7 @@ self.addEventListener('fetch', (evt) => {
     evt.respondWith(
         caches.match(evt.request).then((r) => {
             console.log('[Service Worker] fetching resource ' + evt.request.url);
-            return r || fetch(e.request).then((response) => {
+            return r || fetch(evt.request).then((response) => {
                 return caches.open(CACHE_NAME).then((cache) => {
                     console.log('[Service Worker] Caching new resource ' + e.request.url);
                     cache.put(e.request, response.clone);

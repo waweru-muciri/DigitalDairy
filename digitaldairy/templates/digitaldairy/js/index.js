@@ -1,10 +1,9 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/service-worker.js', {
-            scope: '/static/',
-        }).then((serviceWorkerRegistration) => {
+        navigator.serviceWorker.register('/static/service-worker.js').then((serviceWorkerRegistration) => {
             //use my own service worker for receiving push messages
             firebase_messaging.useServiceWorker(serviceWorkerRegistration);
+            console.log("Scope is => ", serviceWorkerRegistration.scope)
         }).catch((error) => {
             console.log('[Service Worker] registration failed:', error);
         });
@@ -18,7 +17,7 @@ if ('serviceWorker' in navigator) {
                 },
                 body: JSON.stringify({ push_token: token })
             }).then((response) => {
-                console.log('Response from the server ', response.json().message);
+                console.log('Response from the server ', response.json());
             }).catch((error) => {
                 console.log('Error occurred when sending token to the server');
                 console.log(error);

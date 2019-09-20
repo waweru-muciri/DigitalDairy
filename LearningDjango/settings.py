@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import django_heroku
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$=jxc++jhcmbubxpy9pvet@=(b9@9usb*ms#s-qwkiecjg$z7)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'django_registration',
-	'event_management.apps.EventManagementConfig',
 	'fcm_django',
 ]
 
@@ -62,6 +62,7 @@ MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'LearningDjango.middleware.ServiceWorkerMiddleware',
 ]
 
 ROOT_URLCONF = 'LearningDjango.urls'
@@ -168,5 +169,4 @@ ACCOUNT_ACTIVATION_DAYS = 7 # one week activation window
 # STATICFILES_FINDERS = [
 #     'django.contrib.staticfiles.finders.FileSystemFinder',
 # ]
-import django_heroku
 django_heroku.settings(locals())
