@@ -15,8 +15,8 @@ messaging.setBackgroundMessageHandler(function (payload) {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
     evt.waitUntil(caches.open(CACHE_NAME).then((cache) => {
-        return fetch('/digitaldairy/daily_alerts').then((response) => {
-            cache.put('/digitaldairy/daily_alerts', response.clone());
+        return fetch('/digitaldairy/daily_alerts/').then((response) => {
+            cache.put('/digitaldairy/daily_alerts/', response.clone());
             return response.text();
         });
     }).then((response) => {
@@ -43,8 +43,8 @@ self.addEventListener('push', (evt) => {
     console.log("The push payload");
     console.log(payload);
     evt.waitUntil(caches.open(CACHE_NAME).then((cache) => {
-        return fetch('/digitaldairy/daily_alerts').then((response) => {
-            cache.put('/digitaldairy/daily_alerts', response.clone());
+        return fetch('/digitaldairy/daily_alerts/').then((response) => {
+            cache.put('/digitaldairy/daily_alerts/', response.clone());
             return response.text();
         });
     }).then((response) => {
@@ -67,7 +67,7 @@ self.addEventListener('notificationclick', (evt) => {
         // /digitaldairy/daily_alerts/ have previously been cached, e.g. as part
         // of the install handler.
         // Create a new window.
-        self.clients.openWindow('/digitaldairy/daily_alerts').then(function (WindowClient) {
+        self.clients.openWindow('/digitaldairy/daily_alerts/').then(function (WindowClient) {
             console.log(WindowClient);
         });
     }
