@@ -1,12 +1,12 @@
 {% extends "digitaldairy/html/common-header.html" %}
-{% block title %} Monthly Milk Production Summary {% endblock %}
+{% block title %} Monthly Milk Production Summary & Statistics {% endblock %}
 {% block content %}
 <section class="section-a">
 	<div class="container text-center">
 		<form>
 			<div class="row sf-html-block">
 				<div class="col-lg-5 form-group">
-					<h4>Individual Monthly Production</h4>
+					<h4>Monthly Milk Production</h4>
 				</div>
 				<div class="col-lg-3 col-md-4 form-group">
 					<select id="month" class="form-control" name="month" required>
@@ -49,9 +49,9 @@
 								<th> Cow Name </th>
 								<th> {{ previous_month_date|date:"F Y" }}(Kgs) </th>
 								<th> {{ selected_month_date|date:"F Y" }}(Kgs) </th>
-								<th> Diff </th>
-								<th> Daily Average</th>
-								<th> Monthly Target(Kgs)</th>
+								<th> Milk Prod. Difference </th>
+								<th> Daily Average(Kgs)</th>
+								<th> Month Target(Kgs)</th>
 								<th> Variance(Kgs)</th>
 							</tr>
 						</thead>
@@ -95,7 +95,7 @@
 					</div>
 					<div class="row">
 						<p class="col-lg-6 text-center">
-							Highest Yielder:
+							Highest Producer:
 						</p>
 						<p class="col-lg-6 text-center">
 							{% with milk_production_list|first as highest_yielder %}
@@ -105,7 +105,7 @@
 					</div>
 					<div class="row">
 						<p class="col-lg-6 text-center">
-							Lowest Yielder:
+							Lowest Producer:
 						</p>
 						<p class="col-lg-6 text-center">
 							{% with milk_production_list|last as lowest_yielder %}
@@ -115,7 +115,7 @@
 					</div>
 					<div class="row">
 						<p class="col-lg-6 text-center">
-							Average Yield:
+							Average Milk Production:
 						</p>
 						<p class="col-lg-6 text-center">
 							{{average_cow_milk_quantity|floatformat:2}}
@@ -123,7 +123,7 @@
 					</div>
 					<div class="row">
 						<p class="col-lg-6 text-center">
-							High Yielders:
+							High Producers:
 						</p>
 						<p class="col-lg-6 text-center">
 							{% with milk_production_list|slice:":5" as high_yielders %}
@@ -135,7 +135,7 @@
 					</div>
 					<div class="row">
 						<p class="col-lg-6 text-center">
-							Low Yielders:
+							Low Producers:
 						</p>
 						<p class="col-lg-6 text-center">
 							{% with milk_production_list|slice:"-5:" as lowest_yielders %}

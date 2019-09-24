@@ -1,0 +1,302 @@
+{% extends "digitaldairy/html/common-header.html" %}
+{% block title %} General Statistics {% endblock %}
+{% block content %}
+<script>
+    var monthlyMilkProductionList = [];
+        {% if grouped_yearly_milk_production_dict %}
+        {% for grouped_yearly_milk_production in grouped_yearly_milk_production_dict %}
+        var monthlyMilkProductionObject = {}
+        monthlyMilkProductionObject.month ={{ grouped_yearly_milk_production.0 }};
+        monthlyMilkProductionObject.quantity= {{ grouped_yearly_milk_production.1 }};
+        monthlyMilkProductionList.push(monthlyMilkProductionObject);
+        {% endfor %}
+        {% endif %}
+       window.sessionStorage.setItem('monthlyMilkProductionList', JSON.stringify(monthlyMilkProductionList));
+    var dailyMilkProductionList = [];
+        {% if total_daily_milk_production_dict %}
+        {% for total_daily_milk_production in total_daily_milk_production_dict %}
+        var dailyMilkProductionObject = {}
+        dailyMilkProductionObject.day ='{{ total_daily_milk_production.0 }}';
+        dailyMilkProductionObject.quantity= {{ total_daily_milk_production.1 }};
+        dailyMilkProductionList.push(dailyMilkProductionObject);
+        {% endfor %}
+        {% endif %}
+       window.sessionStorage.setItem('dailyMilkProductionList', JSON.stringify(dailyMilkProductionList));
+	var dailyMilkSaleList = [];
+		{% if total_daily_milk_sale_dict %}
+		{% for total_daily_milk_sale in total_daily_milk_sale_dict %}
+		var dailyMilkSaleObject = {}
+		dailyMilkSaleObject.day ='{{ total_daily_milk_sale.0 }}';
+		dailyMilkSaleObject.quantity= {{ total_daily_milk_sale.1 }};
+		dailyMilkSaleList.push(dailyMilkSaleObject);
+		{% endfor %}
+		{% endif %}
+	   window.sessionStorage.setItem('dailyMilkSaleList', JSON.stringify(dailyMilkSaleList));
+   var monthlyMilkSalesList = [];
+		{% if grouped_yearly_milk_sales_dict %}
+		{% for grouped_yearly_milk_sale in grouped_yearly_milk_sales_dict %}
+		var monthlyMilkSaleObject = {}
+		monthlyMilkSaleObject.month ={{ grouped_yearly_milk_sale.0 }};
+		monthlyMilkSaleObject.quantity= {{ grouped_yearly_milk_sale.1 }};
+		monthlyMilkSalesList.push(monthlyMilkSaleObject);
+		{% endfor %}
+		{% endif %}
+	   window.sessionStorage.setItem('monthlyMilkSalesList', JSON.stringify(monthlyMilkSalesList));
+</script>
+		<section class="section-a">
+            <div class="container text-center">
+                <form id="milkProductionStatsSearchForm" method="get"
+                action="{% url 'digitaldairy:dashboard' %}">
+                    {% csrf_token %}
+                    <div class="row sf-html-block">
+                        <div class="col-lg-3 mx-auto col-md-4 form-group">
+                            <select id="month" class="form-control" name="month" required>
+                            	<script>
+									var month = {{ current_date|date:'m' }};
+									var year = '{{ current_date|date:'Y' }}';
+								</script>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+						</div>
+                        <div class="col-lg-3 mx-auto col-md-4 form-group">
+                            <input id="year" value="{{ current_date|date:'Y' }}" class="form-control" type="number" name="year" required>
+                        </div>
+                        <div class="col-lg-2 col-md-4 form-group">
+                            <button form="milkProductionStatsSearchForm" type="submit" class="btn btn-primary">Retrieve</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <div class="text-center">
+                    <h4>{{ current_date|date:'F - Y' }} Milk Production Graph</h4>
+                </div>
+                <div style="width:100%;" class="row">
+                    <div class="col-lg-8">
+                        <div class="table-responsive" style="overflow:auto;">
+                            <canvas id="monthlyMilkProductionChart" height="150px"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <div class="summary">
+                            <h4> {{ current_date|date:"F Y" }} Summary </h4>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                   [{{ current_date|date:"F" }}] Total Milk (kgs):
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ total_month_milk_production|floatformat:2 }} Kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Average Per Day:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ average_daily_milk_quantity|floatformat:2 }} kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Highest Quantity Recorded:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ highest_day_quantity }} kgs
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-6 text-center">
+                                    Lowest Quantity Recorded:
+                                </p>
+                                <p class="col-lg-6 text-center">
+                                    {{ lowest_day_quantity }} kgs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="text-center">
+                <div class="text-center">
+                    <h4>{{ current_date|date:'Y' }} Milk Production Graph</h4>
+                </div>
+                <div style="width:100%;" class="row">
+					<div class="col-lg-8">
+						<div class="table-responsive">
+                            <canvas id="yearlyMilkProductionChart" height="150px"></canvas>
+						</div>
+					</div>
+					<div class="col-lg-4">
+                        <div class="summary">
+							<h4> {{ current_date|date:"Y" }} Summary</h4>
+							<div class="row">
+								<p class="col-lg-6 text-center">
+									{{ current_date|date:"Y" }} Total Milk Quantity (kgs):
+								</p>
+								<p class="col-lg-6 text-center">
+									{{ total_year_milk_production|floatformat:2 }} Kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 text-center">
+									Average Per Month:
+								</p>
+								<p class="col-lg-6 text-center">
+									{{ average_monthly_milk_quantity|floatformat:2 }} kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 text-center">
+									Highest Month Quantity Recorded:
+								</p>
+								<p class="col-lg-6 text-center">
+									{{ highest_month_milk_quantity|floatformat:2 }} kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 text-center">
+								   Lowest Month Quantity Recorded:
+								</p>
+								<p class="col-lg-6 text-center">
+									{{ lowest_month_milk_quantity|floatformat:2 }} kgs
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="text-center">
+					<h4>{{ current_date|date:'F - Y' }} Milk Sales Graph</h4>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="table-responsive">
+							<canvas id="monthlyMilkSalesChart" height="150px"></canvas>
+						</div>
+					</div>
+					<div class="col-lg-4 text-center">
+						<div class="summary">
+							<h4> {{ current_date|date:"F - Y" }} Summary</h4>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Total Milk Sales (Kgs):
+								</p>
+								<p class="col-lg-6 col-md-6 ">
+									{{ total_month_milk_sales_quantity|floatformat:2 }} Kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Total Milk Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ total_month_milk_sales|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Average Daily Sales (Kgs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ average_daily_milk_sale_quantity|floatformat:2 }} Kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Average Daily Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ average_daily_milk_sale|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Highest Sale (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ highest_day_sale|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Lowest Sale (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ lowest_day_sale|floatformat:2 }} Kshs
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="text-center">
+					<h4>{{ current_date|date:'Y' }} Milk Sales Graph</h4>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="table-responsive">
+							<canvas id="yearlyMilkSalesChart" height="150px"></canvas>
+						</div>
+					</div>
+					<div class="col-lg-4 text-center">
+						<div class="summary">
+							<h4>{{ current_date|date:"Y" }} Milk Sales Summary </h4>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									{{ current_date|date:"Y" }} Total Milk Sales (Kgs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ total_year_milk_sales_quantity|floatformat:2 }} Kgs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									{{ current_date|date:"Y" }} Total Milk Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ total_year_milk_sales|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Average Monthly Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ average_monthly_milk_sales|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+									Highest Month Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ highest_month_milk_sale|floatformat:2 }} Kshs
+								</p>
+							</div>
+							<div class="row">
+								<p class="col-lg-6 col-md-6">
+								   Lowest Month Sales (Kshs):
+								</p>
+								<p class="col-lg-6 col-md-6">
+									{{ lowest_month_milk_sale|floatformat:2 }} Kshs
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}

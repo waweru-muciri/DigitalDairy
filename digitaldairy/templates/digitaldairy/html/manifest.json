@@ -34,7 +34,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/daily_milk_production",
+    "start_url": "/digitaldairy/",
     "display": "standalone",
     "background_color": "#ECF5FE",
     "theme_color": "#ffffff"

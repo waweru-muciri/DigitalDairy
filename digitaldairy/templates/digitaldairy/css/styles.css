@@ -120,3 +120,9 @@ button.btn:hover {
 .badge{
 	font-size:1rem;
 }
+.summary{
+	background-color: #d6d7d8;
+	padding: 20px 0;
+}.summary > h4{
+	padding: 10px 0;
+}

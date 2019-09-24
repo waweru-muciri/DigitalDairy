@@ -11,7 +11,6 @@ import itertools
 import collections
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.template.loader import get_template
 import json
 from fcm_django.models import FCMDevice
 
@@ -24,9 +23,131 @@ general_from_date = datetime.date(2000,1,1)
 
 @require_http_methods(['GET'])
 def index(request):
-	if request.user.is_authenticated:
-		return  HttpResponseRedirect(reverse('digitaldairy:daily_milk_production'))
-	return render(request, template_name='digitaldairy/html/landing-page.html')
+	month = request.GET.get('month')
+	year = request.GET.get('year')
+	if month:
+		try:
+			month = int(month)
+		except:
+			month = general_to_date.month
+	else:
+		month = general_to_date.month
+	if year:
+		try:
+			year = int(year)
+		except:
+			year = general_to_date.year
+	else:
+		year = general_to_date.year
+	current_received_date = datetime.date(year, month, 1)
+	# print(current_received_date)
+	year_milk_production = MilkProductions.objects.filter(milk_date__year=year)
+	month_milk_production = year_milk_production.filter(milk_date__month=month)
+	year_milk_production = sorted(year_milk_production, key=lambda x: x.milk_date.month)
+	# this is pretty sweet
+	grouped_yearly_milk_production_dict = {}
+	for month, month_milk_p_list in itertools.groupby(year_milk_production, key=lambda x: x.milk_date.month):
+		grouped_yearly_milk_production_dict[month] = sum(
+			[sum([milk_p.am_quantity, milk_p.noon_quantity, milk_p.pm_quantity]) for milk_p in list(month_milk_p_list)])
+	grouped_yearly_milk_production = sorted(list(grouped_yearly_milk_production_dict.items()), key=lambda x: x[1], reverse=True)
+	starting_month = 1
+	while starting_month < 13:
+		grouped_yearly_milk_production_dict[starting_month] = grouped_yearly_milk_production_dict.get(starting_month, 0)
+		starting_month += 1
+	highest_month_milk_quantity = grouped_yearly_milk_production[0][1] if len(grouped_yearly_milk_production) > 0 else 0
+	lowest_month_milk_quantity = grouped_yearly_milk_production[-1][1] if len(grouped_yearly_milk_production) > 0 else 0
+	total_year_milk_production = sum(
+		[sum((milk_p.am_quantity, milk_p.noon_quantity, milk_p.pm_quantity)) for milk_p in year_milk_production])
+	month_milk_production = sorted(month_milk_production, key=lambda x: x.milk_date)
+	# calculate total daily milk production
+	total_daily_milk_production_dict = {}
+	for day, day_milk_p_list in itertools.groupby(month_milk_production, key=lambda x: x.milk_date):
+		total_daily_milk_production_dict[day] = sum([sum([milk_p.am_quantity, milk_p.noon_quantity,milk_p.pm_quantity]) for milk_p in list(day_milk_p_list)])
+	# grab the lowest and highest milk production quantities
+	lowest_day_quantity = sorted(total_daily_milk_production_dict.items(), key=lambda x: x[0])[-1][1] if len(
+		total_daily_milk_production_dict) > 0 else 0
+	highest_day_quantity = sorted(total_daily_milk_production_dict.items(), reverse=True, key=lambda x: x[1])[0][
+		1] if len(total_daily_milk_production_dict) > 0 else 0
+	end_month_date = current_received_date + dateutil.relativedelta.relativedelta(months=1)
+	month_starting_date = current_received_date
+	while month_starting_date < end_month_date:
+		total_daily_milk_production_dict[month_starting_date] = total_daily_milk_production_dict.get(
+			month_starting_date, 0)
+		month_starting_date = month_starting_date + datetime.timedelta(days=1)
+	total_daily_milk_production_dict = collections.OrderedDict(
+		sorted(total_daily_milk_production_dict.items(), key=lambda x: x[0]))
+	total_month_milk_production = sum(
+		[sum((milk_p.am_quantity, milk_p.noon_quantity, milk_p.pm_quantity)) for milk_p in month_milk_production])
+	average_daily_milk_quantity = total_month_milk_production / len(total_daily_milk_production_dict) if len(
+		total_daily_milk_production_dict) > 0 else 0
+	# milk sales data
+	year_milk_sales = MilkSales.objects.filter(date__year=current_received_date.year)
+	month_milk_sales = year_milk_sales.filter(date__month=current_received_date.month)
+	year_milk_sales = sorted(year_milk_sales, key=lambda x: x.date.month)
+	# this is pretty sweet
+	grouped_yearly_milk_sales_dict = {}
+	for month, month_milk_sale_list in itertools.groupby(year_milk_sales, key=lambda x: x.date.month):
+		grouped_yearly_milk_sales_dict[month] = sum(
+			[milk_sale.quantity * milk_sale.client.unit_price for milk_sale in list(month_milk_sale_list)])
+	grouped_yearly_milk_sale = sorted(list(grouped_yearly_milk_sales_dict.items()), key=lambda x: x[1], reverse=True)
+	starting_month = 0
+	while starting_month < 12:
+		grouped_yearly_milk_sales_dict[starting_month] = grouped_yearly_milk_sales_dict.get(starting_month, 0)
+		starting_month += 1
+	highest_month_milk_sale = grouped_yearly_milk_sale[0][1] if len(grouped_yearly_milk_sale) > 0 else 0
+	lowest_month_milk_sale = grouped_yearly_milk_sale[-1][1] if len(grouped_yearly_milk_sale) > 0 else 0
+	total_year_milk_sales = sum([milk_sale.quantity * milk_sale.client.unit_price for milk_sale in year_milk_sales])
+	total_year_milk_sales_quantity = sum([milk_sale.quantity for milk_sale in year_milk_sales])
+	month_milk_sales = sorted(month_milk_sales, key=lambda x: x.date)
+	# calculate total daily milk production
+	total_daily_milk_sale_dict = {}
+	for milk_sale_day, daily_milk_sale_list in itertools.groupby(month_milk_sales, key=lambda x: x.date):
+		total_daily_milk_sale_dict[milk_sale_day] = sum([milk_sale.quantity * milk_sale.client.unit_price for milk_sale in list(daily_milk_sale_list)])
+	# grab the lowest and highest milk production quantities
+	lowest_day_sale = sorted(total_daily_milk_sale_dict.items(), key=lambda x: x[0])[-1][1] if len(
+		total_daily_milk_sale_dict) > 0 else 0
+	highest_day_sale = sorted(total_daily_milk_sale_dict.items(), reverse=True, key=lambda x: x[1])[0][1] if len(
+		total_daily_milk_sale_dict) > 0 else 0
+	end_month_date = current_received_date + dateutil.relativedelta.relativedelta(months=1)
+	month_starting_date = current_received_date
+	while month_starting_date < end_month_date:
+		total_daily_milk_sale_dict[month_starting_date] = total_daily_milk_sale_dict.get(month_starting_date, 0)
+		month_starting_date = month_starting_date + datetime.timedelta(days=1)
+	total_daily_milk_sale_dict = collections.OrderedDict(
+		sorted(total_daily_milk_sale_dict.items(), key=lambda x: x[0]))
+	total_month_milk_sales = sum([milk_sale.quantity * milk_sale.client.unit_price for milk_sale in month_milk_sales])
+	total_month_milk_sales_quantity = sum([milk_sale.quantity for milk_sale in month_milk_sales])
+	average_daily_milk_sale_quantity = total_month_milk_sales_quantity / len(total_daily_milk_sale_dict) if len(
+		total_daily_milk_sale_dict) > 0 else 0
+	average_daily_milk_sale = total_month_milk_sales / len(total_daily_milk_sale_dict) if len(
+		total_daily_milk_sale_dict) > 0 else 0
+	context = {
+		'grouped_yearly_milk_sales_dict': grouped_yearly_milk_sales_dict.items(),
+		'total_daily_milk_sale_dict': total_daily_milk_sale_dict.items(),
+		'highest_month_milk_sale': highest_month_milk_sale,
+		'lowest_month_milk_sale': lowest_month_milk_sale,
+		'total_year_milk_sales': total_year_milk_sales,
+		'total_year_milk_sales_quantity': total_year_milk_sales_quantity,
+		'highest_day_sale': highest_day_sale,
+		'lowest_day_sale': lowest_day_sale,
+		'average_daily_milk_sale_quantity': average_daily_milk_sale_quantity,
+		'average_daily_milk_sale': average_daily_milk_sale,
+		'average_monthly_milk_sales': total_year_milk_sales / 12,
+		'total_month_milk_sales_quantity': total_month_milk_sales_quantity,
+		'total_month_milk_sales': total_month_milk_sales,
+		'grouped_yearly_milk_production_dict': grouped_yearly_milk_production_dict.items(),
+		'total_daily_milk_production_dict': total_daily_milk_production_dict.items(),
+		'highest_month_milk_quantity': highest_month_milk_quantity,
+		'lowest_month_milk_quantity': lowest_month_milk_quantity,
+		'current_date': current_received_date,
+		'total_year_milk_production': total_year_milk_production,
+		'highest_day_quantity': highest_day_quantity,
+		'lowest_day_quantity': lowest_day_quantity,
+		'average_daily_milk_quantity': average_daily_milk_quantity,
+		'average_monthly_milk_quantity': total_year_milk_production / 12,
+		'total_month_milk_production': total_month_milk_production,
+	}
+	return render(request, context=context, template_name='digitaldairy/html/dashboard.html')
 
 
 def firebase_messaging_sw_js(request):
@@ -230,8 +351,8 @@ def get_sales_statistics(request):
 	else:
 		year = datetime.date.today().year
 	current_received_date = datetime.date(year, month, 1)
-	year_milk_sales = MilkSales.objects.filter(date__year=year)
-	month_milk_sales = year_milk_sales.filter(date__month=month)
+	year_milk_sales = MilkSales.objects.filter(date__year=current_received_date.year)
+	month_milk_sales = year_milk_sales.filter(date__month=current_received_date.month)
 	year_milk_sales = sorted(year_milk_sales, key=lambda x: x.date.month)
 	# this is pretty sweet
 	grouped_yearly_milk_sales_dict = {}

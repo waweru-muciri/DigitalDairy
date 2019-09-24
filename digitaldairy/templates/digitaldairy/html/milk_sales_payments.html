@@ -114,14 +114,14 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12">
-			  <div class="panel panel-default text-center">
-					<div class="panel-heading">
-						<h5> Payment Summary for [{{ selected_month_date|date:'F Y' }}] </h5>
+			  <div class="text-center">
+					<div class="text-center">
+						<h5> {{ selected_month_date|date:'F Y' }} Payments Summary </h5>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-6 col-sm-12 col-md-6 text-center">
-								 <p> Client:
+								 <p> Client Name:
 									 <span class="badge badge-info">{% if client.id %} {{ client.name }} {% else %} {{ client }} {% endif %} </span>
 								 </p>
 								 <p>Total Quantity Sold:

@@ -1,7 +1,7 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/service-worker.js', {
-            scope: '/digitaldairy'
+            scope: '/digitaldairy/'
         }).then((serviceWorkerRegistration) => {
             //use my own service worker for receiving push messages
             firebase_messaging.useServiceWorker(serviceWorkerRegistration);
@@ -106,9 +106,10 @@ if ('serviceWorker' in navigator) {
             // Update UI notify the user they can add to home screen
             showInstallPromotion();
         })
-        // show add to home screen promotion 
+        // show add to home screen promotion
         showInstallPromotion = () => {
             // Wait for the user to respond to the prompt
+            deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the A2HS prompt');
@@ -120,7 +121,7 @@ if ('serviceWorker' in navigator) {
                 console.log(error)
             });
         }
-        //determine is app was sucessfully installed 
+        //determine is app was sucessfully installed
         window.addEventListener('appinstalled', (event) => {
             console.log('DigitalDairy installed')
         })
@@ -1229,9 +1230,8 @@ $(function () {
     }
     var yearlyMilkProductionChartCtx = yearlyMilkProductionChart.getContext('2d');
     monthlyMilkProductionList = JSON.parse(myStorage.getItem('monthlyMilkProductionList'))
-    month_data = []
-    monthlyMilkProductionList.forEach(function (item, index) {
-        month_data[item.month - 1] = item.quantity;
+    month_data = monthlyMilkProductionList.sort((item1, item2) => (item1.month) - item2.month).map(function (item) {
+    return item.quantity;
     })
     var chart = new Chart(yearlyMilkProductionChartCtx, {
         // The type of chart we want to create
@@ -1263,9 +1263,9 @@ $(function () {
         return;
     }
     var monthlyMilkProductionChartCtx = monthlyMilkProductionChart.getContext('2d');
-    dailyMilkProductionList = JSON.parse(myStorage.getItem('dailyMilkProductionList'))
-    day_labels = []
-    day_data = []
+    var dailyMilkProductionList = JSON.parse(myStorage.getItem('dailyMilkProductionList'))
+    var day_labels = []
+    var day_data = []
     dailyMilkProductionList.forEach(function (item, index, array) {
         day_labels.push(item.day);
         day_data.push(item.quantity);
@@ -1300,10 +1300,9 @@ $(function () {
         return;
     }
     var yearlyMilkSalesChartCtx = yearlyMilkSalesChart.getContext('2d');
-    monthlyMilkSalesList = JSON.parse(myStorage.getItem('monthlyMilkSalesList'))
-    month_milk_sales_data = []
-    monthlyMilkSalesList.forEach(function (item, index) {
-        month_milk_sales_data[item.month - 1] = item.quantity;
+    var monthlyMilkSalesList = JSON.parse(myStorage.getItem('monthlyMilkSalesList'))
+    var month_milk_sales_data = monthlyMilkSalesList.sort((item1, item2) => (item1.month + 1) - item2.month).map(function (item) {
+            return item.quantity;
     })
     var chart = new Chart(yearlyMilkSalesChartCtx, {
         // The type of chart we want to create
@@ -1335,9 +1334,9 @@ $(function () {
         return;
     }
     var monthlyMilkSalesChartCtx = monthlyMilkSalesChart.getContext('2d');
-    dailyMilkSaleList = JSON.parse(myStorage.getItem('dailyMilkSaleList'))
-    day_labels = []
-    day_milk_sales_data = []
+    var dailyMilkSaleList = JSON.parse(myStorage.getItem('dailyMilkSaleList'))
+    var day_labels = []
+    var day_milk_sales_data = []
     dailyMilkSaleList.forEach(function (item, index) {
         day_labels.push(item.day);
         day_milk_sales_data.push(item.quantity);
