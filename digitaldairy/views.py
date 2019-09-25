@@ -23,7 +23,7 @@ general_from_date = datetime.date(2000,1,1)
 
 @login_required
 @require_http_methods(['GET'])
-def index(request):
+def dashboard(request):
 	month = request.GET.get('month')
 	year = request.GET.get('year')
 	if month:
@@ -152,12 +152,10 @@ def index(request):
 
 
 def firebase_messaging_sw_js(request):
-	# return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
 	return render(request, 'digitaldairy/firebase-messaging-sw.js',content_type="application/x-javascript")
 
 
 def service_worker_js(request):
-	# return HttpResponse(content=get_template('digitaldairy/firebase-messaging-sw.js').render(), content_type='text/javascript')
 	return render(request, 'digitaldairy/service-worker.js',content_type="application/x-javascript")
 
 

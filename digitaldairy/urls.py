@@ -1,10 +1,9 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-	path('', views.index, name="dashboard"),
+	path('', views.dashboard, name="dashboard"),
 	path('firebase-messaging-sw.js', views.firebase_messaging_sw_js),
 	path('service-worker.js', views.service_worker_js),
-	path('digitaldairy/', views.index, name="digital_dairy"),
 	path('send_message', views.send_message, name="send_message"),
 	path('store_push_token', views.store_push_token, name="store_push_token"),
 	path('cows/', views.cows, name="cows"),

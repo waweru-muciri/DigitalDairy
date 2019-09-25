@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-		navigator.serviceWorker.register('/service-worker.js', {
+		navigator.serviceWorker.register('/digitaldairy/service-worker.js', {
             scope: '/digitaldairy/'
         }).then((serviceWorkerRegistration) => {
             //use my own service worker for receiving push messages

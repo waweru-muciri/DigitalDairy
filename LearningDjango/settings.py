@@ -24,7 +24,7 @@ import django_heroku
 SECRET_KEY = '$=jxc++jhcmbubxpy9pvet@=(b9@9usb*ms#s-qwkiecjg$z7)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -161,7 +161,7 @@ STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "accounts/templates/accounts"),
 ]
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_URL = '/digitaldairy/'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/digitaldairy/daily_milk_production/'
 ACCOUNT_ACTIVATION_DAYS = 7 # one week activation window
 # if DEBUG:

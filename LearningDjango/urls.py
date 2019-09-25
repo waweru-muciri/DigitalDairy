@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from . import views
 
 urlpatterns = [
     # Add Django site authentication urls (for login, logout, password management)
-    path('', include('digitaldairy.urls')),
+    path('', views.index, name="index"),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls'), name='accounts'),
