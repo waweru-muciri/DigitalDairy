@@ -21,6 +21,7 @@ general_to_date = datetime.date.today()
 general_from_date = datetime.date(2000,1,1)
 
 
+@login_required
 @require_http_methods(['GET'])
 def index(request):
 	month = request.GET.get('month')
