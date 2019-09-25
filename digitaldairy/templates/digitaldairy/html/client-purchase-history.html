@@ -15,7 +15,11 @@
 		{% endif %}
 		<form method="get">
 			<div class="row sf-html-block">
-				<div class="col-lg-3 mx-auto form-group">
+				<div class="col-lg-3 col-lg-3 d-md-none d-lg-block">
+					<button type="submit"  onclick="window.history.back(); return false;"
+						class="btn btn-primary">Back</button>
+				</div>
+				<div class="col-lg-3 form-group">
 					<input id="sales_from_date" class="form-control" type="date" name="sales_from_date"
 					placeholder="From Date" value="{{sales_from_date|date:'Y-m-d'}}">
 				</div>

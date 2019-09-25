@@ -203,7 +203,7 @@ def store_push_token(request):
 @login_required
 @require_http_methods(['GET'])
 def cows(request):
-	cows_list = Cow.objects.all()
+	cows_list = Cow.objects.filter(status='Active')
 	context = {
 		'cows_list': cows_list,
 	}
@@ -903,14 +903,14 @@ def cow_milk_production_history(request):
 	to_date_string = request.GET.get('to_date')
 	if from_date_string:
 		try:
-			from_date = datetime.datetime.strptime(from_date_string, '%Y-%m-%d')
+			from_date = datetime.datetime.strptime(from_date_string, '%Y-%m-%d').date()
 		except ValueError:
 			from_date = general_from_date
 	else:
 		from_date = general_from_date
 	if to_date_string:
 		try:
-			to_date = datetime.datetime.strptime(to_date_string, '%Y-%m-%d')
+			to_date = datetime.datetime.strptime(to_date_string, '%Y-%m-%d').date()
 		except ValueError:
 			to_date = general_to_date
 	else:
@@ -1503,13 +1503,15 @@ def save_cow_sale(request):
 	client_name = request.POST.get('client_name')
 	sale_remarks = request.POST.get('sale_remarks')
 	referenced_cow = get_object_or_404(Cow, pk=cow_id)
-	created_record, created = CowSales.objects \
+	created_record, _created = CowSales.objects \
 		.update_or_create(cow=referenced_cow, defaults={
 		'date': sale_date,
 		'cow_value': cow_value,
 		'client_name': client_name,
 		'sale_remarks': sale_remarks,
 	})
+	referenced_cow.status = 'Sold'
+	referenced_cow.save()
 	return HttpResponseRedirect(reverse('digitaldairy:cow_sales'))
 
 
@@ -1681,9 +1683,9 @@ def save_cow_death_record(request):
 	death_date = request.POST['death_date']
 	autopsy_date = request.POST.get('autopsy_date')
 	death_cause = request.POST.get('death_cause')
-	referenced_cow.status = 'Inactive'
+	referenced_cow.status = 'Dead'
 	referenced_cow.save()
-	death_record, created = Deaths.objects \
+	death_record, _created = Deaths.objects \
 		.update_or_create(cow=referenced_cow, defaults={
 		'death_date': death_date,
 		'autopsy_date': autopsy_date,

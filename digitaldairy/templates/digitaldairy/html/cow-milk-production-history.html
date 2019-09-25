@@ -7,6 +7,10 @@
 					<div class="text-center non-printable">
 						<form id="cowMilkProductionHistorySearchForm" method="get" action="{% url 'digitaldairy:milk_production_history' %}">
 							<div class="row">
+								<div class="col-lg-1 col-md-1 sf-html-block d-md-none d-lg-block">
+									<button type="submit"  onclick="window.history.back(); return false;"
+										class="btn btn-primary">Back</button>
+								</div>
 								<div class="col-lg-3 col-md-3  sf-html-block">
 									<select id="selectedMilkProdHistoryCow" required class="form-control" name="cow_id">
 									<script>
@@ -27,7 +31,7 @@
 									<input id="to_date" class="form-control" type="date" name="to_date" value="{{to_date|date:'Y-m-d'}}">
 									{% csrf_token %}
 								</div>
-								<div class="col-lg-3 col-md-3 sf-html-block">
+								<div class="col-lg-2 col-md-2 sf-html-block">
 									<button form="cowMilkProductionHistorySearchForm" type="submit"
 										class="btn btn-primary">Retrieve</button>
 								</div>
