@@ -151,14 +151,6 @@ def dashboard(request):
 	return render(request, context=context, template_name='digitaldairy/html/dashboard.html')
 
 
-def firebase_messaging_sw_js(request):
-	return render(request, 'digitaldairy/firebase-messaging-sw.js',content_type="application/x-javascript")
-
-
-def service_worker_js(request):
-	return render(request, 'digitaldairy/service-worker.js',content_type="application/x-javascript")
-
-
 @require_http_methods(['POST'])
 def send_message(request):
 	senders_email = request.POST['email']

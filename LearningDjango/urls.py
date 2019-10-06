@@ -20,6 +20,8 @@ from . import views
 urlpatterns = [
     # Add Django site authentication urls (for login, logout, password management)
     path('', views.index, name="index"),
+    path('service-worker.js', views.service_worker_js),
+    path('firebase-messaging-sw.js', views.firebase_messaging_sw_js),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls'), name='accounts'),
