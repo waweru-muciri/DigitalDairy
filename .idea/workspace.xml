@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b32f645-0ab8-4a1a-9249-5ae14e29c707" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/digitalDairyApi/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/digitalDairyApi/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/digitalDairyApi/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LearningDjango/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/LearningDjango/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LearningDjango/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LearningDjango/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LearningDjango/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/LearningDjango/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-health.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-sales.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deworming.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/milk-production-statistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digitaldairy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/digitaldairy/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +19,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+              <folding>
+                <element signature="e#315#363#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,11 +44,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>__year</find>
-      <find>employees</find>
-      <find>Json</find>
-      <find>Clients</find>
-      <find>primary_key=True</find>
       <find>daily_milk_production</find>
       <find>month</find>
       <find>breeding</find>
@@ -67,38 +69,43 @@
       <find>health</find>
       <find>daily_feeding</find>
       <find>width:100%;</find>
+      <find>DailyFeedingViewSet</find>
+      <find>DailyFeeding</find>
+      <find>Employees</find>
+      <find>CowInsurance</find>
+      <find>CowsViewSet</find>
     </findStrings>
     <replaceStrings>
-      <replace>MilkSales</replace>
-      <replace>WeightRecords</replace>
-      <replace>MilkProductions</replace>
-      <replace>Clients</replace>
-      <replace>Consumers</replace>
-      <replace>MilkConsumptions</replace>
-      <replace>TreatmentRecords</replace>
-      <replace>MilkTargets</replace>
-      <replace>clients_consumers</replace>
-      <replace>milk_consumption</replace>
-      <replace>col-lg-3</replace>
-      <replace>col-sm-3</replace>
-      <replace>AbortionMiscarriages</replace>
-      <replace>AiRecords</replace>
-      <replace>table display</replace>
-      <replace>dailyMilkSaleList</replace>
-      <replace>expenses</replace>
-      <replace>income</replace>
-      <replace>cows</replace>
-      <replace>table table-striped table-bordered</replace>
-      <replace>class=&quot;table table-striped table-bordered&quot;</replace>
-      <replace>table table-hover table-striped table-bordered</replace>
-      <replace>table table-hover</replace>
-      <replace>digitaldairy</replace>
       <replace>milk_sales_payment</replace>
       <replace>{% url 'digitaldairy:' %}</replace>
       <replace>images/svg</replace>
       <replace>day</replace>
       <replace />
       <replace>width:100%; margin: auto;</replace>
+      <replace>CowBodyTraitsViewSet</replace>
+      <replace>CowBodyTraits</replace>
+      <replace>MilkSales</replace>
+      <replace>MilkProductions</replace>
+      <replace>WeightRecords</replace>
+      <replace>CowSales</replace>
+      <replace>TreatmentRecords</replace>
+      <replace>Deworming</replace>
+      <replace>Vaccinations</replace>
+      <replace>Diseases</replace>
+      <replace>Deaths</replace>
+      <replace>MilkSalesPayments</replace>
+      <replace>AiRecords</replace>
+      <replace>Calvings</replace>
+      <replace>AbortionMiscarriages</replace>
+      <replace>Employees</replace>
+      <replace>SalaryAdvances</replace>
+      <replace>EmployeeSalaries</replace>
+      <replace>CalfFeeding</replace>
+      <replace>FeedItems</replace>
+      <replace>DailyFeeding</replace>
+      <replace>CowInsurance</replace>
+      <replace>Expense</replace>
+      <replace>Income</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -110,10 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/registration/logged_out.html" />
-        <option value="$PROJECT_DIR$/templates/django_registration/activation_email_body.txt" />
-        <option value="$PROJECT_DIR$/accounts/templates/accounts/tokens.py" />
-        <option value="$PROJECT_DIR$/accounts/tokens.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/cow-feeds.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/daily-feeding.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/ai-records.html" />
@@ -148,7 +151,6 @@
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/expenses.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/dashboard.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/manifest.json" />
-        <option value="$PROJECT_DIR$/LearningDjango/settings.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/common-header.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/index.html" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/css/styles.css" />
@@ -157,18 +159,23 @@
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/consumer-consumption-history.html" />
         <option value="$PROJECT_DIR$/digitaldairy/views.py" />
         <option value="$PROJECT_DIR$/LearningDjango/views.py" />
-        <option value="$PROJECT_DIR$/LearningDjango/urls.py" />
         <option value="$PROJECT_DIR$/digitaldairy/urls.py" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/js/index.js" />
         <option value="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/html/deaths-autopsies.html" />
+        <option value="$PROJECT_DIR$/digitaldairy/serializers.py" />
+        <option value="$PROJECT_DIR$/digitalDairyApi/serializers.py" />
+        <option value="$PROJECT_DIR$/LearningDjango/urls.py" />
+        <option value="$PROJECT_DIR$/digitalDairyApi/views.py" />
+        <option value="$PROJECT_DIR$/digitalDairyApi/urls.py" />
+        <option value="$PROJECT_DIR$/LearningDjango/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="211" />
-    <option name="y" value="331" />
-    <option name="width" value="1014" />
-    <option name="height" value="562" />
+    <option name="x" value="-68" />
+    <option name="y" value="89" />
+    <option name="width" value="1024" />
+    <option name="height" value="555" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -178,6 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,35 +196,36 @@
             <path>
               <item name="LearningDjango" type="b2602c69:ProjectViewProjectNode" />
               <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
-              <item name="digitaldairy" type="462c0819:PsiDirectoryNode" />
+              <item name="LearningDjango" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eventmanagement" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/digitalDairyApi" />
+      <recent name="$PROJECT_DIR$/digitaldairy" />
+      <recent name="$PROJECT_DIR$/accounts/templates/accounts" />
+      <recent name="$PROJECT_DIR$/templates/registration" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/digitalDairyApi" />
       <recent name="$PROJECT_DIR$/digitaldairy/events_updater" />
       <recent name="$PROJECT_DIR$/digitaldairy/templates/digitaldairy" />
       <recent name="$PROJECT_DIR$/accounts" />
       <recent name="$PROJECT_DIR$/accounts/templates/accounts/html" />
-      <recent name="$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/accounts/templates/accounts" />
-      <recent name="$PROJECT_DIR$/templates/registration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -299,13 +308,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.32212257" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.3206278" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.9347079" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.9332192" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.9347079" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -316,27 +326,8 @@
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24961832" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.32212257" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.77835053" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925262" weight="0.9347079" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.9347079" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3281787" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.41580757" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.9329897" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.7787307" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.9176672" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
@@ -383,31 +374,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/pyfcm/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="7" selection-start-line="15" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/digital-dairy1.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/digital-dairy2.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/digital-dairy2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/cows-3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/cows-2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/cow-treatments.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/templates/digitaldairy/images/digital-dairy1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -459,13 +425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="54" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LearningDjango/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -594,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="162" column="36" selection-start-line="162" selection-start-column="36" selection-end-line="162" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/logged_out.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -615,16 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="53" column="50" lean-forward="true" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="37" column="22" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -677,16 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LearningDjango/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -704,19 +636,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/digitalDairyApi/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="534" column="47" lean-forward="true" selection-start-line="534" selection-start-column="47" selection-end-line="534" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#12581#14188#0" />
+            <element signature="e#14222#15209#0" />
+            <element signature="e#15255#15822#0" />
+            <element signature="e#16425#17198#0" />
+            <element signature="e#17240#17692#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitalDairyApi/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="44" lean-forward="true" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitalDairyApi/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="238" column="91" lean-forward="true" selection-start-line="238" selection-start-column="91" selection-end-line="238" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitalDairyApi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="33" column="83" lean-forward="true" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitalDairyApi/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LearningDjango/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="112">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LearningDjango/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LearningDjango/DbRouter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/digitaldairy/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="6456">
           <caret line="189" column="11" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="11" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/digitaldairy/hello.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LearningDjango/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding>
+            <element signature="e#315#363#0" expanded="true" />
           </folding>
         </state>
       </provider>

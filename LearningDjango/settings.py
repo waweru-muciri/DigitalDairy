@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+from corsheaders.defaults import default_headers
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -32,8 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'corsheaders',
 	'rest_framework',
 	'digitaldairy.apps.DigitaldairyConfig',
+	'digitalDairyApi.apps.DigitaldairyapiConfig',
 	'accounts.apps.AccountsConfig',
 	'django.contrib.admin',
 	'mathfilters',
@@ -55,6 +58,7 @@ FCM_DJANGO_SETTINGS = {
 
 
 MIDDLEWARE = [
+	'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
@@ -64,6 +68,10 @@ MIDDLEWARE = [
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'LearningDjango.middleware.ServiceWorkerMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 ROOT_URLCONF = 'LearningDjango.urls'
 
@@ -82,6 +90,11 @@ TEMPLATES = [
 		},
 	},
 ]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'X-CSRFTOKEN',
+]
+CORS_ORIGIN_ALLOW_ALL = True
 
 WSGI_APPLICATION = 'LearningDjango.wsgi.application'
 
@@ -145,8 +158,8 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'smartfarmsoftwares@gmail.com'
-EMAIL_HOST_PASSWORD = 'Smartfarmsoftwares182016'
+EMAIL_HOST_USER = 'brianmuciri@digitaldairy.services'
+EMAIL_HOST_PASSWORD = 'spb!b!@gQNV@#q9'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 

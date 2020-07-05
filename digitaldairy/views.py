@@ -172,7 +172,7 @@ def send_message(request):
 
 	messages.append("Message sent successfully!")
 	messages.append("We will get back to you shortly!")
-	send_mail('Hi, ' + senders_email + ' wants your software!', message, 'smartfarmsoftwares@gmail.com', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
+	send_mail('Hi, ' + senders_email + ' wants your software!', message, 'brianmuciri@digitaldairy.services', recipient_list=['bwwaweru18@gmail.com'], fail_silently=False)
 	return  JsonResponse({
 		'messages': messages,
 		})
