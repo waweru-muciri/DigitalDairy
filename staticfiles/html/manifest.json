@@ -1,0 +1,41 @@
+{
+    "name": "DigitalDairy",
+    "short_name": "DigitalDairy",
+    "description": "DigitalDairy is a dairy farm management solution for dairy farmers.",
+    "icons": [
+        {
+            "src": "/static/images/icons/digital_dairy128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/static/images/icons/digital_dairy144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "/static/images/icons/digital_dairy152.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "/static/images/icons/digital_dairy192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/static/images/icons/digital_dairy256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "/static/images/icons/digital_dairy512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/digitaldairy/daily_milk_production/",
+    "display": "standalone",
+    "background_color": "#ECF5FE",
+    "theme_color": "#ffffff"
+}

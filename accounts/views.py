@@ -19,7 +19,7 @@ def update_profile(request):
             return HttpResponseRedirect(reverse('accounts:profile'))
         else:
             messages.error(request, 'Please correct the error below.')
-            return render(request, 'accounts/html/user-profile.html')
+            return render(request, 'digitaldairy/html/user-profile.html')
 
     else:
-        return render(request, 'accounts/html/user-profile.html')
+        return render(request, 'digitaldairy/html/user-profile.html')

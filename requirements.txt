@@ -7,4 +7,5 @@ fcm_django
 gunicorn
 django-mathfilters
 django_registration
+django-cors-headers
 
