@@ -319,7 +319,7 @@ class MilkSalesPayments(models.Model):
 class AiRecords(models.Model):
 	id = models.AutoField(primary_key=True)
 	cow = models.ForeignKey(Cow, db_index=True, db_column='cow', on_delete=models.CASCADE)
-	semen_record = models.ForeignKey(SemenRecords, on_delete=models.CASCADE)
+	semen_record = models.ForeignKey(SemenRecords, null=True, on_delete=models.SET_NULL)
 	service_date = models.DateField(db_index=True)
 	cost = models.DecimalField(max_digits=10, null=True, default=0, decimal_places=2)
 	vet_name = models.CharField(max_length=100, blank=True, default='')

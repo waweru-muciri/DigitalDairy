@@ -1756,7 +1756,7 @@ def save_income(request):
 @login_required
 @require_http_methods(['POST'])
 def save_expense(request):
-	expense_id = request.POST['expense_id']
+	expense_id = request.POST.get('expense_id')
 	expense_date = request.POST['expense_date']
 	if not expense_date:
 		messages.error(request, 'Date is not available')
@@ -1868,7 +1868,6 @@ def save_cow_ai_record(request):
 		messages.error(request, 'Service date is missing')
 		return render(request, template_name='digitaldairy/html/ai-records.html')
 	bull_code = request.POST.get('bull_code')
-	semen_record = get_object_or_404(SemenRecords, bull_code=bull_code)
 	vet_name = request.POST.get('vet_name')
 	ai_cost = request.POST.get('ai_cost')
 	open_days = request.POST.get('open_days')
@@ -1892,7 +1891,9 @@ def save_cow_ai_record(request):
 	ai_record.drying_date = service_date + dateutil.relativedelta.relativedelta(months=7)
 	ai_record.steaming_date = service_date + dateutil.relativedelta.relativedelta(months=8)
 	ai_record.due_date = service_date + dateutil.relativedelta.relativedelta(months=9)
-	ai_record.semen_record = semen_record
+	if bull_code:
+		semen_record = get_object_or_404(SemenRecords, bull_code=bull_code)
+		ai_record.semen_record = semen_record
 	if not ai_record_id:
 		referenced_cow = get_object_or_404(Cow, pk=cow_id)
 		ai_record.cow = referenced_cow
