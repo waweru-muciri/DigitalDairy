@@ -1,7 +1,7 @@
-# Dairy Management System
-This is a dairy management system built with Bootstrap JavaScript, Python Django, and MySQL database. The system provides a secure platform for managing and storing farm data, including milk production and distribution records, animal breeding, animal health, animal feeding, employee management, and farm finances. With this software, a dairy farmer can easily track important farm activities, generate statistics, and analytics that help in making informed decisions.
+# Dairy Farm Management System
+This is a dairy farm management system built with Bootstrap JavaScript, Python Django, and MySQL database. The system provides a secure platform for managing and storing farm data, including milk production and distribution records, animal breeding, animal health, animal feeding, employee management, and farm finances. With this software, a dairy farmer can easily track important farm activities, generate statistics, and analytics that help in making informed decisions.
 ## Features
-The Dairy Management System provides the following features:
+The Dairy Management Farm System provides the following features:
 
 * Secure data storage and management for milk production and distribution records, animal breeding, animal health, animal feeding, employee management, and farm finances.
 * Ability to track important farm activities such as insemination dates, cow heat dates, insemination dates, calving dates, cow sales, milk production, and distribution, farm income, expenses.
