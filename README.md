@@ -29,6 +29,6 @@ To get started with the Dairy Management System, follow the steps below:
 7. Start the development server:
 `python manage.py runserver`
 
-##Usage
+## Usage
 Once the development server is up and running, you can access the Dairy Management System by navigating to http://localhost:8000 in your web browser. You can use the superuser account created in step 6 above to log in and start using the system.
 
